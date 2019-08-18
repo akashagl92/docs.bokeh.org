@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>step_chart &mdash; Bokeh 0.10.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.1.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.1.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.10.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.10.0 documentation" href="../../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default ">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.10.0</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#plot">Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#guides-and-annotations">Guides and Annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#ranges">Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#vectorized-colors-and-sizes">Vectorized colors and sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#linked-panning-and-brushing">Linked panning and brushing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#datetime-axes">Datetime axes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/setup.html">Getting Set Up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#installing-the-bokeh-library">Installing the Bokeh Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#verifying-your-installation">Verifying your installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#finding-help">Finding Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/concepts.html">Defining Key Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/concepts.html#glossary">Glossary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/concepts.html#interfaces">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/plotting.html">Plotting with Basic Glyphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#creating-figures">Creating Figures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#combining-multiple-glyphs">Combining Multiple Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#setting-ranges">Setting Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#specifying-axis-types">Specifying Axis Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#adding-annotations">Adding Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/charts.html">Using High-level Charts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#bar-charts">Bar Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#box-plots">Box Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#histograms">Histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#scatter-plots">Scatter Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#chart-defaults">Chart Defaults</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compat.html">Leveraging Other Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#pandas">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#seaborn">Seaborn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#ggplot-py"><code class="docutils literal"><span class="pre">ggplot.py</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/styling.html">Styling Visual Attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#using-palettes">Using Palettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#visual-properties">Visual Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#selecting-plot-objects">Selecting Plot Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#plots">Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#axes">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#grids">Grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#legends">Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tools.html">Configuring Plot Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#positioning-the-toolbar">Positioning the Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#specifying-tools">Specifying Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#setting-tool-visuals">Setting Tool Visuals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#controlling-level-of-detail">Controlling Level of Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/layout.html">Laying Out Multiple Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#vertical-layout">Vertical Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#horizontal-layout">Horizontal Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#grid-layout">Grid Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#form-layout">Form Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/notebook.html">Working in the Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#displaying-inline-plots">Displaying Inline Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#connecting-to-bokeh-server-plots">Connecting to Bokeh Server Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#integrating-ipython-interactors">Integrating IPython Interactors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/interaction.html">Adding Interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#linking-plots">Linking Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#adding-widgets">Adding Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#defining-callbacks">Defining Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/server.html">Deploying the Bokeh Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#running-the-example-server">Running the Example Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#storing-plots-on-the-server">Storing plots on the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#authenticating-users">Authenticating Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#publishing-to-the-server">Publishing to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#streaming-data-with-the-server">Streaming Data with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#downsampling-with-server">Downsampling with Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#reacting-to-user-interactions">Reacting to User Interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#building-bokeh-applications">Building Bokeh Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#deploying-for-production">Deploying for Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/embed.html">Embedding Bokeh Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#standalone-html">Standalone HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#ipython-notebook">IPython Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#autoloading">Autoloading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/webgl.html">Speeding up visualizations with WebGL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/webgl.html#what-is-webgl">What is WebGL?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/webgl.html#how-to-enable-webgl">How to enable WebGL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/webgl.html#support">Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/webgl.html#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/webgl.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/info.html">Learning More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-do-you-pronounce-bokeh"><em>How do you pronounce &#8220;bokeh&#8221;?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#why-did-you-start-writing-a-new-plotting-library"><em>Why did you start writing a new plotting library?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#can-i-incorporate-bokeh-into-my-proprietary-app-or-platform"><em>Can I incorporate Bokeh into my proprietary app or platform?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#what-is-the-relationship-between-bokeh-and-chaco"><em>What is the relationship between Bokeh and Chaco?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-does-bokeh-compare-to-mpld3"><em>How does Bokeh compare to mpld3?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#does-bokeh-implement-r-s-ggplot2"><em>Does Bokeh implement R&#8217;s ggplot2?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#does-bokeh-use-d3-js"><em>Does Bokeh use D3.js?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#why-not-use-something-like-vega"><em>Why not use something like Vega?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-do-i-get-the-sample-data"><em>How do I get the sample data?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#are-the-tools-not-working-in-chrome-cromium"><em>Are the tools not working in Chrome/Cromium?</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release_notes.html#long-term-todo-list">Long-term TODO List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/properties.html">Properties System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/properties.html#bokeh-properties"><code class="docutils literal"><span class="pre">bokeh.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/properties.html#bokeh-mixins"><code class="docutils literal"><span class="pre">bokeh.mixins</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/annotations.html"><code class="docutils literal"><span class="pre">bokeh.models.annotations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/axes.html"><code class="docutils literal"><span class="pre">bokeh.models.axes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/callbacks.html"><code class="docutils literal"><span class="pre">bokeh.models.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/formatters.html"><code class="docutils literal"><span class="pre">bokeh.models.formatters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/glyphs.html"><code class="docutils literal"><span class="pre">bokeh.models.glyphs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/grids.html"><code class="docutils literal"><span class="pre">bokeh.models.grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/map_plots.html"><code class="docutils literal"><span class="pre">bokeh.models.map_plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/mappers.html"><code class="docutils literal"><span class="pre">bokeh.models.mappers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/markers.html"><code class="docutils literal"><span class="pre">bokeh.models.markers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/plots.html"><code class="docutils literal"><span class="pre">bokeh.models.plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/ranges.html"><code class="docutils literal"><span class="pre">bokeh.models.ranges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/renderers.html"><code class="docutils literal"><span class="pre">bokeh.models.renderers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/sources.html"><code class="docutils literal"><span class="pre">bokeh.models.sources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/tickers.html"><code class="docutils literal"><span class="pre">bokeh.models.tickers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/tools.html"><code class="docutils literal"><span class="pre">bokeh.models.tools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widget.html"><code class="docutils literal"><span class="pre">bokeh.models.widget</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.buttons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.buttons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.dialogs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.dialogs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.groups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.icons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.icons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.inputs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.inputs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.layouts.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.layouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.markups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.markups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.panels.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.panels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/models/widgets.tables.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/validation.html"><code class="docutils literal"><span class="pre">bokeh.validation</span></code> Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/validation.html#bokeh-validation-errors"><code class="docutils literal"><span class="pre">bokeh.validation.errors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/validation.html#bokeh-validation-warnings"><code class="docutils literal"><span class="pre">bokeh.validation.warnings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/validation.html#bokeh-validation-decorators"><code class="docutils literal"><span class="pre">bokeh.validation.decorators</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/validation.html#bokeh-validation-exceptions"><code class="docutils literal"><span class="pre">bokeh.validation.exceptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/charts.html"><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/charts.html#module-bokeh.charts">Chart Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/charts.html#helper-classes">Helper Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/charts.html#builders">Builders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/resources_embedding.html">Resources and Embedding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/resources_embedding.html#bokeh-state"><code class="docutils literal"><span class="pre">bokeh.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/resources_embedding.html#bokeh-io"><code class="docutils literal"><span class="pre">bokeh.io</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/resources_embedding.html#bokeh-resources"><code class="docutils literal"><span class="pre">bokeh.resources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/resources_embedding.html#bokeh-embed"><code class="docutils literal"><span class="pre">bokeh.embed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/resources_embedding.html#bokeh-templates"><code class="docutils literal"><span class="pre">bokeh.templates</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plot_objects.html">Plot Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/plot_objects.html#bokeh"><code class="docutils literal"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/plot_objects.html#bokeh-document"><code class="docutils literal"><span class="pre">bokeh.document</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/plot_objects.html#bokeh-session"><code class="docutils literal"><span class="pre">bokeh.session</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Interface Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#data-sources">Data Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#line-properties">Line Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#fill-properties">Fill Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#text-properties">Text Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#markers">Markers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/bokehjs.html#glyphs">Glyphs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sphinxext.html">Sphinx Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_autodoc">bokeh_autodoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_gallery">bokeh_gallery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_github">bokeh_github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_model">bokeh_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_palette">bokeh_palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_plot">bokeh_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.bokeh_prop">bokeh_prop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sphinxext.html#module-bokeh.sphinxext.collapsible_code_block">collapsible_code_block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#cloning-the-repository">Cloning the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#building-bokehjs">Building BokehJS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#python-setup">Python Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#incremental-compilation">Incremental Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#building">Building</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/objects.html#low-level-object-interface">Low-level Object Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/objects.html#models-and-properties">Models and properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#bokehjs-motivations">BokehJS Motivations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#goals">Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bindings.html#resources-for-authors">Resources for Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bindings.html#known-bindings">Known Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#css-class-names">CSS class names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-examples">Managing examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#choosing-right-types">Choosing right types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-python-modules">Managing Python modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-external-js-libraries">Managing external JS libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#maintaining-secure-variables-in-travis-yml">Maintaining secure variables in .travis.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#browser-caching">Browser caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#bokehjs-amd-module-template-for-a-model">BokehJS AMD module template for a model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#data-model">Data Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#copy-on-write">Copy on Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#anonymous-users">Anonymous Users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">step_chart</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="step-chart">
+<span id="gallery-step-chart"></span><h1>step_chart<a class="headerlink" href="#step-chart" title="Permalink to this headline">¶</a></h1>
+<p>&lt; <a class="reference internal" href="stacked_bar_chart.html#gallery-stacked-bar-chart"><span>stacked_bar_chart</span></a> |
+back to <a class="reference internal" href="../gallery.html#gallery"><span>Gallery</span></a> | <a class="reference internal" href="stocks_timeseries_chart.html#gallery-stocks-timeseries-chart"><span>stocks_timeseries_chart</span></a> &gt;</p>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-459786616c9990e254f1c7905624b1ee.js"
+        id="4e72b02c-4aec-4f3f-baa4-d9f45f11f247"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="b0d7be48-fc36-4b6a-8752-9085df806803"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table><div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh._legacy_charts</span> <span class="kn">import</span> <span class="n">Step</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">354</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span> <span class="mi">287</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">230</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># any of the following commented are also valid Step inputs</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#xyvalues = list(xyvalues.values())</span>
+<span class="c">#xyvalues = np.array(list(xyvalues.values()))</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;steps.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;line.py example&quot;</span><span class="p">)</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">Step</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Steps&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;measures&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&#39;top_left&#39;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/gallery/step_chart.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

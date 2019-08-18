@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.util.compiler &mdash; Bokeh 1.0.1 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.0.1";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/_modules/bokeh/util/compiler.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.0.1</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.util.compiler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; Provide functions and classes to help with various JS and CSS compilation.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">six</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span><span class="p">,</span> <span class="n">abspath</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">isabs</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="k">import</span> <span class="n">Popen</span><span class="p">,</span> <span class="n">PIPE</span>
+
+<span class="kn">from</span> <span class="nn">..model</span> <span class="k">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">..settings</span> <span class="k">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">.string</span> <span class="k">import</span> <span class="n">snakify</span>
+
+<span class="n">_plugin_umd</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">(function(root, factory) {</span>
+<span class="sd">//  if(typeof exports === &#39;object&#39; &amp;&amp; typeof module === &#39;object&#39;)</span>
+<span class="sd">//    factory(require(&quot;Bokeh&quot;));</span>
+<span class="sd">//  else if(typeof define === &#39;function&#39; &amp;&amp; define.amd)</span>
+<span class="sd">//    define([&quot;Bokeh&quot;], factory);</span>
+<span class="sd">//  else if(typeof exports === &#39;object&#39;)</span>
+<span class="sd">//    factory(require(&quot;Bokeh&quot;));</span>
+<span class="sd">//  else</span>
+<span class="sd">    factory(root[&quot;Bokeh&quot;]);</span>
+<span class="sd">})(this, function(Bokeh) {</span>
+<span class="sd">  var define;</span>
+<span class="sd">  return %(content)s;</span>
+<span class="sd">});</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># XXX: this is the same as bokehjs/src/js/plugin-prelude.js</span>
+<span class="n">_plugin_prelude</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">(function outer(modules, entry) {</span>
+<span class="sd">  if (Bokeh != null) {</span>
+<span class="sd">    return Bokeh.register_plugin(modules, {}, entry);</span>
+<span class="sd">  } else {</span>
+<span class="sd">    throw new Error(&quot;Cannot find Bokeh. You have to load it prior to loading plugins.&quot;);</span>
+<span class="sd">  }</span>
+<span class="sd">})</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">_plugin_template</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">%(prelude)s\</span>
+<span class="sd">({</span>
+<span class="sd">  &quot;custom/main&quot;: function(require, module, exports) {</span>
+<span class="sd">    var models = {</span>
+<span class="sd">      %(exports)s</span>
+<span class="sd">    };</span>
+<span class="sd">    require(&quot;base&quot;).register_models(models);</span>
+<span class="sd">    module.exports = models;</span>
+<span class="sd">  },</span>
+<span class="sd">  %(modules)s</span>
+<span class="sd">}, &quot;custom/main&quot;);</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">_style_template</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">(function() {</span>
+<span class="sd">  var head = document.getElementsByTagName(&#39;head&#39;)[0];</span>
+<span class="sd">  var style = document.createElement(&#39;style&#39;);</span>
+<span class="sd">  style.type = &#39;text/css&#39;;</span>
+<span class="sd">  var css = %(css)s;</span>
+<span class="sd">  if (style.styleSheet) {</span>
+<span class="sd">    style.styleSheet.cssText = css;</span>
+<span class="sd">  } else {</span>
+<span class="sd">    style.appendChild(document.createTextNode(css));</span>
+<span class="sd">  }</span>
+<span class="sd">  head.appendChild(style);</span>
+<span class="sd">}());</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">_export_template</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;&quot;%(name)s&quot;: require(&quot;%(module)s&quot;).%(name)s&quot;&quot;&quot;</span>
+
+<span class="n">_module_template</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;&quot;%(module)s&quot;: function(require, module, exports) {\n%(source)s\n}&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AttrDict"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.AttrDict">[docs]</a><span class="k">class</span> <span class="nc">AttrDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Provide a dict subclass that supports access by named attributes.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="CompilationError"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.CompilationError">[docs]</a><span class="k">class</span> <span class="nc">CompilationError</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A RuntimeError subclass for reporting JS compilation errors.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CompilationError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;column&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;message&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annotated</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;annotated&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span></div>
+
+<span class="n">bokehjs_dir</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">bokehjsdir</span><span class="p">()</span>
+<span class="n">nodejs_min_version</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_detect_nodejs</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">nodejs_path</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nodejs_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">settings</span><span class="o">.</span><span class="n">nodejs_path</span><span class="p">()]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nodejs_paths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nodejs&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">nodejs_path</span> <span class="ow">in</span> <span class="n">nodejs_paths</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">([</span><span class="n">nodejs_path</span><span class="p">,</span> <span class="s2">&quot;--version&quot;</span><span class="p">],</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+            <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^v(\d+)\.(\d+)\.(\d+).*$&quot;</span><span class="p">,</span> <span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">match</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">version</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="n">version</span> <span class="o">&gt;=</span> <span class="n">nodejs_min_version</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">nodejs_path</span>
+
+    <span class="c1"># if we&#39;ve reached here, no valid version was found</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">nodejs_min_version</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;node.js v</span><span class="si">%s</span><span class="s1"> or higher is needed to allow compilation of custom models &#39;</span> <span class="o">%</span> <span class="n">version</span> <span class="o">+</span>
+                       <span class="s1">&#39;(&quot;conda install nodejs&quot; or follow https://nodejs.org/en/download/)&#39;</span><span class="p">)</span>
+
+<span class="n">_nodejs</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">_npmjs</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">_nodejs_path</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">_nodejs</span>
+    <span class="k">if</span> <span class="n">_nodejs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_nodejs</span> <span class="o">=</span> <span class="n">_detect_nodejs</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">_nodejs</span>
+
+<span class="k">def</span> <span class="nf">_npmjs_path</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">_npmjs</span>
+    <span class="k">if</span> <span class="n">_npmjs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_npmjs</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">_nodejs_path</span><span class="p">()),</span> <span class="s2">&quot;npm&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;win32&quot;</span><span class="p">:</span>
+            <span class="n">_npmjs</span> <span class="o">+=</span> <span class="s1">&#39;.cmd&#39;</span>
+    <span class="k">return</span> <span class="n">_npmjs</span>
+
+<span class="k">def</span> <span class="nf">_crlf_cr_2_lf</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">r</span><span class="se">\\</span><span class="s2">n|</span><span class="se">\\</span><span class="s2">r|</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">([</span><span class="n">app</span><span class="p">]</span> <span class="o">+</span> <span class="n">argv</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stdin</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">errout</span><span class="p">)</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="nb">input</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">errout</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_crlf_cr_2_lf</span><span class="p">(</span><span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_run_nodejs</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="n">_nodejs_path</span><span class="p">(),</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_run_npmjs</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_run</span><span class="p">(</span><span class="n">_npmjs_path</span><span class="p">(),</span> <span class="n">argv</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_version</span><span class="p">(</span><span class="n">run_app</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">run_app</span><span class="p">([</span><span class="s2">&quot;--version&quot;</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">version</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">nodejs_version</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">_version</span><span class="p">(</span><span class="n">_run_nodejs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">npmjs_version</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">_version</span><span class="p">(</span><span class="n">_run_npmjs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">nodejs_compile</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;javascript&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">compilejs_script</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">bokehjs_dir</span><span class="p">,</span> <span class="s2">&quot;js&quot;</span><span class="p">,</span> <span class="s2">&quot;compiler.js&quot;</span><span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">_run_nodejs</span><span class="p">([</span><span class="n">compilejs_script</span><span class="p">],</span> <span class="nb">dict</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">lang</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">AttrDict</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Implementation"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.Implementation">[docs]</a><span class="k">class</span> <span class="nc">Implementation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class for representing Bokeh custom model implementations.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="Inline"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.Inline">[docs]</a><span class="k">class</span> <span class="nc">Inline</span><span class="p">(</span><span class="n">Implementation</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class for representing Bokeh custom model implementations that may</span>
+<span class="sd">    be given as inline code in some language.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        code (str) :</span>
+<span class="sd">            The source code for the implementation</span>
+
+<span class="sd">        file (str, optional)</span>
+<span class="sd">            A file path to a file containing the source text (default: None)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span></div>
+
+<div class="viewcode-block" id="CoffeeScript"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.CoffeeScript">[docs]</a><span class="k">class</span> <span class="nc">CoffeeScript</span><span class="p">(</span><span class="n">Inline</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; An implementation for a Bokeh custom model in CoffeeSript.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            class MyExt(Model):</span>
+<span class="sd">                __implementation__ = CoffeeScript(&quot;&quot;&quot; &lt;CoffeeScript code&gt; &quot;&quot;&quot;)</span>
+
+<span class="sd">    Note that ``CoffeeScript`` is the default implementation language for</span>
+<span class="sd">    custom model implementations. The following is equivalent to example above:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        class MyExt(Model):</span>
+<span class="sd">            __implementation__ == &quot;&quot;&quot; &lt;some coffeescript code&gt; &quot;&quot;&quot;</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;coffeescript&quot;</span></div>
+
+<div class="viewcode-block" id="TypeScript"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.TypeScript">[docs]</a><span class="k">class</span> <span class="nc">TypeScript</span><span class="p">(</span><span class="n">Inline</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; An implementation for a Bokeh custom model in TypeSript</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            class MyExt(Model):</span>
+<span class="sd">                __implementation__ = TypeScript(&quot;&quot;&quot; &lt;TypeScript code&gt; &quot;&quot;&quot;)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;typescript&quot;</span></div>
+
+<div class="viewcode-block" id="JavaScript"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.JavaScript">[docs]</a><span class="k">class</span> <span class="nc">JavaScript</span><span class="p">(</span><span class="n">Inline</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; An implementation for a Bokeh custom model in JavaScript</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            class MyExt(Model):</span>
+<span class="sd">                __implementation__ = Javacript(&quot;&quot;&quot; &lt;JavaScript code&gt; &quot;&quot;&quot;)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;javascript&quot;</span></div>
+
+<div class="viewcode-block" id="Less"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.Less">[docs]</a><span class="k">class</span> <span class="nc">Less</span><span class="p">(</span><span class="n">Inline</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; An implementation of a Less CSS style sheet.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;less&quot;</span></div>
+
+<div class="viewcode-block" id="FromFile"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.FromFile">[docs]</a><span class="k">class</span> <span class="nc">FromFile</span><span class="p">(</span><span class="n">Implementation</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A custom model implementation read from a separate source file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (str) :</span>
+<span class="sd">            The path to the file containing the extension source code</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">path</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lang</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.coffee&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;coffeescript&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.ts&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;typescript&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.js&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;javascript&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.css&quot;</span><span class="p">,</span> <span class="s2">&quot;.less&quot;</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="s2">&quot;less&quot;</span></div>
+
+<span class="c1">#: recognized extensions that can be compiled</span>
+<span class="n">exts</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;.coffee&quot;</span><span class="p">,</span> <span class="s2">&quot;.ts&quot;</span><span class="p">,</span> <span class="s2">&quot;.js&quot;</span><span class="p">,</span> <span class="s2">&quot;.css&quot;</span><span class="p">,</span> <span class="s2">&quot;.less&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomModel"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.CustomModel">[docs]</a><span class="k">class</span> <span class="nc">CustomModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Represent a custom (user-defined) Bokeh model.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls</span> <span class="o">=</span> <span class="bp">cls</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;__main__.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="s2">&quot;__file__&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">abspath</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="p">,</span> <span class="s2">&quot;__base_path__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">path</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">impl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="o">.</span><span class="n">__implementation__</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">impl</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">impl</span> <span class="ow">and</span> <span class="n">impl</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">exts</span><span class="p">):</span>
+                <span class="n">impl</span> <span class="o">=</span> <span class="n">FromFile</span><span class="p">(</span><span class="n">impl</span> <span class="k">if</span> <span class="n">isabs</span><span class="p">(</span><span class="n">impl</span><span class="p">)</span> <span class="k">else</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">impl</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">impl</span> <span class="o">=</span> <span class="n">CoffeeScript</span><span class="p">(</span><span class="n">impl</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">impl</span><span class="p">,</span> <span class="n">Inline</span><span class="p">)</span> <span class="ow">and</span> <span class="n">impl</span><span class="o">.</span><span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">impl</span> <span class="o">=</span> <span class="n">impl</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">impl</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="ow">or</span> <span class="s2">&quot;&lt;string&gt;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">impl</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="p">,</span> <span class="s2">&quot;__dependencies__&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;custom/</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">snakify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">_model_cache_no_op</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">implementation</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return cached compiled implementation&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="n">_CACHING_IMPLEMENTATION</span> <span class="o">=</span> <span class="n">_model_cache_no_op</span>
+
+<div class="viewcode-block" id="get_cache_hook"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.get_cache_hook">[docs]</a><span class="k">def</span> <span class="nf">get_cache_hook</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Returns the current cache hook used to look up the compiled</span>
+<span class="sd">       code given the CustomModel and Implementation&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">_CACHING_IMPLEMENTATION</span></div>
+
+<div class="viewcode-block" id="set_cache_hook"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.set_cache_hook">[docs]</a><span class="k">def</span> <span class="nf">set_cache_hook</span><span class="p">(</span><span class="n">hook</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Sets a compiled model cache hook used to look up the compiled</span>
+<span class="sd">       code given the CustomModel and Implementation&#39;&#39;&#39;</span>
+    <span class="k">global</span> <span class="n">_CACHING_IMPLEMENTATION</span>
+    <span class="n">_CACHING_IMPLEMENTATION</span> <span class="o">=</span> <span class="n">hook</span></div>
+
+<span class="k">def</span> <span class="nf">_get_custom_models</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns CustomModels for models with a custom `__implementation__`&quot;&quot;&quot;</span>
+    <span class="n">custom_models</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+        <span class="n">impl</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__implementation__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">impl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">CustomModel</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="n">custom_models</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">full_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">custom_models</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">custom_models</span>
+
+<span class="k">def</span> <span class="nf">_compile_models</span><span class="p">(</span><span class="n">custom_models</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the compiled implementation of supplied `models`. &quot;&quot;&quot;</span>
+    <span class="n">ordered_models</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">custom_models</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">model</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span>
+    <span class="n">custom_impls</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">dependencies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">ordered_models</span><span class="p">:</span>
+        <span class="n">dependencies</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="k">if</span> <span class="n">dependencies</span><span class="p">:</span>
+        <span class="n">dependencies</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">dependencies</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">name_version</span><span class="p">:</span> <span class="n">name_version</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">_run_npmjs</span><span class="p">([</span><span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="s2">&quot;--no-progress&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;@&quot;</span> <span class="o">+</span> <span class="n">version</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">version</span><span class="p">)</span> <span class="ow">in</span> <span class="n">dependencies</span> <span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">ordered_models</span><span class="p">:</span>
+        <span class="n">impl</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">implementation</span>
+        <span class="n">compiled</span> <span class="o">=</span> <span class="n">_CACHING_IMPLEMENTATION</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">impl</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">compiled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">compiled</span> <span class="o">=</span> <span class="n">nodejs_compile</span><span class="p">(</span><span class="n">impl</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">impl</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">impl</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">compiled</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CompilationError</span><span class="p">(</span><span class="n">compiled</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+
+        <span class="n">custom_impls</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">full_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">compiled</span>
+
+    <span class="k">return</span> <span class="n">custom_impls</span>
+
+<div class="viewcode-block" id="bundle_models"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.bundle_models">[docs]</a><span class="k">def</span> <span class="nf">bundle_models</span><span class="p">(</span><span class="n">models</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a bundle of `models`. &quot;&quot;&quot;</span>
+
+    <span class="n">custom_models</span> <span class="o">=</span> <span class="n">_get_custom_models</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">custom_models</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">exports</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">read_json</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">bokehjs_dir</span><span class="p">,</span> <span class="s2">&quot;js&quot;</span><span class="p">,</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.json&quot;</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+    <span class="n">bundles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bokeh&quot;</span><span class="p">,</span> <span class="s2">&quot;bokeh-api&quot;</span><span class="p">,</span> <span class="s2">&quot;bokeh-widgets&quot;</span><span class="p">,</span> <span class="s2">&quot;bokeh-tables&quot;</span><span class="p">,</span> <span class="s2">&quot;bokeh-gl&quot;</span><span class="p">]</span>
+    <span class="n">known_modules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span> <span class="n">read_json</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">bundles</span> <span class="p">],</span> <span class="p">[]))</span>
+    <span class="n">custom_impls</span> <span class="o">=</span> <span class="n">_compile_models</span><span class="p">(</span><span class="n">custom_models</span><span class="p">)</span>
+
+    <span class="n">extra_modules</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">resolve_modules</span><span class="p">(</span><span class="n">to_resolve</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="n">resolved</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">to_resolve</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">module</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s2">&quot;./&quot;</span><span class="p">,</span> <span class="s2">&quot;../&quot;</span><span class="p">)):</span>
+                <span class="k">def</span> <span class="nf">mkpath</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">abspath</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="o">*</span><span class="n">module</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span> <span class="o">+</span> <span class="n">ext</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">module</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">exts</span><span class="p">):</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">mkpath</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;no such module: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">module</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">exts</span><span class="p">:</span>
+                        <span class="n">path</span> <span class="o">=</span> <span class="n">mkpath</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">ext</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                            <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;no such module: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">module</span><span class="p">)</span>
+
+                <span class="n">impl</span> <span class="o">=</span> <span class="n">FromFile</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="n">compiled</span> <span class="o">=</span> <span class="n">nodejs_compile</span><span class="p">(</span><span class="n">impl</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">impl</span><span class="o">.</span><span class="n">lang</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">impl</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">compiled</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">CompilationError</span><span class="p">(</span><span class="n">compiled</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">impl</span><span class="o">.</span><span class="n">lang</span> <span class="o">==</span> <span class="s2">&quot;less&quot;</span><span class="p">:</span>
+                    <span class="n">code</span> <span class="o">=</span> <span class="n">_style_template</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">css</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">compiled</span><span class="o">.</span><span class="n">code</span><span class="p">))</span>
+                    <span class="n">deps</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">code</span> <span class="o">=</span> <span class="n">compiled</span><span class="o">.</span><span class="n">code</span>
+                    <span class="n">deps</span> <span class="o">=</span> <span class="n">compiled</span><span class="o">.</span><span class="n">deps</span>
+
+                <span class="n">sig</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+                <span class="n">resolved</span><span class="p">[</span><span class="n">module</span><span class="p">]</span> <span class="o">=</span> <span class="n">sig</span>
+
+                <span class="n">deps_map</span> <span class="o">=</span> <span class="n">resolve_deps</span><span class="p">(</span><span class="n">deps</span><span class="p">,</span> <span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="n">sig</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">extra_modules</span><span class="p">:</span>
+                    <span class="n">extra_modules</span><span class="p">[</span><span class="n">sig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sig</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">deps_map</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;no such module: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">module</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">resolved</span>
+
+    <span class="k">def</span> <span class="nf">resolve_deps</span><span class="p">(</span><span class="n">deps</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="n">custom_modules</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">module</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">custom_models</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">deps</span><span class="p">)</span> <span class="o">-</span> <span class="n">known_modules</span> <span class="o">-</span> <span class="n">custom_modules</span>
+        <span class="k">return</span> <span class="n">resolve_modules</span><span class="p">(</span><span class="n">missing</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">custom_models</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">compiled</span> <span class="o">=</span> <span class="n">custom_impls</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">full_name</span><span class="p">]</span>
+        <span class="n">deps_map</span> <span class="o">=</span> <span class="n">resolve_deps</span><span class="p">(</span><span class="n">compiled</span><span class="o">.</span><span class="n">deps</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="n">exports</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="p">))</span>
+        <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="p">,</span> <span class="n">compiled</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">deps_map</span><span class="p">))</span>
+
+    <span class="c1"># sort everything by module name</span>
+    <span class="n">exports</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">exports</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">spec</span><span class="p">:</span> <span class="n">spec</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">modules</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">spec</span><span class="p">:</span> <span class="n">spec</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">deps</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">modules</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">ref</span> <span class="ow">in</span> <span class="n">deps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;require(&quot;</span><span class="si">%s</span><span class="s2">&quot;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;require(&quot;</span><span class="si">%s</span><span class="s2">&quot;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">ref</span><span class="p">)</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;require(&#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;require(&#39;</span><span class="si">%s</span><span class="s2">&#39;)&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">ref</span><span class="p">)</span>
+        <span class="n">modules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+
+    <span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="n">exports</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_export_template</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="n">module</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span> <span class="ow">in</span> <span class="n">exports</span><span class="p">)</span>
+    <span class="n">modules</span> <span class="o">=</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_module_template</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">module</span><span class="o">=</span><span class="n">module</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">code</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">)</span>
+
+    <span class="n">content</span> <span class="o">=</span> <span class="n">_plugin_template</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">prelude</span><span class="o">=</span><span class="n">_plugin_prelude</span><span class="p">,</span> <span class="n">exports</span><span class="o">=</span><span class="n">exports</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="n">modules</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_plugin_umd</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="calc_cache_key"><a class="viewcode-back" href="../../../docs/reference/util.html#bokeh.util.compiler.calc_cache_key">[docs]</a><span class="k">def</span> <span class="nf">calc_cache_key</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39; Generate a key to cache a custom extension implementation with.</span>
+
+<span class="sd">    There is no metadata other than the Model classes, so this is the only</span>
+<span class="sd">    base to generate a cache key.</span>
+
+<span class="sd">    We build the model keys from the list of ``model.full_name``. This is</span>
+<span class="sd">    not ideal but possibly a better solution can be found found later.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">models</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">model_class_reverse_map</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="n">custom_model_names</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+        <span class="n">impl</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__implementation__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">impl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">CustomModel</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+            <span class="n">custom_model_names</span> <span class="o">+=</span> <span class="n">model</span><span class="o">.</span><span class="n">full_name</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">custom_model_names</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">key</span></div>
+
+<span class="n">_bundle_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span> <span class="nf">bundle_all_models</span><span class="p">():</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">calc_cache_key</span><span class="p">()</span>
+    <span class="n">bundle</span> <span class="o">=</span> <span class="n">_bundle_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">bundle</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">_bundle_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">bundle</span> <span class="o">=</span> <span class="n">bundle_models</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">model_class_reverse_map</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bundle</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../../docs/vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../../docs/team.html">Team</a></li>
+      
+        <li><a href="../../../docs/citation.html">Citation</a></li>
+      
+        <li><a href="../../../docs/contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../../docs/contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

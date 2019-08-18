@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.server.views.ws &mdash; Bokeh 0.12.10 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.10";
+  </script>
+  <script src="../../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/_modules/bokeh/server/views/ws.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../../index.html">0.12.10</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.10/">0.12.10</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.9/">0.12.9</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../../../docs/installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/releases/0.12.10.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.10.html">0.12.0 (Oct 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.9.html">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.7.html">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.5.html">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.server.views.ws</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; Provide a web socket handler for the Bokeh Server application.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">codecs</span>
+
+<span class="kn">from</span> <span class="nn">six.moves.urllib.parse</span> <span class="k">import</span> <span class="n">urlparse</span>
+
+<span class="kn">from</span> <span class="nn">tornado</span> <span class="k">import</span> <span class="n">gen</span><span class="p">,</span> <span class="n">locks</span>
+<span class="kn">from</span> <span class="nn">tornado.websocket</span> <span class="k">import</span> <span class="n">WebSocketHandler</span><span class="p">,</span> <span class="n">WebSocketClosedError</span>
+
+<span class="kn">from</span> <span class="nn">..protocol_handler</span> <span class="k">import</span> <span class="n">ProtocolHandler</span>
+<span class="kn">from</span> <span class="nn">...protocol</span> <span class="k">import</span> <span class="n">Protocol</span>
+<span class="kn">from</span> <span class="nn">...protocol.exceptions</span> <span class="k">import</span> <span class="n">MessageError</span><span class="p">,</span> <span class="n">ProtocolError</span><span class="p">,</span> <span class="n">ValidationError</span>
+<span class="kn">from</span> <span class="nn">...protocol.message</span> <span class="k">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">...protocol.receiver</span> <span class="k">import</span> <span class="n">Receiver</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.util.session_id</span> <span class="k">import</span> <span class="n">check_session_id_signature</span>
+
+<div class="viewcode-block" id="WSHandler"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler">[docs]</a><span class="k">class</span> <span class="nc">WSHandler</span><span class="p">(</span><span class="n">WebSocketHandler</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Implements a custom Tornado WebSocketHandler for the Bokeh Server.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tornado_app</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">handler</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_context</span> <span class="o">=</span> <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;application_context&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latest_pong</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1"># write_lock allows us to lock the connection to send multiple</span>
+        <span class="c1"># messages atomically.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">write_lock</span> <span class="o">=</span> <span class="n">locks</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+        <span class="c1"># Note: tornado_app is stored as self.application</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">WSHandler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">tornado_app</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application_context</span><span class="p">,</span> <span class="n">bokeh_websocket_path</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">check_origin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">origin</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">..util</span> <span class="k">import</span> <span class="n">check_whitelist</span>
+        <span class="n">parsed_origin</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span>
+        <span class="n">origin_host</span> <span class="o">=</span> <span class="n">parsed_origin</span><span class="o">.</span><span class="n">netloc</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">allowed_hosts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">websocket_origins</span>
+
+        <span class="n">allowed</span> <span class="o">=</span> <span class="n">check_whitelist</span><span class="p">(</span><span class="n">origin_host</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">allowed</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Refusing websocket connection from Origin &#39;</span><span class="si">%s</span><span class="s2">&#39;; </span><span class="se">\</span>
+<span class="s2">                      use --allow-websocket-origin=</span><span class="si">%s</span><span class="s2"> to permit this; currently we allow origins </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span>
+                      <span class="n">origin</span><span class="p">,</span> <span class="n">origin_host</span><span class="p">,</span> <span class="n">allowed_hosts</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="WSHandler.open"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler.open">[docs]</a>    <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Initialize a connection to a client.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;WebSocket connection opened&#39;</span><span class="p">)</span>
+
+        <span class="n">proto_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;bokeh-protocol-version&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">proto_version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;No bokeh-protocol-version specified&quot;</span><span class="p">)</span>
+
+        <span class="n">session_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_argument</span><span class="p">(</span><span class="s2">&quot;bokeh-session-id&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">session_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;No bokeh-session-id specified&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_session_id_signature</span><span class="p">(</span><span class="n">session_id</span><span class="p">,</span>
+                                          <span class="n">signed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">sign_sessions</span><span class="p">,</span>
+                                          <span class="n">secret_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">secret_key</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Session id had invalid signature: </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">session_id</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">&quot;Invalid session ID&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">on_fully_opened</span><span class="p">(</span><span class="n">future</span><span class="p">):</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">exception</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># this isn&#39;t really an error (unless we have a</span>
+                <span class="c1"># bug), it just means a client disconnected</span>
+                <span class="c1"># immediately, most likely.</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Failed to fully open connection </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+        <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_async_open</span><span class="p">(</span><span class="n">session_id</span><span class="p">,</span> <span class="n">proto_version</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">add_future</span><span class="p">(</span><span class="n">future</span><span class="p">,</span>
+                                            <span class="n">on_fully_opened</span><span class="p">)</span></div>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_async_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">proto_version</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_context</span><span class="o">.</span><span class="n">create_session_if_needed</span><span class="p">(</span><span class="n">session_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_context</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span>
+
+            <span class="n">protocol</span> <span class="o">=</span> <span class="n">Protocol</span><span class="p">(</span><span class="n">proto_version</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span> <span class="o">=</span> <span class="n">Receiver</span><span class="p">(</span><span class="n">protocol</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Receiver created for </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">handler</span> <span class="o">=</span> <span class="n">ProtocolHandler</span><span class="p">()</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ProtocolHandler created for </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">new_connection</span><span class="p">(</span><span class="n">protocol</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_context</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ServerConnection created&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="n">ProtocolError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Could not create new server session, reason: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">e</span>
+
+        <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">protocol</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;ACK&#39;</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+<div class="viewcode-block" id="WSHandler.on_message"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler.on_message">[docs]</a>    <span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Process an individual wire protocol fragment.</span>
+
+<span class="sd">            The websocket RFC specifies opcodes for distinguishing</span>
+<span class="sd">            text frames from binary frames. Tornado passes us either</span>
+<span class="sd">            a text or binary string depending on that opcode, we have</span>
+<span class="sd">            to look at the type of the fragment to see what we got.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fragment (unicode or bytes) : wire fragment to process</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># We shouldn&#39;t throw exceptions from on_message because</span>
+        <span class="c1"># the caller is just Tornado and it doesn&#39;t know what to</span>
+        <span class="c1"># do with them other than report them as an unhandled</span>
+        <span class="c1"># Future</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_receive</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># If you go look at self._receive, it&#39;s catching the</span>
+            <span class="c1"># expected error types... here we have something weird.</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unhandled exception receiving a message: </span><span class="si">%r</span><span class="s2">: </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">fragment</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internal_error</span><span class="p">(</span><span class="s2">&quot;server failed to parse a message&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
+                <span class="n">work</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">work</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_schedule</span><span class="p">(</span><span class="n">work</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Handler or its work threw an exception: </span><span class="si">%r</span><span class="s2">: </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internal_error</span><span class="p">(</span><span class="s2">&quot;server failed to handle a message&quot;</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">on_pong</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1"># if we get an invalid integer or utf-8 back, either we</span>
+        <span class="c1"># sent a buggy ping or the client is evil/broken.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">latest_pong</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">UnicodeDecodeError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;received invalid unicode in pong </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;received invalid integer in pong </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+<div class="viewcode-block" id="WSHandler.send_message"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler.send_message">[docs]</a>    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Send a Bokeh Server protocol message to the connected client.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            message (Message) : a message to send</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">message</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">WebSocketClosedError</span><span class="p">:</span>
+            <span class="c1"># on_close() is / will be called anyway</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Failed sending message as connection was closed&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+<div class="viewcode-block" id="WSHandler.write_message"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler.write_message">[docs]</a>    <span class="k">def</span> <span class="nf">write_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">locked</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Override parent write_message with a version that acquires a</span>
+<span class="sd">        write lock before writing.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">def</span> <span class="nf">write_message_unlocked</span><span class="p">():</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">WSHandler</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">write_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">binary</span><span class="p">)</span>
+            <span class="c1"># don&#39;t yield this future or we&#39;re blocking on ourselves!</span>
+            <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">locked</span><span class="p">:</span>
+            <span class="k">with</span> <span class="p">(</span><span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()):</span>
+                <span class="n">write_message_unlocked</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">write_message_unlocked</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WSHandler.on_close"><a class="viewcode-back" href="../../../../docs/reference/server/views.html#bokeh.server.views.ws.WSHandler.on_close">[docs]</a>    <span class="k">def</span> <span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Clean up when the connection is closed.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;WebSocket connection closed: code=</span><span class="si">%s</span><span class="s1">, reason=</span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">close_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">close_reason</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">client_lost</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span></div>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_receive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment</span><span class="p">):</span>
+        <span class="c1"># Receive fragments until a complete message is assembled</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">receiver</span><span class="o">.</span><span class="n">consume</span><span class="p">(</span><span class="n">fragment</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">MessageError</span><span class="p">,</span> <span class="n">ProtocolError</span><span class="p">,</span> <span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="c1"># Handle the message, possibly resulting in work to do</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">work</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">handler</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="n">work</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">MessageError</span><span class="p">,</span> <span class="n">ProtocolError</span><span class="p">,</span> <span class="n">ValidationError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span> <span class="c1"># TODO (other exceptions?)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internal_error</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@gen</span><span class="o">.</span><span class="n">coroutine</span>
+    <span class="k">def</span> <span class="nf">_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">work</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">work</span><span class="p">,</span> <span class="n">Message</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">work</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internal_error</span><span class="p">(</span><span class="s2">&quot;expected a Message not &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">work</span><span class="p">))</span>
+
+        <span class="k">raise</span> <span class="n">gen</span><span class="o">.</span><span class="n">Return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_internal_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Bokeh Server internal error: </span><span class="si">%s</span><span class="s2">, closing connection&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_protocol_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Bokeh Server protocol error: </span><span class="si">%s</span><span class="s2">, closing connection&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="mi">10001</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

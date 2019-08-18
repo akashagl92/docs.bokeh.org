@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.charts.stats &mdash; Bokeh 0.12.5 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.5";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/_modules/bokeh/charts/stats.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.5</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/releases/0.12.5.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/charts.html">Making High-level Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/charts.html">bokeh.charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.charts.stats</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; Statistical methods used to define or modify position of glyphs.</span>
+
+<span class="sd">References:</span>
+<span class="sd">    Wilkinson L. The Grammer of Graphics, sections 7, 7.1</span>
+
+<span class="sd">Method Types:</span>
+<span class="sd">    - Bin: Partitions a space before statistical calculation</span>
+<span class="sd">    - Summary: Produces a single value comprising a statistical summary</span>
+<span class="sd">    - Region: Produces two values bounding an interval.</span>
+<span class="sd">    - Smooth: Produces values representing smoothed versions of the input data.</span>
+<span class="sd">    - Link: Produces edges from pairs of nodes in a graph.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.models.sources</span> <span class="k">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.core.has_props</span> <span class="k">import</span> <span class="n">HasProps</span>
+<span class="kn">from</span> <span class="nn">bokeh.core.properties</span> <span class="k">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Date</span><span class="p">,</span> <span class="n">Datetime</span><span class="p">,</span> <span class="n">Either</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">String</span>
+
+<span class="kn">from</span> <span class="nn">.properties</span> <span class="k">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ColumnLabel</span><span class="p">,</span> <span class="n">EitherColumn</span>
+
+<span class="k">class</span> <span class="nc">Stat</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a statistical operation to summarize a column of data.</span>
+
+<span class="sd">    Can be computed from either a ColumnLabel with a ColumnDataSource, *or*, a</span>
+<span class="sd">    discrete column of data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># inputs</span>
+    <span class="n">column</span> <span class="o">=</span> <span class="n">ColumnLabel</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;A column to use for the stat calculation. Required</span>
+<span class="s2">        when providing a ColumnDataSource as input.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;One option for providing the data</span>
+<span class="s2">        source for stat calculation.&quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">EitherColumn</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="n">Float</span><span class="p">),</span> <span class="n">Column</span><span class="p">(</span><span class="n">Int</span><span class="p">),</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">),</span>
+                  <span class="n">Column</span><span class="p">(</span><span class="n">Date</span><span class="p">),</span> <span class="n">Column</span><span class="p">(</span><span class="n">Datetime</span><span class="p">),</span> <span class="n">Column</span><span class="p">(</span><span class="n">Bool</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                  Second option for providing values for stat calculation is by</span>
+<span class="s2">                  passing the actual column of data.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># output</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;The value calculated for the stat. Some stats could use</span>
+<span class="s2">        multiple properties to provide the calculation if required.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">properties</span><span class="p">):</span>
+
+        <span class="n">source</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+                <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+            <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Stat</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">properties</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_refresh</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Lazy update of properties, used for initial transform init.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set data properties and update all dependent properties.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">=</span> <span class="n">column</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the available columnlabel/source values or column values.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">column</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span>
+
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return transformed value from column label/source or column-like data.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;You must implement the calculate method &#39;</span>
+                                  <span class="s1">&#39;for each stat type.&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform any initial work before the actual calculation is performed.&quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">Sum</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Mean</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Count</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">CountDistinct</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Median</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">StdDeviation</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Min</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Max</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Quantile</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Produces the cutpoint that divides the input data by the interval.</span>
+
+<span class="sd">    Quartiles are a special case of quartiles that divide a dataset into four</span>
+<span class="sd">    equal-size groups. (https://en.wikipedia.org/wiki/Quantile)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interval</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Bin</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a single bin of data values and attributes of the bin.&quot;&quot;&quot;</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">))</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">List</span><span class="p">(</span><span class="n">Float</span><span class="p">))</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">List</span><span class="p">(</span><span class="n">Float</span><span class="p">))</span>
+
+    <span class="n">start_label</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">stop_label</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+
+    <span class="n">center</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">List</span><span class="p">(</span><span class="n">Float</span><span class="p">))</span>
+
+    <span class="n">stat</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Stat</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">Count</span><span class="p">())</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">Float</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bin_label</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">properties</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bin_label</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">bin_label</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bin_label</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bin_label</span> <span class="o">=</span> <span class="p">[</span><span class="n">bin_label</span><span class="p">]</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bin_label</span>
+
+        <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_bounds</span><span class="p">(</span><span class="n">bin_label</span><span class="p">)</span>
+
+        <span class="n">starts</span><span class="p">,</span> <span class="n">stops</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="n">centers</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">stop</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">stops</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">starts</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">stops</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">starts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span>
+            <span class="n">stops</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">stops</span><span class="p">)</span>
+            <span class="n">centers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">starts</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;stop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stops</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;center&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">centers</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Bin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">properties</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">binstr_to_list</span><span class="p">(</span><span class="n">bins</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Produce a consistent display of a bin of data.&quot;&quot;&quot;</span>
+        <span class="n">value_chunks</span> <span class="o">=</span> <span class="n">bins</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">value_chunks</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value_chunks</span><span class="p">]</span>
+        <span class="n">bin_values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">value_chunks</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">bin_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bin_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">process_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bin_label</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bin_label</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">binstr_to_list</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">bin_label</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">binstr_to_list</span><span class="p">(</span><span class="n">bin_label</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span><span class="o">.</span><span class="n">value</span>
+
+
+<span class="k">class</span> <span class="nc">BinStats</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A set of statistical calculations for binning values.</span>
+
+<span class="sd">    Bin counts using: https://en.wikipedia.org/wiki/Freedman%E2%80%93Diaconis_rule</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Int</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">List</span><span class="p">(</span><span class="n">Float</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    If bins is an int, it defines the number of equal-width bins in the</span>
+<span class="s2">    given range. If bins is a sequence, it defines the</span>
+<span class="s2">    bin edges, including the rightmost edge, allowing for non-uniform</span>
+<span class="s2">    bin widths.</span>
+
+<span class="s2">    (default: None, use Freedman-Diaconis rule)</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">bin_width</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Use Freedman-Diaconis rule if None.&#39;</span><span class="p">)</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">Quantile</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">q3</span> <span class="o">=</span> <span class="n">Quantile</span><span class="p">(</span><span class="n">interval</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">properties</span><span class="p">):</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;column&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">column</span> <span class="ow">or</span> <span class="s1">&#39;values&#39;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">BinStats</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">properties</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q1</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q3</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">calc_num_bins</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calc_num_bins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate optimal number of bins using IQR.</span>
+
+<span class="sd">        From: http://stats.stackexchange.com/questions/114490/optimal-bin-width-for-two-dimensional-histogram</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">iqr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q3</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">q1</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">iqr</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bin_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bin_width</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">iqr</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">**</span> <span class="o">-</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="mf">3.</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">values</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_width</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">BinnedStat</span><span class="p">(</span><span class="n">Stat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Base class for shared functionality accross bins and aggregates</span>
+<span class="sd">    dimensions for plotting.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bin_stat</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">BinStats</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        A mapping between each dimension and associated binning calculations.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Instance</span><span class="p">(</span><span class="n">Bin</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        A list of the `Bin` instances that were produced as result of the inputs.</span>
+<span class="s2">        Iterating over `Bins` will iterate over this list. Each `Bin` can be inspected</span>
+<span class="s2">        for metadata about the bin and the values associated with it.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">stat</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Stat</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">Count</span><span class="p">(),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        The statistical operation to be used on the values in each bin.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bin_column</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">centers_column</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+
+    <span class="n">aggregate</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">bin_values</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">bin_width</span> <span class="o">=</span> <span class="n">Float</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">properties</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">stat</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="n">stat</span><span class="p">]()</span>
+
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;column&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">column</span> <span class="ow">or</span> <span class="s1">&#39;vals&#39;</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;stat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stat</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bins</span> <span class="o">=</span> <span class="n">bins</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BinnedStat</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">properties</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_get_stat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">stat_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stat_kwargs</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span>
+            <span class="n">stat_kwargs</span><span class="p">[</span><span class="s1">&#39;column&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">stat_kwargs</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="n">stat_kwargs</span><span class="p">[</span><span class="s1">&#39;bins&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bins</span>
+
+        <span class="k">return</span> <span class="n">BinStats</span><span class="p">(</span><span class="o">**</span><span class="n">stat_kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_stat</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Bins</span><span class="p">(</span><span class="n">BinnedStat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Bins and aggregates dimensions for plotting.</span>
+
+<span class="sd">    Takes the inputs and produces a list of bins that can be iterated over and</span>
+<span class="sd">    inspected for their metadata. The bins provide easy access to consistent labeling,</span>
+<span class="sd">    bounds, and values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">bin_str</span> <span class="o">=</span> <span class="s1">&#39;_bin&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">+</span> <span class="n">bin_str</span>
+        <span class="n">bin_models</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span><span class="o">.</span><span class="n">bins</span>
+
+        <span class="c1"># Choose bin bounds when data range is ill-defined; pd.cut()</span>
+        <span class="c1"># does not handle this well for values that are &lt;= 0</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Histogram data must have at least two elements.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">margin</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="ow">or</span> <span class="mf">0.01</span>
+            <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">margin</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">margin</span><span class="p">,</span> <span class="n">bins</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">binned</span><span class="p">,</span> <span class="n">bin_bounds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span>
+                                    <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">bin_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># add bin column to data source</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">binned</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_column</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_column</span><span class="p">:</span> <span class="n">binned</span><span class="p">})</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bin_column</span><span class="p">):</span>
+            <span class="n">bin_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bin</span><span class="p">(</span><span class="n">bin_label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">],</span>
+                                  <span class="n">stat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stat</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="n">bin_models</span>
+
+        <span class="n">centers</span> <span class="o">=</span> <span class="n">binned</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">centers</span> <span class="o">=</span> <span class="n">centers</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins</span><span class="p">:</span>
+            <span class="n">centers</span><span class="p">[</span><span class="n">binned</span> <span class="o">==</span> <span class="nb">bin</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="nb">bin</span><span class="o">.</span><span class="n">center</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">+</span> <span class="s1">&#39;_center&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">centers</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">centers_column</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">centers_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">centers</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">to_df</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bins</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
+                                    <span class="n">reverse</span><span class="o">=~</span><span class="n">ascending</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Histogram</span><span class="p">(</span><span class="n">BinnedStat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Bins and aggregates dimensions for plotting.</span>
+
+<span class="sd">    Takes the inputs and produces a list of bins that can be iterated over and</span>
+<span class="sd">    inspected for their metadata. The bins provide easy access to consistent labeling,</span>
+<span class="sd">    bounds, and values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">density</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to normalize the histogram.</span>
+
+<span class="s2">    If True, the result is the value of the probability *density* function</span>
+<span class="s2">    at the bin, normalized such that the *integral* over the range is 1. If</span>
+<span class="s2">    False, the result will contain the number of samples in each bin.</span>
+
+<span class="s2">    For more info check ``numpy.histogram`` function documentation.</span>
+
+<span class="s2">    (default: False)</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">bin_str</span> <span class="o">=</span> <span class="s1">&#39;_bin&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">+</span> <span class="n">bin_str</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bin_stat</span><span class="o">.</span><span class="n">bins</span>
+
+        <span class="n">binned</span><span class="p">,</span> <span class="n">bin_bounds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">density</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">density</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span>
+                    <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bin_width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">bin_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bins</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">binned</span><span class="p">):</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">lbl</span> <span class="o">=</span> <span class="s2">&quot;[</span><span class="si">%f</span><span class="s2">, </span><span class="si">%f</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lbl</span> <span class="o">=</span> <span class="s2">&quot;(</span><span class="si">%f</span><span class="s2">, </span><span class="si">%f</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bin_bounds</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Bin</span><span class="p">(</span><span class="n">bin_label</span><span class="o">=</span><span class="n">lbl</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">binned</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">stat</span><span class="o">=</span><span class="n">Max</span><span class="p">(),</span>
+                <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="bins"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.bins">[docs]</a><span class="k">def</span> <span class="nf">bins</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+         <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Specify binning or bins to be used for column or values.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">Bins</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<span class="n">stats</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;sum&#39;</span><span class="p">:</span> <span class="n">Sum</span><span class="p">,</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">Mean</span><span class="p">,</span>
+    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">Count</span><span class="p">,</span>
+    <span class="s1">&#39;nunique&#39;</span><span class="p">:</span> <span class="n">CountDistinct</span><span class="p">,</span>
+    <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">Median</span><span class="p">,</span>
+    <span class="s1">&#39;stddev&#39;</span><span class="p">:</span> <span class="n">StdDeviation</span><span class="p">,</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">Min</span><span class="p">,</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">Max</span><span class="p">,</span>
+    <span class="s1">&#39;quantile&#39;</span><span class="p">:</span> <span class="n">Quantile</span>
+<span class="p">}</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building and Installing &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="Developer Guide" href="../dev_guide.html" />
+    <link rel="next" title="Documentation" href="documentation.html" />
+    <link rel="prev" title="Software Process" href="process.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/charts.html">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="process.html">Software Process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Building and Installing</a><ul>
+<li><a class="reference internal" href="#cloning-the-repository">Cloning the Repository</a></li>
+<li><a class="reference internal" href="#building-bokehjs">Building BokehJS</a><ul>
+<li><a class="reference internal" href="#install-npm-and-node">Install npm and node</a></li>
+<li><a class="reference internal" href="#install-grunt-and-necessary-plugins">Install Grunt and necessary plugins</a></li>
+<li><a class="reference internal" href="#building-bokehjs-with-grunt">Building BokehJS with Grunt</a></li>
+<li><a class="reference internal" href="#building-bokehjs-with-sbt">Building BokehJS with SBT</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-setup">Python Setup</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#windows-notes">Windows Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#incremental-compilation">Incremental Compilation</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="process.html" title="Previous Chapter: Software Process"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Software Process</span>
+    </a>
+  </li>
+  <li>
+    <a href="documentation.html" title="Next Chapter: Documentation"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Documentation &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="process.html">Software Process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/dev_guide/building.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="building-and-installing">
+<span id="devguide-building"></span><h1>Building and Installing<a class="headerlink" href="#building-and-installing" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#cloning-the-repository" id="id3">Cloning the Repository</a></li>
+<li><a class="reference internal" href="#building-bokehjs" id="id4">Building BokehJS</a><ul>
+<li><a class="reference internal" href="#install-npm-and-node" id="id5">Install npm and node</a></li>
+<li><a class="reference internal" href="#install-grunt-and-necessary-plugins" id="id6">Install Grunt and necessary plugins</a></li>
+<li><a class="reference internal" href="#building-bokehjs-with-grunt" id="id7">Building BokehJS with Grunt</a></li>
+<li><a class="reference internal" href="#building-bokehjs-with-sbt" id="id8">Building BokehJS with SBT</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#python-setup" id="id9">Python Setup</a><ul>
+<li><a class="reference internal" href="#dependencies" id="id10">Dependencies</a></li>
+<li><a class="reference internal" href="#windows-notes" id="id11">Windows Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#incremental-compilation" id="id12">Incremental Compilation</a></li>
+</ul>
+</div>
+<p>The Bokeh project encompasses two major components: the Bokeh package source
+code, written in Python, and the BokehJS client-side library, written in
+CoffeeScript. Accordingly, development of Bokeh is slightly complicated by the
+fact that BokehJS requires an explicit compilation step to render the
+CoffeeScript source into deployable JavaScript.</p>
+<p>For this reason, in order to develop Bokeh from a source checkout, you must
+first be able to build BokehJS.</p>
+<div class="section" id="cloning-the-repository">
+<span id="devguide-cloning"></span><h2><a class="toc-backref" href="#id3">Cloning the Repository</a><a class="headerlink" href="#cloning-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>The source code for the Bokeh project is hosted on <a class="reference external" href="https://github.com">GitHub</a>. To clone the
+source repository, issue the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/bokeh/bokeh.git
+</pre></div>
+</div>
+<p>This will create a <tt class="docutils literal"><span class="pre">bokeh</span></tt> directory at your location. This <tt class="docutils literal"><span class="pre">bokeh</span></tt>
+directory is referred to as the &#8220;source checkout&#8221; for the remainder of
+this document.</p>
+</div>
+<div class="section" id="building-bokehjs">
+<span id="devguide-building-bokehjs"></span><h2><a class="toc-backref" href="#id4">Building BokehJS</a><a class="headerlink" href="#building-bokehjs" title="Permalink to this headline">¶</a></h2>
+<p>The BokehJS build process is handled by <a class="reference external" href="http://gruntjs.com/">Grunt</a>, which in turn depends on
+<a class="reference external" href="NodeJS">Node.js</a>. Grunt is used to compile CoffeeScript and Less (CSS)
+sources (as well as Eco templates), and to combine these resources into
+optimized and minified <tt class="docutils literal"><span class="pre">bokeh.js</span></tt> and <tt class="docutils literal"><span class="pre">bokeh.css</span></tt> files.</p>
+<div class="section" id="install-npm-and-node">
+<h3><a class="toc-backref" href="#id5">Install npm and node</a><a class="headerlink" href="#install-npm-and-node" title="Permalink to this headline">¶</a></h3>
+<p>First, install Node.js and npm (node package manager).
+You can download and install these directly, or use
+<a class="reference external" href="http://conda.pydata.org/">conda</a> to install them
+from the Bokeh channel on <a class="reference external" href="https://binstar.org">Binstar</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ conda install -c bokeh nodejs
+</pre></div>
+</div>
+<p>Alternatively, on Ubuntu you can use <tt class="docutils literal"><span class="pre">apt-get</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ apt-get install npm node
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-grunt-and-necessary-plugins">
+<h3><a class="toc-backref" href="#id6">Install Grunt and necessary plugins</a><a class="headerlink" href="#install-grunt-and-necessary-plugins" title="Permalink to this headline">¶</a></h3>
+<p>Once you have npm and Node.js installed, you must use them to install
+the required dependencies before you can build BokehJS.
+Execute the following command in the <tt class="docutils literal"><span class="pre">bokehjs</span></tt> subdirectory:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ npm install
+</pre></div>
+</div>
+<p>This command will install the necessary packages into the <tt class="docutils literal"><span class="pre">node_modules</span></tt>
+subdirectory (and list them as <tt class="docutils literal"><span class="pre">devDependencies</span></tt> in <tt class="docutils literal"><span class="pre">package.json</span></tt>).</p>
+<p>At this point you can typically use the <tt class="docutils literal"><span class="pre">setup.py</span></tt> script at the top level
+of the source chekcout to manage building and installing BokehJS as part of
+the complete Bokeh library (see <a class="reference internal" href="#devguide-python-setup"><em>Python Setup</em></a>).</p>
+<p>However, if you are using BokehJS as a standalone JavaScript library, then
+the instructions below describe the process to iteratively build BokehJS with
+Grunt for development purposes.</p>
+</div>
+<div class="section" id="building-bokehjs-with-grunt">
+<h3><a class="toc-backref" href="#id7">Building BokehJS with Grunt</a><a class="headerlink" href="#building-bokehjs-with-grunt" title="Permalink to this headline">¶</a></h3>
+<p>If you want to be able to run the commands below, you can either use
+<tt class="docutils literal"><span class="pre">bokehjs/node_modules/.bin/grunt</span></tt> or globally install
+the grunt command line interface:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ npm install -g grunt-cli
+</pre></div>
+</div>
+<p>There are three main Grunt commands for development (to be executed from the
+<tt class="docutils literal"><span class="pre">bokehjs</span></tt> subdirectory):</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>grunt deploy
+</pre></div>
+</div>
+<p>This will generate the compiled and optimized BokehJS libraries, and deploy
+them to the <tt class="docutils literal"><span class="pre">build</span></tt> subdirectory.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>grunt build
+</pre></div>
+</div>
+<p>This will build the BokehJS sources without concatenating and optimizing into
+standalone libraries. At this point BokehJS can be be as an <a class="reference external" href="http://requirejs.org/docs/whyamd.html">AMD module</a>.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>grunt watch
+</pre></div>
+</div>
+<p>This directs Grunt to automatically watch the source tree for changes and
+trigger a recompile of individual files as they change. This is especially
+useful together with the <tt class="docutils literal"><span class="pre">--splitjs</span></tt> mode of the Bokeh server to afford a
+more rapid development cycle.</p>
+</div>
+<div class="section" id="building-bokehjs-with-sbt">
+<h3><a class="toc-backref" href="#id8">Building BokehJS with SBT</a><a class="headerlink" href="#building-bokehjs-with-sbt" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">sbt</span></tt> build system is experimental and not integrated with
+<tt class="docutils literal"><span class="pre">setup.py</span></tt>, so it should be used with caution.</p>
+</div>
+<p>As an alternative to Grunt, you can use <a class="reference external" href="http://www.scala-sbt.org">SBT</a> to build BokehJS. To start,
+run the command:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>./sbt
+</pre></div>
+</div>
+<p>in the top level directory. This will download <tt class="docutils literal"><span class="pre">sbt</span></tt> (and its dependencies)
+itself, and configure the build system.</p>
+<p>There are two main commands available: <tt class="docutils literal"><span class="pre">build</span></tt> and <tt class="docutils literal"><span class="pre">deploy</span></tt>. The <tt class="docutils literal"><span class="pre">build</span></tt>
+command compiles CoffeeScript, Less and Eco sources, and copies other resources
+to the build directory. The <tt class="docutils literal"><span class="pre">deploy</span></tt> command does the same and additionally
+generates optimized and minified <tt class="docutils literal"><span class="pre">bokeh.js</span></tt> and <tt class="docutils literal"><span class="pre">bokeh.css</span></tt> outputs.</p>
+<p>You may also run specific subtasks, e.g. <tt class="docutils literal"><span class="pre">compile</span></tt> to compile CoffeeScript,
+Less and Eco sources, but not copy resources. You can also prefix any command
+with <tt class="docutils literal"><span class="pre">~</span></tt>, which enables incremental compilation. For example, issuing <tt class="docutils literal"><span class="pre">~less</span></tt>
+will watch <tt class="docutils literal"><span class="pre">*.less</span></tt> sources and compile only the subset of files that changed.
+To stop watching sources, press ENTER. Pressing Ctrl+C will terminate <tt class="docutils literal"><span class="pre">sbt</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="python-setup">
+<span id="devguide-python-setup"></span><h2><a class="toc-backref" href="#id9">Python Setup</a><a class="headerlink" href="#python-setup" title="Permalink to this headline">¶</a></h2>
+<p>Once you have a working BokehJS build (which you can verify by completing the
+steps described in <a class="reference internal" href="#devguide-building-bokehjs"><em>Building BokehJS</em></a>), you can use the
+<tt class="docutils literal"><span class="pre">setup.py</span></tt> script at the top level of the source checkout to install or
+develop the full Bokeh library from source.</p>
+<p>The <tt class="docutils literal"><span class="pre">setup.py</span></tt> script has two main modes of operation: <tt class="docutils literal"><span class="pre">install</span></tt> and
+<tt class="docutils literal"><span class="pre">develop</span></tt>.</p>
+<p>When <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></tt> is used, Bokeh will be installed in your
+local <tt class="docutils literal"><span class="pre">site-packages</span></tt> directory. In this mode, any changes to the python
+source code will not show up until <tt class="docutils literal"><span class="pre">setup.py</span> <span class="pre">install</span></tt> is run again.</p>
+<p>When <tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop</span></tt> is used, a path file <tt class="docutils literal"><span class="pre">bokeh.pth</span></tt> will be
+written to your <tt class="docutils literal"><span class="pre">site-packages</span></tt> directory that points to the <tt class="docutils literal"><span class="pre">bokeh</span></tt>
+subdirectory of your source checkout. Any changes to the python source code
+will be available immediately without any additional steps.</p>
+<p>With either mode, you will be prompted for how to install BokehJS, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python setup.py install
+
+Bokeh includes a JavaScript library (BokehJS) that has its own
+build process. How would you like to handle BokehJS:
+
+1) build and install fresh BokehJS
+2) install last built BokehJS from bokeh/bokehjs/build
+
+Choice?
+</pre></div>
+</div>
+<p>You may skip this prompt by supplying the appropriate command line option
+to <tt class="docutils literal"><span class="pre">setup.py</span></tt>:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--build_js</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">--install_js</span></tt></li>
+</ul>
+<p>If you have any problems with the steps here, please contact the developers
+(see <a class="reference internal" href="../../index.html#contact"><em>Contact</em></a>).</p>
+<div class="section" id="dependencies">
+<h3><a class="toc-backref" href="#id10">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<p>If you are working within a Conda environment, you will need to make sure you
+have the python requirements installed. You can install these via <tt class="docutils literal"><span class="pre">conda</span>
+<span class="pre">install</span></tt> or <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></tt> for the packages referenced at
+<a class="reference internal" href="../installation.html#install-dependencies"><em>Dependencies</em></a>.</p>
+<p>Testing dependencies include the following additional libraries:</p>
+<ul class="simple">
+<li>beautiful-soup</li>
+<li>colorama</li>
+<li>pdiff</li>
+<li>boto</li>
+<li>nose</li>
+<li>mock</li>
+<li>coverage</li>
+<li>websocket-client</li>
+</ul>
+</div>
+<div class="section" id="windows-notes">
+<h3><a class="toc-backref" href="#id11">Windows Notes</a><a class="headerlink" href="#windows-notes" title="Permalink to this headline">¶</a></h3>
+<p>If you build Bokeh on a Windows machine in a Conda environment with either
+<tt class="docutils literal"><span class="pre">setup.py</span> <span class="pre">install</span></tt> or <tt class="docutils literal"><span class="pre">setup.py</span> <span class="pre">develop</span></tt>, running <tt class="docutils literal"><span class="pre">bokeh-server</span></tt> will
+not work correctly. The .exe will not be available within the Conda
+environment, which means you will use the version available in the base
+install, if it is available. Instead, you can make sure you use the version
+within the environment by explicitly running the bokeh-server python script
+in the root of the bokeh repository, similar to the following example:</p>
+<div class="highlight-python"><div class="highlight"><pre>python bokeh-server --script path\to\&lt;yourapp&gt;.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="incremental-compilation">
+<h2><a class="toc-backref" href="#id12">Incremental Compilation</a><a class="headerlink" href="#incremental-compilation" title="Permalink to this headline">¶</a></h2>
+<p>The processes described about result in building and using a full <cite>bokeh.js</cite>
+library. This could be considered &#8220;production&#8221; mode. It is also possible to
+run Bokeh code in a mode that utilizes <tt class="docutils literal"><span class="pre">require.js</span></tt> to serve up individual
+JavaScript modules separately. If this is done, then changes to BokehJS
+can be incrementally compiled (e.g. by running <tt class="docutils literal"><span class="pre">grunt</span> <span class="pre">watch</span></tt> in the
+<tt class="docutils literal"><span class="pre">bokehjs</span></tt> directory), and the development iteration cycle shortened
+considerably.</p>
+<p>For static examples, you can use the <tt class="docutils literal"><span class="pre">BOKEH_RESOURCES</span></tt> environement variable
+to indicate that BokehJS should be loaded from individual sources:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ BOKEH_RESOURCES=relative-dev python example.py
+</pre></div>
+</div>
+<p>For Bokeh server examples, simply add the <tt class="docutils literal"><span class="pre">--dev</span></tt> command line flag to the
+server invocation:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ bokeh-server --dev
+
+$ python example-server.py
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="process.html">Prev</a> |
+      
+      
+      <a href="documentation.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/dev_guide/building.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

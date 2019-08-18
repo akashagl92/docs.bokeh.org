@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Bokeh Docs</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CNoto+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.11.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.9.3/">0.9.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.8.2/">0.8.2</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.11.0.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Making High-level Charts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#key-concepts">Key Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accepted-charts-data-formats">Accepted Charts Data Formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attribute-specification">Attribute Specification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bar-charts">Bar Charts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#aggregations">Aggregations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bar-width">Bar Width</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bar-color">Bar Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grouping">Grouping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stacking">Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#box-plots">Box Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#box-color">Box Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#whisker-color">Whisker Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#outliers">Outliers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#markers">Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#histograms">Histograms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#number-of-bins">Number of Bins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#userguide-charts-histogram-bar-color">Bar Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-groups">Color Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scatter-plots">Scatter Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#color">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#userguide-charts-scatter-color-groups">Color Groups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legends">Legends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#userguide-charts-scatter-marker">Markers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chart-defaults">Chart Defaults</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying Out Multiple Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bokeh.html"><code class="docutils literal"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/charts.html"><code class="docutils literal"><span class="pre">bokeh.charts</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html"><code class="docutils literal"><span class="pre">bokeh.client</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html"><code class="docutils literal"><span class="pre">bokeh.core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html"><code class="docutils literal"><span class="pre">bokeh.document</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html"><code class="docutils literal"><span class="pre">bokeh.driving</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html"><code class="docutils literal"><span class="pre">bokeh.embed</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/icons.html"><code class="docutils literal"><span class="pre">bokeh.icons</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html"><code class="docutils literal"><span class="pre">bokeh.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html"><code class="docutils literal"><span class="pre">bokeh.model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/mpl.html"><code class="docutils literal"><span class="pre">bokeh.mpl</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html"><code class="docutils literal"><span class="pre">bokeh.palettes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html"><code class="docutils literal"><span class="pre">bokeh.resources</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html"><code class="docutils literal"><span class="pre">bokeh.sampledata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html"><code class="docutils literal"><span class="pre">bokeh.server</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html"><code class="docutils literal"><span class="pre">bokeh.settings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html"><code class="docutils literal"><span class="pre">bokeh.sphinxext</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html"><code class="docutils literal"><span class="pre">bokeh.themes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html"><code class="docutils literal"><span class="pre">bokeh.tile_providers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html"><code class="docutils literal"><span class="pre">bokeh.util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="making-high-level-charts">
+<span id="userguide-charts"></span><h1>Making High-level Charts<a class="headerlink" href="#making-high-level-charts" title="Permalink to this headline">¶</a></h1>
+<p>The high level <code class="docutils literal"><span class="pre">bokeh.charts</span></code> interface provides a fast, convenient way
+to create common statistical charts with a minimum of code. Wherever possible,
+the interface is geared to be extremely simple to use in conjunction with
+Pandas, by accepting a <code class="docutils literal"><span class="pre">DataFrame</span></code> and names of columns directly to specify
+data.</p>
+<div class="section" id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>Data</strong>: Input data is either a Pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.17.1)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a> or other table-like</dt>
+<dd>structure, yet also handling simple formats through conversion to a <cite>DataFrame</cite>
+internally.</dd>
+<dt><strong>Smart Defaults</strong>: The attempt is made to provide unique chart attribute assignment</dt>
+<dd>(color, marker, etc) by one or more column names, while supporting custom and/or
+advanced configuration through the same keyword argument.</dd>
+</dl>
+<div class="section" id="accepted-charts-data-formats">
+<span id="userguide-charts-data-types"></span><h3>Accepted Charts Data Formats<a class="headerlink" href="#accepted-charts-data-formats" title="Permalink to this headline">¶</a></h3>
+<p>Charts make use of Pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.17.1)"><code class="xref py py-class docutils literal"><span class="pre">DataFrame</span></code></a> internally, so any inputs provided
+coerced into this format. The Charts interface provides support for the more simple
+types externally, which can be useful for quickly building charts, or can avoid having
+to remember how to import and create a dataframe.</p>
+<p>The input types accepted are:</p>
+<p><strong>Array-like</strong>: 1..* list, tuple, <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.10)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a>, <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.html#pandas.Series" title="(in pandas v0.17.1)"><code class="xref py py-class docutils literal"><span class="pre">pandas.Series</span></code></a></p>
+<dl class="docutils">
+<dt><strong>Table-like</strong>:</dt>
+<dd><ul class="first last simple">
+<li>records: a list(dict)</li>
+<li>columns: a dict(list), <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v0.17.1)"><code class="xref py py-class docutils literal"><span class="pre">pandas.DataFrame</span></code></a>, or blaze resource</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="attribute-specification">
+<span id="userguide-attribute-specification"></span><h3>Attribute Specification<a class="headerlink" href="#attribute-specification" title="Permalink to this headline">¶</a></h3>
+<p>An <code class="docutils literal"><span class="pre">AttrSpec</span></code> is a model for generating a look-up from a unique data label (ex. (&#8216;a&#8217;,
+3)), into a chained iterable. This functionality is what powers one-liner chart
+generation, while also providing flexibility for customized inputs.</p>
+<p>If you were to manually generate the glyphs in a plot, you might start by using Pandas
+<a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="(in pandas v0.17.1)"><code class="xref py py-meth docutils literal"><span class="pre">groupby()</span></code></a> to identify unique subsets of your data that you&#8217;d
+like to differentiate. You would iterate over each data label and data group and assign
+unique attributes to the group.</p>
+<p><strong>Simple Use Case</strong>
+However, what if we don&#8217;t want one specific attribute type per group? Instead, let&#8217;s
+say we grouped by <cite>[&#8216;a&#8217;, &#8216;b&#8217;]</cite>, where <cite>a</cite> has 3 unique values and <cite>b</cite> has 10 unique
+values. We want to change the color by <cite>a</cite> and change the marker by <cite>b</cite>. In the groupby
+iteration, you will see each value of <cite>a</cite> multiple times, meaning you&#8217;ll need some way
+of keeping track of which unique value of which column will result in the assignment of
+each attribute value.</p>
+<p><strong>Supporting Exploratory Use</strong>
+More importantly, you&#8217;ll need to pre-define enough unique values of the attribute to
+assign to each value you have grouped on, which isn&#8217;t necessarily complicated, but it
+can be especially time consuming for new or sporadic users. This process of assigning
+attributes is also generally of little interest to users that prioritize interactive data
+discovery over novel charts. With the discovery use case, you are trying to understand
+what relationships exist within the data, so it is counter-productive to require the user
+to understand the data before plotting it.</p>
+<p>Attribute Specifications avoid this issue, but are also designed to provide
+the ability to configure specific behavior as well. The typical pattern of use is shown
+shown below in pseudocode:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">color</span><span class="p">,</span> <span class="n">marker</span>
+
+<span class="c"># generally any chart attribute can be handled with attribute specifications</span>
+
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>          <span class="c"># single constant value supported</span>
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;a&#39;</span><span class="p">)</span>            <span class="c"># typical use is with column name input</span>
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">])</span>     <span class="c"># or multiple column names</span>
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">]))</span>     <span class="c"># equivalent to previous line</span>
+
+<span class="c"># input of custom iterables that are automatically chained</span>
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">]))</span>
+<span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">]),</span>
+      <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;circle&#39;</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="bar-charts">
+<span id="userguide-charts-bar"></span><h2>Bar Charts<a class="headerlink" href="#bar-charts" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">Bar</span></code> high-level chart can produce bar charts in various styles.
+<code class="docutils literal"><span class="pre">Bar</span></code> charts are configured with a DataFrame data object, and a column
+to group. This column will label the x-axis range. Each group is
+aggregated over the <code class="docutils literal"><span class="pre">values</span></code> column and bars are show for the totals:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-0"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Total MPG by CYL&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-d324c04b45dc149cb1405f290da71df2.js"
+        id="64a5d734-c5f5-493a-973b-d8430d301d0b"
+        data-bokeh-model-id="67374da4-f87c-45ef-ab15-dd9c5b94e198"
+        data-bokeh-doc-id="553fed77-6f59-48f5-909f-4772ed7e47ea"
+    ></script>
+    </td>
+  </tr>
+</table><div class="section" id="aggregations">
+<span id="userguide-charts-bar-agg"></span><h3>Aggregations<a class="headerlink" href="#aggregations" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">agg</span></code> parameter may be used to specify how each group should be
+aggregated:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-1"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;yr&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">agg</span><span class="o">=</span><span class="s">&#39;mean&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Average MPG by YR&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-41e8e4fd0cdfedd71fce744c6a496d2e.js"
+        id="50064595-3e58-471a-864e-48455d0df26b"
+        data-bokeh-model-id="eac65671-b989-4c7d-9fdb-7b76bb2a10a1"
+        data-bokeh-doc-id="e95bce19-d08e-4a00-b2b6-54be82a67cd3"
+    ></script>
+    </td>
+  </tr>
+</table><p>Available aggregations are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">'sum'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'mean'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'count'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'nunique'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'median'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'min'</span></code></li>
+<li><code class="docutils literal"><span class="pre">'max'</span></code></li>
+</ul>
+</div>
+<div class="section" id="bar-width">
+<span id="userguide-charts-bar-width"></span><h3>Bar Width<a class="headerlink" href="#bar-width" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">bar_width</span></code> parameter can be used to specify the width of the bars, as
+percentage of category width:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-2"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;yr&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Total DISPL by YR&quot;</span><span class="p">,</span> <span class="n">bar_width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-ea9acf01bf08b44e2a4768a49393380b.js"
+        id="277e86fc-1608-4568-b18c-08675ffc5e5b"
+        data-bokeh-model-id="39249adb-a25d-4573-b76c-4aa6d4774526"
+        data-bokeh-doc-id="3ec8dd13-54b9-403a-beec-3917442f52bf"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="bar-color">
+<span id="userguide-charts-bar-color"></span><h3>Bar Color<a class="headerlink" href="#bar-color" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">color</span></code> parameter can be used to specify the color of the bars:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-3"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;yr&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Total DISPL by YR&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;wheat&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-56e3d7bcf5ec8714e4ee81e5a6efdaf6.js"
+        id="276d230a-285f-4ac4-aca2-fbf2e684bcc7"
+        data-bokeh-model-id="a41d249b-5193-4c1c-ad26-c8d6df777e20"
+        data-bokeh-doc-id="ab4088e7-b146-4627-9450-54a923fbcda7"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="grouping">
+<span id="userguide-charts-bar-group"></span><h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<p>Groups in the data may be visually grouped using the <code class="docutils literal"><span class="pre">group</span></code> parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-4"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;yr&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">agg</span><span class="o">=</span><span class="s">&#39;median&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s">&#39;origin&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Median MPG by YR, grouped by ORIGIN&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&#39;top_right&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-bddec8547419abd03c5dd0c561784508.js"
+        id="d0bd3996-6725-4576-8069-2474df4a20f4"
+        data-bokeh-model-id="e8030d96-759d-4bec-83bc-f87f573bfd05"
+        data-bokeh-doc-id="71926d64-d2a0-4b8e-8b99-f91939d9a305"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="stacking">
+<span id="userguide-charts-bar-stack"></span><h3>Stacking<a class="headerlink" href="#stacking" title="Permalink to this headline">¶</a></h3>
+<p>Groups in the data may be visually stacked using the <code class="docutils literal"><span class="pre">stack</span></code> parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-5"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;origin&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">agg</span><span class="o">=</span><span class="s">&#39;mean&#39;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s">&quot;Avg MPG by ORIGIN, stacked by CYL&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&#39;top_right&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-4e941aa4778d6f67ae4033a9e882484b.js"
+        id="b3f458ba-7914-40c0-848b-b4be4e3a58bc"
+        data-bokeh-model-id="8371ef7f-8819-4b0a-9e6f-2ab6fa707c89"
+        data-bokeh-doc-id="99e14664-566a-440a-81e0-6ab0fbdcd14d"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+</div>
+<div class="section" id="box-plots">
+<span id="userguide-charts-boxplot"></span><h2>Box Plots<a class="headerlink" href="#box-plots" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">BoxPlot</span></code> can be used to summarize the statistical properties
+of different groups of data. The <code class="docutils literal"><span class="pre">label</span></code> specifies a column in the data
+to group by, and a box plot is generated for each group:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-6"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-fa6159d61a969af3a328a74e0a2cfe08.js"
+        id="171f40da-c039-49fc-a967-134b904a2aab"
+        data-bokeh-model-id="9da6f690-cec1-4f83-bb4a-c0d6d214aa08"
+        data-bokeh-doc-id="50f27a9e-63b4-4443-8f19-917320003d5d"
+    ></script>
+    </td>
+  </tr>
+</table><p>The label can also accept a list of column names, in which case the data
+is grouped by all the groups in the list:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-7"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="s">&#39;origin&#39;</span><span class="p">],</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL, ORIGIN)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-c18b3faf93b585595bc557733ca9cf78.js"
+        id="926ed877-3a70-4a89-8dda-a04e6eb6bb34"
+        data-bokeh-model-id="3102a168-e822-40c7-aad5-6fdd8b39acf1"
+        data-bokeh-doc-id="e11e53c2-0573-45c2-9807-ef50a82d9406"
+    ></script>
+    </td>
+  </tr>
+</table><div class="section" id="box-color">
+<span id="userguide-charts-boxplot-color"></span><h3>Box Color<a class="headerlink" href="#box-color" title="Permalink to this headline">¶</a></h3>
+<p>The color of the box in a <code class="docutils literal"><span class="pre">BoxPlot</span></code> can be set to a fixed color using the
+<code class="docutils literal"><span class="pre">color</span></code> parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-8"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#00cccc&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-7d45c2d49fd625bcbbfe564c7842ae1a.js"
+        id="a1ada099-4f8b-49e2-9b9f-fed00053c067"
+        data-bokeh-model-id="139f6a9a-15ae-460c-aa39-61f0a5a4970e"
+        data-bokeh-doc-id="7ec64f32-208d-4a3a-9ad0-f71d6f46de7f"
+    ></script>
+    </td>
+  </tr>
+</table><p>As with <code class="docutils literal"><span class="pre">Bar</span></code> charts, the color can also be given a column name, in which
+case the boxes are shaded automatically according to the group:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-9"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped and shaded by CYL)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-5fdf26bfd9da385d6a68ca0786a4c4f0.js"
+        id="1f8518e8-ea18-4d1c-82e2-5769c1e1a617"
+        data-bokeh-model-id="38c01760-cfb3-4d4d-85cf-373e326eb9d5"
+        data-bokeh-doc-id="c5b9ac89-f09d-4775-8b3c-9c5db2f295f4"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="whisker-color">
+<span id="userguide-charts-boxplot-whisker-color"></span><h3>Whisker Color<a class="headerlink" href="#whisker-color" title="Permalink to this headline">¶</a></h3>
+<p>The color of the whiskers can be similarly controlled using the <code class="docutils literal"><span class="pre">whisker_color</span></code>
+parameter. For a single color:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-10"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">whisker_color</span><span class="o">=</span><span class="s">&#39;goldenrod&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL, shaded whiskers)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-ffed4166a70c4c1f7526a89596dfd54f.js"
+        id="d349bd35-ee49-4deb-b182-bfead05e018b"
+        data-bokeh-model-id="44dbf4c2-d221-4377-9d71-3b223899f629"
+        data-bokeh-doc-id="cb109412-4d73-4f1b-95ed-c61f8aeef265"
+    ></script>
+    </td>
+  </tr>
+</table><p>Or shaded automatically according to a column grouping:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-11"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">whisker_color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped and whiskers shaded by CYL)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-38ac7f2fb744bb70a9e39d000bce696f.js"
+        id="853b9796-aaa8-454d-b5ff-336d363edbbd"
+        data-bokeh-model-id="3b3f457c-e100-4098-9dae-0deb8f8d1bc0"
+        data-bokeh-doc-id="2377d849-6fbb-44b9-be7e-72e66477f421"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="outliers">
+<span id="userguide-charts-boxplot-outliers"></span><h3>Outliers<a class="headerlink" href="#outliers" title="Permalink to this headline">¶</a></h3>
+<p>By default, <code class="docutils literal"><span class="pre">BoxPlot</span></code> charts show outliers above and below the whiskers.
+However, the display of outliers can be turned on or off with the <code class="docutils literal"><span class="pre">outliers</span></code>
+parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-12"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">outliers</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL, no outliers)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-f090075b0b557a908e105917e3297c91.js"
+        id="e449aca6-e020-433a-a10d-830e65504cc5"
+        data-bokeh-model-id="b937807b-1f2f-4930-90f3-0cf41a45906c"
+        data-bokeh-doc-id="a611b40a-9ccc-4980-8eae-1a813a23fadc"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="markers">
+<span id="userguide-charts-boxplot-markers"></span><h3>Markers<a class="headerlink" href="#markers" title="Permalink to this headline">¶</a></h3>
+<p>The marker used for displaying outliers is controlled by the <code class="docutils literal"><span class="pre">marker</span></code>
+parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-13"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;square&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Summary (grouped by CYL, square marker)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-d493da4a67bf1eabf5ce6511bb8a843f.js"
+        id="2203a44c-b994-432b-aa8f-52f6cad283b6"
+        data-bokeh-model-id="9d5e449b-6834-4747-8070-52dcde51eead"
+        data-bokeh-doc-id="768e21cf-6ba5-461a-b2a7-b21a965260f9"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+</div>
+<div class="section" id="histograms">
+<span id="userguide-charts-histogram"></span><h2>Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">Histogram</span></code> high-level chart can be used to quickly display the
+distribution of values in a set of data. It can be used by simply
+passing it a literal sequence of values (e.g a python list, NumPy
+or Pandas DataFrame column):</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-14"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;mpg&#39;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram.html&quot;</span><span class="p">,)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-2f1dd061e4b85e6d21f8267486e34080.js"
+        id="65208bf4-1d9d-4b50-8e7a-7d367dce9285"
+        data-bokeh-model-id="99398177-b1b9-41af-8844-d07c89a24189"
+        data-bokeh-doc-id="98c7afb5-daf4-46c8-bd03-1a9887756193"
+    ></script>
+    </td>
+  </tr>
+</table><p>It can also be used by passing in a Pandas Dataframe as the first
+argument, and specifying the name of the column to use for the data.
+The column name can be provided as the second positional argument:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-15"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram.html&quot;</span><span class="p">,)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-f7dfb29c8a1ad7832fc245085cb4e025.js"
+        id="aaa6a427-f55e-4679-805c-0c2e906c3a77"
+        data-bokeh-model-id="60ff442f-5b05-40f7-9694-5eca37025448"
+        data-bokeh-doc-id="c432eb67-cc1b-4c3d-9a99-b91b05efc130"
+    ></script>
+    </td>
+  </tr>
+</table><p>Or explicitly as the <code class="docutils literal"><span class="pre">values</span></code> keyword argument:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-16"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;DISPL Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram.html&quot;</span><span class="p">,)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-38e9401adc8f493e4489ffa5b2a3a7af.js"
+        id="23f7acf3-9d1f-4472-9e88-7ea63ed30062"
+        data-bokeh-model-id="de3e18e3-3372-44aa-a2db-602ad8da48ce"
+        data-bokeh-doc-id="1a2816dd-09ae-45d8-b7e1-3fad2972aa25"
+    ></script>
+    </td>
+  </tr>
+</table><div class="section" id="number-of-bins">
+<span id="userguide-charts-histogram-bins"></span><h3>Number of Bins<a class="headerlink" href="#number-of-bins" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">bins</span></code> argument can be used to specify the number of bins to use when
+computing the histogram:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-17"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s">&quot;MPG Distribution (50 bins)&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram_bins.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-46ba105eddc7a4c5a994eaa367a1f291.js"
+        id="b5ebccfc-724c-4042-9d10-6b6deaba6e84"
+        data-bokeh-model-id="a716989e-a268-4df4-ab1d-143ef2fdcf0c"
+        data-bokeh-doc-id="34de8ebf-c3d9-4316-974a-5db77732f1af"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="userguide-charts-histogram-bar-color">
+<span id="id1"></span><h3>Bar Color<a class="headerlink" href="#userguide-charts-histogram-bar-color" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to control the color of the histogram bins by setting
+the <code class="docutils literal"><span class="pre">color</span></code> parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-18"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;navy&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP Distribution&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram_color.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-555e7157a341a650d4e9e7e9d27c25c6.js"
+        id="7d4fa4e6-c0f6-4810-be3e-2ad3f66268e6"
+        data-bokeh-model-id="25423c37-954a-42e4-8667-d5412a851848"
+        data-bokeh-doc-id="29dec532-9506-474b-bef9-52e5fe6bc430"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="color-groups">
+<span id="userguide-charts-histogram-color-groups"></span><h3>Color Groups<a class="headerlink" href="#color-groups" title="Permalink to this headline">¶</a></h3>
+<p>However, the <code class="docutils literal"><span class="pre">color</span></code> parameter can also be used to group the data. If the
+value of the <code class="docutils literal"><span class="pre">color</span></code> parameter is one of the DataFrame column names, the data
+is first grouped by this column, and a histogram is generated for each group.
+Each histogram is automatically colored differently, and a legend displayed:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-19"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP Distribution (color grouped by CYL)&quot;</span><span class="p">,</span>
+              <span class="n">legend</span><span class="o">=</span><span class="s">&#39;top_right&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histogram_color.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-a0be4efc2b9471d538f387245b7e347c.js"
+        id="883c7b1e-6ad2-4f44-bfb4-0357e3a475fe"
+        data-bokeh-model-id="c0a875fc-d31b-472c-8bc8-e16741a90535"
+        data-bokeh-doc-id="3323a178-459e-416b-9f3d-6f5e5559947a"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+</div>
+<div class="section" id="scatter-plots">
+<span id="userguide-charts-scatter"></span><h2>Scatter Plots<a class="headerlink" href="#scatter-plots" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">Scatter</span></code> high-level chart can be used to generate 1D or (more commonly)
+2D scatter plots. It is used by passing in DataFrame-like object as the first
+argument then specifying the columns to use for <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> coordinates:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-20"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs MPG&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Miles Per Gallon&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-a9537b39da1270024174e61db57b93c4.js"
+        id="9bc2ab1e-c15b-4278-9e9c-cd9ee60acf67"
+        data-bokeh-model-id="228b54df-f70c-48bd-869f-18d282911e25"
+        data-bokeh-doc-id="3d2e598b-6dd3-4774-8602-92a4d49971ab"
+    ></script>
+    </td>
+  </tr>
+</table><div class="section" id="color">
+<span id="userguide-charts-scatter-color"></span><h3>Color<a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">color</span></code> parameter can be used to control the color of the scatter
+markers:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-21"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs MPG&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;navy&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Miles Per Gallon&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-dcefe1cfbf9d5513aed79e3e558c9b3e.js"
+        id="e18322ad-a5d5-4de8-944e-a09996a10cc8"
+        data-bokeh-model-id="349b6a3f-e23e-4c5d-8818-a24d9eab3382"
+        data-bokeh-doc-id="e1b29199-fdf7-4388-bb69-fd0c5548718c"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="userguide-charts-scatter-color-groups">
+<span id="id2"></span><h3>Color Groups<a class="headerlink" href="#userguide-charts-scatter-color-groups" title="Permalink to this headline">¶</a></h3>
+<p>if <code class="docutils literal"><span class="pre">color</span></code> is supplied with the name of a data column then the data is first
+grouped by the values of that column, and then a different color is used for
+every group:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-22"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;mpg&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs MPG (shaded by CYL)&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Miles Per Gallon&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-e247717f1cf793d731e1af21b9c9d1cd.js"
+        id="77673328-9cc8-4a1f-afdc-fe825a73ed38"
+        data-bokeh-model-id="cd15eb51-58c0-4bac-927c-3fbe4a32f235"
+        data-bokeh-doc-id="8b27a53e-cefc-4b95-80a4-d0e6d20f2911"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="legends">
+<span id="userguide-charts-scatter-legend"></span><h3>Legends<a class="headerlink" href="#legends" title="Permalink to this headline">¶</a></h3>
+<p>When grouping, a legend is usually useful, and it&#8217;s location can be specified
+by the <code class="docutils literal"><span class="pre">legend</span></code> parameter:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-23"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs DISPL (shaded by CYL)&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-471cb8b6c937ed564ee6ad84b6f68039.js"
+        id="ced1453c-9ac1-4dba-82d1-67d3819fdcec"
+        data-bokeh-model-id="5a9fe3c4-4a4f-4fe9-9576-c145aa7359e5"
+        data-bokeh-doc-id="95311812-eac6-4be8-884f-d69c126fd655"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="userguide-charts-scatter-marker">
+<span id="id3"></span><h3>Markers<a class="headerlink" href="#userguide-charts-scatter-marker" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">marker</span></code> parameter can be used to control the shape of the scatter marker:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-24"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;square&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs DISPL&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-58dd4604984a11f403b4ebeecbe70b93.js"
+        id="2ee6a162-e7c6-4648-9ef4-b6ed8a731cf4"
+        data-bokeh-model-id="d7fcd8c3-beb4-4f72-9c5c-ce1dfb7a2c12"
+        data-bokeh-doc-id="d372c535-f268-4f75-8603-d4cc2daf499b"
+    ></script>
+    </td>
+  </tr>
+</table><p>As with <code class="docutils literal"><span class="pre">color</span></code>, the <code class="docutils literal"><span class="pre">marker</span></code> parameter can be given a column name to group
+by the values of that column, using a different marker shape for each group:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-25"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs DISPL (marked by CYL)&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-266cab7ed48cd3ea4198e9dfde4e4a49.js"
+        id="0d983f3d-86b2-46d0-a375-6462c4e3bedd"
+        data-bokeh-model-id="4e2b06c4-14cc-4b6b-bcb3-f0fde8bb39ea"
+        data-bokeh-doc-id="03f0b1cb-4d9b-426a-b277-7977ea307092"
+    ></script>
+    </td>
+  </tr>
+</table><p>Often it is most useful to group both the color and marker shape together:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-26"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.autompg</span> <span class="kn">import</span> <span class="n">autompg</span> <span class="k">as</span> <span class="n">df</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">&#39;displ&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">&#39;hp&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;cyl&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s">&quot;HP vs DISPL (marked by CYL)&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+            <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;Displacement&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;Horsepower&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    
+    <script
+        src="bokeh-plot-3795b8f6162facc224e36947bc00c302.js"
+        id="6cb03ad3-32f1-4ed9-aec4-350435c7d859"
+        data-bokeh-model-id="ce6a1b95-0379-43df-9f95-8e3606d04229"
+        data-bokeh-doc-id="e54cb73a-72d4-4e19-8823-2a7775ad66f7"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+</div>
+<div class="section" id="chart-defaults">
+<span id="userguide-charts-defaults"></span><h2>Chart Defaults<a class="headerlink" href="#chart-defaults" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">bokeh.charts</span></code> modules contains a <code class="docutils literal"><span class="pre">defaults</span></code> attribute. Setting
+attributes on this object is an easy way to control default properties
+on all charts created, in one place. For instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">defaults</span>
+
+<span class="n">defaults</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">450</span>
+<span class="n">defaults</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">350</span>
+</pre></div>
+</div>
+<p>will set the default width and height for any chart. The full list of
+attributes that can be set can be seen in the <a class="reference internal" href="../reference/charts.html#bokeh-charts"><span>bokeh.charts</span></a> section
+of the Reference Guide.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

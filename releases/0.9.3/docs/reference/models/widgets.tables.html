@@ -1,0 +1,1773 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>bokeh.models.widgets.tables &mdash; Bokeh 0.9.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-3.3.4/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-3.3.4/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.9.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.9.3 documentation" href="../../../index.html" />
+    <link rel="up" title="bokeh.models Interface" href="../models.html" />
+    <link rel="next" title="bokeh.validation Package" href="../validation.html" />
+    <link rel="prev" title="bokeh.models.widgets.panels" href="widgets.panels.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.9.3</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#plot">Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#guides-and-annotations">Guides and Annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#ranges">Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#more-examples">More examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#vectorized-colors-and-sizes">Vectorized colors and sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#linked-panning-and-brushing">Linked panning and brushing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../quickstart.html#datetime-axes">Datetime axes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/setup.html">Getting Set Up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/setup.html#installing-the-bokeh-library">Installing the Bokeh Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/setup.html#verifying-your-installation">Verifying your installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/setup.html#finding-help">Finding Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/concepts.html#glossary">Glossary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/concepts.html#interfaces">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/plotting.html#creating-figures">Creating Figures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/plotting.html#combining-multiple-glyphs">Combining Multiple Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/plotting.html#setting-ranges">Setting Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/plotting.html#specifying-axis-types">Specifying Axis Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/plotting.html#adding-annotations">Adding Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/charts.html">Using High-level Charts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/charts.html#generic-arguments">Generic Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/charts.html#creating-charts">Creating Charts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compat.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compat.html#matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compat.html#pandas">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compat.html#seaborn">Seaborn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compat.html#ggplot-py"><code class="docutils literal"><span class="pre">ggplot.py</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#using-palettes">Using Palettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#visual-properties">Visual Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#selecting-plot-objects">Selecting Plot Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#plots">Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#axes">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#grids">Grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/styling.html#legends">Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/tools.html#positioning-the-toolbar">Positioning the Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/tools.html#specifying-tools">Specifying Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/tools.html#setting-tool-visuals">Setting Tool Visuals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/tools.html#controlling-level-of-detail">Controlling Level of Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/layout.html">Laying Out Multiple Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/layout.html#vertical-layout">Vertical Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/layout.html#horizontal-layout">Horizontal Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/layout.html#grid-layout">Grid Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/layout.html#form-layout">Form Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/notebook.html#displaying-inline-plots">Displaying Inline Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/notebook.html#connecting-to-bokeh-server-plots">Connecting to Bokeh Server Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/notebook.html#integrating-ipython-interactors">Integrating IPython Interactors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/interaction.html#linking-plots">Linking Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/interaction.html#adding-widgets">Adding Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/interaction.html#defining-callbacks">Defining Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/server.html">Deploying the Bokeh Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#running-the-example-server">Running the Example Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#storing-plots-on-the-server">Storing plots on the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#authenticating-users">Authenticating Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#publishing-to-the-server">Publishing to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#streaming-data-with-the-server">Streaming Data with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#downsampling-with-server">Downsampling with Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#reacting-to-user-interactions">Reacting to User Interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#building-bokeh-applications">Building Bokeh Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/server.html#deploying-for-production">Deploying for Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/embed.html">Embedding Bokeh Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/embed.html#standalone-html">Standalone HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/embed.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/embed.html#ipython-notebook">IPython Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/embed.html#autoloading">Autoloading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/building.html">Building and Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building.html#cloning-the-repository">Cloning the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building.html#building-bokehjs">Building BokehJS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building.html#python-setup">Python Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building.html#incremental-compilation">Incremental Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/documentation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/documentation.html#building">Building</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/documentation.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/objects.html">Bokeh Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/objects.html#low-level-object-interface">Low-level Object Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/objects.html#models-and-properties">Models and properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bokehjs.html#bokehjs-motivations">BokehJS Motivations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bokehjs.html#goals">Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bokehjs.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bokehjs.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bokehjs.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bindings.html#resources-for-authors">Resources for Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/bindings.html#known-bindings">Known Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/notes.html">Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#css-class-names">CSS class names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#managing-examples">Managing examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#choosing-right-types">Choosing right types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#managing-python-modules">Managing Python modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#managing-external-js-libraries">Managing external JS libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#maintaining-secure-variables-in-travis-yml">Maintaining secure variables in .travis.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#browser-caching">Browser caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/notes.html#bokehjs-amd-module-template-for-a-model">BokehJS AMD module template for a model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/server.html">Bokeh Server Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/server.html#data-model">Data Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/server.html#copy-on-write">Copy on Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/server.html#anonymous-users">Anonymous Users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#general-questions">General Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#how-do-you-pronounce-bokeh"><em>How do you pronounce &#8220;bokeh&#8221;?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#why-did-you-start-writing-a-new-plotting-library"><em>Why did you start writing a new plotting library?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#can-i-incorporate-bokeh-into-my-proprietary-app-or-platform"><em>Can I incorporate Bokeh into my proprietary app or platform?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#what-is-the-relationship-between-bokeh-and-chaco"><em>What is the relationship between Bokeh and Chaco?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#how-does-bokeh-compare-to-mpld3"><em>How does Bokeh compare to mpld3?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#does-bokeh-implement-r-s-ggplot2"><em>Does Bokeh implement R&#8217;s ggplot2?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#technical-questions">Technical Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#does-bokeh-use-d3-js"><em>Does Bokeh use D3.js?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#why-not-use-something-like-vega"><em>Why not use something like Vega?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#how-do-i-get-the-sample-data"><em>How do I get the sample data?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../faq.html#are-the-tools-not-working-in-chrome-cromium"><em>Are the tools not working in Chrome/Cromium?</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#release-notes">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release_notes.html#roadmap">Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../release_notes.html#long-term-todo-list">Long-term TODO List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../properties.html">Properties System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../properties.html#bokeh-properties"><code class="docutils literal"><span class="pre">bokeh.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../properties.html#bokeh-mixins"><code class="docutils literal"><span class="pre">bokeh.mixins</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code> Interface</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="annotations.html"><code class="docutils literal"><span class="pre">bokeh.models.annotations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="axes.html"><code class="docutils literal"><span class="pre">bokeh.models.axes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html"><code class="docutils literal"><span class="pre">bokeh.models.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatters.html"><code class="docutils literal"><span class="pre">bokeh.models.formatters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="glyphs.html"><code class="docutils literal"><span class="pre">bokeh.models.glyphs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="grids.html"><code class="docutils literal"><span class="pre">bokeh.models.grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="map_plots.html"><code class="docutils literal"><span class="pre">bokeh.models.map_plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mappers.html"><code class="docutils literal"><span class="pre">bokeh.models.mappers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="markers.html"><code class="docutils literal"><span class="pre">bokeh.models.markers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="plots.html"><code class="docutils literal"><span class="pre">bokeh.models.plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ranges.html"><code class="docutils literal"><span class="pre">bokeh.models.ranges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html"><code class="docutils literal"><span class="pre">bokeh.models.renderers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sources.html"><code class="docutils literal"><span class="pre">bokeh.models.sources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tickers.html"><code class="docutils literal"><span class="pre">bokeh.models.tickers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html"><code class="docutils literal"><span class="pre">bokeh.models.tools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.html"><code class="docutils literal"><span class="pre">bokeh.models.widget</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.buttons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.buttons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.dialogs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.dialogs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.groups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.icons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.icons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.inputs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.inputs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.layouts.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.layouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.markups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.markups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.panels.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.panels</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../validation.html"><code class="docutils literal"><span class="pre">bokeh.validation</span></code> Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../validation.html#bokeh-validation-errors"><code class="docutils literal"><span class="pre">bokeh.validation.errors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../validation.html#bokeh-validation-warnings"><code class="docutils literal"><span class="pre">bokeh.validation.warnings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../validation.html#bokeh-validation-decorators"><code class="docutils literal"><span class="pre">bokeh.validation.decorators</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../validation.html#bokeh-validation-exceptions"><code class="docutils literal"><span class="pre">bokeh.validation.exceptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../charts.html"><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../charts.html#module-bokeh.charts">Chart Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../charts.html#helper-classes">Helper Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../charts.html#builders">Builders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources_embedding.html">Resources and Embedding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../resources_embedding.html#bokeh-state"><code class="docutils literal"><span class="pre">bokeh.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resources_embedding.html#bokeh-io"><code class="docutils literal"><span class="pre">bokeh.io</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resources_embedding.html#bokeh-resources"><code class="docutils literal"><span class="pre">bokeh.resources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resources_embedding.html#bokeh-embed"><code class="docutils literal"><span class="pre">bokeh.embed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resources_embedding.html#bokeh-templates"><code class="docutils literal"><span class="pre">bokeh.templates</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_objects.html">Plot Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../plot_objects.html#bokeh"><code class="docutils literal"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_objects.html#bokeh-document"><code class="docutils literal"><span class="pre">bokeh.document</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plot_objects.html#bokeh-session"><code class="docutils literal"><span class="pre">bokeh.session</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bokehjs.html">BokehJS Interface Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#data-sources">Data Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#line-properties">Line Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#fill-properties">Fill Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#text-properties">Text Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#markers">Markers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bokehjs.html#glyphs">Glyphs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinxext.html">Sphinx Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_autodoc">bokeh_autodoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_gallery">bokeh_gallery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_github">bokeh_github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_model">bokeh_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_palette">bokeh_palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_plot">bokeh_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.bokeh_prop">bokeh_prop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sphinxext.html#module-bokeh.sphinxext.collapsible_code_block">collapsible_code_block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code></a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../properties.html">Properties System</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code> Interface</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="annotations.html"><code class="docutils literal"><span class="pre">bokeh.models.annotations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="axes.html"><code class="docutils literal"><span class="pre">bokeh.models.axes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html"><code class="docutils literal"><span class="pre">bokeh.models.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="formatters.html"><code class="docutils literal"><span class="pre">bokeh.models.formatters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="glyphs.html"><code class="docutils literal"><span class="pre">bokeh.models.glyphs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="grids.html"><code class="docutils literal"><span class="pre">bokeh.models.grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="map_plots.html"><code class="docutils literal"><span class="pre">bokeh.models.map_plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="mappers.html"><code class="docutils literal"><span class="pre">bokeh.models.mappers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="markers.html"><code class="docutils literal"><span class="pre">bokeh.models.markers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="plots.html"><code class="docutils literal"><span class="pre">bokeh.models.plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ranges.html"><code class="docutils literal"><span class="pre">bokeh.models.ranges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="renderers.html"><code class="docutils literal"><span class="pre">bokeh.models.renderers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sources.html"><code class="docutils literal"><span class="pre">bokeh.models.sources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tickers.html"><code class="docutils literal"><span class="pre">bokeh.models.tickers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html"><code class="docutils literal"><span class="pre">bokeh.models.tools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widget.html"><code class="docutils literal"><span class="pre">bokeh.models.widget</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.buttons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.buttons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.dialogs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.dialogs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.groups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.icons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.icons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.inputs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.inputs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.layouts.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.layouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.markups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.markups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.panels.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.panels</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../validation.html"><code class="docutils literal"><span class="pre">bokeh.validation</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../charts.html"><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../../_sources/docs/reference/models/widgets.tables.txt"
+     rel="nofollow">Source</a>
+</div>
+  <script>
+    (function() {
+      var cx = '002545163150875166651:x_rsxrr49fs';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+          '//cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <gcse:searchbox-only></gcse:searchbox-only>
+  <style type="text/css">
+  body {
+      margin: 10px;
+  }
+  #gsc-iw-id1{
+      height: 30px;
+      border-color: #898989;
+  }
+  input.gsc-search-button-v2{
+      width: 71px;
+      height: 29px;
+  }
+  </style>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="module-bokeh.models.widgets.tables">
+<span id="bokeh-models-widgets-tables"></span><h1><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code><a class="headerlink" href="#module-bokeh.models.widgets.tables" title="Permalink to this headline">¶</a></h1>
+<p>Various kinds of data table (data grid) widgets.</p>
+<dl class="class">
+<dt id="bokeh.models.widgets.tables.BooleanFormatter">
+<em class="property">class </em><code class="descname">BooleanFormatter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.BooleanFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellFormatter" title="bokeh.models.widgets.tables.CellFormatter"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellFormatter</span></code></a></p>
+<p>Boolean (check mark) cell formatter.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.BooleanFormatter.icon">
+<code class="descname">icon</code><a class="headerlink" href="#bokeh.models.widgets.tables.BooleanFormatter.icon" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;check&#8217;, &#8216;check-circle&#8217;, &#8216;check-circle-o&#8217;, &#8216;check-square&#8217;, &#8216;check-square-o&#8217;)</p>
+<p>The icon visualizing the check mark.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-0">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-0" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-0">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-0">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;icon&quot;</span><span class="o">:</span> <span class="s2">&quot;check&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;56e0cef0-0be7-4d5d-9c2d-32206e5a8fb2&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;56e0cef0-0be7-4d5d-9c2d-32206e5a8fb2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BooleanFormatter&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.CellEditor">
+<em class="property">class </em><code class="descname">CellEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.CellEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">bokeh.plot_object.PlotObject</span></code></p>
+<p>Abstract base class for data table&#8217;s cell editors.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-1">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-1" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-1">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-1">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;68d6e698-c302-4530-97e2-37dc9fc8f9e8&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;68d6e698-c302-4530-97e2-37dc9fc8f9e8&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;CellEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.CellFormatter">
+<em class="property">class </em><code class="descname">CellFormatter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.CellFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">bokeh.plot_object.PlotObject</span></code></p>
+<p>Abstract base class for data table&#8217;s cell formatters.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-2">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-2" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-2">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-2">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;a4cf6395-fcf2-4866-ae0f-96030a53efcd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;a4cf6395-fcf2-4866-ae0f-96030a53efcd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;CellFormatter&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.CheckboxEditor">
+<em class="property">class </em><code class="descname">CheckboxEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.CheckboxEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Boolean value cell editor.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-3">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-3" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-3">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-3">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9f2174db-c85b-4958-b3a7-e42df58f329a&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9f2174db-c85b-4958-b3a7-e42df58f329a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;CheckboxEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.DataTable">
+<em class="property">class </em><code class="descname">DataTable</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.TableWidget" title="bokeh.models.widgets.tables.TableWidget"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.TableWidget</span></code></a></p>
+<p>Two dimensional grid for visualisation and editing large amounts
+of data.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.columns">
+<code class="descname">columns</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.Instance" title="bokeh.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a>(TableColumn))</p>
+<p>The list of child column widgets.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.editable">
+<code class="descname">editable</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.editable" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Allows to edit table&#8217;s contents. Needs cell editors to be configured on
+columns that are required to be editable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.fit_columns">
+<code class="descname">fit_columns</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.fit_columns" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether columns should be fit to the available width. This results in no
+horizontal scrollbar showing up, but data can get unreadable if there is
+no enough space available. If set to <code class="docutils literal"><span class="pre">True</span></code>, columns&#8217; width is
+understood as maximum width.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.height">
+<code class="descname">height</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.Int" title="bokeh.properties.Int"><code class="xref py py-class docutils literal"><span class="pre">Int</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">Auto</span></code>)</p>
+<p>Height in pixels of the table widget. Use <code class="docutils literal"><span class="pre">Auto</span></code> to make the widget
+adjust its height automatically. Note that <code class="docutils literal"><span class="pre">Auto</span></code> is inefficient for
+large amounts of data, so should be used with care.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.row_headers">
+<code class="descname">row_headers</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.row_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Enable or disable row headers, i.e. the index column.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.selectable">
+<code class="descname">selectable</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.selectable" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>, <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;checkbox&#8217;))</p>
+<p>Whether a table&#8217;s rows can be selected or not. Using <code class="docutils literal"><span class="pre">checkbox</span></code> is
+equivalent  to <code class="docutils literal"><span class="pre">True</span></code>, but makes selection visible through a checkbox
+for each row,  instead of highlighting rows. Multiple selection is
+allowed and can be achieved by either clicking multiple checkboxes (if
+enabled) or using Shift + click on rows.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.sortable">
+<code class="descname">sortable</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.sortable" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Allows to sort table&#8217;s contents. By default natural order is preserved.
+To sort a column, click on it&#8217;s header. Clicking one more time changes
+sort direction. Use Ctrl + click to return to natural order. Use
+Shift + click to sort multiple columns simultaneously.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DataTable.width">
+<code class="descname">width</code><a class="headerlink" href="#bokeh.models.widgets.tables.DataTable.width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Int" title="bokeh.properties.Int"><code class="xref py py-class docutils literal"><span class="pre">Int</span></code></a></p>
+<p>Optional width in pixels of the table widget. By default, uses all
+horizontal space available.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-4">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-4" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-4">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-4">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;columns&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;editable&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">&quot;fit_columns&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;48bd29c0-2191-4ba4-950d-c6c71fd7def1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;row_headers&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">&quot;selectable&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">&quot;sortable&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">&quot;source&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;48bd29c0-2191-4ba4-950d-c6c71fd7def1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;DataTable&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.DateEditor">
+<em class="property">class </em><code class="descname">DateEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.DateEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Calendar-based date cell editor.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-5">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-5" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-5">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-5">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;75e778dd-c2df-47bb-8ca2-a2d1c620c2d3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;75e778dd-c2df-47bb-8ca2-a2d1c620c2d3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;DateEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.DateFormatter">
+<em class="property">class </em><code class="descname">DateFormatter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.DateFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellFormatter" title="bokeh.models.widgets.tables.CellFormatter"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellFormatter</span></code></a></p>
+<p>Date cell formatter.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.DateFormatter.format">
+<code class="descname">format</code><a class="headerlink" href="#bokeh.models.widgets.tables.DateFormatter.format" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;ATOM&#8217;, &#8216;W3C&#8217;, &#8216;RFC-3339&#8217;, &#8216;ISO-8601&#8217;, &#8216;COOKIE&#8217;, &#8216;RFC-822&#8217;, &#8216;RFC-850&#8217;, &#8216;RFC-1036&#8217;, &#8216;RFC-1123&#8217;, &#8216;RFC-2822&#8217;, &#8216;RSS&#8217;, &#8216;TICKS&#8217;, &#8216;TIMESTAMP&#8217;), <a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>)</p>
+<p>The date format can be combinations of the following:</p>
+<dl class="docutils">
+<dt>d</dt>
+<dd>day of month (no leading zero)</dd>
+<dt>dd</dt>
+<dd>day of month (two digit)</dd>
+<dt>o</dt>
+<dd>day of year (no leading zeros)</dd>
+<dt>oo</dt>
+<dd>day of year (three digit)</dd>
+<dt>D</dt>
+<dd>day name short</dd>
+<dt>DD</dt>
+<dd>day name long</dd>
+<dt>m</dt>
+<dd>month of year (no leading zero)</dd>
+<dt>mm</dt>
+<dd>month of year (two digit)</dd>
+<dt>M</dt>
+<dd>month name short</dd>
+<dt>MM</dt>
+<dd>month name long</dd>
+<dt>y</dt>
+<dd>year (two digit)</dd>
+<dt>yy</dt>
+<dd>year (four digit)</dd>
+</dl>
+<dl class="docutils">
+<dt>&#64;</dt>
+<dd>Unix timestamp (ms since 01/01/1970)</dd>
+</dl>
+<dl class="docutils">
+<dt>!</dt>
+<dd>Windows ticks (100ns since 01/01/0001)</dd>
+<dt>&#8221;...&#8221;</dt>
+<dd>literal text</dd>
+</dl>
+<dl class="docutils">
+<dt>&#8216;&#8217;</dt>
+<dd>single quote</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-6">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-6" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-6">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-6">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;format&quot;</span><span class="o">:</span> <span class="s2">&quot;yy M d&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;cfb8db68-67ef-46fb-9b63-9114c64c89f7&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;cfb8db68-67ef-46fb-9b63-9114c64c89f7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;DateFormatter&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.IntEditor">
+<em class="property">class </em><code class="descname">IntEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.IntEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Spinner-based integer cell editor.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.IntEditor.step">
+<code class="descname">step</code><a class="headerlink" href="#bokeh.models.widgets.tables.IntEditor.step" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Int" title="bokeh.properties.Int"><code class="xref py py-class docutils literal"><span class="pre">Int</span></code></a></p>
+<p>The major step value.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-7">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-7" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-7">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-7">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;33e3b46e-3c86-4b72-90bc-98cdb6262e94&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;step&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;33e3b46e-3c86-4b72-90bc-98cdb6262e94&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;IntEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.NumberEditor">
+<em class="property">class </em><code class="descname">NumberEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.NumberEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Spinner-based number cell editor.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.NumberEditor.step">
+<code class="descname">step</code><a class="headerlink" href="#bokeh.models.widgets.tables.NumberEditor.step" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Float" title="bokeh.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>The major step value.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-8">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-8" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-8">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-8">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ef1e42c4-c73a-4731-99de-51b514d60fce&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;step&quot;</span><span class="o">:</span> <span class="mf">0.01</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ef1e42c4-c73a-4731-99de-51b514d60fce&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;NumberEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.NumberFormatter">
+<em class="property">class </em><code class="descname">NumberFormatter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.NumberFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.StringFormatter" title="bokeh.models.widgets.tables.StringFormatter"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.StringFormatter</span></code></a></p>
+<p>Number cell formatter.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.NumberFormatter.format">
+<code class="descname">format</code><a class="headerlink" href="#bokeh.models.widgets.tables.NumberFormatter.format" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>The number format, as defined in the following tables:</p>
+<p><strong>NUMBERS</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="34%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Number</th>
+<th class="head">Format</th>
+<th class="head">String</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>10000</td>
+<td>&#8216;0,0.0000&#8217;</td>
+<td>10,000.0000</td>
+</tr>
+<tr class="row-odd"><td>10000.23</td>
+<td>&#8216;0,0&#8217;</td>
+<td>10,000</td>
+</tr>
+<tr class="row-even"><td>10000.23</td>
+<td>&#8216;+0,0&#8217;</td>
+<td>+10,000</td>
+</tr>
+<tr class="row-odd"><td>-10000</td>
+<td>&#8216;0,0.0&#8217;</td>
+<td>-10,000.0</td>
+</tr>
+<tr class="row-even"><td>10000.1234</td>
+<td>&#8216;0.000&#8217;</td>
+<td>10000.123</td>
+</tr>
+<tr class="row-odd"><td>10000.1234</td>
+<td>&#8216;0[.]00000&#8217;</td>
+<td>10000.12340</td>
+</tr>
+<tr class="row-even"><td>-10000</td>
+<td>&#8216;(0,0.0000)&#8217;</td>
+<td>(10,000.0000)</td>
+</tr>
+<tr class="row-odd"><td>-0.23</td>
+<td>&#8216;.00&#8217;</td>
+<td>-.23</td>
+</tr>
+<tr class="row-even"><td>-0.23</td>
+<td>&#8216;(.00)&#8217;</td>
+<td>(.23)</td>
+</tr>
+<tr class="row-odd"><td>0.23</td>
+<td>&#8216;0.00000&#8217;</td>
+<td>0.23000</td>
+</tr>
+<tr class="row-even"><td>0.23</td>
+<td>&#8216;0.0[0000]&#8217;</td>
+<td>0.23</td>
+</tr>
+<tr class="row-odd"><td>1230974</td>
+<td>&#8216;0.0a&#8217;</td>
+<td>1.2m</td>
+</tr>
+<tr class="row-even"><td>1460</td>
+<td>&#8216;0 a&#8217;</td>
+<td>1 k</td>
+</tr>
+<tr class="row-odd"><td>-104000</td>
+<td>&#8216;0a&#8217;</td>
+<td>-104k</td>
+</tr>
+<tr class="row-even"><td>1</td>
+<td>&#8216;0o&#8217;</td>
+<td>1st</td>
+</tr>
+<tr class="row-odd"><td>52</td>
+<td>&#8216;0o&#8217;</td>
+<td>52nd</td>
+</tr>
+<tr class="row-even"><td>23</td>
+<td>&#8216;0o&#8217;</td>
+<td>23rd</td>
+</tr>
+<tr class="row-odd"><td>100</td>
+<td>&#8216;0o&#8217;</td>
+<td>100th</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CURRENCY</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="38%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Number</th>
+<th class="head">Format</th>
+<th class="head">String</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1000.234</td>
+<td>&#8216;$0,0.00&#8217;</td>
+<td>$1,000.23</td>
+</tr>
+<tr class="row-odd"><td>1000.2</td>
+<td>&#8216;0,0[.]00 $&#8217;</td>
+<td>1,000.20 $</td>
+</tr>
+<tr class="row-even"><td>1001</td>
+<td>&#8216;$ 0,0[.]00&#8217;</td>
+<td>$ 1,001</td>
+</tr>
+<tr class="row-odd"><td>-1000.234</td>
+<td>&#8216;($0,0)&#8217;</td>
+<td>($1,000)</td>
+</tr>
+<tr class="row-even"><td>-1000.234</td>
+<td>&#8216;$0.00&#8217;</td>
+<td>-$1000.23</td>
+</tr>
+<tr class="row-odd"><td>1230974</td>
+<td>&#8216;($ 0.00 a)&#8217;</td>
+<td>$ 1.23 m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>BYTES</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="29%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Number</th>
+<th class="head">Format</th>
+<th class="head">String</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>100</td>
+<td>&#8216;0b&#8217;</td>
+<td>100B</td>
+</tr>
+<tr class="row-odd"><td>2048</td>
+<td>&#8216;0 b&#8217;</td>
+<td>2 KB</td>
+</tr>
+<tr class="row-even"><td>7884486213</td>
+<td>&#8216;0.0b&#8217;</td>
+<td>7.3GB</td>
+</tr>
+<tr class="row-odd"><td>3467479682787</td>
+<td>&#8216;0.000 b&#8217;</td>
+<td>3.154 TB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PERCENTAGES</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="35%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Number</th>
+<th class="head">Format</th>
+<th class="head">String</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>&#8216;0%&#8217;</td>
+<td>100%</td>
+</tr>
+<tr class="row-odd"><td>0.974878234</td>
+<td>&#8216;0.000%&#8217;</td>
+<td>97.488%</td>
+</tr>
+<tr class="row-even"><td>-0.43</td>
+<td>&#8216;0 %&#8217;</td>
+<td>-43 %</td>
+</tr>
+<tr class="row-odd"><td>0.43</td>
+<td>&#8216;(0.000 %)&#8217;</td>
+<td>43.000 %</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TIME</strong>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="37%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Number</th>
+<th class="head">Format</th>
+<th class="head">String</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>25</td>
+<td>&#8216;00:00:00&#8217;</td>
+<td>0:00:25</td>
+</tr>
+<tr class="row-odd"><td>238</td>
+<td>&#8216;00:00:00&#8217;</td>
+<td>0:03:58</td>
+</tr>
+<tr class="row-even"><td>63846</td>
+<td>&#8216;00:00:00&#8217;</td>
+<td>17:44:06</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.NumberFormatter.language">
+<code class="descname">language</code><a class="headerlink" href="#bokeh.models.widgets.tables.NumberFormatter.language" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;be-nl&#8217;, &#8216;chs&#8217;, &#8216;cs&#8217;, &#8216;da-dk&#8217;, &#8216;de-ch&#8217;, &#8216;de&#8217;, &#8216;en&#8217;, &#8216;en-gb&#8217;, &#8216;es-ES&#8217;, &#8216;es&#8217;, &#8216;et&#8217;, &#8216;fi&#8217;, &#8216;fr-CA&#8217;, &#8216;fr-ch&#8217;, &#8216;fr&#8217;, &#8216;hu&#8217;, &#8216;it&#8217;, &#8216;ja&#8217;, &#8216;nl-nl&#8217;, &#8216;pl&#8217;, &#8216;pt-br&#8217;, &#8216;pt-pt&#8217;, &#8216;ru&#8217;, &#8216;ru-UA&#8217;, &#8216;sk&#8217;, &#8216;th&#8217;, &#8216;tr&#8217;, &#8216;uk-UA&#8217;)</p>
+<p>The language to use for formatting language-specific features (e.g. thousands separator).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.NumberFormatter.rounding">
+<code class="descname">rounding</code><a class="headerlink" href="#bokeh.models.widgets.tables.NumberFormatter.rounding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;round&#8217;, &#8216;nearest&#8217;, &#8216;floor&#8217;, &#8216;rounddown&#8217;, &#8216;ceil&#8217;, &#8216;roundup&#8217;)</p>
+<p>Rounding functions (round, floor, ceil) and their synonyms (nearest, rounddown, roundup).</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-9">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-9" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-9">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-9">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;format&quot;</span><span class="o">:</span> <span class="s2">&quot;0,0&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;42889361-23c1-4b24-b4b1-a6cd0337d055&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;language&quot;</span><span class="o">:</span> <span class="s2">&quot;en&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;rounding&quot;</span><span class="o">:</span> <span class="s2">&quot;round&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text_color&quot;</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;42889361-23c1-4b24-b4b1-a6cd0337d055&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;NumberFormatter&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.PercentEditor">
+<em class="property">class </em><code class="descname">PercentEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.PercentEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p><code class="docutils literal"><span class="pre">IntEditor</span></code> optimized for editing percentages.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-10">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-10" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-10">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-10">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;95bb85a5-8abc-46d9-b4a6-6ca4b4301db1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;95bb85a5-8abc-46d9-b4a6-6ca4b4301db1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;PercentEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.SelectEditor">
+<em class="property">class </em><code class="descname">SelectEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.SelectEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Select cell editor.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.SelectEditor.options">
+<code class="descname">options</code><a class="headerlink" href="#bokeh.models.widgets.tables.SelectEditor.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>)</p>
+<p>The list of options to select from.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-11">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-11" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-11">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-11">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;3f90ae5d-9288-4a69-b30f-1cd4aa92904a&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;options&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;3f90ae5d-9288-4a69-b30f-1cd4aa92904a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;SelectEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.StringEditor">
+<em class="property">class </em><code class="descname">StringEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.StringEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Basic string cell editor with auto-completion.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.StringEditor.completions">
+<code class="descname">completions</code><a class="headerlink" href="#bokeh.models.widgets.tables.StringEditor.completions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>)</p>
+<p>An optional list of completion strings.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-12">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-12" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-12">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-12">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;completions&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;f5073e6e-89c5-4e22-9a27-6e0d71860aad&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;f5073e6e-89c5-4e22-9a27-6e0d71860aad&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.StringFormatter">
+<em class="property">class </em><code class="descname">StringFormatter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.StringFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellFormatter" title="bokeh.models.widgets.tables.CellFormatter"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellFormatter</span></code></a></p>
+<p>Basic string cell formatter.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.StringFormatter.font_style">
+<code class="descname">font_style</code><a class="headerlink" href="#bokeh.models.widgets.tables.StringFormatter.font_style" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;normal&#8217;, &#8216;italic&#8217;, &#8216;bold&#8217;)</p>
+<p>An optional text font style, e.g. bold, italic.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.StringFormatter.text_align">
+<code class="descname">text_align</code><a class="headerlink" href="#bokeh.models.widgets.tables.StringFormatter.text_align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;left&#8217;, &#8216;right&#8217;, &#8216;center&#8217;)</p>
+<p>An optional text align, i.e. left, center or right.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.StringFormatter.text_color">
+<code class="descname">text_color</code><a class="headerlink" href="#bokeh.models.widgets.tables.StringFormatter.text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Color" title="bokeh.properties.Color"><code class="xref py py-class docutils literal"><span class="pre">Color</span></code></a></p>
+<p>An optional text color. See <a class="reference internal" href="../properties.html#bokeh.properties.Color" title="bokeh.properties.Color"><code class="xref py py-class docutils literal"><span class="pre">bokeh.properties.Color</span></code></a> for
+details.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-13">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-13" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-13">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-13">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ca9680db-7c4c-466d-8562-4500fcdd9ab1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text_color&quot;</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ca9680db-7c4c-466d-8562-4500fcdd9ab1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringFormatter&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.TableColumn">
+<em class="property">class </em><code class="descname">TableColumn</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">bokeh.plot_object.PlotObject</span></code></p>
+<p>Table column widget.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.default_sort">
+<code class="descname">default_sort</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.default_sort" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Enum" title="bokeh.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a>(&#8216;ascending&#8217;, &#8216;descending&#8217;)</p>
+<p>The default sorting order. By default <code class="docutils literal"><span class="pre">ascending</span></code> order is used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.editor">
+<code class="descname">editor</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.editor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Instance" title="bokeh.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a>(CellEditor)</p>
+<p>The cell editor for this column. By default, a simple string editor
+is used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.field">
+<code class="descname">field</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.field" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>The name of the field mapping to a column in the data source.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.formatter">
+<code class="descname">formatter</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.formatter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Instance" title="bokeh.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a>(CellFormatter)</p>
+<p>The cell formatter for this column. By default, a simple string
+formatter is used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.sortable">
+<code class="descname">sortable</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.sortable" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether this column is sortable or not. Note that data table has
+to have sorting enabled to allow sorting in general.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.title">
+<code class="descname">title</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.title" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>The title of this column. If not set, column&#8217;s data field is
+used instead.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableColumn.width">
+<code class="descname">width</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableColumn.width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Int" title="bokeh.properties.Int"><code class="xref py py-class docutils literal"><span class="pre">Int</span></code></a></p>
+<p>The width or maximum width (depending on data table&#8217;s configuration)
+in pixels of this column.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-14">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-14" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-14">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-14">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;completions&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9d5ba99f-6f81-4586-bdfa-4b6068f227fb&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9d5ba99f-6f81-4586-bdfa-4b6068f227fb&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringEditor&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d9b8b981-8086-44fc-83fe-d7e5c458e71b&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;text_color&quot;</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d9b8b981-8086-44fc-83fe-d7e5c458e71b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;default_sort&quot;</span><span class="o">:</span> <span class="s2">&quot;ascending&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;editor&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;9d5ba99f-6f81-4586-bdfa-4b6068f227fb&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringEditor&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;field&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d9b8b981-8086-44fc-83fe-d7e5c458e71b&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;StringFormatter&quot;</span>
+      <span class="p">},</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;83f040c1-7e28-45e8-ab5f-f85cf859f455&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;sortable&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="mi">300</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;83f040c1-7e28-45e8-ab5f-f85cf859f455&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;TableColumn&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.TableWidget">
+<em class="property">class </em><code class="descname">TableWidget</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.TableWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="widget.html#bokeh.models.widget.Widget" title="bokeh.models.widget.Widget"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widget.Widget</span></code></a></p>
+<p>Abstract base class for data table (data grid) widgets.</p>
+<dl class="attribute">
+<dt id="bokeh.models.widgets.tables.TableWidget.source">
+<code class="descname">source</code><a class="headerlink" href="#bokeh.models.widgets.tables.TableWidget.source" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../properties.html#bokeh.properties.Instance" title="bokeh.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a>(DataSource)</p>
+<p>The source of data for the widget.</p>
+</dd></dl>
+
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-15">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-15" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-15">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-15">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d03c0d3a-7835-4f92-8232-2100461f7dc9&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;source&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d03c0d3a-7835-4f92-8232-2100461f7dc9&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;TableWidget&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.TextEditor">
+<em class="property">class </em><code class="descname">TextEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.TextEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Multi-line string cell editor.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-16">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-16" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-16">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-16" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-16">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;eaa699f7-e33a-4617-8ed9-08873d627e63&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;eaa699f7-e33a-4617-8ed9-08873d627e63&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;TextEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.widgets.tables.TimeEditor">
+<em class="property">class </em><code class="descname">TimeEditor</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.widgets.tables.TimeEditor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.widgets.tables.CellEditor" title="bokeh.models.widgets.tables.CellEditor"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.widgets.tables.CellEditor</span></code></a></p>
+<p>Spinner-based time cell editor.</p>
+</dd></dl>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="heading-widgets-tables-rst-ccb-17">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-widgets-tables-rst-ccb-17" aria-expanded="false" aria-controls="collapse-widgets-tables-rst-ccb-17">
+          JSON Prototype
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-widgets-tables-rst-ccb-17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-widgets-tables-rst-ccb-17">
+      <div class="panel-body"><div class="highlight-javascript"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;doc&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6d387e55-444c-4322-8962-3f2cd4125453&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6d387e55-444c-4322-8962-3f2cd4125453&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;TimeEditor&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div></div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="widgets.panels.html">Prev</a> |
+      
+      
+      <a href="../validation.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../../_sources/docs/reference/models/widgets.tables.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

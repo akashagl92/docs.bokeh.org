@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Server Architecture &mdash; Bokeh 0.12.10 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.10";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/dev_guide/server.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.12.10</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.10/">0.12.10</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.9/">0.12.9</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.12.10.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Bokeh Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Server Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#applications-sessions-and-connections">Applications, Sessions, and Connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tornado-ioloop-and-async-code">Tornado <code class="docutils literal"><span class="pre">IOLoop</span></code> and Async Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applications-and-the-ioloop">Applications and the <code class="docutils literal"><span class="pre">IOLoop</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lifecycle">Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details-of-serversession">Details of <code class="docutils literal"><span class="pre">ServerSession</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#locking">Locking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-security">Session Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-timeout">Session Timeout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#websocket-protocol">Websocket Protocol</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#some-current-protocol-caveats">Some Current Protocol Caveats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#http-endpoints">HTTP Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-details">Additional details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#events">Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serialization">Serialization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.10.html">0.12.0 (Oct 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.9.html">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.7.html">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.5.html">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="server-architecture">
+<span id="devguide-server"></span><h1>Server Architecture<a class="headerlink" href="#server-architecture" title="Permalink to this headline">¶</a></h1>
+<p>This chapter is a &#8220;deep dive&#8221; into Bokeh server&#8217;s internals. It assumes you&#8217;re
+already familiar with the information on Bokeh server in <a class="reference internal" href="../user_guide/server.html#userguide-server"><span class="std std-ref">Running a Bokeh Server</span></a>.</p>
+<p>You might want to read this if you are:</p>
+<ul class="simple">
+<li>trying to work on the Bokeh codebase</li>
+<li>writing your own custom server process to use rather than <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code></li>
+</ul>
+<p>A custom server process can add additional routes (web pages or
+REST endpoints) using Tornado&#8217;s web framework.</p>
+<p>If an application developer uses <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> they typically should not need
+to import from <code class="docutils literal"><span class="pre">bokeh.server</span></code> at all. An application developer would only use
+the <code class="docutils literal"><span class="pre">Server</span></code> class if it is doing something specialized, such as a custom
+or embedded server process.</p>
+<div class="section" id="applications-sessions-and-connections">
+<h2>Applications, Sessions, and Connections<a class="headerlink" href="#applications-sessions-and-connections" title="Permalink to this headline">¶</a></h2>
+<p>Each server contains one or more applications; you can think of an application
+as a session template, or a factory for sessions. Sessions have a 1-1
+relationship with instances of <code class="docutils literal"><span class="pre">bokeh.document.Document</span></code>: each session has a
+document instance. When a browser connects to the server, it gets a new
+session; the application fills in the session&#8217;s document with whatever plots,
+widgets, or other content it desires. The application can also set up
+callbacks, to run periodically or to run when the document changes.</p>
+<p>Applications are represented by the <code class="docutils literal"><span class="pre">Application</span></code> class. This class is
+contains list of <code class="docutils literal"><span class="pre">Handler</span></code> instances and optional metadata. Handlers
+can be created in lots of ways; from JSON files, from Python functions, from
+Python files, and perhaps many more ways in the future.  The optional metadata
+is available as a json blob via the <code class="docutils literal"><span class="pre">/metadata</span></code> endpoint.  For example,
+creating a <code class="docutils literal"><span class="pre">Application</span></code> instance with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Application</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">hi</span><span class="o">=</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="n">there</span><span class="o">=</span><span class="s2">&quot;there&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>will have <code class="docutils literal"><span class="pre">http://server/myapp/metadata</span></code> return (<code class="docutils literal"><span class="pre">application/json</span></code>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;hi&quot;</span><span class="p">:</span> <span class="s2">&quot;hi&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;there&quot;</span><span class="p">:</span> <span class="s2">&quot;there&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;/myapp&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Around each application, the server creates an <code class="docutils literal"><span class="pre">ApplicationContext</span></code>. Its
+primary role is to hold the set of sessions for the application.</p>
+<p>Sessions are represented by class <code class="docutils literal"><span class="pre">ServerSession</span></code>.</p>
+<p>Each application has a route (called an <code class="docutils literal"><span class="pre">app_path</span></code> in the client
+API), and each session has an ID. The combination of the two
+specifies a <code class="docutils literal"><span class="pre">Document</span></code> instance (the server looks up the
+application by path, and then looks up the session by ID).</p>
+<p>Each session has 0-N connections, represented by the <code class="docutils literal"><span class="pre">ServerConnection</span></code>
+class. Connections are websocket connections. In general, sessions last as
+long as they have connections, though they only expire after a timeout (to
+allow for page reloads and the like).</p>
+<p>Applications and application handlers cannot access the <code class="docutils literal"><span class="pre">Server</span></code>
+<code class="docutils literal"><span class="pre">ServerSession</span></code>, or <code class="docutils literal"><span class="pre">ApplicationContext</span></code> directly; they have a much more
+limited interface defined in two pieces, <code class="docutils literal"><span class="pre">ServerContext</span></code>  and
+<code class="docutils literal"><span class="pre">SessionContext</span></code>. <code class="docutils literal"><span class="pre">ServerContext</span></code> presents a limited interface to some
+aspects of <code class="docutils literal"><span class="pre">ApplicationContext</span></code> and <code class="docutils literal"><span class="pre">Server</span></code>, while <code class="docutils literal"><span class="pre">SessionContext</span></code>
+presents a limited interface to some aspects of <code class="docutils literal"><span class="pre">ServerSession</span></code>. Concrete
+implementations of these interfaces are <code class="docutils literal"><span class="pre">BokehServerContext</span></code> and
+<code class="docutils literal"><span class="pre">BokehSessionContext</span></code>.</p>
+<p>Summarizing the object graph:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">Server</span></code> implemented by <code class="docutils literal"><span class="pre">BokehTornado</span></code></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>has N <code class="docutils literal"><span class="pre">ApplicationContext</span></code></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>has 1 <code class="docutils literal"><span class="pre">Application</span></code> capable of creating new sessions</li>
+<li>has 1 path used to identify it in URLs</li>
+<li>has 1 <code class="docutils literal"><span class="pre">ServerContext</span></code> representing the aspects of
+the server visible to application code</li>
+<li>has N <code class="docutils literal"><span class="pre">ServerSesssion</span></code></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li>has 1 session ID which is a string naming the session</li>
+<li>has 1 <code class="docutils literal"><span class="pre">Document</span></code> representing the session state</li>
+<li>has N <code class="docutils literal"><span class="pre">ServerConnection</span></code> representing websockets
+attached to the session</li>
+<li>has 1 <code class="docutils literal"><span class="pre">SessionContext</span></code> representing the aspects of
+the session visible to application code</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="tornado-ioloop-and-async-code">
+<h2>Tornado <code class="docutils literal"><span class="pre">IOLoop</span></code> and Async Code<a class="headerlink" href="#tornado-ioloop-and-async-code" title="Permalink to this headline">¶</a></h2>
+<p>To work on the server, you&#8217;ll need an understanding of Tornado&#8217;s
+<code class="docutils literal"><span class="pre">IOLoop</span></code> and the <code class="docutils literal"><span class="pre">tornado.gen</span></code> module.</p>
+<p>The Tornado documentation will be the best resource, but here are
+some quick things to know:</p>
+<ul class="simple">
+<li>the Bokeh server is single-threaded, so it&#8217;s important not to
+write &#8220;blocking&#8221; code, meaning code that uses up the single
+thread while it waits for IO or performs a long computation. If
+you do this, you&#8217;ll rapidly increase the latency seen by users
+of your application. For example, if you block for 100ms every
+time someone moves a slider, and ten users are doing this at
+once, users could easily see 10*100ms=1s of lag... with only
+ten users.</li>
+<li>in Tornado, nonblocking code is modeled with functions or
+methods that return an instance of the <code class="docutils literal"><span class="pre">Future</span></code> class.  You
+may have seen the <code class="docutils literal"><span class="pre">&#64;gen.coroutine</span></code> decorator, which
+transforms the decorated method into a method which returns a
+<code class="docutils literal"><span class="pre">Future</span></code>.</li>
+<li>when no code is running, Tornado waits in its <code class="docutils literal"><span class="pre">IOLoop</span></code>
+(sometimes called a &#8220;main loop&#8221; or &#8220;event loop&#8221;), which means
+it&#8217;s waiting for something to happen. When something happens,
+<code class="docutils literal"><span class="pre">IOLoop</span></code> executes any callbacks that were interested in that
+event.</li>
+</ul>
+</div>
+<div class="section" id="applications-and-the-ioloop">
+<h2>Applications and the <code class="docutils literal"><span class="pre">IOLoop</span></code><a class="headerlink" href="#applications-and-the-ioloop" title="Permalink to this headline">¶</a></h2>
+<p>We don&#8217;t want applications to touch the Tornado <code class="docutils literal"><span class="pre">IOLoop</span></code>
+directly to add callbacks, because when a session expires or an
+application is reloaded, we need the ability to remove all
+callbacks belonging to a session or application.</p>
+<p>To enable this, applications should only add callbacks using the
+APIs on <code class="docutils literal"><span class="pre">Document</span></code> and <code class="docutils literal"><span class="pre">ServerContext</span></code>. Methods on those
+classes allow applications to <code class="docutils literal"><span class="pre">add_periodic_callback</span></code>,
+<code class="docutils literal"><span class="pre">add_timeout_callback</span></code>, and <code class="docutils literal"><span class="pre">add_next_tick_callback</span></code>. We
+intercept these callback additions and are able to remove them
+when we unload an application or destroy a session.</p>
+</div>
+<div class="section" id="lifecycle">
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
+<p>If you look at the <code class="docutils literal"><span class="pre">Application</span></code> class, there are two ways the
+server can call into it.</p>
+<ol class="arabic simple">
+<li>the <code class="docutils literal"><span class="pre">modify_document()</span></code> method which does just what it says: it
+passes in the session&#8217;s <code class="docutils literal"><span class="pre">Document</span></code> and allows the application
+to modify it (perhaps adding some plots and widgets).</li>
+<li>a set of &#8220;hooks&#8221; <code class="docutils literal"><span class="pre">on_server_loaded()</span></code>, <code class="docutils literal"><span class="pre">on_server_unloaded()</span></code>,
+<code class="docutils literal"><span class="pre">on_session_created()</span></code>, <code class="docutils literal"><span class="pre">on_session_destroyed()</span></code>.</li>
+</ol>
+<p>The &#8220;hooks&#8221; are called &#8220;lifecycle hooks&#8221; since they happen at
+defined points in the lifetime of an application and a session.</p>
+<p>Here are the steps in the lifecycle:</p>
+<ol class="arabic simple">
+<li>When the server process starts up, it calls
+<code class="docutils literal"><span class="pre">on_server_loaded()</span></code> on each application.</li>
+<li>When a client connects with a previously-unused session ID, the
+server creates a <code class="docutils literal"><span class="pre">ServerSession</span></code> and calls
+<code class="docutils literal"><span class="pre">on_session_created()</span></code> with an empty <code class="docutils literal"><span class="pre">Document</span></code>, then
+<code class="docutils literal"><span class="pre">modify_document()</span></code> to initialize the <code class="docutils literal"><span class="pre">Document</span></code>. The
+<code class="docutils literal"><span class="pre">on_session_created()</span></code> can also initialize part of the
+<code class="docutils literal"><span class="pre">Document</span></code> if it likes. <code class="docutils literal"><span class="pre">on_session_created()</span></code> happens before
+<code class="docutils literal"><span class="pre">modify_document()</span></code>.</li>
+<li>When there are no connections to a session, it will eventually
+time out and <code class="docutils literal"><span class="pre">on_session_destroyed()</span></code> will be called.</li>
+<li>If the server process shuts down cleanly, it will call
+<code class="docutils literal"><span class="pre">on_server_unloaded()</span></code> on each application. This is probably
+rare in production: it&#8217;s typical for server processes to be
+killed by a signal.  <code class="docutils literal"><span class="pre">on_server_unloaded()</span></code> may be more useful
+during development so that apps can be reloaded without leaking
+resources.</li>
+</ol>
+<p>These hooks can add periodic or one-shot callbacks to the
+<code class="docutils literal"><span class="pre">ServerContext</span></code>. These callbacks may be asynchronous (using
+Tornado&#8217;s async IO facilities), and are able to update all live
+session documents.</p>
+<p><strong>Critical consideration when using ``on_server_loaded()``</strong>:
+Process-global is NOT the same as cluster-global. If you scale a
+Bokeh application, you&#8217;ll want a separate process for each CPU
+core, roughly. Processes in a cluster may not even be on the same
+machine. A server process can never assume that it knows about
+&#8220;all sessions that exist,&#8221; only &#8220;all sessions hosted in this
+process.&#8221;</p>
+</div>
+<div class="section" id="details-of-serversession">
+<h2>Details of <code class="docutils literal"><span class="pre">ServerSession</span></code><a class="headerlink" href="#details-of-serversession" title="Permalink to this headline">¶</a></h2>
+<p>The session object handles most interaction between the client and
+the server.</p>
+<div class="section" id="locking">
+<h3>Locking<a class="headerlink" href="#locking" title="Permalink to this headline">¶</a></h3>
+<p>The trickiest aspect of <code class="docutils literal"><span class="pre">ServerSession</span></code> may be locking.  In general, we
+want one callback or one websocket request to be processed at a time; we
+don&#8217;t want to interleave them, because it would be difficult to implement
+callbacks and request handlers if they had to worry about interleaving.</p>
+<p>So <code class="docutils literal"><span class="pre">ServerSession</span></code> does one thing at a time, controlled by
+<code class="docutils literal"><span class="pre">ServerSession._lock</span></code>, which is a Tornado lock.</p>
+<p>If you&#8217;re familiar with locking and threads, the situation here is conceptually
+identical; but race conditions can only happen at &#8220;yield points&#8221; (when we
+return to the <code class="docutils literal"><span class="pre">IOLoop</span></code>) rather than at any point, and the lock is a Tornado
+lock rather than a thread lock.</p>
+<p>The rule is: <em>to touch</em> <code class="docutils literal"><span class="pre">ServerSession.document</span></code> <em>code must
+hold</em> <code class="docutils literal"><span class="pre">ServerSession._lock</span></code>.</p>
+<p>For callbacks added through the <code class="docutils literal"><span class="pre">Document</span></code> API, we automatically
+acquire the lock on the callback&#8217;s behalf before we execute the
+callback, and release it afterward.</p>
+<p>Callbacks added through the <code class="docutils literal"><span class="pre">ServerContext</span></code> API, can only obtain
+a reference to the session document using <code class="docutils literal"><span class="pre">SessionContext.with_locked_document()</span></code>.
+It executes a provided function with
+the document lock held, passing the document to that function.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The lock is held while the function runs <em>even if the function is asynchronous</em>! If the
+function returns a <code class="docutils literal"><span class="pre">Future</span></code>, the lock is held until the <code class="docutils literal"><span class="pre">Future</span></code>
+completes.</p>
+</div>
+<p><strong>It is very easy to modify the server code in such a way that you&#8217;re
+touching the document without holding the lock. If you do this, things will
+break in subtle and painful-to-debug ways. When you touch the session document,
+triple-check that the lock is held.</strong></p>
+</div>
+<div class="section" id="session-security">
+<h3>Session Security<a class="headerlink" href="#session-security" title="Permalink to this headline">¶</a></h3>
+<p>We rely on session IDs being cryptographically random and difficult to guess.
+If an attacker knows someone&#8217;s session ID, they can eavesdrop on or modify
+the session. If you&#8217;re writing a larger web app with a Bokeh app embedded
+inside, this may affect how you design your larger app.</p>
+<p>When hacking on the server, for the most part session IDs are opaque strings
+and after initially validating the ID, it doesn&#8217;t matter to the server code
+what the ID is.</p>
+</div>
+<div class="section" id="session-timeout">
+<h3>Session Timeout<a class="headerlink" href="#session-timeout" title="Permalink to this headline">¶</a></h3>
+<p>To avoid resource exhaustion, unused sessions will time out according to code in
+in <code class="docutils literal"><span class="pre">application_context.py</span></code></p>
+</div>
+</div>
+<div class="section" id="websocket-protocol">
+<h2>Websocket Protocol<a class="headerlink" href="#websocket-protocol" title="Permalink to this headline">¶</a></h2>
+<p>The server has a websocket connection open to each client (each browser tab,
+in typical usage). The primary role of the websocket is to keep the session&#8217;s
+<code class="docutils literal"><span class="pre">Document</span></code> in sync between the client and the server.</p>
+<p>There are two client implementations in the Bokeh codebase; one is a Python
+<code class="docutils literal"><span class="pre">ClientSession</span></code>, the other is a JavaScript <code class="docutils literal"><span class="pre">ClientSession</span></code>.
+Client and server sessions are mostly symmetrical; on both sides, we are
+receiving change notifications from the other side&#8217;s <code class="docutils literal"><span class="pre">Document</span></code>, and sending
+notification of changes made on our side. In this way, the two <code class="docutils literal"><span class="pre">Document</span></code>
+are kept in sync.</p>
+<p>The Python implementation of the websocket protocol can be found in
+<code class="docutils literal"><span class="pre">bokeh.server.protocol</span></code>, though both the client side and the server side
+use it.</p>
+<p>Websockets already implement &#8220;frames&#8221; for us, and they guarantee frames will
+arrive in the same order they were sent. Frames are strings or byte arrays
+(or special internal frame types, such as pings). A websocket looks like a
+two sequences of frames, one sequence in each direction (&#8220;full duplex&#8221;).</p>
+<p>On top of websocket frames, we implement our own <code class="docutils literal"><span class="pre">Message</span></code> concept. A Bokeh
+<code class="docutils literal"><span class="pre">Message</span></code> spans multiple websocket frames. It always contains a header frame,
+metadata frame, and content frame. These three frames each contain a JSON
+string. The code permits these three frames to be followed by optional binary data
+frames. In principle this could allow for example, for sending numpy arrays
+directly from their memory buffers to the websocket with no additional copies.
+However, the binary data frames are not yet used in Bokeh.</p>
+<p>The header frame indicates the message type and gives messages an ID. Message
+IDs are used to match replies with requests (the reply contains a field saying
+&#8220;I am the reply to the request with ID xyz&#8221;).</p>
+<p>The metadata frame has nothing in it for now, but could be used for debugging
+data or another purpose in the future.</p>
+<p>The content frame has the &#8220;body&#8221; of the message.</p>
+<p>There aren&#8217;t many messages right now. A quick overview:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">ACK</span></code> is used for an initial handshake when setting up the connection</li>
+<li><code class="docutils literal"><span class="pre">OK</span></code> is a generic reply when a request doesn&#8217;t require any
+more specific reply</li>
+<li><code class="docutils literal"><span class="pre">ERROR</span></code>  is a generic error reply when something goes wrong</li>
+<li><code class="docutils literal"><span class="pre">SERVER-INFO-REQ</span></code> and <code class="docutils literal"><span class="pre">SERVER-INFO-REPLY</span></code> are a
+request-reply pair where the reply contains information about
+the server, such as its Bokeh version</li>
+<li><code class="docutils literal"><span class="pre">PULL-DOC-REQ</span></code> asks to get the entire contents of the
+session&#8217;s <code class="docutils literal"><span class="pre">Document</span></code> as JSON, and <code class="docutils literal"><span class="pre">PULL-DOC-REPLY</span></code> is the
+reply containing said JSON.</li>
+<li><code class="docutils literal"><span class="pre">PUSH-DOC</span></code> sends the entire contents of the session&#8217;s
+<code class="docutils literal"><span class="pre">Document</span></code> as JSON, and the other side should replace its
+document with these new contents.</li>
+<li><code class="docutils literal"><span class="pre">PATCH-DOC</span></code> sends changes to the session&#8217;s document to the
+other side</li>
+</ul>
+<p>Typically, when opening a connection one side will pull or push
+the entire document; after the initial pull or push, the two sides
+stay in sync using <code class="docutils literal"><span class="pre">PATCH-DOC</span></code> messages.</p>
+<div class="section" id="some-current-protocol-caveats">
+<h3>Some Current Protocol Caveats<a class="headerlink" href="#some-current-protocol-caveats" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>In the current protocol, conflicts where both sides change the
+same thing at the same time are not handled (the two sides can
+end up out-of-sync if this happens, because the two
+<code class="docutils literal"><span class="pre">PATCH-DOC</span></code> are in flight at the same time). It&#8217;s easy to
+devise a scheme to detect this situation, but it&#8217;s less clear
+what to do when it&#8217;s detected, so right now we don&#8217;t detect it
+and do nothing. In most cases, applications should avoid this
+situation because even if we could make sense of it and handle
+it somehow, it would probably be inefficient for the two sides
+of the app to &#8220;fight&#8221; over the same value. (If real-world
+applications trip on this issue, we will have to figure out
+what they&#8217;re trying to do and devise a solution.)</li>
+<li>At the moment, we are not smart about patching collections; if
+there&#8217;s a <code class="docutils literal"><span class="pre">Model</span></code> property that&#8217;s a giant dictionary, we&#8217;ll
+send the whole giant dictionary whenever any entry in it
+changes.</li>
+<li>At the moment, we do not optimize binary data by sending it
+over binary websocket frames.  However, NumPy arrays of
+dtype <code class="docutils literal"><span class="pre">float32</span></code>, <code class="docutils literal"><span class="pre">float64</span></code> and integer types smaller than <code class="docutils literal"><span class="pre">int32</span></code>
+are base64 encoded in content frame to avoid performance
+limitations of naiive JSON string searliazation.
+JavaScript&#8217;s lack of native 64-bit integer support precludes
+them from inclusion in this optimization.
+The base64 encoding should be entirely transparent to all
+but those who look at the actual wire protocol. For more
+information, refer to <code class="docutils literal"><span class="pre">bokah.util.serialization</span></code>.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="http-endpoints">
+<h2>HTTP Endpoints<a class="headerlink" href="#http-endpoints" title="Permalink to this headline">¶</a></h2>
+<p>The server only supports a few HTTP routes; you can find them in
+<code class="docutils literal"><span class="pre">bokeh.server.urls</span></code>.</p>
+<p>In brief:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">/static/</span></code> serves Bokeh&#8217;s JS and CSS resources</li>
+<li><code class="docutils literal"><span class="pre">/app_path/</span></code> serves a page that displays a new session</li>
+<li><code class="docutils literal"><span class="pre">/app_path/ws</span></code> is the websocket connection URL</li>
+<li><code class="docutils literal"><span class="pre">/app_path/autoload.js</span></code> serves a chunk of JavaScript that
+backs the <code class="docutils literal"><span class="pre">bokeh.embed.server_document()</span></code> and <code class="docutils literal"><span class="pre">bokeh.embed.server_session()</span></code>
+functionality</li>
+</ul>
+<p>Bokeh server isn&#8217;t intended to be a general-purpose web framework. You can
+however pass new endpoints to <code class="docutils literal"><span class="pre">Server</span></code> using the <code class="docutils literal"><span class="pre">extra_patterns</span></code> parameter
+and the Tornado APIs.</p>
+</div>
+<div class="section" id="additional-details">
+<h2>Additional details<a class="headerlink" href="#additional-details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="events">
+<h3>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h3>
+<p>In general whenever a model property is modified, the new value is
+first validated, and the <code class="docutils literal"><span class="pre">Document</span></code> is notified of the change. Just
+as models may have <code class="docutils literal"><span class="pre">on_change</span></code> callbacks, so can a
+<code class="docutils literal"><span class="pre">Document</span></code>. When a <code class="docutils literal"><span class="pre">Document</span></code> is notified of a change to one of
+its models it will generate the appropriate event (usually a
+<code class="docutils literal"><span class="pre">ModelChangedEvent</span></code>) and trigger the <code class="docutils literal"><span class="pre">on_change</span></code> callbacks,
+passing them this new event. Sessions are one such callback, which
+will turn the event into a patch that can be sent across the web
+socket connection. When a message is received by the client or server
+session it will extract the patch and apply it directly to the
+<code class="docutils literal"><span class="pre">Document</span></code>.</p>
+<p>In order to avoid events bouncing back and forth between client and
+server (as each patch would generate new events, which would in turn
+be sent back), the session informs the <code class="docutils literal"><span class="pre">Document</span></code> that it was
+responsible for generating the patch and any subsequent events that
+are generated. In this way, when a <code class="docutils literal"><span class="pre">Session</span></code> is notified of a change
+to the document it can check whether the <code class="docutils literal"><span class="pre">event.setter</span></code> is identical
+with itself and therefore skip processing the event.</p>
+</div>
+<div class="section" id="serialization">
+<h3>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">¶</a></h3>
+<p>In general all the concepts above are agnostic as to how precisely the
+models and change events are encoded and decoded. Each model and its
+properties are responsible for converting their values to a JSON-like
+format, which can be sent across the Websocket connection. One
+difficulty here is that one model can reference other models, often in
+highly interconnected and even circular ways. Therefore during the
+conversion to a JSON-like format all references by one model to other
+models are replaced with ID references.  Additionally models and
+properties can define special serialization behaviors, one such
+example is the <code class="docutils literal"><span class="pre">ColumnData</span></code> property on a <code class="docutils literal"><span class="pre">ColumnDataSource</span></code>,
+which will convert NumPy arrays to a base64 encoded representation,
+which is significantly more efficient than sending numeric arrays in a
+string based format. The <code class="docutils literal"><span class="pre">ColumnData</span></code> property
+<code class="docutils literal"><span class="pre">serializable_value</span></code> method applies this encoding and the from_json
+method will convert the data back. Equivalently the JS-based
+<code class="docutils literal"><span class="pre">ColumnDataSource</span></code> knows how to interpret the base64 encoded data
+and converts it to Javascript typed arrays and its
+<code class="docutils literal"><span class="pre">attributes_as_json</span></code> methods also knows how to encode the data. In
+this way models can implement optimized serialization formats.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>To test client-server functionality, use the utilities in
+<code class="docutils literal"><span class="pre">bokeh.server.tests.utils</span></code>.</p>
+<p>Using <code class="docutils literal"><span class="pre">ManagedServerLoop</span></code>, you can start up a server instance
+in-process; share <code class="docutils literal"><span class="pre">server.io_loop</span></code> with a client and you can
+test any aspect of the server. Check out the existing tests for
+lots of examples. Anytime you add a new websocket message or http
+endpoint, be sure to add tests!</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

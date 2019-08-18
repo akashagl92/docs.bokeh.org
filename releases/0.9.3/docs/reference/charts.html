@@ -1,0 +1,2085 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>bokeh.charts Interface &mdash; Bokeh 0.9.3 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.4/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.3.4/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.9.3 documentation" href="../../index.html" />
+    <link rel="up" title="Reference Guide" href="../reference.html" />
+    <link rel="next" title="Standard Palettes" href="palettes.html" />
+    <link rel="prev" title="bokeh.plotting Interface" href="plotting.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.9.3</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#plot">Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#guides-and-annotations">Guides and Annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#ranges">Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#vectorized-colors-and-sizes">Vectorized colors and sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#linked-panning-and-brushing">Linked panning and brushing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quickstart.html#datetime-axes">Datetime axes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/setup.html">Getting Set Up</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#installing-the-bokeh-library">Installing the Bokeh Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#verifying-your-installation">Verifying your installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/setup.html#finding-help">Finding Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/concepts.html">Defining Key Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/concepts.html#glossary">Glossary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/concepts.html#interfaces">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/plotting.html">Plotting with Basic Glyphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#creating-figures">Creating Figures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#combining-multiple-glyphs">Combining Multiple Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#setting-ranges">Setting Ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#specifying-axis-types">Specifying Axis Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/plotting.html#adding-annotations">Adding Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/charts.html">Using High-level Charts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#generic-arguments">Generic Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/charts.html#creating-charts">Creating Charts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compat.html">Leveraging Other Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#pandas">Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#seaborn">Seaborn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compat.html#ggplot-py"><code class="docutils literal"><span class="pre">ggplot.py</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/styling.html">Styling Visual Attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#using-palettes">Using Palettes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#visual-properties">Visual Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#selecting-plot-objects">Selecting Plot Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#plots">Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#glyphs">Glyphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#axes">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#grids">Grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/styling.html#legends">Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tools.html">Configuring Plot Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#positioning-the-toolbar">Positioning the Toolbar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#specifying-tools">Specifying Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#setting-tool-visuals">Setting Tool Visuals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tools.html#controlling-level-of-detail">Controlling Level of Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/layout.html">Laying Out Multiple Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#vertical-layout">Vertical Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#horizontal-layout">Horizontal Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#grid-layout">Grid Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/layout.html#form-layout">Form Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/notebook.html">Working in the Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#displaying-inline-plots">Displaying Inline Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#connecting-to-bokeh-server-plots">Connecting to Bokeh Server Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/notebook.html#integrating-ipython-interactors">Integrating IPython Interactors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/interaction.html">Adding Interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#linking-plots">Linking Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#adding-widgets">Adding Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/interaction.html#defining-callbacks">Defining Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/server.html">Deploying the Bokeh Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#running-the-example-server">Running the Example Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#storing-plots-on-the-server">Storing plots on the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#authenticating-users">Authenticating Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#publishing-to-the-server">Publishing to the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#streaming-data-with-the-server">Streaming Data with the Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#downsampling-with-server">Downsampling with Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#reacting-to-user-interactions">Reacting to User Interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#building-bokeh-applications">Building Bokeh Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/server.html#deploying-for-production">Deploying for Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/embed.html">Embedding Bokeh Plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#standalone-html">Standalone HTML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#ipython-notebook">IPython Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/embed.html#autoloading">Autoloading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/info.html">Learning More</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#cloning-the-repository">Cloning the Repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#building-bokehjs">Building BokehJS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#python-setup">Python Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/building.html#incremental-compilation">Incremental Compilation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#building">Building</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/documentation.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/objects.html#low-level-object-interface">Low-level Object Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/objects.html#models-and-properties">Models and properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#bokehjs-motivations">BokehJS Motivations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#goals">Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bokehjs.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bindings.html#resources-for-authors">Resources for Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/bindings.html#known-bindings">Known Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#css-class-names">CSS class names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-examples">Managing examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#choosing-right-types">Choosing right types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-python-modules">Managing Python modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#managing-external-js-libraries">Managing external JS libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#maintaining-secure-variables-in-travis-yml">Maintaining secure variables in .travis.yml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#browser-caching">Browser caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/notes.html#bokehjs-amd-module-template-for-a-model">BokehJS AMD module template for a model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#data-model">Data Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#copy-on-write">Copy on Write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dev_guide/server.html#anonymous-users">Anonymous Users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-do-you-pronounce-bokeh"><em>How do you pronounce &#8220;bokeh&#8221;?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#why-did-you-start-writing-a-new-plotting-library"><em>Why did you start writing a new plotting library?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#can-i-incorporate-bokeh-into-my-proprietary-app-or-platform"><em>Can I incorporate Bokeh into my proprietary app or platform?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#what-is-the-relationship-between-bokeh-and-chaco"><em>What is the relationship between Bokeh and Chaco?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-does-bokeh-compare-to-mpld3"><em>How does Bokeh compare to mpld3?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#does-bokeh-implement-r-s-ggplot2"><em>Does Bokeh implement R&#8217;s ggplot2?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#does-bokeh-use-d3-js"><em>Does Bokeh use D3.js?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#why-not-use-something-like-vega"><em>Why not use something like Vega?</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#how-do-i-get-the-sample-data"><em>How do I get the sample data?</em></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html#are-the-tools-not-working-in-chrome-cromium"><em>Are the tools not working in Chrome/Cromium?</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../release_notes.html#long-term-todo-list">Long-term TODO List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="properties.html#bokeh-properties"><code class="docutils literal"><span class="pre">bokeh.properties</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html#bokeh-mixins"><code class="docutils literal"><span class="pre">bokeh.mixins</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="models/annotations.html"><code class="docutils literal"><span class="pre">bokeh.models.annotations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/axes.html"><code class="docutils literal"><span class="pre">bokeh.models.axes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/callbacks.html"><code class="docutils literal"><span class="pre">bokeh.models.callbacks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/formatters.html"><code class="docutils literal"><span class="pre">bokeh.models.formatters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/glyphs.html"><code class="docutils literal"><span class="pre">bokeh.models.glyphs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/grids.html"><code class="docutils literal"><span class="pre">bokeh.models.grids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/map_plots.html"><code class="docutils literal"><span class="pre">bokeh.models.map_plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/mappers.html"><code class="docutils literal"><span class="pre">bokeh.models.mappers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/markers.html"><code class="docutils literal"><span class="pre">bokeh.models.markers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/plots.html"><code class="docutils literal"><span class="pre">bokeh.models.plots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/ranges.html"><code class="docutils literal"><span class="pre">bokeh.models.ranges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/renderers.html"><code class="docutils literal"><span class="pre">bokeh.models.renderers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/sources.html"><code class="docutils literal"><span class="pre">bokeh.models.sources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/tickers.html"><code class="docutils literal"><span class="pre">bokeh.models.tickers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/tools.html"><code class="docutils literal"><span class="pre">bokeh.models.tools</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widget.html"><code class="docutils literal"><span class="pre">bokeh.models.widget</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.buttons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.buttons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.dialogs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.dialogs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.groups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.icons.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.icons</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.inputs.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.inputs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.layouts.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.layouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.markups.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.markups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.panels.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.panels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="models/widgets.tables.html"><code class="docutils literal"><span class="pre">bokeh.models.widgets.tables</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html"><code class="docutils literal"><span class="pre">bokeh.validation</span></code> Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="validation.html#bokeh-validation-errors"><code class="docutils literal"><span class="pre">bokeh.validation.errors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validation.html#bokeh-validation-warnings"><code class="docutils literal"><span class="pre">bokeh.validation.warnings</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validation.html#bokeh-validation-decorators"><code class="docutils literal"><span class="pre">bokeh.validation.decorators</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="validation.html#bokeh-validation-exceptions"><code class="docutils literal"><span class="pre">bokeh.validation.exceptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code> Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-bokeh.charts">Chart Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-classes">Helper Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builders">Builders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resources_embedding.html#bokeh-state"><code class="docutils literal"><span class="pre">bokeh.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources_embedding.html#bokeh-io"><code class="docutils literal"><span class="pre">bokeh.io</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources_embedding.html#bokeh-resources"><code class="docutils literal"><span class="pre">bokeh.resources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources_embedding.html#bokeh-embed"><code class="docutils literal"><span class="pre">bokeh.embed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resources_embedding.html#bokeh-templates"><code class="docutils literal"><span class="pre">bokeh.templates</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="plot_objects.html">Plot Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="plot_objects.html#bokeh"><code class="docutils literal"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_objects.html#bokeh-document"><code class="docutils literal"><span class="pre">bokeh.document</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="plot_objects.html#bokeh-session"><code class="docutils literal"><span class="pre">bokeh.session</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#data-sources">Data Sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#line-properties">Line Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#fill-properties">Fill Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#text-properties">Text Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#markers">Markers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bokehjs.html#glyphs">Glyphs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_autodoc">bokeh_autodoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_gallery">bokeh_gallery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_github">bokeh_github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_model">bokeh_model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_palette">bokeh_palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_plot">bokeh_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.bokeh_prop">bokeh_prop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sphinxext.html#module-bokeh.sphinxext.collapsible_code_block">collapsible_code_block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a><ul>
+<li><a class="reference internal" href="#module-bokeh.charts">Chart Functions</a></li>
+<li><a class="reference internal" href="#helper-classes">Helper Classes</a></li>
+<li><a class="reference internal" href="#builders">Builders</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html"><code class="docutils literal"><span class="pre">bokeh.validation</span></code> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code> Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href=""><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-bokeh.charts">Chart Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#helper-classes">Helper Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builders">Builders</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/charts.txt"
+     rel="nofollow">Source</a>
+</div>
+  <script>
+    (function() {
+      var cx = '002545163150875166651:x_rsxrr49fs';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+          '//cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <gcse:searchbox-only></gcse:searchbox-only>
+  <style type="text/css">
+  body {
+      margin: 10px;
+  }
+  #gsc-iw-id1{
+      height: 30px;
+      border-color: #898989;
+  }
+  input.gsc-search-button-v2{
+      width: 71px;
+      height: 29px;
+  }
+  </style>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="bokeh-charts-interface">
+<span id="bokeh-charts"></span><h1><code class="docutils literal"><span class="pre">bokeh.charts</span></code> Interface<a class="headerlink" href="#bokeh-charts-interface" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#module-bokeh.charts" id="id1">Chart Functions</a></li>
+<li><a class="reference internal" href="#helper-classes" id="id2">Helper Classes</a></li>
+<li><a class="reference internal" href="#builders" id="id3">Builders</a></li>
+</ul>
+</div>
+<div class="section" id="module-bokeh.charts">
+<span id="chart-functions"></span><h2><a class="toc-backref" href="#id1">Chart Functions</a><a class="headerlink" href="#module-bokeh.charts" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="bokeh.charts.Area">
+<code class="descname">Area</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an area chart using the <a class="reference internal" href="#bokeh.charts.builder.area_builder.AreaBuilder" title="bokeh.charts.builder.area_builder.AreaBuilder"><code class="xref py py-class docutils literal"><span class="pre">AreaBuilder</span></code></a>
+to render the geometry from values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>index</strong> (<em>str|1d iterable, optional</em>) &#8211; can be used to specify a common custom
+index for all data series as an <strong>1d iterable</strong> of any sort that will be used as
+series common index or a <strong>string</strong> that corresponds to the key of the
+mapping to be used as index (and not as data series) if
+area.values is a mapping (like a dict, an OrderedDict
+or a pandas DataFrame)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>In addition the the parameters specific to this chart,</dt>
+<dd><a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-0"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Area</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">226</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">110</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">139</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">area</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+    <span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Area Chart&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">&#39;time&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;memory&#39;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;area.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-0.js"
+        id="1448ab68-5ce5-4bb8-b8ec-2d5bb73ff647"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="f3068be9-f130-4e29-9e7c-77129958fad3"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Bar">
+<code class="descname">Bar</code><span class="sig-paren">(</span><em>values</em>, <em>cat=None</em>, <em>stacked=False</em>, <em>xscale='categorical'</em>, <em>yscale='linear'</em>, <em>xgrid=False</em>, <em>ygrid=True</em>, <em>continuous_range=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Bar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Bar chart using <a class="reference internal" href="#bokeh.charts.builder.bar_builder.BarBuilder" title="bokeh.charts.builder.bar_builder.BarBuilder"><code class="xref py py-class docutils literal"><span class="pre">BarBuilder</span></code></a>
+render the geometry from values, cat and stacked.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>cat</strong> (<em>list or bool, optional</em>) &#8211; list of string representing the categories.
+(Defaults to None)</li>
+<li><strong>stacked</strong> (<em>bool, optional</em>) &#8211; to see the bars stacked or grouped.
+(Defaults to False, so grouping is assumed)</li>
+<li><strong>continuous_range</strong> (<em>Range1d, optional</em>) &#8211; Custom continuous_range to be
+used. (Defaults to None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-1"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pypy&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;jython&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="n">cat</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;1st&#39;</span><span class="p">,</span> <span class="s">&#39;2nd&#39;</span><span class="p">]</span>
+
+<span class="n">bar</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">cat</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Stacked bars&quot;</span><span class="p">,</span>
+        <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;category&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;language&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;stacked_bar.html&quot;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-1.js"
+        id="2932723c-b361-4c3b-b2d0-26835d4d143a"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="7001f0d0-e394-4238-92aa-f7fb599f8660"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.BoxPlot">
+<code class="descname">BoxPlot</code><span class="sig-paren">(</span><em>values</em>, <em>marker='circle'</em>, <em>outliers=True</em>, <em>xscale='categorical'</em>, <em>yscale='linear'</em>, <em>xgrid=False</em>, <em>ygrid=True</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.BoxPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a BoxPlot chart using <a class="reference internal" href="#bokeh.charts.builder.boxplot_builder.BoxPlotBuilder" title="bokeh.charts.builder.boxplot_builder.BoxPlotBuilder"><code class="xref py py-class docutils literal"><span class="pre">BoxPlotBuilder</span></code></a>
+to render the geometry from values, marker and outliers arguments.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>marker</strong> (<em>int or string, optional</em>) &#8211; if outliers=True, the marker type to use
+e.g., <cite>circle</cite>.</li>
+<li><strong>outliers</strong> (<em>bool, optional</em>) &#8211; Whether or not to plot outliers.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-2"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames of arrays are valid inputs)</span>
+<span class="n">medals</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span>
+    <span class="p">(</span><span class="s">&#39;bronze&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+                <span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span>
+                <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])),</span>
+    <span class="p">(</span><span class="s">&#39;silver&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">8.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span>
+                <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span>
+                <span class="mf">3.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">])),</span>
+    <span class="p">(</span><span class="s">&#39;gold&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>
+              <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span>
+              <span class="mf">0.</span><span class="p">]))</span>
+<span class="p">])</span>
+
+<span class="n">boxplot</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span><span class="n">medals</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&quot;circle&quot;</span><span class="p">,</span> <span class="n">outliers</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;boxplot&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;medal type&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;medal count&quot;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;boxplot.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">boxplot</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-2.js"
+        id="1f875ae8-86e7-4277-bf42-6d83cb9e9f98"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="914a9b42-f6b9-46bc-a2bd-3e42e4847ef6"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Donut">
+<code class="descname">Donut</code><span class="sig-paren">(</span><em>values</em>, <em>cat=None</em>, <em>width=800</em>, <em>height=800</em>, <em>xgrid=False</em>, <em>ygrid=False</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Donut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Donut chart using  <a class="reference internal" href="#bokeh.charts.builder.donut_builder.DonutBuilder" title="bokeh.charts.builder.donut_builder.DonutBuilder"><code class="xref py py-class docutils literal"><span class="pre">DonutBuilder</span></code></a>
+to render the geometry from values and cat.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>cat</strong> (<em>list or bool, optional</em>) &#8211; list of string representing the categories.
+Defaults to None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-3"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Donut</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># dict, OrderedDict, lists, arrays and DataFrames are valid inputs</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]]</span>
+
+<span class="n">donut</span> <span class="o">=</span> <span class="n">Donut</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;cpu1&#39;</span><span class="p">,</span> <span class="s">&#39;cpu2&#39;</span><span class="p">,</span> <span class="s">&#39;cpu3&#39;</span><span class="p">])</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;donut.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">donut</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-3.js"
+        id="5911effc-b9e4-4b3d-814c-53e4cfabe392"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="574b4f90-9614-4901-beae-10fac413026f"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Dot">
+<code class="descname">Dot</code><span class="sig-paren">(</span><em>values</em>, <em>cat=None</em>, <em>stem=True</em>, <em>xscale='categorical'</em>, <em>yscale='linear'</em>, <em>xgrid=False</em>, <em>ygrid=True</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Dot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dot chart using <a class="reference internal" href="#bokeh.charts.builder.dot_builder.DotBuilder" title="bokeh.charts.builder.dot_builder.DotBuilder"><code class="xref py py-class docutils literal"><span class="pre">DotBuilder</span></code></a>
+to render the geometry from values and cat.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>cat</strong> (<em>list or bool, optional</em>) &#8211; list of string representing the categories.
+Defaults to None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-4"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Dot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># dict, OrderedDict, lists, arrays and DataFrames are valid inputs</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pypy&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;jython&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="n">dot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;cpu1&#39;</span><span class="p">,</span> <span class="s">&#39;cpu2&#39;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;dots&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;dot.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-4.js"
+        id="f6e92fc1-f197-49d1-8de8-ad2472bbe3a0"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="e7134be7-c1d2-4f8f-ac94-6f5714a01341"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.HeatMap">
+<code class="descname">HeatMap</code><span class="sig-paren">(</span><em>values</em>, <em>xscale='categorical'</em>, <em>yscale='categorical'</em>, <em>xgrid=False</em>, <em>ygrid=False</em>, <em>**kw</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.HeatMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a HeatMap chart using <a class="reference internal" href="#bokeh.charts.builder.heatmap_builder.HeatMapBuilder" title="bokeh.charts.builder.heatmap_builder.HeatMapBuilder"><code class="xref py py-class docutils literal"><span class="pre">HeatMapBuilder</span></code></a>
+to render the geometry from values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-5"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">HeatMap</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;apples&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;bananas&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pears&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="n">hm</span> <span class="o">=</span> <span class="n">HeatMap</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Fruits&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;heatmap.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hm</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-5.js"
+        id="266abb8e-fd83-4ec8-b008-7a69fa850c05"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="e1177d01-39ba-4191-91d3-ffbd41a481b0"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Histogram">
+<code class="descname">Histogram</code><span class="sig-paren">(</span><em>values</em>, <em>bins</em>, <em>mu=None</em>, <em>sigma=None</em>, <em>density=True</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a histogram chart using <a class="reference internal" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder" title="bokeh.charts.builder.histogram_builder.HistogramBuilder"><code class="xref py py-class docutils literal"><span class="pre">HistogramBuilder</span></code></a>
+to render the geometry from values, bins, sigma and density.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>bins</strong> (<em>int</em>) &#8211; number of bins to use in the Histogram building.</li>
+<li><strong>mu</strong> (<em>float, optional</em>) &#8211; theoretical mean value for the normal
+distribution. (default: None)</li>
+<li><strong>sigma</strong> (<em>float, optional</em>) &#8211; theoretical sigma value for the
+normal distribution. (default: None)</li>
+<li><strong>density</strong> (<em>bool, optional</em>) &#8211; If False, the result will contain
+the number of samples in each bin.  If True, the result
+is the value of the probability <em>density</em> function at
+the bin, normalized such that the <em>integral</em> over the
+range is 1. For more info check numpy.histogram
+function documentation. (default: True)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-6"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">normal</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">lognormal</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">hm</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&#39;Histogram&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;histogram.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hm</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-6.js"
+        id="d5b59098-7ed3-47b1-a2ea-8cfe13197a7a"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="6a5639f6-0c5d-4891-b48c-8b53f87a2fb3"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Horizon">
+<code class="descname">Horizon</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em>, <em>num_folds=3</em>, <em>pos_color='#006400'</em>, <em>neg_color='#6495ed'</em>, <em>xscale='datetime'</em>, <em>xgrid=False</em>, <em>ygrid=False</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Horizon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Horizon chart using <a class="reference internal" href="#bokeh.charts.builder.horizon_builder.HorizonBuilder" title="bokeh.charts.builder.horizon_builder.HorizonBuilder"><code class="xref py py-class docutils literal"><span class="pre">HorizonBuilder</span></code></a>
+render the geometry from values, index and num_folds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>index</strong> (<em>str|1d iterable, optional</em>) &#8211; can be used to specify a common custom
+index for all data series as an <strong>1d iterable</strong> of any sort that will be used as
+series common index or a <strong>string</strong> that corresponds to the key of the
+mapping to be used as index (and not as data series) if
+area.values is a mapping (like a dict, an OrderedDict
+or a pandas DataFrame)</li>
+<li><strong>num_folds</strong> (<em>int, optional</em>) &#8211; The number of folds stacked on top
+of each other. (default: 3)</li>
+<li><strong>pos_color</strong> (<em>color, optional</em>) &#8211; The color of the positive folds.
+(default: &#8220;#006400&#8221;)</li>
+<li><strong>neg_color</strong> (<em>color, optional</em>) &#8211; The color of the negative folds.
+(default: &#8220;#6495ed&#8221;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-7"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Horizon</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">dts</span> <span class="o">=</span> <span class="p">[</span><span class="n">now</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="s">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dts</span><span class="p">})</span>
+<span class="n">y_python</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">y_pypy</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pypy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">112</span><span class="p">]</span>
+<span class="n">y_jython</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;jython&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="n">hz</span> <span class="o">=</span> <span class="n">Horizon</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Horizon Example&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Sample Data&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;horizon.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hz</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-7.js"
+        id="3bd4cd05-a611-456a-abfe-859fcb7d454a"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="d0a77737-93fc-4172-9a46-b3bd5d16e4cf"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Line">
+<code class="descname">Line</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a line chart using <a class="reference internal" href="#bokeh.charts.builder.line_builder.LineBuilder" title="bokeh.charts.builder.line_builder.LineBuilder"><code class="xref py py-class docutils literal"><span class="pre">LineBuilder</span></code></a> to
+render the geometry from values and index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>index</strong> (<em>str|1d iterable, optional</em>) &#8211; can be used to specify a common custom
+index for all data series as an <strong>1d iterable</strong> of any sort that will be used as
+series common index or a <strong>string</strong> that corresponds to the key of the
+mapping to be used as index (and not as data series) if
+area.values is a mapping (like a dict, an OrderedDict
+or a pandas DataFrame)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-8"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Line</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">],</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">],</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]])</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;line&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Languages&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;line.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-8.js"
+        id="5aae6d76-ddab-48b2-8f69-260f827f10ae"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="00cb5a88-b508-4768-9e3b-5654889a0d45"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Scatter">
+<code class="descname">Scatter</code><span class="sig-paren">(</span><em>values</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Scatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a scatter chart using <a class="reference internal" href="#bokeh.charts.builder.scatter_builder.ScatterBuilder" title="bokeh.charts.builder.scatter_builder.ScatterBuilder"><code class="xref py py-class docutils literal"><span class="pre">ScatterBuilder</span></code></a>
+to render the geometry from values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-9"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames of (x, y) tuples are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pypy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">23</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">47</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">46</span><span class="p">)]</span>
+<span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;jython&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">43</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">26</span><span class="p">)]</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Scatter&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Languages&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;scatter.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-9.js"
+        id="a5cb4e8e-2bde-4887-94f9-b2ab91d8a56a"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="ff1c187b-9b03-422a-9408-f24235e824cb"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.Step">
+<code class="descname">Step</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a step chart using <a class="reference internal" href="#bokeh.charts.builder.step_builder.StepBuilder" title="bokeh.charts.builder.step_builder.StepBuilder"><code class="xref py py-class docutils literal"><span class="pre">StepBuilder</span></code></a>
+render the geometry from values and index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; iterable 2d representing the data series
+values matrix.</li>
+<li><strong>index</strong> (<em>str|1d iterable, optional</em>) &#8211; can be used to specify a common custom
+index for all data series as an <strong>1d iterable</strong> of any sort that will be used as
+series common index or a <strong>string</strong> that corresponds to the key of the
+mapping to be used as index (and not as data series) if
+area.values is a mapping (like a dict, an OrderedDict
+or a pandas DataFrame)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-10"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Step</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">],</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">],</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]</span>
+
+<span class="n">step</span> <span class="o">=</span> <span class="n">Step</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Steps&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Languages&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;step.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-10.js"
+        id="c8eda1a4-387b-4302-92d7-63917a97c0aa"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="4e1f2113-0e7f-4dcc-86e1-4b9afe49ed78"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.charts.TimeSeries">
+<code class="descname">TimeSeries</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em>, <em>xscale='datetime'</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.TimeSeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a timeseries chart using
+<a class="reference internal" href="#bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder" title="bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder"><code class="xref py py-class docutils literal"><span class="pre">TimeSeriesBuilder</span></code></a>
+to render the lines from values and index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>values</strong> (<em>iterable</em>) &#8211; a 2d iterable containing the values.  Can be anything that
+can be converted to a 2d array, and which is the x (time) axis is determined
+by <code class="docutils literal"><span class="pre">index</span></code>, while the others are interpreted as y values.</li>
+<li><strong>index</strong> (<em>str|1d iterable, optional</em>) &#8211; can be used to specify a common custom
+index for all data series as an <strong>1d iterable</strong> of any sort that will be used as
+series common index or a <strong>string</strong> that corresponds to the key of the
+mapping to be used as index (and not as data series) if
+area.values is a mapping (like a dict, an OrderedDict
+or a pandas DataFrame)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In addition the the parameters specific to this chart,
+<a class="reference internal" href="../user_guide/charts.html#userguide-charts-generic-arguments"><span>Generic Arguments</span></a> are also accepted as keyword parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">class:<cite>Chart &lt;bokeh.charts.Chart&gt;</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">a new</td>
+</tr>
+</tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-11"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">TimeSeries</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># (dict, OrderedDict, lists, arrays and DataFrames are valid inputs)</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dts</span> <span class="o">=</span> <span class="p">[</span><span class="n">now</span> <span class="o">+</span> <span class="n">delta</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="s">&#39;Date&#39;</span><span class="p">:</span> <span class="n">dts</span><span class="p">})</span>
+<span class="n">y_python</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;python&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="n">y_pypy</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;pypy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">]</span>
+<span class="n">y_jython</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="p">[</span><span class="s">&#39;jython&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;TimeSeries&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+        <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Languages&#39;</span><span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;timeseries.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="charts.rst.bokeh-plot-11.js"
+        id="1d6a5c99-f93c-4054-9e59-2fa84e19a6cc"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="736fe91e-1e1d-4de3-a110-4b1fc07b75af"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></dd></dl>
+
+</div>
+<div class="section" id="helper-classes">
+<h2><a class="toc-backref" href="#id2">Helper Classes</a><a class="headerlink" href="#helper-classes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="bokeh.charts.Chart">
+<em class="property">class </em><code class="descname">Chart</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main Chart class, the core of the <code class="docutils literal"><span class="pre">Bokeh.charts</span></code> interface.</p>
+<dl class="method">
+<dt id="bokeh.charts.Chart.add_builder">
+<code class="descname">add_builder</code><span class="sig-paren">(</span><em>builder</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.add_builder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.add_legend">
+<code class="descname">add_legend</code><span class="sig-paren">(</span><em>legends</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.add_legend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the legend to your plot, and the plot to a new Document.</p>
+<p>It also add the Document to a new Session in the case of server output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>legends</strong> (<em>List(Tuple(String, List(GlyphRenderer)</em>) &#8211; A list of
+tuples that maps text labels to the legend to corresponding
+renderers that should draw sample representations for those
+labels.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.add_renderers">
+<code class="descname">add_renderers</code><span class="sig-paren">(</span><em>builder</em>, <em>renderers</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.add_renderers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.create_axes">
+<code class="descname">create_axes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.create_axes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.create_grids">
+<code class="descname">create_grids</code><span class="sig-paren">(</span><em>xgrid=True</em>, <em>ygrid=True</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.create_grids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.create_tools">
+<code class="descname">create_tools</code><span class="sig-paren">(</span><em>tools</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.create_tools" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.filename">
+<code class="descname">filename</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for filename option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.get_class">
+<code class="descname">get_class</code><span class="sig-paren">(</span><em>view_model_name</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.get_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a __view_model__ name, returns the corresponding class
+object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.height">
+<code class="descname">height</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.height" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for height option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.id">
+<code class="descname">id</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for id option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.legend">
+<code class="descname">legend</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.legend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for legend option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.make_axis">
+<code class="descname">make_axis</code><span class="sig-paren">(</span><em>location</em>, <em>scale</em>, <em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.make_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create linear, date or categorical axis depending on the location,
+scale and with the proper labels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>location</strong> (<em>str</em>) &#8211; the space localization of the axis. It can be
+<code class="docutils literal"><span class="pre">left</span></code>, <code class="docutils literal"><span class="pre">right</span></code>, <code class="docutils literal"><span class="pre">above</span></code> or <code class="docutils literal"><span class="pre">below</span></code>.</li>
+<li><strong>scale</strong> (<em>str</em>) &#8211; the scale on the axis. It can be <code class="docutils literal"><span class="pre">linear</span></code>, <code class="docutils literal"><span class="pre">datetime</span></code>
+or <code class="docutils literal"><span class="pre">categorical</span></code>.</li>
+<li><strong>label</strong> (<em>str</em>) &#8211; the label on the axis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Axis instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="plotting.html#bokeh.plotting.Figure.axis" title="bokeh.plotting.Figure.axis">axis</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.make_grid">
+<code class="descname">make_grid</code><span class="sig-paren">(</span><em>dimension</em>, <em>ticker</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.make_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the grid just passing the axis and dimension.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dimension</strong> (<em>int</em>) &#8211; the dimension of the axis, ie. xaxis=0, yaxis=1.</li>
+<li><strong>ticker</strong> (<em>obj</em>) &#8211; the axis.ticker object</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Grid instance</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="plotting.html#bokeh.plotting.Figure.grid" title="bokeh.plotting.Figure.grid">grid</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.notebook">
+<code class="descname">notebook</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.notebook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for notebook option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.server">
+<code class="descname">server</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for server option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.show">
+<code class="descname">show</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main show function.</p>
+<p>It shows the plot in file, server and notebook outputs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.start_plot">
+<code class="descname">start_plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.start_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the axis, grids and tools</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.width">
+<code class="descname">width</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for width option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.xgrid">
+<code class="descname">xgrid</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.xgrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for xgrid option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.xlabel">
+<code class="descname">xlabel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.xlabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for xlabel option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.xscale">
+<code class="descname">xscale</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.xscale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for xscale option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.ygrid">
+<code class="descname">ygrid</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.ygrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for ygrid option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.ylabel">
+<code class="descname">ylabel</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.ylabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for ylabel option.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.Chart.yscale">
+<code class="descname">yscale</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.Chart.yscale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chained method for yscale option.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.DataAdapter">
+<em class="property">class </em><code class="descname">DataAdapter</code><span class="sig-paren">(</span><em>data</em>, <em>index=None</em>, <em>columns=None</em>, <em>force_alias=True</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adapter object used to normalize Charts inputs to a common interface.
+Supported inputs are dict, list, tuple, np.ndarray and pd.DataFrame.</p>
+<dl class="staticmethod">
+<dt id="bokeh.charts.DataAdapter.get_index_and_data">
+<em class="property">static </em><code class="descname">get_index_and_data</code><span class="sig-paren">(</span><em>values</em>, <em>index=None</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.get_index_and_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse values (that must be one of the DataAdapter supported
+input types) and create an separate/create index and data
+depending on values type and index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>values</strong> (<em>iterable</em>) &#8211; container that holds data to be plotted using
+on the Chart classes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><code class="docutils literal"><span class="pre">index</span></code> is an iterable that
+represents the data index and <code class="docutils literal"><span class="pre">values</span></code> is an iterable containing
+the values to be plotted.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">A tuple of (index, values), where</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.index_converter">
+<code class="descname">index_converter</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.index_converter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="bokeh.charts.DataAdapter.is_datetime">
+<em class="property">static </em><code class="descname">is_datetime</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.is_datetime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="bokeh.charts.DataAdapter.is_number">
+<em class="property">static </em><code class="descname">is_number</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.is_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.iteritems">
+<code class="descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.iterkeys">
+<code class="descname">iterkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.iterkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.itervalues">
+<code class="descname">itervalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.itervalues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="bokeh.charts.DataAdapter.normalize_values">
+<em class="property">static </em><code class="descname">normalize_values</code><span class="sig-paren">(</span><em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.normalize_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="bokeh.charts.DataAdapter.validate_values">
+<em class="property">static </em><code class="descname">validate_values</code><span class="sig-paren">(</span><em>values</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.validate_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.DataAdapter.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.DataAdapter.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.DataAdapter.columns">
+<code class="descname">columns</code><a class="headerlink" href="#bokeh.charts.DataAdapter.columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.DataAdapter.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.charts.DataAdapter.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="builders">
+<span id="bokeh-dot-charts-builders"></span><h2><a class="toc-backref" href="#id3">Builders</a><a class="headerlink" href="#builders" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="bokeh.charts.builder.area_builder.AreaBuilder">
+<em class="property">class </em><code class="descname">AreaBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.area_builder.AreaBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Area class and it is in charge of plotting
+Area chart in an easy and intuitive way.</p>
+<p>Essentially, it provides a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (patch) taking the references
+from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.area_builder.AreaBuilder.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.charts.builder.area_builder.AreaBuilder.index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a></p>
+<p>An index to be used for all data series as follows:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>A 1d iterable of any sort that will be used as</dt>
+<dd><p class="first last">series common index</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>As a string that corresponds to the key of the</dt>
+<dd><p class="first last">mapping to be used as index (and not as data
+series) if area.values is a mapping (like a dict,
+an OrderedDict or a pandas DataFrame)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.area_builder.AreaBuilder.stacked">
+<code class="descname">stacked</code><a class="headerlink" href="#bokeh.charts.builder.area_builder.AreaBuilder.stacked" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether to stack the areas. (Defaults to False)</p>
+<p>If True, areas are draw as a stack, to show the relationship of
+parts to a whole. Otherwise, areas are layered above one another.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.bar_builder.BarBuilder">
+<em class="property">class </em><code class="descname">BarBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.bar_builder.BarBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Bar class and it is in charge of plotting
+Bar chart (grouped and stacked) in an easy and intuitive way.</p>
+<p>Essentially, it provides a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (rects) taking the references
+from the source.</p>
+<p>The x_range is categorical, and is made either from the cat argument
+or from the indexes of the passed values if no cat is supplied.  The
+y_range can be supplied as the parameter continuous_range,
+or will be calculated as a linear range (Range1d) based on the supplied
+values using the following rules:</p>
+<blockquote>
+<div><ul class="simple">
+<li>with all positive data: start = 0, end = 1.1 * max</li>
+<li>with all negative data: start = 1.1 * min, end = 0</li>
+<li>with mixed sign data:   start = 1.1 * min, end = 1.1 * max</li>
+</ul>
+</div></blockquote>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.bar_builder.BarBuilder.cat">
+<code class="descname">cat</code><a class="headerlink" href="#bokeh.charts.builder.bar_builder.BarBuilder.cat" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>, <a class="reference internal" href="properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a>))</p>
+<p>List of string representing the categories. (Defaults to None.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.bar_builder.BarBuilder.stacked">
+<code class="descname">stacked</code><a class="headerlink" href="#bokeh.charts.builder.bar_builder.BarBuilder.stacked" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether to stack the bars. (Defaults to False)</p>
+<p>If True, bars are draw as a stack, to show the relationship of
+parts to a whole. Otherwise, bars are grouped on the same chart.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.boxplot_builder.BoxPlotBuilder">
+<em class="property">class </em><code class="descname">BoxPlotBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.boxplot_builder.BoxPlotBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the BoxPlot class and it is in charge of plotting
+scatter plots in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (rects, lines and markers)
+taking the references from the source.</p>
+<dl class="method">
+<dt id="bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.set_and_get">
+<code class="descname">set_and_get</code><span class="sig-paren">(</span><em>data</em>, <em>attr</em>, <em>val</em>, <em>content</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.set_and_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a new attr and then get it to fill the self._data dict.</p>
+<p>Keep track of the attributes created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>data</strong> (<em>dict</em>) &#8211; where to store the new attribute content</li>
+<li><strong>attr</strong> (<em>list</em>) &#8211; where to store the new attribute names</li>
+<li><strong>val</strong> (<em>string</em>) &#8211; name of the new attribute</li>
+<li><strong>content</strong> (<em>obj</em>) &#8211; content of the new attribute</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.marker">
+<code class="descname">marker</code><a class="headerlink" href="#bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.marker" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>The marker type to use (e.g., <code class="docutils literal"><span class="pre">circle</span></code>) if outliers=True.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.outliers">
+<code class="descname">outliers</code><a class="headerlink" href="#bokeh.charts.builder.boxplot_builder.BoxPlotBuilder.outliers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether to display markers for any outliers.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.donut_builder.DonutBuilder">
+<em class="property">class </em><code class="descname">DonutBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.donut_builder.DonutBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Donut class and it is in charge of plotting
+Donut chart in an easy and intuitive way.</p>
+<p>Essentially, it provides a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the donut slices and angles.
+And finally add the needed glyphs (Wedges and AnnularWedges) taking
+the references from the source.</p>
+<dl class="method">
+<dt id="bokeh.charts.builder.donut_builder.DonutBuilder.draw_central_descriptions">
+<code class="descname">draw_central_descriptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.donut_builder.DonutBuilder.draw_central_descriptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the descriptions to be placed on the central part of the
+donut wedge</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.builder.donut_builder.DonutBuilder.draw_central_wedge">
+<code class="descname">draw_central_wedge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.donut_builder.DonutBuilder.draw_central_wedge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the central part of the donut wedge from donut.source and
+its calculated start and end angles.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.charts.builder.donut_builder.DonutBuilder.draw_external_ring">
+<code class="descname">draw_external_ring</code><span class="sig-paren">(</span><em>colors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.donut_builder.DonutBuilder.draw_external_ring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the external part of the donut wedge from donut.source
+and its related descriptions</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.donut_builder.DonutBuilder.cat">
+<code class="descname">cat</code><a class="headerlink" href="#bokeh.charts.builder.donut_builder.DonutBuilder.cat" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>, <a class="reference internal" href="properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a>))</p>
+<p>List of string representing the categories. (Defaults to None.)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.dot_builder.DotBuilder">
+<em class="property">class </em><code class="descname">DotBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.dot_builder.DotBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>This is the Dot class and it is in charge of plotting Dot chart</dt>
+<dd>in an easy and intuitive way.</dd>
+</dl>
+<p>Essentially, it provides a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (segments and circles) taking
+the references from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.dot_builder.DotBuilder.cat">
+<code class="descname">cat</code><a class="headerlink" href="#bokeh.charts.builder.dot_builder.DotBuilder.cat" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Either" title="bokeh.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a>, <a class="reference internal" href="properties.html#bokeh.properties.List" title="bokeh.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a>(<a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a>))</p>
+<p>List of string representing the categories. (Defaults to None.)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.dot_builder.DotBuilder.stem">
+<code class="descname">stem</code><a class="headerlink" href="#bokeh.charts.builder.dot_builder.DotBuilder.stem" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether to draw a stem from each do to the axis.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.heatmap_builder.HeatMapBuilder">
+<em class="property">class </em><code class="descname">HeatMapBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.heatmap_builder.HeatMapBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the HeatMap class and it is in charge of plotting
+HeatMap chart in an easy and intuitive way.</p>
+<p>Essentially, it provides a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (rects) taking the references
+from the source.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.histogram_builder.HistogramBuilder">
+<em class="property">class </em><code class="descname">HistogramBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Histogram class and it is in charge of plotting
+histograms in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed glyphs (quads and lines) taking the
+references from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.histogram_builder.HistogramBuilder.bins">
+<code class="descname">bins</code><a class="headerlink" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder.bins" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Int" title="bokeh.properties.Int"><code class="xref py py-class docutils literal"><span class="pre">Int</span></code></a></p>
+<p>Number of bins to use for the histogram. (default: 10)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.histogram_builder.HistogramBuilder.density">
+<code class="descname">density</code><a class="headerlink" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder.density" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Bool" title="bokeh.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether to normalize the histogram. (default: True)</p>
+<p>If True, the result is the value of the probability <em>density</em> function
+at the bin, normalized such that the <em>integral</em> over the range is 1. If
+False, the result will contain the number of samples in each bin.</p>
+<p>For more info check <code class="docutils literal"><span class="pre">numpy.histogram</span></code> function documentation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.histogram_builder.HistogramBuilder.mu">
+<code class="descname">mu</code><a class="headerlink" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder.mu" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Float" title="bokeh.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>Theoretical mean value for the normal distribution. (default: None)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.histogram_builder.HistogramBuilder.sigma">
+<code class="descname">sigma</code><a class="headerlink" href="#bokeh.charts.builder.histogram_builder.HistogramBuilder.sigma" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Float" title="bokeh.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>Theoretical standard deviation value for the normal distribution.
+(default: None)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.horizon_builder.HorizonBuilder">
+<em class="property">class </em><code class="descname">HorizonBuilder</code><span class="sig-paren">(</span><em>values</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.horizon_builder.HorizonBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Horizon class and it is in charge of plotting
+Horizon charts in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, separate the data into
+a number of folds which stack on top of each others.
+We additionally make calculations for the ranges.
+And finally add the needed lines taking the references from the source.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.line_builder.LineBuilder">
+<em class="property">class </em><code class="descname">LineBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.line_builder.LineBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Line class and it is in charge of plotting
+Line charts in an easy and intuitive way.
+Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed lines taking the references from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.line_builder.LineBuilder.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.charts.builder.line_builder.LineBuilder.index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a></p>
+<p>An index to be used for all data series as follows:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>A 1d iterable of any sort that will be used as</dt>
+<dd><p class="first last">series common index</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>As a string that corresponds to the key of the</dt>
+<dd><p class="first last">mapping to be used as index (and not as data
+series) if area.values is a mapping (like a dict,
+an OrderedDict or a pandas DataFrame)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.scatter_builder.ScatterBuilder">
+<em class="property">class </em><code class="descname">ScatterBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.scatter_builder.ScatterBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Scatter class and it is in charge of plotting
+Scatter charts in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges. And finally add
+the needed glyphs (markers) taking the references from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.scatter_builder.ScatterBuilder.marker">
+<code class="descname">marker</code><a class="headerlink" href="#bokeh.charts.builder.scatter_builder.ScatterBuilder.marker" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.String" title="bokeh.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>The marker type to use (default: <code class="docutils literal"><span class="pre">circle</span></code>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.charts.builder.scatter_builder.ScatterBuilder.parse_data">
+<code class="descname">parse_data</code><a class="headerlink" href="#bokeh.charts.builder.scatter_builder.ScatterBuilder.parse_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse data received from self._values and create correct x, y
+series values checking if input is a pandas DataFrameGroupBy
+object or one of the stardard supported types (that can be
+converted to a DataAdapter)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.step_builder.StepBuilder">
+<em class="property">class </em><code class="descname">StepBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.step_builder.StepBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the Step class and it is in charge of plotting
+Step charts in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed lines taking the references from the
+source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.step_builder.StepBuilder.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.charts.builder.step_builder.StepBuilder.index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a></p>
+<p>An index to be used for all data series as follows:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>A 1d iterable of any sort that will be used as</dt>
+<dd><p class="first last">series common index</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>As a string that corresponds to the key of the</dt>
+<dd><p class="first last">mapping to be used as index (and not as data
+series) if area.values is a mapping (like a dict,
+an OrderedDict or a pandas DataFrame)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder">
+<em class="property">class </em><code class="descname">TimeSeriesBuilder</code><span class="sig-paren">(</span><em>values=None</em>, <em>**kws</em><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the TimeSeries class and it is in charge of plotting
+TimeSeries charts in an easy and intuitive way.</p>
+<p>Essentially, we provide a way to ingest the data, make the proper
+calculations and push the references into a source object.
+We additionally make calculations for the ranges.
+And finally add the needed lines taking the references from the source.</p>
+<dl class="attribute">
+<dt id="bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.charts.builder.timeseries_builder.TimeSeriesBuilder.index" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.properties.Any" title="bokeh.properties.Any"><code class="xref py py-class docutils literal"><span class="pre">Any</span></code></a></p>
+<p>An index to be used for all data series as follows:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>A 1d iterable of any sort that will be used as</dt>
+<dd><p class="first last">series common index</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>As a string that corresponds to the key of the</dt>
+<dd><p class="first last">mapping to be used as index (and not as data
+series) if area.values is a mapping (like a dict,
+an OrderedDict or a pandas DataFrame)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="plotting.html">Prev</a> |
+      
+      
+      <a href="palettes.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/charts.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

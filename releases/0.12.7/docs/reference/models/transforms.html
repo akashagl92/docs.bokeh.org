@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.transforms &mdash; Bokeh 0.12.7 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.7";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/reference/models/transforms.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.7</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../releases/0.12.7.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">bokeh.models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annotations.html">bokeh.models.annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrow_heads.html">bokeh.models.arrow_heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes.html">bokeh.models.axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.models.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">bokeh.models.expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">bokeh.models.filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatters.html">bokeh.models.formatters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">bokeh.models.glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html">bokeh.models.graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grids.html">bokeh.models.grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">bokeh.models.images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouts.html">bokeh.models.layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_plots.html">bokeh.models.map_plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mappers.html">bokeh.models.mappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">bokeh.models.markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plots.html">bokeh.models.plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranges.html">bokeh.models.ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderers.html">bokeh.models.renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scales.html">bokeh.models.scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sources.html">bokeh.models.sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickers.html">bokeh.models.tickers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiles.html">bokeh.models.tiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">bokeh.models.tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.models.transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.buttons.html">bokeh.models.widgets.buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.groups.html">bokeh.models.widgets.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.icons.html">bokeh.models.widgets.icons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.inputs.html">bokeh.models.widgets.inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.markups.html">bokeh.models.widgets.markups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.panels.html">bokeh.models.widgets.panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.tables.html">bokeh.models.widgets.tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.widget.html">bokeh.models.widgets.widget</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.7.html">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-models-transforms">
+<span id="id1"></span><h1>bokeh.models.transforms<a class="headerlink" href="#bokeh-models-transforms" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.models.transforms"></span><p>Represent transformations of data to happen on the client (browser) side.</p>
+<dl class="class">
+<dt id="bokeh.models.transforms.CustomJSTransform">
+<em class="property">class </em><code class="descname">CustomJSTransform</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#CustomJSTransform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Transform" title="bokeh.models.transforms.Transform"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Transform</span></code></a></p>
+<p>Apply a custom defined transform to data.</p>
+<dl class="attribute">
+<dt id="bokeh.models.transforms.CustomJSTransform.args">
+<code class="descname">args</code><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform.args" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="../model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal"><span class="pre">Model</span></code></a>  ) )</p>
+<p>A mapping of names to Bokeh plot objects. These objects are made
+available to the callback code snippet as the values of named
+parameters to the callback.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.CustomJSTransform.func">
+<code class="descname">func</code><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform.func" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>A snippet of JavaScript code to transform a single value. The variable
+<code class="docutils literal"><span class="pre">x</span></code> will contain the untransformed value and can be expected to be
+present in the function namespace at render time. The snippet will be
+into the body of a function and therefore requires a return statement.</p>
+<p>Example:</p>
+<blockquote>
+<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">func</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">return Math.floor(x) + 0.5</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.CustomJSTransform.v_func">
+<code class="descname">v_func</code><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform.v_func" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>A snippet of JavaScript code to transform an array of values. The variable
+<code class="docutils literal"><span class="pre">xs</span></code> will contain the untransformed array and can be expected to be
+present in the function namespace at render time. The snippet will be
+into the body of a function and therefore requires a return statement.</p>
+<p>Example:</p>
+<blockquote>
+<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">v_func</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">new_xs = new Array(xs.length)</span>
+<span class="s1">for(i = 0; i &lt; xs.length; i++) {</span>
+<span class="s1">    new_xs[i] = xs[i] + 0.5</span>
+<span class="s1">}</span>
+<span class="s1">return new_xs</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The vectorized function, <code class="docutils literal"><span class="pre">v_func</span></code>, must return an array of the
+same length as the input <code class="docutils literal"><span class="pre">xs</span></code> array.</p>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="bokeh.models.transforms.CustomJSTransform.from_coffeescript">
+<em class="property">classmethod </em><code class="descname">from_coffeescript</code><span class="sig-paren">(</span><em>func</em>, <em>v_func</em>, <em>args={}</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#CustomJSTransform.from_coffeescript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform.from_coffeescript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CustomJSTransform instance from a pair of CoffeeScript
+snippets. The function bodies are translated to JavaScript functions
+using node and therefore require return statements.</p>
+<p>The <code class="docutils literal"><span class="pre">func</span></code> snippet namespace will contain the variable <code class="docutils literal"><span class="pre">x</span></code> (the
+untransformed value) at render time. The <code class="docutils literal"><span class="pre">v_func</span></code> snippet namespace
+will contain the variable <code class="docutils literal"><span class="pre">xs</span></code> (the untransformed vector) at render
+time.</p>
+<p>Example:</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span></span><span class="nv">func = </span><span class="s">&quot;return Math.cos(x)&quot;</span>
+<span class="nv">v_func = </span><span class="s">&quot;return [Math.cos(x) for x in xs]&quot;</span>
+
+<span class="nv">transform = </span><span class="nx">CustomJSTransform</span><span class="p">.</span><span class="nx">from_coffeescript</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">v_func</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; a coffeescript snippet to transform a single <code class="docutils literal"><span class="pre">x</span></code> value</li>
+<li><strong>v_func</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; a coffeescript snippet function to transform a vector <code class="docutils literal"><span class="pre">xs</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">CustomJSTransform</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="bokeh.models.transforms.CustomJSTransform.from_py_func">
+<em class="property">classmethod </em><code class="descname">from_py_func</code><span class="sig-paren">(</span><em>func</em>, <em>v_func</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#CustomJSTransform.from_py_func"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.CustomJSTransform.from_py_func" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a CustomJSTransform instance from a pair of Python
+functions. The function is translated to JavaScript using PyScript.</p>
+<p>The python functions must have no positional arguments. It&#8217;s
+possible to pass Bokeh models (e.g. a ColumnDataSource) as keyword
+arguments to the functions.</p>
+<p>The <code class="docutils literal"><span class="pre">func</span></code> function namespace will contain the variable <code class="docutils literal"><span class="pre">x</span></code> (the
+untransformed value) at render time. The <code class="docutils literal"><span class="pre">v_func</span></code> function namespace
+will contain the variable <code class="docutils literal"><span class="pre">xs</span></code> (the untransformed vector) at render
+time.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The vectorized function, <code class="docutils literal"><span class="pre">v_func</span></code>, must return an array of the
+same length as the input <code class="docutils literal"><span class="pre">xs</span></code> array.</p>
+</div>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transform</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">flexx.pyscript.stubs</span> <span class="kn">import</span> <span class="n">Math</span>
+    <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">v_transform</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">flexx.pyscript.stubs</span> <span class="kn">import</span> <span class="n">Math</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">Math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+
+<span class="n">customjs_transform</span> <span class="o">=</span> <span class="n">CustomJSTransform</span><span class="o">.</span><span class="n">from_py_func</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">v_transform</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>func</strong> (<a class="reference internal" href="../application/handlers/function.html#module-bokeh.application.handlers.function" title="bokeh.application.handlers.function"><em>function</em></a>) &#8211; a scalar function to transform a single <code class="docutils literal"><span class="pre">x</span></code> value</li>
+<li><strong>v_func</strong> (<a class="reference internal" href="../application/handlers/function.html#module-bokeh.application.handlers.function" title="bokeh.application.handlers.function"><em>function</em></a>) &#8211; a vectorized function to transform a vector <code class="docutils literal"><span class="pre">xs</span></code></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">CustomJSTransform</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;args&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;func&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;16dde7ac-a18d-489d-88a1-a2b8b3a56e2a&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;v_func&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.Dodge">
+<em class="property">class </em><code class="descname">Dodge</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#Dodge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.Dodge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Transform" title="bokeh.models.transforms.Transform"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Transform</span></code></a></p>
+<p>Apply either fixed dodge amount to data.</p>
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Dodge.range">
+<code class="descname">range</code><a class="headerlink" href="#bokeh.models.transforms.Dodge.range" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="ranges.html#bokeh.models.ranges.Range" title="bokeh.models.ranges.Range"><code class="xref py py-class docutils literal"><span class="pre">Range</span></code></a>  )</p>
+<p>When applying <code class="docutils literal"><span class="pre">Dodge</span></code> to categorical data values, the corresponding
+<code class="docutils literal"><span class="pre">FactorRange</span></code> must be supplied as the <code class="docutils literal"><span class="pre">range</span></code> property.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Dodge.value">
+<code class="descname">value</code><a class="headerlink" href="#bokeh.models.transforms.Dodge.value" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>The amount to dodge the input data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;7b9efa91-c3aa-414a-a85c-6b2f1ad1749a&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;range&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.Interpolator">
+<em class="property">class </em><code class="descname">Interpolator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#Interpolator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.Interpolator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Transform" title="bokeh.models.transforms.Transform"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Transform</span></code></a></p>
+<p>Base class for interpolator transforms.</p>
+<p>Interpolators return the value of a function which has been evaluated
+between specified (x, y) pairs of data.  As an example, if two control
+point pairs were provided to the interpolator, a linear interpolaction
+at a specific value of &#8216;x&#8217; would result in the value of &#8216;y&#8217; which existed
+on the line conneting the two control points.</p>
+<p>The control point pairs for the interpolators can be specified through either</p>
+<ul class="simple">
+<li>A literal sequence of values:</li>
+</ul>
+<ul class="simple">
+<li>or a pair of columns defined in a <cite>ColumnDataSource</cite> object:</li>
+</ul>
+<p>This is the base class and is not intended to end use.  Please see the
+documentation for the final derived classes (Jitter, LineraInterpolator,
+StepInterpolator) for mor information on their specific methods of
+interpolation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Interpolator.clip">
+<code class="descname">clip</code><a class="headerlink" href="#bokeh.models.transforms.Interpolator.clip" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Determine if the interpolation should clip the result to include only values inside its predefined range.
+If this is set to False, it will return the most value of the closest point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Interpolator.data">
+<code class="descname">data</code><a class="headerlink" href="#bokeh.models.transforms.Interpolator.data" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="sources.html#bokeh.models.sources.ColumnarDataSource" title="bokeh.models.sources.ColumnarDataSource"><code class="xref py py-class docutils literal"><span class="pre">ColumnarDataSource</span></code></a>  )</p>
+<p>Data which defines the source for the named columns if a string is passed to either the <code class="docutils literal"><span class="pre">x</span></code> or <code class="docutils literal"><span class="pre">y</span></code> parameters.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Interpolator.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.models.transforms.Interpolator.x" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a>  ) )</p>
+<p>Independant coordiante denoting the location of a point.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Interpolator.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.models.transforms.Interpolator.y" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a>  ) )</p>
+<p>Dependant coordinate denoting the value of a point at a location.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;clip&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;c3584a31-d4b8-4de1-8f1c-dd7f35d6831f&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.Jitter">
+<em class="property">class </em><code class="descname">Jitter</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#Jitter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.Jitter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Transform" title="bokeh.models.transforms.Transform"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Transform</span></code></a></p>
+<p>Apply either a uniform or normally sampled random jitter to data.</p>
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Jitter.distribution">
+<code class="descname">distribution</code><a class="headerlink" href="#bokeh.models.transforms.Jitter.distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.JitterRandomDistribution" title="bokeh.core.enums.JitterRandomDistribution"><code class="xref py py-class docutils literal"><span class="pre">JitterRandomDistribution</span></code></a>  )</p>
+<p>The random distribution upon which to pull the random scatter</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Jitter.mean">
+<code class="descname">mean</code><a class="headerlink" href="#bokeh.models.transforms.Jitter.mean" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>The central value for the random sample</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Jitter.range">
+<code class="descname">range</code><a class="headerlink" href="#bokeh.models.transforms.Jitter.range" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="ranges.html#bokeh.models.ranges.Range" title="bokeh.models.ranges.Range"><code class="xref py py-class docutils literal"><span class="pre">Range</span></code></a>  )</p>
+<p>When applying Jitter to Categorical data values, the corresponding
+<code class="docutils literal"><span class="pre">FactorRange</span></code> must be supplied as the <code class="docutils literal"><span class="pre">range</span></code> property.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.transforms.Jitter.width">
+<code class="descname">width</code><a class="headerlink" href="#bokeh.models.transforms.Jitter.width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>The width (absolute for uniform distribution and sigma for the normal
+distribution) of the random sample.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;distribution&quot;</span><span class="o">:</span> <span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;f0e44d0d-96a7-46a3-8c22-abf75e9bd14e&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;mean&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;range&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.LinearInterpolator">
+<em class="property">class </em><code class="descname">LinearInterpolator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#LinearInterpolator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.LinearInterpolator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Interpolator" title="bokeh.models.transforms.Interpolator"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Interpolator</span></code></a></p>
+<p>Compute a linear interpolation between the control points provided through
+the <code class="docutils literal"><span class="pre">x</span></code>, <code class="docutils literal"><span class="pre">y</span></code>, and <code class="docutils literal"><span class="pre">data</span></code> parameters.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;clip&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;59334ed0-b1df-4909-a33e-da22f6a7b96f&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.StepInterpolator">
+<em class="property">class </em><code class="descname">StepInterpolator</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#StepInterpolator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.StepInterpolator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.transforms.Interpolator" title="bokeh.models.transforms.Interpolator"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.transforms.Interpolator</span></code></a></p>
+<p>Compute a step-wise interpolation between the points provided through
+the <code class="docutils literal"><span class="pre">x</span></code>, <code class="docutils literal"><span class="pre">y</span></code>, and <code class="docutils literal"><span class="pre">data</span></code> parameters.</p>
+<dl class="attribute">
+<dt id="bokeh.models.transforms.StepInterpolator.mode">
+<code class="descname">mode</code><a class="headerlink" href="#bokeh.models.transforms.StepInterpolator.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.StepMode" title="bokeh.core.enums.StepMode"><code class="xref py py-class docutils literal"><span class="pre">StepMode</span></code></a>  )</p>
+<p>Adjust the behavior of the returned value in relation to the control points.  The parameter can assume one of three values:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">after</span></code> (default): Assume the y-value associated with the nearest x-value which is less than or equal to the point to transform.</li>
+<li><code class="docutils literal"><span class="pre">before</span></code>: Assume the y-value associated with the nearest x-value which is greater than the point to transform.</li>
+<li><code class="docutils literal"><span class="pre">center</span></code>: Assume the y-value associated with the nearest x-value to the point to transform.</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;clip&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;data&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ff2b775b-7203-464d-b5ab-629c9e262f7e&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;mode&quot;</span><span class="o">:</span> <span class="s2">&quot;after&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;x&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;y&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.transforms.Transform">
+<em class="property">class </em><code class="descname">Transform</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/transforms.html#Transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.transforms.Transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal"><span class="pre">bokeh.model.Model</span></code></a></p>
+<p>Base class for <code class="docutils literal"><span class="pre">Transform</span></code> models that represent a computation
+to be carried out on the client-side.</p>
+<p>JavaScript implementations should implement the following methods:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;a4ff89a6-af9a-487c-ac88-21780576dede&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div></div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

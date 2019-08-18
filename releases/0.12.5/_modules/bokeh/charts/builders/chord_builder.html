@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.charts.builders.chord_builder &mdash; Bokeh 0.12.5 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.5";
+  </script>
+  <script src="../../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/_modules/bokeh/charts/builders/chord_builder.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../../index.html">0.12.5</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../../../docs/installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/releases/0.12.5.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../../../docs/dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/charts.html">Making High-level Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/charts.html">bokeh.charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs/releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.charts.builders.chord_builder</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This is the Bokeh charts interface. It gives you a high level API</span>
+<span class="sd">to build complex plot is a simple way.</span>
+
+<span class="sd">This is the Chord class which lets you build your Chord charts</span>
+<span class="sd">just passing the arguments to the Chart class and calling the proper</span>
+<span class="sd">functions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2012 - 2016, Anaconda, Inc. All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Powered by the Bokeh Development Team.</span>
+<span class="c1">#</span>
+<span class="c1"># The full license is in the file LICENSE.txt, distributed with this software.</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Imports</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts.properties</span> <span class="k">import</span> <span class="n">Dimension</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts.builder</span> <span class="k">import</span> <span class="n">create_and_build</span><span class="p">,</span> <span class="n">Builder</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts.attributes</span> <span class="k">import</span> <span class="n">MarkerAttr</span><span class="p">,</span> <span class="n">ColorAttr</span><span class="p">,</span> <span class="n">CatAttr</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts.utils</span> <span class="k">import</span> <span class="n">color_in_equal_space</span><span class="p">,</span> <span class="n">help</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="k">import</span> <span class="n">Range1d</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.glyphs</span> <span class="k">import</span> <span class="n">Arc</span><span class="p">,</span> <span class="n">Bezier</span><span class="p">,</span> <span class="n">Text</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.renderers</span> <span class="k">import</span> <span class="n">GlyphRenderer</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.sources</span> <span class="k">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.core.properties</span> <span class="k">import</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Array</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Seq</span><span class="p">,</span> <span class="n">Either</span><span class="p">,</span> <span class="n">Int</span>
+
+
+<span class="c1"># -----------------------------------------------------------------------------</span>
+<span class="c1"># Classes and functions</span>
+<span class="c1"># -----------------------------------------------------------------------------</span>
+
+<span class="k">class</span> <span class="nc">Area</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; It represents an arc area. It will create a list of available points through the arc representing that area and</span>
+<span class="sd">    then those points will be used as start and end for the beziers lines.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_conn</span><span class="p">,</span> <span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">):</span>
+        <span class="c1"># Number of connections in that arc area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_conn</span> <span class="o">=</span> <span class="n">n_conn</span>
+        <span class="c1"># The start point of the arc representing the area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_point</span> <span class="o">=</span> <span class="n">start_point</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_point</span> <span class="o">=</span> <span class="n">end_point</span>
+        <span class="c1"># Equally spaced points between start point and end point</span>
+        <span class="n">free_points_angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">,</span> <span class="n">n_conn</span><span class="p">)</span>
+        <span class="c1"># A list of available X,Y in the chart to consume by each bezier&#39;s start and end point</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">free_points</span> <span class="o">=</span> <span class="p">[[</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)]</span> <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="n">free_points_angles</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_conn</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">free_points</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ChordBuilder"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.ChordBuilder">[docs]</a><span class="k">class</span> <span class="nc">ChordBuilder</span><span class="p">(</span><span class="n">Builder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; This is the Chord builder and it is in charge of plotting</span>
+<span class="sd">    Chord graphs in an easy and intuitive way.</span>
+
+<span class="sd">    Essentially, we provide a way to ingest the data, make the proper</span>
+<span class="sd">    calculations and push the references into a source object.</span>
+<span class="sd">    We additionally make calculations for the ranges. And finally add</span>
+<span class="sd">    the needed glyphs (markers) taking the references from the source.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">default_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">ColorAttr</span><span class="p">(),</span>
+                          <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="n">MarkerAttr</span><span class="p">(),</span>
+                          <span class="s1">&#39;stack&#39;</span><span class="p">:</span> <span class="n">CatAttr</span><span class="p">()}</span>
+
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">Dimension</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+
+    <span class="n">arcs_data</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColumnDataSource</span><span class="p">)</span>
+    <span class="n">text_data</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColumnDataSource</span><span class="p">)</span>
+    <span class="n">connection_data</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColumnDataSource</span><span class="p">)</span>
+
+    <span class="n">origin</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">destination</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">Any</span><span class="p">()</span>
+    <span class="n">square_matrix</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">()</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">Seq</span><span class="p">(</span><span class="n">Any</span><span class="p">())</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">(),</span> <span class="n">Int</span><span class="p">())))</span>
+
+<div class="viewcode-block" id="ChordBuilder.set_ranges"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.ChordBuilder.set_ranges">[docs]</a>    <span class="k">def</span> <span class="nf">set_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="mf">1.1</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="k">else</span> <span class="mf">1.8</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="o">-</span><span class="n">rng</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_range</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="o">-</span><span class="n">rng</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChordBuilder.setup"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.ChordBuilder.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c1"># Process only if not a square_matrix</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">square_matrix</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">destination</span><span class="p">]</span>
+            <span class="n">union</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">union</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="n">union</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">union</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                    <span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">]][</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">destination</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                        <span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">]][</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">destination</span><span class="p">]]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span>
+
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+                        <span class="n">m</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">]][</span><span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">destination</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># It&#39;s already a square matrix</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">get_values</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ChordBuilder.process_data"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.ChordBuilder.process_data">[docs]</a>    <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">weights_of_areas</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
+        <span class="n">areas_in_radians</span> <span class="o">=</span> <span class="p">(</span><span class="n">weights_of_areas</span> <span class="o">/</span> <span class="n">weights_of_areas</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+
+        <span class="c1"># We add a zero in the begging for the cumulative sum</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">areas_in_radians</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">areas_in_radians</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">color_in_equal_space</span><span class="p">(</span><span class="n">area</span> <span class="o">/</span> <span class="n">areas_in_radians</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">areas_in_radians</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+        <span class="n">arcs_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">&#39;start_angle&#39;</span><span class="p">:</span> <span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s1">&#39;end_angle&#39;</span><span class="p">:</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>
+            <span class="s1">&#39;line_color&#39;</span><span class="p">:</span> <span class="n">colors</span>
+        <span class="p">})</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">arcs_data</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">arcs_data</span><span class="p">)</span>
+
+        <span class="c1"># Text</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+            <span class="n">text_radius</span> <span class="o">=</span> <span class="mf">1.1</span>
+            <span class="n">angles</span> <span class="o">=</span> <span class="p">(</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">/</span><span class="mf">2.0</span>
+
+            <span class="n">text_positions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+                <span class="s1">&#39;angles&#39;</span><span class="p">:</span> <span class="n">angles</span><span class="p">,</span>
+                <span class="s1">&#39;text_x&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span> <span class="o">*</span> <span class="n">text_radius</span><span class="p">,</span>
+                <span class="s1">&#39;text_y&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">)</span> <span class="o">*</span> <span class="n">text_radius</span><span class="p">,</span>
+                <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="p">})</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">text_data</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">text_positions</span><span class="p">)</span>
+
+        <span class="c1"># Lines</span>
+
+        <span class="n">all_areas</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">areas_in_radians</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">all_areas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Area</span><span class="p">(</span><span class="n">weights_of_areas</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">i</span><span class="p">]))</span>
+
+        <span class="n">all_connections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">region1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">):</span>
+            <span class="c1"># Get the connections origin region</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">all_areas</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">weights_of_areas</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">region2</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">region1</span><span class="p">):</span>
+                <span class="c1"># Get the connection destination region</span>
+                <span class="n">target</span> <span class="o">=</span> <span class="n">all_areas</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">region2</span><span class="p">)):</span>
+                    <span class="n">p1</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">free_points</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="n">p2</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">free_points</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                    <span class="c1"># Get both regions free points and create a connection with the data</span>
+                    <span class="n">all_connections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span> <span class="o">+</span> <span class="p">[</span><span class="n">color</span><span class="p">,</span> <span class="n">weight</span><span class="p">])</span>
+
+        <span class="n">connections_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_connections</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+        <span class="n">connections_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;start_x&quot;</span><span class="p">,</span> <span class="s2">&quot;start_y&quot;</span><span class="p">,</span> <span class="s2">&quot;end_x&quot;</span><span class="p">,</span> <span class="s2">&quot;end_y&quot;</span><span class="p">,</span> <span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">]</span>
+        <span class="n">connections_df</span><span class="p">[</span><span class="s2">&quot;cx0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connections_df</span><span class="o">.</span><span class="n">start_x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">connections_df</span><span class="p">[</span><span class="s2">&quot;cy0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connections_df</span><span class="o">.</span><span class="n">start_y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">connections_df</span><span class="p">[</span><span class="s2">&quot;cx1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connections_df</span><span class="o">.</span><span class="n">end_x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">connections_df</span><span class="p">[</span><span class="s2">&quot;cy1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connections_df</span><span class="o">.</span><span class="n">end_y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">connections_df</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">connections_df</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">/</span><span class="n">connections_df</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">*</span> <span class="mi">3000</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">connection_data</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">connections_df</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ChordBuilder.yield_renderers"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.ChordBuilder.yield_renderers">[docs]</a>    <span class="k">def</span> <span class="nf">yield_renderers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Use the marker glyphs to display the arcs and beziers.</span>
+<span class="sd">        Takes reference points from data loaded at the ColumnDataSource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beziers</span> <span class="o">=</span> <span class="n">Bezier</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="s1">&#39;start_x&#39;</span><span class="p">,</span>
+                         <span class="n">y0</span><span class="o">=</span><span class="s1">&#39;start_y&#39;</span><span class="p">,</span>
+                         <span class="n">x1</span><span class="o">=</span><span class="s1">&#39;end_x&#39;</span><span class="p">,</span>
+                         <span class="n">y1</span><span class="o">=</span><span class="s1">&#39;end_y&#39;</span><span class="p">,</span>
+                         <span class="n">cx0</span><span class="o">=</span><span class="s1">&#39;cx0&#39;</span><span class="p">,</span>
+                         <span class="n">cy0</span><span class="o">=</span><span class="s1">&#39;cy0&#39;</span><span class="p">,</span>
+                         <span class="n">cx1</span><span class="o">=</span><span class="s1">&#39;cx1&#39;</span><span class="p">,</span>
+                         <span class="n">cy1</span><span class="o">=</span><span class="s1">&#39;cy1&#39;</span><span class="p">,</span>
+                         <span class="n">line_alpha</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span>
+                         <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;colors&#39;</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">GlyphRenderer</span><span class="p">(</span><span class="n">data_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">connection_data</span><span class="p">,</span> <span class="n">glyph</span><span class="o">=</span><span class="n">beziers</span><span class="p">)</span>
+
+        <span class="n">arcs</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                   <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                   <span class="n">line_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                   <span class="n">start_angle</span><span class="o">=</span><span class="s1">&#39;start_angle&#39;</span><span class="p">,</span>
+                   <span class="n">end_angle</span><span class="o">=</span><span class="s1">&#39;end_angle&#39;</span><span class="p">,</span>
+                   <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;line_color&#39;</span><span class="p">)</span>
+
+        <span class="k">yield</span> <span class="n">GlyphRenderer</span><span class="p">(</span><span class="n">data_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">arcs_data</span><span class="p">,</span> <span class="n">glyph</span><span class="o">=</span><span class="n">arcs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">:</span>
+
+            <span class="n">text_props</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;text_color&quot;</span><span class="p">:</span> <span class="s2">&quot;#000000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;text_font_size&quot;</span><span class="p">:</span> <span class="s2">&quot;8pt&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;text_align&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;text_baseline&quot;</span><span class="p">:</span> <span class="s2">&quot;middle&quot;</span>
+            <span class="p">}</span>
+
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;text_x&#39;</span><span class="p">,</span>
+                          <span class="n">y</span><span class="o">=</span><span class="s1">&#39;text_y&#39;</span><span class="p">,</span>
+                          <span class="n">text</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
+                          <span class="n">angle</span><span class="o">=</span><span class="s1">&#39;angles&#39;</span><span class="p">,</span>
+                          <span class="o">**</span><span class="n">text_props</span>
+                          <span class="p">)</span>
+
+            <span class="k">yield</span> <span class="n">GlyphRenderer</span><span class="p">(</span><span class="n">data_source</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text_data</span><span class="p">,</span> <span class="n">glyph</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span></div></div>
+
+
+<span class="nd">@help</span><span class="p">(</span><span class="n">ChordBuilder</span><span class="p">)</span>
+<div class="viewcode-block" id="Chord"><a class="viewcode-back" href="../../../../docs/reference/charts.html#bokeh.charts.Chord">[docs]</a><span class="k">def</span> <span class="nf">Chord</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">square_matrix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xgrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ygrid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a chord chart using :class:`ChordBuilder &lt;bokeh.charts.builders.chord_builder.ChordBuilder&gt;`</span>
+<span class="sd">    to render a chord graph from a variety of value forms.</span>
+<span class="sd">    This chart displays the inter-relationships between data in a matrix.</span>
+
+<span class="sd">    The data can be generated by the chart interface. Given a :class:`DataFrame &lt;pandas.DataFrame&gt;`,</span>
+<span class="sd">    select two columns to be used as arcs with `source` and `target` attributes, passing by the name of those columns.</span>
+<span class="sd">    The :class:`Chord &lt;bokeh.charts.builders.chord_builder.Chord&gt;` chart will then deduce the</span>
+<span class="sd">    relationship between the arcs.</span>
+
+<span class="sd">    The value of the connections can be inferred automatically by counting `source` and `target`. If you prefer</span>
+<span class="sd">    you can assign a fixed value for all the connections with `value` simply passing by a number. A third option is to</span>
+<span class="sd">    pass a reference to a third column in the :class:`DataFrame &lt;pandas.DataFrame&gt;` with the values for the connections.</span>
+
+<span class="sd">    If you want to plot the relationships in a squared matrix, simply pass the matrix and set `square_matrix` attribute</span>
+<span class="sd">    to `True`.</span>
+
+<span class="sd">    Reference: `Chord diagram on Wikipedia &lt;https://en.wikipedia.org/wiki/Chord_diagram&gt;`_</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (:ref:`userguide_charts_data_types`): the data source for the chart.</span>
+<span class="sd">        source (list(str) or str, optional): Data source to use as origin of the connection to a destination.</span>
+<span class="sd">        target (list(str) or str, optional): Data source to use as destination of a connection.</span>
+<span class="sd">        value (list(num) or num, optional): The value the connection should have.</span>
+<span class="sd">        square_matrix (bool, optional): If square matrix, avoid any calculations during the setup.</span>
+<span class="sd">        label (list(str), optional): The labels to be put in the areas.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`Chart`: includes glyph renderers that generate the chord</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    .. bokeh-plot::</span>
+<span class="sd">        :source-position: above</span>
+
+<span class="sd">        import pandas as pd</span>
+<span class="sd">        from bokeh.charts import Chord</span>
+<span class="sd">        from bokeh.io import show, output_file</span>
+<span class="sd">        from bokeh.sampledata.les_mis import data</span>
+
+<span class="sd">        nodes = data[&#39;nodes&#39;]</span>
+<span class="sd">        links = data[&#39;links&#39;]</span>
+
+<span class="sd">        nodes_df = pd.DataFrame(nodes)</span>
+<span class="sd">        links_df = pd.DataFrame(links)</span>
+
+<span class="sd">        source_data = links_df.merge(nodes_df, how=&#39;left&#39;, left_on=&#39;source&#39;, right_index=True)</span>
+<span class="sd">        source_data = source_data.merge(nodes_df, how=&#39;left&#39;, left_on=&#39;target&#39;, right_index=True)</span>
+<span class="sd">        source_data = source_data[source_data[&quot;value&quot;] &gt; 5]  # Select those with 5 or more connections</span>
+
+<span class="sd">        chord_from_df = Chord(source_data, source=&quot;name_x&quot;, target=&quot;name_y&quot;, value=&quot;value&quot;)</span>
+<span class="sd">        output_file(&#39;chord_from_df.html&#39;)</span>
+<span class="sd">        show(chord_from_df)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">source</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;destination&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;square_matrix&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">square_matrix</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;xgrid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xgrid</span>
+    <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;ygrid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ygrid</span>
+
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">create_and_build</span><span class="p">(</span><span class="n">ChordBuilder</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="n">chart</span><span class="o">.</span><span class="n">left</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">below</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">outline_line_color</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">chart</span></div>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

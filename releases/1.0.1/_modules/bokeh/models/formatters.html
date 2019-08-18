@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.formatters &mdash; Bokeh 1.0.1 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.0.1";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/_modules/bokeh/models/formatters.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.0.1</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.models.formatters</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; Models for controlling the text and visual formatting of tick</span>
+<span class="sd">labels on Bokeh plot axes.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">from</span> <span class="nn">types</span> <span class="k">import</span> <span class="n">FunctionType</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.util.string</span> <span class="k">import</span> <span class="n">format_docstring</span>
+<span class="kn">from</span> <span class="nn">..core.enums</span> <span class="k">import</span> <span class="n">LatLon</span><span class="p">,</span> <span class="n">NumeralLanguage</span><span class="p">,</span> <span class="n">RoundingFunction</span>
+<span class="kn">from</span> <span class="nn">..core.has_props</span> <span class="k">import</span> <span class="n">abstract</span>
+<span class="kn">from</span> <span class="nn">..core.properties</span> <span class="k">import</span> <span class="n">Auto</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Either</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">AnyRef</span>
+<span class="kn">from</span> <span class="nn">..core.validation</span> <span class="k">import</span> <span class="n">error</span>
+<span class="kn">from</span> <span class="nn">..core.validation.errors</span> <span class="k">import</span> <span class="n">MISSING_MERCATOR_DIMENSION</span>
+<span class="kn">from</span> <span class="nn">..model</span> <span class="k">import</span> <span class="n">Model</span>
+<span class="kn">from</span> <span class="nn">..util.compiler</span> <span class="k">import</span> <span class="n">nodejs_compile</span><span class="p">,</span> <span class="n">CompilationError</span>
+<span class="kn">from</span> <span class="nn">..util.dependencies</span> <span class="k">import</span> <span class="n">import_required</span>
+<span class="kn">from</span> <span class="nn">..util.future</span> <span class="k">import</span> <span class="n">get_param_info</span><span class="p">,</span> <span class="n">signature</span>
+<span class="kn">from</span> <span class="nn">.tickers</span> <span class="k">import</span> <span class="n">Ticker</span>
+
+<div class="viewcode-block" id="TickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.TickFormatter">[docs]</a><span class="nd">@abstract</span>
+<span class="k">class</span> <span class="nc">TickFormatter</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A base class for all tick formatter types.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="BasicTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.BasicTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">BasicTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Display tick values from continuous ranges as &quot;basic numbers&quot;,</span>
+<span class="sd">    using scientific notation when appropriate by default.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Auto</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How many digits of precision to display in tick labels.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">use_scientific</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to ever display scientific notation. If ``True``, then</span>
+<span class="s2">    when to use scientific notation is controlled by ``power_limit_low``</span>
+<span class="s2">    and ``power_limit_high``.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">power_limit_high</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Limit the use of scientific notation to when::</span>
+
+<span class="s2">        log(x) &gt;= power_limit_high</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">power_limit_low</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Limit the use of scientific notation to when::</span>
+
+<span class="s2">        log(x) &lt;= power_limit_low</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MercatorTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.MercatorTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">MercatorTickFormatter</span><span class="p">(</span><span class="n">BasicTickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; TickFormatter for values in WebMercator units.</span>
+
+<span class="sd">    Some map plot types internally use WebMercator to describe coordinates,</span>
+<span class="sd">    plot bounds, etc. These units are not very human-friendly. This tick</span>
+<span class="sd">    formatter will convert WebMercator units into Latitude and Longitude</span>
+<span class="sd">    for display on axes.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">dimension</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">LatLon</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Specify whether to format ticks for Latitude or Longitude.</span>
+
+<span class="s2">    Projected coordinates are not separable, computing Latitude and Longitude</span>
+<span class="s2">    tick labels from Web Mercator requires considering coordinates from both</span>
+<span class="s2">    dimensions together. Use this property to specify which result should be</span>
+<span class="s2">    used for display.</span>
+
+<span class="s2">    Typically, if the formatter is for an x-axis, then dimension should be</span>
+<span class="s2">    ``&quot;lon&quot;`` and if the formatter is for a y-axis, then the dimension</span>
+<span class="s2">    should be `&quot;lat&quot;``.</span>
+
+<span class="s2">    In order to prevent hard to debug errors, there is no default value for</span>
+<span class="s2">    dimension. Using an un-configured MercatorTickFormatter will result in</span>
+<span class="s2">    a validation error and a JavaScript console error.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@error</span><span class="p">(</span><span class="n">MISSING_MERCATOR_DIMENSION</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_check_missing_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="NumeralTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.NumeralTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">NumeralTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Tick formatter based on a human-readable format string. &#39;&#39;&#39;</span>
+
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s2">&quot;0,0&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The number format, as defined in the following tables:</span>
+
+<span class="s2">    **NUMBERS**:</span>
+
+<span class="s2">    ============ ============== ===============</span>
+<span class="s2">    Number       Format         String</span>
+<span class="s2">    ============ ============== ===============</span>
+<span class="s2">    10000        &#39;0,0.0000&#39;     10,000.0000</span>
+<span class="s2">    10000.23     &#39;0,0&#39;          10,000</span>
+<span class="s2">    10000.23     &#39;+0,0&#39;         +10,000</span>
+<span class="s2">    -10000       &#39;0,0.0&#39;        -10,000.0</span>
+<span class="s2">    10000.1234   &#39;0.000&#39;        10000.123</span>
+<span class="s2">    10000.1234   &#39;0[.]00000&#39;    10000.12340</span>
+<span class="s2">    -10000       &#39;(0,0.0000)&#39;   (10,000.0000)</span>
+<span class="s2">    -0.23        &#39;.00&#39;          -.23</span>
+<span class="s2">    -0.23        &#39;(.00)&#39;        (.23)</span>
+<span class="s2">    0.23         &#39;0.00000&#39;      0.23000</span>
+<span class="s2">    0.23         &#39;0.0[0000]&#39;    0.23</span>
+<span class="s2">    1230974      &#39;0.0a&#39;         1.2m</span>
+<span class="s2">    1460         &#39;0 a&#39;          1 k</span>
+<span class="s2">    -104000      &#39;0a&#39;           -104k</span>
+<span class="s2">    1            &#39;0o&#39;           1st</span>
+<span class="s2">    52           &#39;0o&#39;           52nd</span>
+<span class="s2">    23           &#39;0o&#39;           23rd</span>
+<span class="s2">    100          &#39;0o&#39;           100th</span>
+<span class="s2">    ============ ============== ===============</span>
+
+<span class="s2">    **CURRENCY**:</span>
+
+<span class="s2">    =========== =============== =============</span>
+<span class="s2">    Number      Format          String</span>
+<span class="s2">    =========== =============== =============</span>
+<span class="s2">    1000.234    &#39;$0,0.00&#39;       $1,000.23</span>
+<span class="s2">    1000.2      &#39;0,0[.]00 $&#39;    1,000.20 $</span>
+<span class="s2">    1001        &#39;$ 0,0[.]00&#39;    $ 1,001</span>
+<span class="s2">    -1000.234   &#39;($0,0)&#39;        ($1,000)</span>
+<span class="s2">    -1000.234   &#39;$0.00&#39;         -$1000.23</span>
+<span class="s2">    1230974     &#39;($ 0.00 a)&#39;    $ 1.23 m</span>
+<span class="s2">    =========== =============== =============</span>
+
+<span class="s2">    **BYTES**:</span>
+
+<span class="s2">    =============== =========== ============</span>
+<span class="s2">    Number          Format      String</span>
+<span class="s2">    =============== =========== ============</span>
+<span class="s2">    100             &#39;0b&#39;        100B</span>
+<span class="s2">    2048            &#39;0 b&#39;       2 KB</span>
+<span class="s2">    7884486213      &#39;0.0b&#39;      7.3GB</span>
+<span class="s2">    3467479682787   &#39;0.000 b&#39;   3.154 TB</span>
+<span class="s2">    =============== =========== ============</span>
+
+<span class="s2">    **PERCENTAGES**:</span>
+
+<span class="s2">    ============= ============= ===========</span>
+<span class="s2">    Number        Format        String</span>
+<span class="s2">    ============= ============= ===========</span>
+<span class="s2">    1             &#39;0%&#39;          100%</span>
+<span class="s2">    0.974878234   &#39;0.000%&#39;      97.488%</span>
+<span class="s2">    -0.43         &#39;0 %&#39;         -43 %</span>
+<span class="s2">    0.43          &#39;(0.000 %)&#39;   43.000 %</span>
+<span class="s2">    ============= ============= ===========</span>
+
+<span class="s2">    **TIME**:</span>
+
+<span class="s2">    ============ ============== ============</span>
+<span class="s2">    Number       Format         String</span>
+<span class="s2">    ============ ============== ============</span>
+<span class="s2">    25           &#39;00:00:00&#39;     0:00:25</span>
+<span class="s2">    238          &#39;00:00:00&#39;     0:03:58</span>
+<span class="s2">    63846        &#39;00:00:00&#39;     17:44:06</span>
+<span class="s2">    ============ ============== ============</span>
+
+<span class="s2">    For the complete specification, see http://numbrojs.com/format.html</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">language</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">NumeralLanguage</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The language to use for formatting language-specific features (e.g. thousands separator).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">rounding</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">RoundingFunction</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Rounding functions (round, floor, ceil) and their synonyms (nearest, rounddown, roundup).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PrintfTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.PrintfTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">PrintfTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Tick formatter based on a printf-style format string. &#39;&#39;&#39;</span>
+
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The number format, as defined as follows: the placeholder in the format</span>
+<span class="s2">    string is marked by % and is followed by one or more of these elements,</span>
+<span class="s2">    in this order:</span>
+
+<span class="s2">    * An optional ``+`` sign</span>
+<span class="s2">        Causes the result to be preceded with a plus or minus sign on numeric</span>
+<span class="s2">        values. By default, only the ``-`` sign is used on negative numbers.</span>
+
+<span class="s2">    * An optional padding specifier</span>
+<span class="s2">        Specifies what (if any) character to use for padding. Possible values</span>
+<span class="s2">        are 0 or any other character preceded by a ``&#39;`` (single quote). The</span>
+<span class="s2">        default is to pad with spaces.</span>
+
+<span class="s2">    * An optional ``-`` sign</span>
+<span class="s2">        Causes sprintf to left-align the result of this placeholder. The default</span>
+<span class="s2">        is to right-align the result.</span>
+
+<span class="s2">    * An optional number</span>
+<span class="s2">        Specifies how many characters the result should have. If the value to be</span>
+<span class="s2">        returned is shorter than this number, the result will be padded.</span>
+
+<span class="s2">    * An optional precision modifier</span>
+<span class="s2">        Consists of a ``.`` (dot) followed by a number, specifies how many digits</span>
+<span class="s2">        should be displayed for floating point numbers. When used on a string, it</span>
+<span class="s2">        causes the result to be truncated.</span>
+
+<span class="s2">    * A type specifier</span>
+<span class="s2">        Can be any of:</span>
+
+<span class="s2">        - ``%`` --- yields a literal ``%`` character</span>
+<span class="s2">        - ``b`` --- yields an integer as a binary number</span>
+<span class="s2">        - ``c`` --- yields an integer as the character with that ASCII value</span>
+<span class="s2">        - ``d`` or ``i`` --- yields an integer as a signed decimal number</span>
+<span class="s2">        - ``e`` --- yields a float using scientific notation</span>
+<span class="s2">        - ``u`` --- yields an integer as an unsigned decimal number</span>
+<span class="s2">        - ``f`` --- yields a float as is</span>
+<span class="s2">        - ``o`` --- yields an integer as an octal number</span>
+<span class="s2">        - ``s`` --- yields a string as is</span>
+<span class="s2">        - ``x`` --- yields an integer as a hexadecimal number (lower-case)</span>
+<span class="s2">        - ``X`` --- yields an integer as a hexadecimal number (upper-case)</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LogTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.LogTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">LogTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Display tick values from continuous ranges as powers</span>
+<span class="sd">    of some base.</span>
+
+<span class="sd">    Most often useful in conjunction with a ``LogTicker``.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ticker</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Ticker</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The corresponding ``LogTicker``, used to determine the correct</span>
+<span class="s2">    base to use. If unset, the formatter will use base 10 as a default.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CategoricalTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.CategoricalTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">CategoricalTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Display tick values from categorical ranges as string</span>
+<span class="sd">    values.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="FuncTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.FuncTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">FuncTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Display tick values that are formatted by a user-defined function.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        The explicit purpose of this Bokeh Model is to embed *raw JavaScript</span>
+<span class="sd">        code* for a browser to execute. If any part of the code is derived</span>
+<span class="sd">        from untrusted user inputs, then you must take appropriate care to</span>
+<span class="sd">        sanitize the user input prior to passing to Bokeh.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="FuncTickFormatter.from_py_func"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.FuncTickFormatter.from_py_func">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_py_func</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a FuncTickFormatter instance from a Python function. The</span>
+<span class="sd">        function is translated to JavaScript using PScript. The variable</span>
+<span class="sd">        ``tick`` will contain the unformatted tick value and can be expected to</span>
+<span class="sd">        be present in the function namespace at render time.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            code = &quot;&quot;&quot;</span>
+<span class="sd">            def ticker():</span>
+<span class="sd">                return &quot;{:.0f} + {:.2f}&quot;.format(tick, tick % 1)</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+
+<span class="sd">        The python function must have no positional arguments. It&#39;s</span>
+<span class="sd">        possible to pass Bokeh models (e.g. a ColumnDataSource) as keyword</span>
+<span class="sd">        arguments to the function.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">FunctionType</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;CustomJS.from_py_func needs function object.&#39;</span><span class="p">)</span>
+        <span class="n">pscript</span> <span class="o">=</span> <span class="n">import_required</span><span class="p">(</span><span class="s1">&#39;pscript&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;To use Python functions for CustomJS, you need PScript &#39;</span> <span class="o">+</span>
+                                  <span class="s1">&#39;(&quot;conda install -c conda-forge pscript&quot; or &quot;pip install pscript&quot;)&#39;</span><span class="p">)</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+        <span class="n">all_names</span><span class="p">,</span> <span class="n">default_values</span> <span class="o">=</span> <span class="n">get_param_info</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_names</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">default_values</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Function `func` may only contain keyword arguments.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">default_values</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Model</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">default_values</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Default value must be a Bokeh Model.&quot;</span><span class="p">)</span>
+
+        <span class="n">func_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">all_names</span><span class="p">,</span> <span class="n">default_values</span><span class="p">))</span>
+
+        <span class="c1"># Wrap the code attr in a function named `formatter` and call it</span>
+        <span class="c1"># with arguments that match the `args` attr</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">pscript</span><span class="o">.</span><span class="n">py2js</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;formatter&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;return formatter(</span><span class="si">%s</span><span class="s1">);</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">all_names</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">func_kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="FuncTickFormatter.from_coffeescript"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.FuncTickFormatter.from_coffeescript">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_coffeescript</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&#39;&#39;&#39; Create a FuncTickFormatter instance from a CoffeeScript snippet.</span>
+<span class="sd">        The function body is translated to JavaScript using node. The variable</span>
+<span class="sd">        ``tick`` will contain the unformatted tick value and can be expected to</span>
+<span class="sd">        be present in the code snippet namespace at render time.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        .. code-block:: coffeescript</span>
+
+<span class="sd">            code = &quot;&quot;&quot;</span>
+<span class="sd">            return Math.floor(tick) + &quot; + &quot; + (tick % 1).toFixed(2)</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">compiled</span> <span class="o">=</span> <span class="n">nodejs_compile</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;coffeescript&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s2">&quot;???&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;error&quot;</span> <span class="ow">in</span> <span class="n">compiled</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">CompilationError</span><span class="p">(</span><span class="n">compiled</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">compiled</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span></div>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">AnyRef</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A mapping of names to Python objects. In particular those can be bokeh&#39;s models.</span>
+<span class="s2">    These objects are made available to the formatter&#39;s code snippet as the values of</span>
+<span class="s2">    named parameters to the callback.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">code</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A snippet of JavaScript code that reformats a single tick to the desired</span>
+<span class="s2">    format. The variable ``tick`` will contain the unformatted tick value and</span>
+<span class="s2">    can be expected to be present in the code snippet namespace at render time.</span>
+
+<span class="s2">    Additionally available variables are:</span>
+
+<span class="s2">      * ``ticks``, an array of all axis ticks as positioned by the ticker,</span>
+<span class="s2">      * ``index``, the position of ``tick`` within ``ticks``, and</span>
+<span class="s2">      * the keys of ``args`` mapping, if any.</span>
+
+<span class="s2">    Finding yourself needing to cache an expensive ``ticks``-dependent</span>
+<span class="s2">    computation, you can store it on the ``this`` variable.</span>
+
+<span class="s2">    Example:</span>
+
+<span class="s2">        .. code-block:: javascript</span>
+
+<span class="s2">            code = &#39;&#39;&#39;</span>
+<span class="s2">            this.precision = this.precision || (ticks.length &gt; 5 ? 1 : 2);</span>
+<span class="s2">            return Math.floor(tick) + &quot; + &quot; + (tick % 1).toFixed(this.precision);</span>
+<span class="s2">            &#39;&#39;&#39;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">use_strict</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Enables or disables automatic insertion of ``&quot;use strict&quot;;`` into ``code``.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="n">field</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Formats for displaying datetime values in the </span><span class="si">%s</span><span class="s2"> range.</span>
+
+<span class="s2">    See the :class:`~bokeh.models.formatters.DatetimeTickFormatter` help for a list of all supported formats.</span>
+<span class="s2">    &quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">field</span>
+
+<div class="viewcode-block" id="DatetimeTickFormatter"><a class="viewcode-back" href="../../../docs/reference/models/formatters.html#bokeh.models.formatters.DatetimeTickFormatter">[docs]</a><span class="k">class</span> <span class="nc">DatetimeTickFormatter</span><span class="p">(</span><span class="n">TickFormatter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A ``TickFormatter`` for displaying datetime values nicely across a</span>
+<span class="sd">    range of scales.</span>
+
+<span class="sd">    ``DatetimeTickFormatter`` has the following properties (listed together</span>
+<span class="sd">    with their default values) that can be used to control the formatting</span>
+<span class="sd">    of axis ticks at different scales scales:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        {defaults}</span>
+
+<span class="sd">    Each scale property can be set to format or list of formats to use for</span>
+<span class="sd">    formatting datetime tick values that fall in in that &quot;time scale&quot;.</span>
+<span class="sd">    By default, only the first format string passed for each time scale</span>
+<span class="sd">    will be used. By default, all leading zeros are stripped away from</span>
+<span class="sd">    the formatted labels.</span>
+
+<span class="sd">    This list of supported `strftime`_ formats is reproduced below.</span>
+
+<span class="sd">    %a</span>
+<span class="sd">        The abbreviated name of the day of the week according to the</span>
+<span class="sd">        current locale.</span>
+
+<span class="sd">    %A</span>
+<span class="sd">        The full name of the day of the week according to the current</span>
+<span class="sd">        locale.</span>
+
+<span class="sd">    %b</span>
+<span class="sd">        The abbreviated month name according to the current locale.</span>
+
+<span class="sd">    %B</span>
+<span class="sd">        The full month name according to the current locale.</span>
+
+<span class="sd">    %c</span>
+<span class="sd">        The preferred date and time representation for the current</span>
+<span class="sd">        locale.</span>
+
+<span class="sd">    %C</span>
+<span class="sd">        The century number (year/100) as a 2-digit integer.</span>
+
+<span class="sd">    %d</span>
+<span class="sd">        The day of the month as a decimal number (range 01 to 31).</span>
+
+<span class="sd">    %D</span>
+<span class="sd">        Equivalent to %m/%d/%y.  (Americans should note that in many</span>
+<span class="sd">        other countries %d/%m/%y is rather common. This means that in</span>
+<span class="sd">        international context this format is ambiguous and should not</span>
+<span class="sd">        be used.)</span>
+
+<span class="sd">    %e</span>
+<span class="sd">        Like %d, the day of the month as a decimal number, but a</span>
+<span class="sd">        leading zero is replaced by a space.</span>
+
+<span class="sd">    %f</span>
+<span class="sd">        Microsecond as a decimal number, zero-padded on the left (range</span>
+<span class="sd">        000000-999999). This is an extension to the set of directives</span>
+<span class="sd">        available to `timezone`_.</span>
+
+<span class="sd">    %F</span>
+<span class="sd">        Equivalent to %Y-%m-%d (the ISO 8601 date format).</span>
+
+<span class="sd">    %G</span>
+<span class="sd">        The ISO 8601 week-based year with century as a decimal number.</span>
+<span class="sd">        The 4-digit year corresponding to the ISO week number (see %V).</span>
+<span class="sd">        This has the same format and value as %Y, except that if the</span>
+<span class="sd">        ISO week number belongs to the previous or next year, that year</span>
+<span class="sd">        is used instead.</span>
+
+<span class="sd">    %g</span>
+<span class="sd">        Like %G, but without century, that is, with a 2-digit year (00-99).</span>
+
+<span class="sd">    %h</span>
+<span class="sd">        Equivalent to %b.</span>
+
+<span class="sd">    %H</span>
+<span class="sd">        The hour as a decimal number using a 24-hour clock (range 00</span>
+<span class="sd">        to 23).</span>
+
+<span class="sd">    %I</span>
+<span class="sd">        The hour as a decimal number using a 12-hour clock (range 01</span>
+<span class="sd">        to 12).</span>
+
+<span class="sd">    %j</span>
+<span class="sd">        The day of the year as a decimal number (range 001 to 366).</span>
+
+<span class="sd">    %k</span>
+<span class="sd">        The hour (24-hour clock) as a decimal number (range 0 to 23).</span>
+<span class="sd">        Single digits are preceded by a blank.  (See also %H.)</span>
+
+<span class="sd">    %l</span>
+<span class="sd">        The hour (12-hour clock) as a decimal number (range 1 to 12).</span>
+<span class="sd">        Single digits are preceded by a blank.  (See also %I.)  (TZ)</span>
+
+<span class="sd">    %m</span>
+<span class="sd">        The month as a decimal number (range 01 to 12).</span>
+
+<span class="sd">    %M</span>
+<span class="sd">        The minute as a decimal number (range 00 to 59).</span>
+
+<span class="sd">    %n</span>
+<span class="sd">        A newline character. Bokeh text does not currently support</span>
+<span class="sd">        newline characters.</span>
+
+<span class="sd">    %N</span>
+<span class="sd">        Nanosecond as a decimal number, zero-padded on the left (range</span>
+<span class="sd">        000000000-999999999). Supports a padding width specifier, i.e.</span>
+<span class="sd">        %3N displays 3 leftmost digits. However, this is only accurate</span>
+<span class="sd">        to the millisecond level of precision due to limitations of</span>
+<span class="sd">        `timezone`_.</span>
+
+<span class="sd">    %p</span>
+<span class="sd">        Either &quot;AM&quot; or &quot;PM&quot; according to the given time value, or the</span>
+<span class="sd">        corresponding strings for the current locale.  Noon is treated</span>
+<span class="sd">        as &quot;PM&quot; and midnight as &quot;AM&quot;.</span>
+
+<span class="sd">    %P</span>
+<span class="sd">        Like %p but in lowercase: &quot;am&quot; or &quot;pm&quot; or a corresponding</span>
+<span class="sd">        string for the current locale.</span>
+
+<span class="sd">    %r</span>
+<span class="sd">        The time in a.m. or p.m. notation.  In the POSIX locale this</span>
+<span class="sd">        is equivalent to %I:%M:%S %p.</span>
+
+<span class="sd">    %R</span>
+<span class="sd">        The time in 24-hour notation (%H:%M). For a version including</span>
+<span class="sd">        the seconds, see %T below.</span>
+
+<span class="sd">    %s</span>
+<span class="sd">        The number of seconds since the Epoch, 1970-01-01 00:00:00</span>
+<span class="sd">        +0000 (UTC).</span>
+
+<span class="sd">    %S</span>
+<span class="sd">        The second as a decimal number (range 00 to 60).  (The range</span>
+<span class="sd">        is up to 60 to allow for occasional leap seconds.)</span>
+
+<span class="sd">    %t</span>
+<span class="sd">        A tab character. Bokeh text does not currently support tab</span>
+<span class="sd">        characters.</span>
+
+<span class="sd">    %T</span>
+<span class="sd">        The time in 24-hour notation (%H:%M:%S).</span>
+
+<span class="sd">    %u</span>
+<span class="sd">        The day of the week as a decimal, range 1 to 7, Monday being 1.</span>
+<span class="sd">        See also %w.</span>
+
+<span class="sd">    %U</span>
+<span class="sd">        The week number of the current year as a decimal number, range</span>
+<span class="sd">        00 to 53, starting with the first Sunday as the first day of</span>
+<span class="sd">        week 01.  See also %V and %W.</span>
+
+<span class="sd">    %V</span>
+<span class="sd">        The ISO 8601 week number (see NOTES) of the current year as a</span>
+<span class="sd">        decimal number, range 01 to 53, where week 1 is the first week</span>
+<span class="sd">        that has at least 4 days in the new year.  See also %U and %W.</span>
+
+<span class="sd">    %w</span>
+<span class="sd">        The day of the week as a decimal, range 0 to 6, Sunday being 0.</span>
+<span class="sd">        See also %u.</span>
+
+<span class="sd">    %W</span>
+<span class="sd">        The week number of the current year as a decimal number, range</span>
+<span class="sd">        00 to 53, starting with the first Monday as the first day of</span>
+<span class="sd">        week 01.</span>
+
+<span class="sd">    %x</span>
+<span class="sd">        The preferred date representation for the current locale</span>
+<span class="sd">        without the time.</span>
+
+<span class="sd">    %X</span>
+<span class="sd">        The preferred time representation for the current locale</span>
+<span class="sd">        without the date.</span>
+
+<span class="sd">    %y</span>
+<span class="sd">        The year as a decimal number without a century (range 00 to 99).</span>
+
+<span class="sd">    %Y</span>
+<span class="sd">        The year as a decimal number including the century.</span>
+
+<span class="sd">    %z</span>
+<span class="sd">        The +hhmm or -hhmm numeric timezone (that is, the hour and</span>
+<span class="sd">        minute offset from UTC).</span>
+
+<span class="sd">    %Z</span>
+<span class="sd">        The timezone name or abbreviation.</span>
+
+<span class="sd">    %%</span>
+<span class="sd">        A literal &#39;%&#39; character.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        The client library BokehJS uses the `timezone`_ library to</span>
+<span class="sd">        format datetimes. The inclusion of the list below is based on the</span>
+<span class="sd">        claim that `timezone`_ makes to support &quot;the full compliment</span>
+<span class="sd">        of GNU date format specifiers.&quot; However, this claim has not</span>
+<span class="sd">        been tested exhaustively against this list. If you find formats</span>
+<span class="sd">        that do not function as expected, please submit a `github issue`_,</span>
+<span class="sd">        so that the documentation can be updated appropriately.</span>
+
+<span class="sd">    .. _strftime: http://man7.org/linux/man-pages/man3/strftime.3.html</span>
+<span class="sd">    .. _timezone: http://bigeasy.github.io/timezone/</span>
+<span class="sd">    .. _github issue: https://github.com/bokeh/bokeh/issues</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">microseconds</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``microseconds``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%f</span><span class="s1">us&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">milliseconds</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``milliseconds``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%3Nms&#39;</span><span class="p">,</span> <span class="s1">&#39;%S.%3Ns&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">seconds</span>      <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``seconds``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%Ss&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">minsec</span>       <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``minsec`` (for combined minutes and seconds)&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:%M:%S&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">minutes</span>      <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``minutes``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:%M&#39;</span><span class="p">,</span> <span class="s1">&#39;%Mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">hourmin</span>      <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``hourmin`` (for combined hours and minutes)&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%H:%M&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">hours</span>        <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``hours``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%Hh&#39;</span><span class="p">,</span> <span class="s1">&#39;%H:%M&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">days</span>         <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``days``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;%a</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">months</span>       <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``months``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%m/%Y&#39;</span><span class="p">,</span> <span class="s1">&#39;%b %Y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span>
+
+    <span class="n">years</span>        <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="n">_DATETIME_TICK_FORMATTER_HELP</span><span class="p">(</span><span class="s2">&quot;``years``&quot;</span><span class="p">),</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;%Y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">accepts</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">fmt</span><span class="p">:</span> <span class="p">[</span><span class="n">fmt</span><span class="p">])</span></div>
+
+<span class="c1"># This is to automate documentation of DatetimeTickFormatter formats and their defaults</span>
+<span class="n">_df</span> <span class="o">=</span> <span class="n">DatetimeTickFormatter</span><span class="p">()</span>
+<span class="n">_df_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;microseconds&#39;</span><span class="p">,</span> <span class="s1">&#39;milliseconds&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">,</span> <span class="s1">&#39;minsec&#39;</span><span class="p">,</span> <span class="s1">&#39;minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;hourmin&#39;</span><span class="p">,</span> <span class="s1">&#39;hours&#39;</span><span class="p">,</span> <span class="s1">&#39;days&#39;</span><span class="p">,</span> <span class="s1">&#39;months&#39;</span><span class="p">,</span> <span class="s1">&#39;years&#39;</span><span class="p">]</span>
+<span class="n">_df_defaults</span> <span class="o">=</span> <span class="n">_df</span><span class="o">.</span><span class="n">properties_with_values</span><span class="p">()</span>
+<span class="n">_df_defaults_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">        &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">_df_defaults</span><span class="p">[</span><span class="n">name</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">_df_fields</span><span class="p">)</span>
+
+<span class="n">DatetimeTickFormatter</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">format_docstring</span><span class="p">(</span><span class="n">DatetimeTickFormatter</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">defaults</span><span class="o">=</span><span class="n">_df_defaults_string</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">_df</span><span class="p">,</span> <span class="n">_df_fields</span><span class="p">,</span> <span class="n">_df_defaults</span><span class="p">,</span> <span class="n">_df_defaults_string</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../../docs/vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../../docs/team.html">Team</a></li>
+      
+        <li><a href="../../../docs/citation.html">Citation</a></li>
+      
+        <li><a href="../../../docs/contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../../docs/contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

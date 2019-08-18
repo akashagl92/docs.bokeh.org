@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Adding Widgets &mdash; Bokeh 0.12.7 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.7";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/user_guide/interaction/widgets.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.7</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../releases/0.12.7.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../interaction.html">Adding Interactions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linking.html">Linking Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="legends.html">Interactive Legends</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Adding Widgets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#button">Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checkbox-button-group">Checkbox Button Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checkbox-group">Checkbox Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-table">Data Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropdown-menu">Dropdown Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiselect">MultiSelect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radio-button-group">Radio Button Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radio-group">Radio Group</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#select">Select</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slider">Slider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rangeslider">RangeSlider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tab-panes">Tab Panes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#textinput">TextInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toggle-button">Toggle Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#div">Div</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paragraph">Paragraph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pretext">PreText</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">JavaScript Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.7.html">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="adding-widgets">
+<span id="userguide-interaction-widgets"></span><h1>Adding Widgets<a class="headerlink" href="#adding-widgets" title="Permalink to this headline">¶</a></h1>
+<p>Widgets are interactive controls that can be added to Bokeh applications to
+provide a front end user interface to a visualization. They can drive new computations,
+update plots, and connect to other programmatic functionality. When used with the
+Bokeh server, widgets can run arbitrary Python code, enabling complex applications.
+Widgets can also be used without the Bokeh server in standalone HTML documents through the
+browser&#8217;s Javascript runtime.</p>
+<p>To use widgets, you must add them to your document and define their functionality.
+Widgets can be added directly to the document root or nested inside a layout. There
+are two ways to program a widget&#8217;s functionality:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Use the <code class="docutils literal"><span class="pre">CustomJS</span></code> callback (see <a class="reference internal" href="callbacks.html#userguide-interaction-jscallbacks"><span class="std std-ref">JavaScript Callbacks</span></a>). This will work in standalone HTML documents.</li>
+<li>Use <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> to start the Bokeh server and set up event handlers with <code class="docutils literal"><span class="pre">.on_change</span></code> (or for some widgets, <code class="docutils literal"><span class="pre">.on_click</span></code>).</li>
+</ul>
+</div></blockquote>
+<p>Event handlers are user-defined Python functions that can be attached to widgets. These functions are
+then called when certain attributes on the widget are changed. The necessary function
+signature of event handlers is determined by how they are attached to widgets (whether they
+are passed through <code class="docutils literal"><span class="pre">.on_change</span></code> or <code class="docutils literal"><span class="pre">.on_click</span></code>).</p>
+<p>All widgets have an <code class="docutils literal"><span class="pre">.on_change</span></code> method that takes an attribute name and one or more event handlers as
+parameters. These handlers are expected to have the function signature, <code class="docutils literal"><span class="pre">(attr,</span> <span class="pre">old,</span> <span class="pre">new)</span></code>,
+where <code class="docutils literal"><span class="pre">attr</span></code> refers to the changed attribute&#8217;s name, and <code class="docutils literal"><span class="pre">old</span></code> and <code class="docutils literal"><span class="pre">new</span></code> refer to the previous and
+updated values of the attribute. <code class="docutils literal"><span class="pre">.on_change</span></code> must be used when you need the previous value of an attribute.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_text_input_handler</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Previous label: &quot;</span> <span class="o">+</span> <span class="n">old</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Updated label: &quot;</span> <span class="o">+</span> <span class="n">new</span><span class="p">)</span>
+
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Label:&quot;</span><span class="p">)</span>
+<span class="n">text_input</span><span class="o">.</span><span class="n">on_change</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">my_text_input_handler</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Additionally, some widgets, including the button, dropdown, and checkbox, have an <code class="docutils literal"><span class="pre">.on_click</span></code> method that
+takes an event handler as its only parameter. For the Button, this handler is called without parameters.
+For the other widgets with <code class="docutils literal"><span class="pre">.on_click</span></code>, the handler is passed the new attribute value.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_radio_handler</span><span class="p">(</span><span class="n">new</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s1">&#39;Radio button option &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">new</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; selected.&#39;</span>
+
+<span class="n">radio_group</span> <span class="o">=</span> <span class="n">RadioGroup</span><span class="p">(</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span> <span class="n">active</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">radio_group</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">my_radio_handler</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bokeh provides a simple default set of widgets, largely based off the Bootstrap
+JavaScript library. In the future, it will be possible for users to wrap and use
+other widget libraries, or their own custom widgets.</p>
+<p>For more information about the attributes to watch using <code class="docutils literal"><span class="pre">.on_change</span></code> or whether <code class="docutils literal"><span class="pre">.on_click</span></code> is
+available, go to the <a class="reference internal" href="../../reference.html#refguide"><span class="std std-ref">Reference Guide</span></a>. Widgets can be found under <a class="reference internal" href="../../reference/models.html#bokeh-models"><span class="std std-ref">bokeh.models</span></a>.</p>
+<div class="section" id="button">
+<h2>Button<a class="headerlink" href="#button" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh provides a simple Button:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-aace83514973dfdbc5d2e89554954dae.js"
+    id="21a4a069-dec0-41d7-96ce-be327201df7e"
+    data-bokeh-model-id="2170a25a-fcac-4ed8-b32a-36d52b64dae8"
+    data-bokeh-doc-id="98d766eb-975e-42e3-b7c3-6967bd1452fe"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Button</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;button.html&quot;</span><span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span> <span class="n">button_type</span><span class="o">=</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">button</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkbox-button-group">
+<h2>Checkbox Button Group<a class="headerlink" href="#checkbox-button-group" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh also provides a checkbox button group, that can have multiple options
+selected simultaneously:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-662f4043f7d29575af9de6b5eb27ec9a.js"
+    id="8cd6b42a-655d-44c6-83f4-07ab8978d2c5"
+    data-bokeh-model-id="ac41a034-4a3a-476a-b0df-0aea2fac3d4f"
+    data-bokeh-doc-id="fbadbff5-1d40-4cff-9a7b-51aa0016fc65"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">CheckboxButtonGroup</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;checkbox_button_group.html&quot;</span><span class="p">)</span>
+
+<span class="n">checkbox_button_group</span> <span class="o">=</span> <span class="n">CheckboxButtonGroup</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span> <span class="n">active</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">checkbox_button_group</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checkbox-group">
+<h2>Checkbox Group<a class="headerlink" href="#checkbox-group" title="Permalink to this headline">¶</a></h2>
+<p>A standard checkbox:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-63b0c57505b37548063953f4272bd009.js"
+    id="5f13c8c2-1650-44b2-a239-d6ed0482f4bc"
+    data-bokeh-model-id="769c1ffd-e51e-47a7-9bef-e965fe69d093"
+    data-bokeh-doc-id="9b5d48ac-0caa-4da7-96ba-f2d4dd7fbc31"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">CheckboxGroup</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;checkbox_group.html&quot;</span><span class="p">)</span>
+
+<span class="n">checkbox_group</span> <span class="o">=</span> <span class="n">CheckboxGroup</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span> <span class="n">active</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">checkbox_group</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="data-table">
+<h2>Data Table<a class="headerlink" href="#data-table" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh provides a sophisticated data table widget based on SlickGrid. Note
+that since the table is configured with a data source object, any plots that
+share this data source will automatically have selections linked between the
+plot and the table (even in static HTML documents).</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-d170b66a6089514c07c5d8d5e142f24c.js"
+    id="41869b92-dfc8-4de8-ad06-3738c3e8beb0"
+    data-bokeh-model-id="7d3afaa1-108e-42e6-875d-634596337c92"
+    data-bokeh-doc-id="4b7d189a-a423-4cf2-a921-3213d9babcf8"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">DataTable</span><span class="p">,</span> <span class="n">DateFormatter</span><span class="p">,</span> <span class="n">TableColumn</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;data_table.html&quot;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">dates</span><span class="o">=</span><span class="p">[</span><span class="n">date</span><span class="p">(</span><span class="mi">2014</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+        <span class="n">downloads</span><span class="o">=</span><span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)],</span>
+    <span class="p">)</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">TableColumn</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s2">&quot;dates&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span> <span class="n">formatter</span><span class="o">=</span><span class="n">DateFormatter</span><span class="p">()),</span>
+        <span class="n">TableColumn</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s2">&quot;downloads&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Downloads&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="n">data_table</span> <span class="o">=</span> <span class="n">DataTable</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">280</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">data_table</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dropdown-menu">
+<h2>Dropdown Menu<a class="headerlink" href="#dropdown-menu" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to include Dropdown menus:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-d4b2fd4c0d89232ee8b53ee541e76ee9.js"
+    id="8459a92c-1be5-4c33-b431-4bf845fa2f67"
+    data-bokeh-model-id="a6099df9-b5de-429b-9404-362cc966b102"
+    data-bokeh-doc-id="ff0e6ea7-7689-4a42-8c17-f851007c3f84"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Dropdown</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;dropdown.html&quot;</span><span class="p">)</span>
+
+<span class="n">menu</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;Item 1&quot;</span><span class="p">,</span> <span class="s2">&quot;item_1&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Item 2&quot;</span><span class="p">,</span> <span class="s2">&quot;item_2&quot;</span><span class="p">),</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Item 3&quot;</span><span class="p">,</span> <span class="s2">&quot;item_3&quot;</span><span class="p">)]</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dropdown button&quot;</span><span class="p">,</span> <span class="n">button_type</span><span class="o">=</span><span class="s2">&quot;warning&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">menu</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">dropdown</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiselect">
+<h2>MultiSelect<a class="headerlink" href="#multiselect" title="Permalink to this headline">¶</a></h2>
+<p>A multi-select widget to present multiple available options:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-fa138cfbd93d5d9b3cb8698afabc04cb.js"
+    id="fbe163ca-ee64-441d-bb38-56ba92f31e25"
+    data-bokeh-model-id="3bdb6647-9dff-43a5-9e5c-f6713e7b5145"
+    data-bokeh-doc-id="00f1ac4d-0618-4b98-9ce4-a02602f9ac00"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">MultiSelect</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;multi_select.html&quot;</span><span class="p">)</span>
+
+<span class="n">multi_select</span> <span class="o">=</span> <span class="n">MultiSelect</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Option:&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;quux&quot;</span><span class="p">],</span>
+                           <span class="n">options</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;Foo&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;BAR&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;bAz&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;quux&quot;</span><span class="p">,</span> <span class="s2">&quot;quux&quot;</span><span class="p">)])</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">multi_select</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="radio-button-group">
+<h2>Radio Button Group<a class="headerlink" href="#radio-button-group" title="Permalink to this headline">¶</a></h2>
+<p>A radio button group can have at most one selected button at at time:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-9e022e6e2a766dc55c2f8df256031d17.js"
+    id="840894ea-b912-4caa-b706-bb019f1bc6c5"
+    data-bokeh-model-id="430bb71c-e0d2-4027-90ff-a4015e071a25"
+    data-bokeh-doc-id="db350d3c-1853-4646-a570-dbe6d29d8152"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">RadioButtonGroup</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;radio_button_group.html&quot;</span><span class="p">)</span>
+
+<span class="n">radio_button_group</span> <span class="o">=</span> <span class="n">RadioButtonGroup</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span> <span class="n">active</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">radio_button_group</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="radio-group">
+<h2>Radio Group<a class="headerlink" href="#radio-group" title="Permalink to this headline">¶</a></h2>
+<p>A radio group uses standard radio button appearance:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-692ced7f37579a811ff02788cbbb69e4.js"
+    id="7cfd86c3-fff1-4ce4-81fb-0d49d6cd66b2"
+    data-bokeh-model-id="da658b24-2557-4b83-ac96-d03eae54072a"
+    data-bokeh-doc-id="323611d6-2319-4b17-9a6d-75a387ea2329"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">RadioGroup</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;radio_group.html&quot;</span><span class="p">)</span>
+
+<span class="n">radio_group</span> <span class="o">=</span> <span class="n">RadioGroup</span><span class="p">(</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Option 3&quot;</span><span class="p">],</span> <span class="n">active</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">radio_group</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="select">
+<h2>Select<a class="headerlink" href="#select" title="Permalink to this headline">¶</a></h2>
+<p>A single selection widget:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-e0ab13c154033c604ad5a063e2f1cb1b.js"
+    id="37b15ed8-03c4-427c-976c-a5ba7f4985bd"
+    data-bokeh-model-id="4d348eef-fd6c-4017-a77f-fbe58261a0a6"
+    data-bokeh-doc-id="a299247d-3c00-4b9e-b2d2-736804dec973"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Select</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;select.html&quot;</span><span class="p">)</span>
+
+<span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Option:&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;quux&quot;</span><span class="p">])</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">select</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="slider">
+<h2>Slider<a class="headerlink" href="#slider" title="Permalink to this headline">¶</a></h2>
+<p>The Bokeh slider can be configured with <code class="docutils literal"><span class="pre">start</span></code> and <code class="docutils literal"><span class="pre">end</span></code> values, a <code class="docutils literal"><span class="pre">step</span></code> size,
+an initial <code class="docutils literal"><span class="pre">value</span></code> and a <code class="docutils literal"><span class="pre">title</span></code>:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-652f0aea5186bb99db9dd1a5cf0417e5.js"
+    id="218b55e7-1696-456a-bbd8-f331f582c662"
+    data-bokeh-model-id="003be97d-4f1d-4306-866f-5cc5eb0cf215"
+    data-bokeh-doc-id="94356b0c-76c3-41b7-a36b-fc97b516371d"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Slider</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;slider.html&quot;</span><span class="p">)</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stuff&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">slider</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rangeslider">
+<h2>RangeSlider<a class="headerlink" href="#rangeslider" title="Permalink to this headline">¶</a></h2>
+<p>The Bokeh range-slider can be configured with <code class="docutils literal"><span class="pre">start</span></code> and <code class="docutils literal"><span class="pre">end</span></code> values, a <code class="docutils literal"><span class="pre">step</span></code> size,
+an initial <code class="docutils literal"><span class="pre">value</span></code> and a <code class="docutils literal"><span class="pre">title</span></code>:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-docs-user_guide-interaction-widgets-external-0.js"
+    id="1f792d30-76cc-4f6e-b9ce-ecc24f4f4dff"
+    data-bokeh-model-id="05e7474a-2794-4699-a331-f28d3f0f37ac"
+    data-bokeh-doc-id="8174ac48-306e-40df-9eb7-deab0c996bd7"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">RangeSlider</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;range_slider.html&quot;</span><span class="p">)</span>
+
+<span class="n">range_slider</span> <span class="o">=</span> <span class="n">RangeSlider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">step</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stuff&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">range_slider</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tab-panes">
+<h2>Tab Panes<a class="headerlink" href="#tab-panes" title="Permalink to this headline">¶</a></h2>
+<p>Tab panes allow multiple plots or layouts to be show in selectable tabs:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-3d21b7e90cd793f5b350711c53f09348.js"
+    id="2293a578-3175-4b92-98bf-6ae6c81c0a06"
+    data-bokeh-model-id="ba542556-586c-4cb1-9252-c718b836915f"
+    data-bokeh-doc-id="ae693cbe-fa57-4156-86e3-8ba4f2034ab4"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Panel</span><span class="p">,</span> <span class="n">Tabs</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;slider.html&quot;</span><span class="p">)</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">tab1</span> <span class="o">=</span> <span class="n">Panel</span><span class="p">(</span><span class="n">child</span><span class="o">=</span><span class="n">p1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">tab2</span> <span class="o">=</span> <span class="n">Panel</span><span class="p">(</span><span class="n">child</span><span class="o">=</span><span class="n">p2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+
+<span class="n">tabs</span> <span class="o">=</span> <span class="n">Tabs</span><span class="p">(</span><span class="n">tabs</span><span class="o">=</span><span class="p">[</span> <span class="n">tab1</span><span class="p">,</span> <span class="n">tab2</span> <span class="p">])</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">tabs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="textinput">
+<h2>TextInput<a class="headerlink" href="#textinput" title="Permalink to this headline">¶</a></h2>
+<p>A widget for collecting a line of text from a user:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-dc43aea097d45390dc6fc365a5c4cfa6.js"
+    id="ac735e17-ce31-4545-97a5-e690201c8a35"
+    data-bokeh-model-id="d8bdac4e-4db9-4392-a537-45910f65dfb3"
+    data-bokeh-doc-id="474a1960-f3f2-4560-a5f1-475dc5fe9fb4"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">TextInput</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;text_input.html&quot;</span><span class="p">)</span>
+
+<span class="n">text_input</span> <span class="o">=</span> <span class="n">TextInput</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Label:&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">text_input</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="toggle-button">
+<h2>Toggle Button<a class="headerlink" href="#toggle-button" title="Permalink to this headline">¶</a></h2>
+<p>The toggle button holds an on/off state:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-88f36f57a931a9eb1c2955a759a96c6b.js"
+    id="c8d812ba-4789-46f3-9e40-c6f72def8937"
+    data-bokeh-model-id="7738362f-b2a7-41ea-9d75-37fd2144dc20"
+    data-bokeh-doc-id="63f905aa-7b77-48df-8cd7-690cbac1a274"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Toggle</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toggle.html&quot;</span><span class="p">)</span>
+
+<span class="n">toggle</span> <span class="o">=</span> <span class="n">Toggle</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span> <span class="n">button_type</span><span class="o">=</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">toggle</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="div">
+<h2>Div<a class="headerlink" href="#div" title="Permalink to this headline">¶</a></h2>
+<p>A widget for displaying text that can support HTML in a &lt;div&gt; tag:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-18896f51fdb5f92a43bd1a1ed20fefcc.js"
+    id="d85b9519-f2fc-448f-aba1-d9bd26ea3c1e"
+    data-bokeh-model-id="868a1b46-57f4-4df4-81ee-80cc1c2efd7c"
+    data-bokeh-doc-id="0849e2bf-a10e-4720-8a9a-831b58cc1065"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Div</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;div.html&quot;</span><span class="p">)</span>
+
+<span class="n">div</span> <span class="o">=</span> <span class="n">Div</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Your &lt;a href=&quot;https://en.wikipedia.org/wiki/HTML&quot;&gt;HTML&lt;/a&gt;-supported text is initialized with the &lt;b&gt;text&lt;/b&gt; argument.  The</span>
+<span class="s2">remaining div arguments are &lt;b&gt;width&lt;/b&gt; and &lt;b&gt;height&lt;/b&gt;. For this example, those values</span>
+<span class="s2">are &lt;i&gt;200&lt;/i&gt; and &lt;i&gt;100&lt;/i&gt; respectively.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">div</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="paragraph">
+<h2>Paragraph<a class="headerlink" href="#paragraph" title="Permalink to this headline">¶</a></h2>
+<p>A widget for displaying a block of text in an HTML &lt;p&gt; tag:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-af843aea55e4c2ec5583e2299b84dc7d.js"
+    id="364aaa26-a47e-4153-8081-0c58f271d1b0"
+    data-bokeh-model-id="95021a88-2ccc-415a-9ac5-f9bd13514190"
+    data-bokeh-doc-id="49e8f011-d359-4cff-ac71-67eb9dd7d68e"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">Paragraph</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;div.html&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Paragraph</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Your text is initialized with the &#39;text&#39; argument.  The</span>
+<span class="s2">remaining Paragraph arguments are &#39;width&#39; and &#39;height&#39;. For this example, those values</span>
+<span class="s2">are 200 and 100 respectively.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pretext">
+<h2>PreText<a class="headerlink" href="#pretext" title="Permalink to this headline">¶</a></h2>
+<p>A widget for displaying a block of pre-formatted text in an HTML &lt;pre&gt; tag:</p>
+
+<script
+    src="/en/0.12.7/scripts/bokeh-plot-71e5fd64d75754b651f760c7eb3dae53.js"
+    id="1b30ca04-ec26-4b8e-b597-12386cb117c8"
+    data-bokeh-model-id="262127f3-d4a5-44d3-a91d-c14053b233cb"
+    data-bokeh-doc-id="2f7d9d23-e2f5-4cf1-bb99-3752baf32bfc"
+></script><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">widgetbox</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.widgets</span> <span class="kn">import</span> <span class="n">PreText</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;div.html&quot;</span><span class="p">)</span>
+
+<span class="n">pre</span> <span class="o">=</span> <span class="n">PreText</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Your text is initialized with the &#39;text&#39; argument.</span>
+
+<span class="s2">The remaining Paragraph arguments are &#39;width&#39; and &#39;height&#39;. For this example,</span>
+<span class="s2">those values are 500 and 100 respectively.&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">widgetbox</span><span class="p">(</span><span class="n">pre</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands &mdash; Bokeh 0.12.6 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.6";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/docs/user_guide/cli.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.12.6</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.12.6.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-bokeh.command.subcommands.html">Standalone HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-bokeh.command.subcommands.json">Serialized JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-bokeh.command.subcommands.serve">Bokeh Server Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#network-configuration">Network Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-id-options">Session ID Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-expiration-options">Session Expiration Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-options">Logging Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="using-bokeh-commands">
+<span id="userguide-cli"></span><h1>Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands<a class="headerlink" href="#using-bokeh-commands" title="Permalink to this headline">¶</a></h1>
+<p>It is possible to generate various kinds of output from Bokeh
+programmatically. The use of <code class="docutils literal"><span class="pre">output_file</span></code>, <code class="docutils literal"><span class="pre">output_notebook</span></code>, etc.
+has been demonstrated previously in many areas of the User Guide.
+However, Bokeh also provides a command line tool <code class="docutils literal"><span class="pre">bokeh</span></code> that can
+often offer a more flexible way to generate different kinds of output
+from the same source code, as well as making it easier to and faster
+to iterate.</p>
+<p>There are three basic <code class="docutils literal"><span class="pre">bokeh</span></code> commands:</p>
+<p>The <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">html</span></code> command can create standalone HTML documents from any
+kind of Bokeh application source: e.g., python scripts, app directories,
+JSON files, Jupyter/Zeppelin notebooks and others. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bokeh html myapp.py
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">json</span></code> command will generate a serialized JSON representation
+of a Bokeh document from any kind of Bokeh application source. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bokeh json myapp.py
+</pre></div>
+</div>
+<p>Finally, the <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> command let&#8217;s you instantly turn Bokeh documents
+into interactive web applications. For example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bokeh serve myapp.py
+</pre></div>
+</div>
+<p>In all of these cases, the same file <code class="docutils literal"><span class="pre">myapp.py</span></code> can be used without
+modification to generate different sorts of output.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You can also run the bokeh command with Python by typing <cite>python -m bokeh</cite></p>
+<p class="last">For example, <cite>bokeh serve myapp.py</cite> can also be run with <cite>python -m bokeh
+serve myapp.py</cite></p>
+</div>
+<div class="section" id="module-bokeh.command.subcommands.html">
+<span id="standalone-html"></span><span id="userguide-cli-html"></span><h2>Standalone HTML<a class="headerlink" href="#module-bokeh.command.subcommands.html" title="Permalink to this headline">¶</a></h2>
+<p>To generate a standalone HTML page for a Bokeh application from a single
+Python script, pass the script name to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">html</span></code> on the command
+line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh html app_script.py
+</pre></div>
+</div>
+<p>The generated HTML will be saved in the current working directory with
+the name <code class="docutils literal"><span class="pre">app_script.html</span></code>.</p>
+<p>It is also possible to run the same commmand with jupyter notebooks:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh html app_notebook.ipynb
+</pre></div>
+</div>
+<p>This will generate an HTML file named <code class="docutils literal"><span class="pre">app_notebook.html</span></code> just like
+with a python script.</p>
+<p>Applications can also be created from directories. The directory should
+contain a <code class="docutils literal"><span class="pre">main.py</span></code> (and any other helper modules that are required) as
+well as any additional assets (e.g., theme files). Pass the directory name
+to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">html</span></code> to generate the HTML:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh html app_dir
+</pre></div>
+</div>
+<p>It is possible to generate HTML pages for multiple applications at once:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh html app_script.py app_dir
+</pre></div>
+</div>
+<p>If you would like to automatically open a browser to display the HTML
+page(s), you can pass the <code class="docutils literal"><span class="pre">--show</span></code> option on the command line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh html app_script.py app_dir --show
+</pre></div>
+</div>
+<p>This will open two pages, for <code class="docutils literal"><span class="pre">app_script.html</span></code> and <code class="docutils literal"><span class="pre">app_dir.html</span></code>,
+respectively.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Applications that use <code class="docutils literal"><span class="pre">on_change</span></code> callbacks require using the Bokeh
+server to execute the callback code. Though the application may render,
+the callbacks will not function. See <a class="reference internal" href="#userguide-cli-serve"><span class="std std-ref">Bokeh Server Applications</span></a> for
+more information on using <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code>.</p>
+</div>
+</div>
+<div class="section" id="module-bokeh.command.subcommands.json">
+<span id="serialized-json"></span><span id="userguide-cli-json"></span><h2>Serialized JSON<a class="headerlink" href="#module-bokeh.command.subcommands.json" title="Permalink to this headline">¶</a></h2>
+<p>To generate the serialized JSON representation for a Bokeh application
+from a single Python script, pass the script name to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">json</span></code> on the
+command line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh json app_script.py
+</pre></div>
+</div>
+<p>The generated JSON will be saved in the current working directory with
+the name <code class="docutils literal"><span class="pre">app_script.json</span></code>.</p>
+<p>Applications can also be created from directories. The directory should
+contain a <code class="docutils literal"><span class="pre">main.py</span></code> (and any other helper modules that are required) as
+well as any additional assets (e.g., theme files). Pass the directory name
+to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">json</span></code> to generate the JSON:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh json app_dir
+</pre></div>
+</div>
+<p>By default, the generated JSON is output as one line, with no indentation.
+To generate &#8220;pretty printed&#8221; JSON on multiple lines, you can specify an
+indentation level with the <code class="docutils literal"><span class="pre">--indent</span></code> argument:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh json app_script.py --indent<span class="o">=</span>2
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-bokeh.command.subcommands.serve">
+<span id="bokeh-server-applications"></span><span id="userguide-cli-serve"></span><h2>Bokeh Server Applications<a class="headerlink" href="#module-bokeh.command.subcommands.serve" title="Permalink to this headline">¶</a></h2>
+<p>To run a Bokeh application on a Bokeh server from a single Python script,
+pass the script name to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> on the command line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py
+</pre></div>
+</div>
+<p>By default, the Bokeh application will be served by the Bokeh server on a
+default port (5006) at localhost, under the path <code class="docutils literal"><span class="pre">/app_script</span></code>,
+i.e.,</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http://localhost:5006/app_script
+</pre></div>
+</div>
+<p>It is also possible to run the same commmand with jupyter notebooks:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_notebook.ipynb
+</pre></div>
+</div>
+<p>This will generate the same results as described with a python script
+and the application will be served on a default port (5006)
+at localhost, under the path <code class="docutils literal"><span class="pre">/app_notebook</span></code></p>
+<p>Applications can also be created from directories. The directory should
+contain a <code class="docutils literal"><span class="pre">main.py</span></code> (and any other helper modules that are required) as
+well as any additional assets (e.g., theme files). Pass the directory name
+to <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> to run the application:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_dir
+</pre></div>
+</div>
+<p>It is possible to run multiple applications at once:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py app_dir
+</pre></div>
+</div>
+<p>If you would like to automatically open a browser to display the HTML
+page(s), you can pass the <code class="docutils literal"><span class="pre">--show</span></code> option on the command line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py app_dir --show
+</pre></div>
+</div>
+<p>This will open two pages, for <code class="docutils literal"><span class="pre">/app_script</span></code> and <code class="docutils literal"><span class="pre">/app_dir</span></code>,
+respectively.</p>
+<p>If you would like to pass command line arguments to Bokeh applications,
+you can pass the <code class="docutils literal"><span class="pre">--args</span></code> option as the LAST option on the command
+line:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py myapp.py --args foo bar --baz
+</pre></div>
+</div>
+<p>Everything that follows <code class="docutils literal"><span class="pre">--args</span></code> will be included in <code class="docutils literal"><span class="pre">sys.argv</span></code> when
+the application runs. In this case, when <code class="docutils literal"><span class="pre">myapp.py</span></code> executes, the
+contents of <code class="docutils literal"><span class="pre">sys.argv</span></code> will be <code class="docutils literal"><span class="pre">['myapp.py',</span> <span class="pre">'foo',</span> <span class="pre">'bar',</span> <span class="pre">'--baz']</span></code>,
+consistent with standard Python expectations for <code class="docutils literal"><span class="pre">sys.argv</span></code>.</p>
+<p>Note that if multiple scripts or directories are provided, they
+all receive the same set of command line arguments (if any) given by
+<code class="docutils literal"><span class="pre">--args</span></code>.</p>
+<p>If you have only one application, the server root will redirect to it.
+Otherwise, You can see an index of all running applications at the server root:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http://localhost:5006/
+</pre></div>
+</div>
+<p>This index can be disabled with the <code class="docutils literal"><span class="pre">--disable-index</span></code> option, and the redirect
+behavior can be disabled with the <code class="docutils literal"><span class="pre">--disable-index-redirect</span></code> option.</p>
+<div class="section" id="network-configuration">
+<h3>Network Configuration<a class="headerlink" href="#network-configuration" title="Permalink to this headline">¶</a></h3>
+<p>To control the port that the Bokeh server listens on, use the <code class="docutils literal"><span class="pre">--port</span></code>
+argument:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --port 8080
+</pre></div>
+</div>
+<p>To listen on an arbitrary port, pass <code class="docutils literal"><span class="pre">0</span></code> as the port number.  The actual
+port number will be logged at startup.</p>
+<p>Similarly, a specific network address can be specified with the
+<code class="docutils literal"><span class="pre">--address</span></code> argument. For example:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --address 0.0.0.0
+</pre></div>
+</div>
+<p>will have the Bokeh server listen all available network addresses.</p>
+<p>Bokeh server can fork the underlying tornado server into multiprocess.  This is
+useful when trying to handle multiple connections especially in the context of
+apps which require high computational loads.  Default behavior is one process.
+using 0 will auto-detect the number of cores and spin up corresponding number of
+processes</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --num-procs 2
+</pre></div>
+</div>
+<p>By default, cross site connections to the Bokeh server websocket are not
+allowed. You can enable websocket connections originating from additional
+hosts by specifying them with the <code class="docutils literal"><span class="pre">--allow-websocket-origin</span></code> option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --allow-websocket-origin foo.com:8081
+</pre></div>
+</div>
+<p>It is possible to specify multiple allowed websocket origins by adding
+the <code class="docutils literal"><span class="pre">--allow-websocket-origin</span></code> option multiple times.</p>
+<p>The Bokeh server can also add an optional prefix to all URL paths.
+This can often be useful in conjunction with &#8220;reverse proxy&#8221; setups.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --prefix foobar
+</pre></div>
+</div>
+<p>Then the application will be served under the following URL:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http://localhost:5006/foobar/app_script
+</pre></div>
+</div>
+<p>If needed, Bokeh server can send keep-alive pings at a fixed interval.
+To configure this feature, set the <code class="docutils literal"><span class="pre">--keep-alive</span></code> option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --keep-alive 10000
+</pre></div>
+</div>
+<p>The value is specified in milliseconds. The default keep-alive interval
+is 37 seconds. Give a value of 0 to disable keep-alive pings.</p>
+<p>To control how often statistic logs are written, set the
+&#8211;stats-log-frequency option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --stats-log-frequency 30000
+</pre></div>
+</div>
+<p>The value is specified in milliseconds. The default interval for
+logging stats is 15 seconds. Only positive integer values are accepted.</p>
+<p>To have the Bokeh server override the remote IP and URI scheme/protocol for
+all requests with <code class="docutils literal"><span class="pre">X-Real-Ip</span></code>, <code class="docutils literal"><span class="pre">X-Forwarded-For</span></code>, <code class="docutils literal"><span class="pre">X-Scheme</span></code>,
+<code class="docutils literal"><span class="pre">X-Forwarded-Proto</span></code>  headers (if they are provided), set the
+<code class="docutils literal"><span class="pre">--use-xheaders</span></code> option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --use-xheaders
+</pre></div>
+</div>
+<p>This is typically needed when running a Bokeh server behind a reverse proxy
+that is SSL-terminated.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is not advised to set this option on a Bokeh server directly facing
+the Internet.</p>
+</div>
+</div>
+<div class="section" id="session-id-options">
+<span id="userguide-cli-serve-session-id-options"></span><h3>Session ID Options<a class="headerlink" href="#session-id-options" title="Permalink to this headline">¶</a></h3>
+<p>Typically, each browser tab connected to a Bokeh server will have
+its own session ID. When the server generates an ID, it will make
+it cryptographically unguessable. This keeps users from accessing
+one another&#8217;s sessions.</p>
+<p>To control who can use a Bokeh application, the server can sign
+sessions with a secret key and reject &#8220;made up&#8221; session
+names. There are three modes, controlled by the <code class="docutils literal"><span class="pre">--session-ids</span></code>
+argument:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --session-ids signed
+</pre></div>
+</div>
+<p>The available modes are: unsigned, signed or external-signed</p>
+<p>In <code class="docutils literal"><span class="pre">unsigned</span></code> mode, the server will accept any session ID
+provided to it in the URL. For example,
+<code class="docutils literal"><span class="pre">http://localhost/app_script?bokeh-session-id=foo</span></code> will create a
+session <code class="docutils literal"><span class="pre">foo</span></code>. In <code class="docutils literal"><span class="pre">unsigned</span></code> mode, if the session ID isn&#8217;t
+provided with <code class="docutils literal"><span class="pre">?bokeh-session-id=</span></code> in the URL, the server will
+still generate a cryptographically-unguessable ID. However, the
+server allows clients to create guessable or deliberately-shared
+sessions if they want to.</p>
+<p><code class="docutils literal"><span class="pre">unsigned</span></code> mode is most useful when the server is running
+locally for development, for example you can have multiple
+processes access a fixed session name such as
+<code class="docutils literal"><span class="pre">default</span></code>. <code class="docutils literal"><span class="pre">unsigned</span></code> mode is also convenient because there&#8217;s
+no need to generate or configure a secret key.</p>
+<p>In <code class="docutils literal"><span class="pre">signed</span></code> mode, the session ID must be in a special format and
+signed with a secret key. Attempts to use the application with an
+invalid session ID will fail, but if no <code class="docutils literal"><span class="pre">?bokeh-session-id=</span></code>
+parameter is provided, the server will generate a fresh, signed
+session ID. The result of <code class="docutils literal"><span class="pre">signed</span></code> mode is that only secure
+session IDs are allowed but anyone can connect to the server.</p>
+<p>In <code class="docutils literal"><span class="pre">external-signed</span></code> mode, the session ID must be signed but the
+server itself won&#8217;t generate a session ID; the
+<code class="docutils literal"><span class="pre">?bokeh-session-id=</span></code> parameter will be required. To use this
+mode, you would need some sort of external process (such as
+another web app) which would use the
+<code class="docutils literal"><span class="pre">bokeh.util.session_id.generate_session_id()</span></code> function to create
+valid session IDs. The external process and the Bokeh server must
+share the same <code class="docutils literal"><span class="pre">BOKEH_SECRET_KEY</span></code> environment variable.</p>
+<p><code class="docutils literal"><span class="pre">external-signed</span></code> mode is useful if you want another process to
+authenticate access to the Bokeh server; if someone is permitted
+to use the Bokeh application, you would generate a session ID for
+them, then redirect them to the Bokeh server with that valid
+session ID. If you don&#8217;t generate a session ID for someone, then
+they can&#8217;t load the app from the Bokeh server.</p>
+<p>In both <code class="docutils literal"><span class="pre">signed</span></code> and <code class="docutils literal"><span class="pre">external-signed</span></code> mode, the secret key
+must be kept secret; anyone with the key can generate a valid
+session ID.</p>
+<p>The secret key should be set in a <code class="docutils literal"><span class="pre">BOKEH_SECRET_KEY</span></code> environment
+variable and should be a cryptographically random string with at
+least 256 bits (32 bytes) of entropy.  You can generate a new
+secret key with the <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">secret</span></code> command.</p>
+</div>
+<div class="section" id="session-expiration-options">
+<h3>Session Expiration Options<a class="headerlink" href="#session-expiration-options" title="Permalink to this headline">¶</a></h3>
+<p>To configure how often to check for unused sessions. set the
+&#8211;check-unused-sessions option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --check-unused-sessions 10000
+</pre></div>
+</div>
+<p>The value is specified in milliseconds. The default interval for
+checking for unused sessions is 17 seconds. Only positive integer
+values are accepted.</p>
+<p>To configure how often unused sessions last. set the
+&#8211;unused-session-lifetime option:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --unused-session-lifetime 60000
+</pre></div>
+</div>
+<p>The value is specified in milliseconds. The default lifetime interval
+for unused sessions is 15 seconds. Only positive integer values are
+accepted.</p>
+</div>
+<div class="section" id="logging-options">
+<h3>Logging Options<a class="headerlink" href="#logging-options" title="Permalink to this headline">¶</a></h3>
+<p>The logging level can be controlled by the <code class="docutils literal"><span class="pre">--log-level</span></code> argument:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --log-level debug
+</pre></div>
+</div>
+<p>The available log levels are: debug, info, warning, error or critical</p>
+<p>The log format can be controlled by the <code class="docutils literal"><span class="pre">--log-format</span></code> argument:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve app_script.py --log-format <span class="s2">&quot;%(levelname)s: %(message)s&quot;</span>
+</pre></div>
+</div>
+<p>The default log format is <code class="docutils literal"><span class="pre">&quot;%(asctime)s</span> <span class="pre">%(message)s&quot;</span></code></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

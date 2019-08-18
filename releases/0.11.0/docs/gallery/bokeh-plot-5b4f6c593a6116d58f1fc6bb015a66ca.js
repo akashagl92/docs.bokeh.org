@@ -1,0 +1,89 @@
+
+(function(global) {
+  function now() {
+    return new Date();
+  }
+
+  if (typeof (window._bokeh_onload_callbacks) === "undefined") {
+    window._bokeh_onload_callbacks = [];
+  }
+
+  function run_callbacks() {
+    window._bokeh_onload_callbacks.forEach(function(callback) { callback() });
+    delete window._bokeh_onload_callbacks
+    console.info("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(js_urls, callback) {
+    window._bokeh_onload_callbacks.push(callback);
+    if (window._bokeh_is_loading > 0) {
+      console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    window._bokeh_is_loading = js_urls.length;
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      var s = document.createElement('script');
+      s.src = url;
+      s.async = false;
+      s.onreadystatechange = s.onload = function() {
+        window._bokeh_is_loading--;
+        if (window._bokeh_is_loading === 0) {
+          console.log("Bokeh: all BokehJS libraries loaded");
+          run_callbacks()
+        }
+      };
+      s.onerror = function() {
+        console.warn("failed to load library " + url);
+      };
+      console.log("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.getElementsByTagName("head")[0].appendChild(s);
+    }
+  };var element = document.getElementById("947215b3-faa6-4207-8da2-77f582943bd1");
+  if (element == null) {
+    console.log("Bokeh: ERROR: autoload.js configured with elementid '947215b3-faa6-4207-8da2-77f582943bd1' but no matching script tag was found. ")
+    return false;
+  }var js_urls = ['https://cdn.bokeh.org/bokeh/release/bokeh-0.11.0.min.js', 'https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.11.0.min.js', 'https://cdn.bokeh.org/bokeh/release/bokeh-compiler-0.11.0.min.js'];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    
+    function(Bokeh) {
+      Bokeh.$(function() {
+          var docs_json = {"2d961f15-02b5-48f8-a3d1-47561897b448": {"version": "0.11.0-11-g97955ab", "roots": {"references": [{"type": "MonthsTicker", "id": "569c553b-74ae-422e-8f8e-e391c016644b", "attributes": {"months": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}}, {"type": "BoxZoomTool", "id": "7a4c04a8-dee3-43fc-a735-18aaf44c4536", "attributes": {"overlay": {"type": "BoxAnnotation", "id": "a3641ba5-ddc3-4221-a275-5bddef8fcbbe"}, "plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "Segment", "id": "dd7992f0-0677-4d9a-be34-721c176d2c71", "attributes": {"x1": {"field": "x1"}, "y0": {"field": "y0"}, "x0": {"field": "x0"}, "y1": {"field": "y1"}}}, {"type": "Rect", "id": "1e3d9b88-bb12-48fa-b87f-740ffd387075", "attributes": {"height": {"units": "data", "field": "height"}, "y": {"field": "y"}, "width": {"value": 43200000, "units": "data"}, "x": {"field": "x"}, "fill_color": {"value": "#F2583E"}}}, {"type": "MonthsTicker", "id": "355f92c7-e988-46fd-a85b-8875a05ab72a", "attributes": {"months": [0, 4, 8]}}, {"type": "LinearAxis", "id": "e21dfdae-1650-4ef8-b2e5-259969e3341d", "attributes": {"ticker": {"type": "BasicTicker", "id": "a8d4db87-8be8-4962-a0b1-d4de0e4e2864"}, "formatter": {"type": "BasicTickFormatter", "id": "2a3b08f5-e35e-4d59-93dd-2cdaaf72d66c"}, "plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "ResetTool", "id": "646120e6-1792-41b8-9e89-061aa22dc848", "attributes": {"plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "BasicTicker", "id": "a8d4db87-8be8-4962-a0b1-d4de0e4e2864", "attributes": {}}, {"type": "DaysTicker", "id": "6b11b5b6-51ce-4bf8-a7a9-3fd24b4e9c1d", "attributes": {"days": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}}, {"type": "ToolEvents", "id": "ba0b39b9-34fb-4564-849f-e98fe303a235", "attributes": {}}, {"type": "GlyphRenderer", "id": "f2e7e210-1d11-4fb4-96b8-995cbef10954", "attributes": {"data_source": {"type": "ColumnDataSource", "id": "1daaac97-63b7-4365-bc07-6ca69b5d281c"}, "nonselection_glyph": {"type": "Rect", "id": "c2d71a38-195f-4577-a9f2-3df1ec83c2f3"}, "selection_glyph": null, "hover_glyph": null, "glyph": {"type": "Rect", "id": "1e3d9b88-bb12-48fa-b87f-740ffd387075"}}}, {"type": "DaysTicker", "id": "8a14c143-804f-4f97-a556-262ef708ec9d", "attributes": {"days": [1, 4, 7, 10, 13, 16, 19, 22, 25, 28]}}, {"type": "ColumnDataSource", "id": "45637633-b330-44a3-ab64-659e8a17de6b", "attributes": {"data": {"height": [1.1899999999999977, 1.5600000000000023, 1.3700000000000045, 1.75, 4.689999999999998, 1.4399999999999977, 0.37999999999999545, 0.8100000000000023, 4.1200000000000045, 6.0, 0.4399999999999977, 5.060000000000002, 0.6899999999999977, 2.0, 0.25, 2.0600000000000023, 1.6200000000000045, 4.060000000000002, 0.3199999999999932, 0.6200000000000045, 2.3700000000000045, 0.5699999999999932, 0.18999999999999773, 0.12999999999999545, 0.8700000000000045], "x": [951868800000.0, 951955200000.0, 952041600000.0, 952473600000.0, 952560000000.0, 952646400000.0, 952905600000.0, 953078400000.0, 953251200000.0, 953596800000.0, 953683200000.0, 953769600000.0, 954201600000.0, 954288000000.0, 954460800000.0, 955065600000.0, 955929600000.0, 956016000000.0, 956188800000.0, 956620800000.0, 956793600000.0, 957139200000.0, 957312000000.0, 957398400000.0, 957484800000.0], "y": [90.215, 92.59, 95.435, 94.685, 97.655, 100.28, 97.81, 94.965, 97.31, 99.75, 103.03, 109.34, 103.965, 106.19, 106.125, 88.03, 75.06, 78.53, 78.78, 69.06, 68.625, 73.155, 70.465, 70.375, 70.685]}, "column_names": ["y", "x", "height"], "callback": null}}, {"type": "BasicTickFormatter", "id": "2a3b08f5-e35e-4d59-93dd-2cdaaf72d66c", "attributes": {}}, {"type": "Grid", "id": "5eeb0dbe-2707-4b67-99f2-d243ac0821ed", "attributes": {"ticker": {"type": "DatetimeTicker", "id": "55346992-6405-4a0c-b5f4-f21142a9a27c"}, "grid_line_alpha": {"value": 0.3}, "plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "DataRange1d", "id": "bb34cbdb-e633-45c0-974b-6afcf1608cad", "attributes": {"callback": null}}, {"type": "DatetimeTicker", "id": "55346992-6405-4a0c-b5f4-f21142a9a27c", "attributes": {"num_minor_ticks": 5}}, {"type": "BoxAnnotation", "id": "a3641ba5-ddc3-4221-a275-5bddef8fcbbe", "attributes": {"line_color": {"value": "black"}, "line_width": {"value": 2}, "right_units": "screen", "top_units": "screen", "plot": null, "level": "overlay", "line_alpha": {"value": 1.0}, "fill_alpha": {"value": 0.5}, "line_dash": [4, 4], "left_units": "screen", "bottom_units": "screen", "render_mode": "css", "fill_color": {"value": "lightgrey"}}}, {"type": "ColumnDataSource", "id": "eb2a0c1b-afbb-421e-8b5a-d2ba56bc2a9d", "attributes": {"data": {"x1": [951868800000.0, 951955200000.0, 952041600000.0, 952300800000.0, 952387200000.0, 952473600000.0, 952560000000.0, 952646400000.0, 952905600000.0, 952992000000.0, 953078400000.0, 953164800000.0, 953251200000.0, 953510400000.0, 953596800000.0, 953683200000.0, 953769600000.0, 953856000000.0, 954115200000.0, 954201600000.0, 954288000000.0, 954374400000.0, 954460800000.0, 954720000000.0, 954806400000.0, 954892800000.0, 954979200000.0, 955065600000.0, 955324800000.0, 955411200000.0, 955497600000.0, 955584000000.0, 955670400000.0, 955929600000.0, 956016000000.0, 956102400000.0, 956188800000.0, 956534400000.0, 956620800000.0, 956707200000.0, 956793600000.0, 956880000000.0, 957139200000.0, 957225600000.0, 957312000000.0, 957398400000.0, 957484800000.0, 957744000000.0, 957830400000.0, 957916800000.0], "y0": [94.09, 95.37, 98.87, 97.37, 97.5, 96.19, 100.0, 102.5, 100.25, 99.25, 96.62, 96.69, 99.5, 99.75, 103.12, 105.62, 112.87, 115.0, 108.25, 107.44, 108.94, 108.62, 108.25, 96.5, 92.0, 88.5, 88.0, 89.37, 88.62, 86.06, 82.25, 82.25, 79.5, 76.0, 81.94, 81.5, 79.87, 68.0, 69.5, 71.12, 69.94, 71.0, 74.0, 73.5, 70.81, 71.25, 71.81, 71.37, 70.44, 67.87], "x0": [951868800000.0, 951955200000.0, 952041600000.0, 952300800000.0, 952387200000.0, 952473600000.0, 952560000000.0, 952646400000.0, 952905600000.0, 952992000000.0, 953078400000.0, 953164800000.0, 953251200000.0, 953510400000.0, 953596800000.0, 953683200000.0, 953769600000.0, 953856000000.0, 954115200000.0, 954201600000.0, 954288000000.0, 954374400000.0, 954460800000.0, 954720000000.0, 954806400000.0, 954892800000.0, 954979200000.0, 955065600000.0, 955324800000.0, 955411200000.0, 955497600000.0, 955584000000.0, 955670400000.0, 955929600000.0, 956016000000.0, 956102400000.0, 956188800000.0, 956534400000.0, 956620800000.0, 956707200000.0, 956793600000.0, 956880000000.0, 957139200000.0, 957225600000.0, 957312000000.0, 957398400000.0, 957484800000.0, 957744000000.0, 957830400000.0, 957916800000.0], "y1": [88.94, 91.12, 93.87, 90.12, 91.94, 91.0, 95.0, 99.5, 97.5, 95.12, 93.69, 93.25, 94.5, 96.5, 96.5, 101.12, 106.62, 109.56, 103.94, 102.37, 105.12, 102.5, 104.12, 90.0, 84.94, 85.87, 85.27, 85.0, 86.0, 83.5, 78.75, 79.0, 73.25, 73.0, 75.87, 78.12, 77.5, 65.0, 67.62, 67.37, 67.37, 68.25, 71.69, 69.5, 68.81, 69.31, 69.87, 69.69, 67.5, 65.75]}, "column_names": ["x1", "x0", "y0", "y1"], "callback": null}}, {"type": "DaysTicker", "id": "968cb2c1-23e0-41c6-b1a9-c0950a30715f", "attributes": {"days": [1, 8, 15, 22]}}, {"type": "PreviewSaveTool", "id": "adf69409-f0b5-4b06-b39e-37bef769f0cb", "attributes": {"plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "DatetimeTickFormatter", "id": "970672ce-88c0-49e2-a45d-576aecc23892", "attributes": {}}, {"type": "WheelZoomTool", "id": "659917a5-3782-496d-aaac-89694653d0c6", "attributes": {"plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "Segment", "id": "2e8e73d2-afe4-46be-adb7-a3c7f890cf26", "attributes": {"line_color": {"value": "#1f77b4"}, "x1": {"field": "x1"}, "x0": {"field": "x0"}, "y1": {"field": "y1"}, "line_alpha": {"value": 0.1}, "y0": {"field": "y0"}}}, {"type": "YearsTicker", "id": "ec4c3308-4027-47df-b14d-2b591d03a6c6", "attributes": {}}, {"type": "DatetimeAxis", "id": "05f5f2dc-a9ca-4e49-84b4-7d9ab39a5382", "attributes": {"ticker": {"type": "DatetimeTicker", "id": "55346992-6405-4a0c-b5f4-f21142a9a27c"}, "major_label_orientation": 0.7853981633974483, "formatter": {"type": "DatetimeTickFormatter", "id": "970672ce-88c0-49e2-a45d-576aecc23892"}, "plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "MonthsTicker", "id": "6bca62b9-034c-4007-bdd5-c03ddcecca31", "attributes": {"months": [0, 6]}}, {"type": "AdaptiveTicker", "id": "a4886ba1-7595-46a9-9d28-2408d5a1343e", "attributes": {"base": 24, "mantissas": [1, 2, 4, 6, 8, 12], "min_interval": 3600000.0, "num_minor_ticks": 0, "max_interval": 43200000.0}}, {"type": "AdaptiveTicker", "id": "e9e64192-2da1-4b2c-bae8-5c1574ab0563", "attributes": {"base": 60, "mantissas": [1, 2, 5, 10, 15, 20, 30], "min_interval": 1000.0, "num_minor_ticks": 0, "max_interval": 1800000.0}}, {"type": "Grid", "id": "81349668-fc35-46cf-b700-3d539bc3be46", "attributes": {"ticker": {"type": "BasicTicker", "id": "a8d4db87-8be8-4962-a0b1-d4de0e4e2864"}, "dimension": 1, "grid_line_alpha": {"value": 0.3}, "plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "GlyphRenderer", "id": "051305c7-3ab1-40f2-9825-58a32a734edf", "attributes": {"data_source": {"type": "ColumnDataSource", "id": "eb2a0c1b-afbb-421e-8b5a-d2ba56bc2a9d"}, "nonselection_glyph": {"type": "Segment", "id": "2e8e73d2-afe4-46be-adb7-a3c7f890cf26"}, "selection_glyph": null, "hover_glyph": null, "glyph": {"type": "Segment", "id": "dd7992f0-0677-4d9a-be34-721c176d2c71"}}}, {"type": "Rect", "id": "f9a1d909-06b5-4008-a113-5cd5379ceb8e", "attributes": {"line_color": {"value": "#1f77b4"}, "width": {"value": 43200000, "units": "data"}, "y": {"field": "y"}, "height": {"units": "data", "field": "height"}, "x": {"field": "x"}, "line_alpha": {"value": 0.1}, "fill_color": {"value": "#1f77b4"}, "fill_alpha": {"value": 0.1}}}, {"type": "DataRange1d", "id": "e6235b0a-1c7a-4eb8-8d75-6e4133845c8c", "attributes": {"callback": null}}, {"type": "ColumnDataSource", "id": "1daaac97-63b7-4365-bc07-6ca69b5d281c", "attributes": {"data": {"height": [5.3799999999999955, 3.25, 3.5, 0.5699999999999932, 1.3799999999999955, 0.9300000000000068, 3.7099999999999937, 2.819999999999993, 3.569999999999993, 3.0, 1.8799999999999955, 1.8700000000000045, 2.5600000000000023, 1.25, 2.75, 1.6200000000000045, 5.0, 2.75, 0.6299999999999955, 2.0, 1.0, 2.9399999999999977, 1.1299999999999955, 2.3799999999999955, 1.5600000000000023], "x": [952300800000.0, 952387200000.0, 952992000000.0, 953164800000.0, 953510400000.0, 953856000000.0, 954115200000.0, 954374400000.0, 954720000000.0, 954806400000.0, 954892800000.0, 954979200000.0, 955324800000.0, 955411200000.0, 955497600000.0, 955584000000.0, 955670400000.0, 956102400000.0, 956534400000.0, 956707200000.0, 956880000000.0, 957225600000.0, 957744000000.0, 957830400000.0, 957916800000.0], "y": [93.31, 94.495, 96.87, 95.655, 98.06, 112.155, 105.91499999999999, 104.78, 92.655, 90.06, 87.31, 86.935, 87.34, 84.495, 80.745, 80.06, 76.62, 80.065, 66.935, 69.0, 70.25, 71.34, 70.375, 69.0, 66.97]}, "column_names": ["y", "x", "height"], "callback": null}}, {"type": "DaysTicker", "id": "2183e967-8e46-4f8f-8e2a-25e3e0f90746", "attributes": {"days": [1, 15]}}, {"type": "Plot", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90", "attributes": {"plot_width": 1000, "x_range": {"type": "DataRange1d", "id": "bb34cbdb-e633-45c0-974b-6afcf1608cad"}, "left": [{"type": "LinearAxis", "id": "e21dfdae-1650-4ef8-b2e5-259969e3341d"}], "renderers": [{"type": "DatetimeAxis", "id": "05f5f2dc-a9ca-4e49-84b4-7d9ab39a5382"}, {"type": "Grid", "id": "5eeb0dbe-2707-4b67-99f2-d243ac0821ed"}, {"type": "LinearAxis", "id": "e21dfdae-1650-4ef8-b2e5-259969e3341d"}, {"type": "Grid", "id": "81349668-fc35-46cf-b700-3d539bc3be46"}, {"type": "BoxAnnotation", "id": "a3641ba5-ddc3-4221-a275-5bddef8fcbbe"}, {"type": "GlyphRenderer", "id": "051305c7-3ab1-40f2-9825-58a32a734edf"}, {"type": "GlyphRenderer", "id": "f16369fc-a0a8-4d7e-bbe4-5319c929de0f"}, {"type": "GlyphRenderer", "id": "f2e7e210-1d11-4fb4-96b8-995cbef10954"}], "y_range": {"type": "DataRange1d", "id": "e6235b0a-1c7a-4eb8-8d75-6e4133845c8c"}, "tools": [{"type": "PanTool", "id": "54585cce-f2b7-4543-8ae4-187052f50e6f"}, {"type": "WheelZoomTool", "id": "659917a5-3782-496d-aaac-89694653d0c6"}, {"type": "BoxZoomTool", "id": "7a4c04a8-dee3-43fc-a735-18aaf44c4536"}, {"type": "ResetTool", "id": "646120e6-1792-41b8-9e89-061aa22dc848"}, {"type": "PreviewSaveTool", "id": "adf69409-f0b5-4b06-b39e-37bef769f0cb"}], "below": [{"type": "DatetimeAxis", "id": "05f5f2dc-a9ca-4e49-84b4-7d9ab39a5382"}], "tool_events": {"type": "ToolEvents", "id": "ba0b39b9-34fb-4564-849f-e98fe303a235"}, "toolbar_location": "left", "title": "MSFT Candlestick"}, "subtype": "Figure"}, {"type": "Rect", "id": "c2d71a38-195f-4577-a9f2-3df1ec83c2f3", "attributes": {"line_color": {"value": "#1f77b4"}, "width": {"value": 43200000, "units": "data"}, "y": {"field": "y"}, "height": {"units": "data", "field": "height"}, "x": {"field": "x"}, "line_alpha": {"value": 0.1}, "fill_color": {"value": "#1f77b4"}, "fill_alpha": {"value": 0.1}}}, {"type": "MonthsTicker", "id": "5b332236-d53a-43f3-b275-c40babcc28ba", "attributes": {"months": [0, 2, 4, 6, 8, 10]}}, {"type": "Rect", "id": "a4bf005b-9643-460b-b197-fad9a11f52f0", "attributes": {"height": {"units": "data", "field": "height"}, "y": {"field": "y"}, "width": {"value": 43200000, "units": "data"}, "x": {"field": "x"}, "fill_color": {"value": "#D5E1DD"}}}, {"type": "PanTool", "id": "54585cce-f2b7-4543-8ae4-187052f50e6f", "attributes": {"plot": {"type": "Plot", "subtype": "Figure", "id": "b91a4ee8-283d-4c40-af9a-c91d43132d90"}}}, {"type": "GlyphRenderer", "id": "f16369fc-a0a8-4d7e-bbe4-5319c929de0f", "attributes": {"data_source": {"type": "ColumnDataSource", "id": "45637633-b330-44a3-ab64-659e8a17de6b"}, "nonselection_glyph": {"type": "Rect", "id": "f9a1d909-06b5-4008-a113-5cd5379ceb8e"}, "selection_glyph": null, "hover_glyph": null, "glyph": {"type": "Rect", "id": "a4bf005b-9643-460b-b197-fad9a11f52f0"}}}, {"type": "AdaptiveTicker", "id": "e27cae4b-eb63-4201-8c2b-578cc76bfad0", "attributes": {"num_minor_ticks": 0, "max_interval": 500.0}}], "root_ids": ["b91a4ee8-283d-4c40-af9a-c91d43132d90"]}, "title": "Bokeh Application"}};
+          var render_items = [{"docid": "2d961f15-02b5-48f8-a3d1-47561897b448", "modelid": "b91a4ee8-283d-4c40-af9a-c91d43132d90", "elementid": "947215b3-faa6-4207-8da2-77f582943bd1"}];
+          
+          Bokeh.embed.embed_items(docs_json, render_items);
+      });
+    },
+    function(Bokeh) {
+      console.log("Bokeh: injecting CSS: https://cdn.bokeh.org/bokeh/release/bokeh-0.11.0.min.css");
+      Bokeh.embed.inject_css("https://cdn.bokeh.org/bokeh/release/bokeh-0.11.0.min.css");
+      console.log("Bokeh: injecting CSS: https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.11.0.min.css");
+      Bokeh.embed.inject_css("https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.11.0.min.css");
+    }
+  ];
+
+  function run_inline_js() {
+    for (var i = 0; i < inline_js.length; i++) {
+      inline_js[i](window.Bokeh);
+    }
+  }
+
+  if (window._bokeh_is_loading === 0) {
+    console.log("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(js_urls, function() {
+      console.log("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(this));

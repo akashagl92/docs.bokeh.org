@@ -1,0 +1,1231 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plot Objects &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="Reference Guide" href="../reference.html" />
+    <link rel="next" title="bokeh.plotting Interface" href="plotting.html" />
+    <link rel="prev" title="Resources and Embedding" href="resources_embedding.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/charts.html">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Plot Objects</a><ul>
+<li><a class="reference internal" href="#bokeh"><tt class="docutils literal"><span class="pre">bokeh</span></tt></a></li>
+<li><a class="reference internal" href="#bokeh-document"><tt class="docutils literal"><span class="pre">bokeh.document</span></tt></a></li>
+<li><a class="reference internal" href="#bokeh-session"><tt class="docutils literal"><span class="pre">bokeh.session</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="resources_embedding.html" title="Previous Chapter: Resources and Embedding"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Resources and Em...</span>
+    </a>
+  </li>
+  <li>
+    <a href="plotting.html" title="Next Chapter: bokeh.plotting Interface"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">bokeh.plotting I... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/plot_objects.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#plot-objects" id="id3">Plot Objects</a><ul>
+<li><a class="reference internal" href="#bokeh" id="id4"><tt class="docutils literal"><span class="pre">bokeh</span></tt></a></li>
+<li><a class="reference internal" href="#bokeh-document" id="id5"><tt class="docutils literal"><span class="pre">bokeh.document</span></tt></a></li>
+<li><a class="reference internal" href="#bokeh-session" id="id6"><tt class="docutils literal"><span class="pre">bokeh.session</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="plot-objects">
+<h1><a class="toc-backref" href="#id3">Plot Objects</a><a class="headerlink" href="#plot-objects" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bokeh">
+<span id="bokeh-module"></span><h2><a class="toc-backref" href="#id4"><tt class="docutils literal"><span class="pre">bokeh</span></tt></a><a class="headerlink" href="#bokeh" title="Permalink to this headline">¶</a></h2>
+<p>The <tt class="docutils literal"><span class="pre">bokeh</span></tt> module itself contains a few useful functions for testing
+and reporting issues:</p>
+<dl class="function">
+<dt id="bokeh.test">
+<tt class="descname">test</tt><big>(</big><em>verbosity=1</em>, <em>xunitfile=None</em>, <em>exit=False</em><big>)</big><a class="headerlink" href="#bokeh.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the full Bokeh test suite, and output the results of the tests
+to sys.stdout.</p>
+<p>This function uses nosetests to discover which tests to run, and will
+run tests in any &#8216;tests&#8217; subdirectory within the Bokeh module.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>verbosity</strong> (<em>int, optional</em>) &#8211; Acceptable values are 0 (less verbose) to 2 (most verbose)</li>
+<li><strong>xunitfile</strong> (<em>str, optional</em>) &#8211; Write xunit-style XML test results to a given filename. This
+is useful for running tests on a CI server. (default: None)</li>
+<li><strong>exit</strong> (<em>bool, optional</em>) &#8211; Whether to return or exit. If True, call sys.exit with an
+error code after the tests are finished. (default: False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nose return code</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-document">
+<span id="id1"></span><h2><a class="toc-backref" href="#id5"><tt class="docutils literal"><span class="pre">bokeh.document</span></tt></a><a class="headerlink" href="#bokeh-document" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.document"></span><p>The document module provides the Document class, which is a container
+for all Bokeh objects that mustbe reflected to the client side BokehJS
+library.</p>
+<dl class="class">
+<dt id="bokeh.document.Document">
+<em class="property">class </em><tt class="descname">Document</tt><big>(</big><em>json_objs=None</em><big>)</big><a class="headerlink" href="#bokeh.document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Document class is a container to hold Bokeh objects that
+requires reflecting to the client BokehJS library.</p>
+<dl class="attribute">
+<dt id="bokeh.document.Document.autoadd">
+<tt class="descname">autoadd</tt><a class="headerlink" href="#bokeh.document.Document.autoadd" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.document.Document.autostore">
+<tt class="descname">autostore</tt><a class="headerlink" href="#bokeh.document.Document.autostore" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.document.Document.context">
+<tt class="descname">context</tt><a class="headerlink" href="#bokeh.document.Document.context" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>PlotContext</em></p>
+<p>the plot context for this document</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.document.Document.ref">
+<tt class="descname">ref</tt><a class="headerlink" href="#bokeh.document.Document.ref" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+<p>reference to the plot context for this document</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.add">
+<tt class="descname">add</tt><big>(</big><em>*objects</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add top-level objects (and any references they hold to sub-objects)
+to this Document.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This function should only be called on top level objects such
+as Plot, and Layout containers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*objects</strong> (<em>PlotObject</em>) &#8211; objects to add to the Document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.clear">
+<tt class="descname">clear</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.document.Document.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all plots from this <cite>Document</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.clear_callback_queue">
+<tt class="descname">clear_callback_queue</tt><big>(</big><em>models=None</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.clear_callback_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the callback queue on given models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>models</strong> (<em>seq[PlotObject], optional</em>) &#8211; models to clear callbacks for (default: None)
+If models is None, clears callback queue on all models
+in this Document.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.disable_callbacks">
+<tt class="descname">disable_callbacks</tt><big>(</big><em>models=None</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.disable_callbacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable callbacks on given models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>models</strong> (<em>seq[PlotObject], optional</em>) &#8211; models to disable callbacks for (default: None)
+If models is None, disables callbacks on all models in
+this Document.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.dump">
+<tt class="descname">dump</tt><big>(</big><em>*models</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert models to json objects.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*models</strong> (<em>PlotObject</em>) &#8211; models to convert to json objects
+If models is empty, <tt class="docutils literal"><span class="pre">dump</span></tt> converts all models in this d
+ocument.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">json objects</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.enable_callbacks">
+<tt class="descname">enable_callbacks</tt><big>(</big><em>models=None</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.enable_callbacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable callbacks on given models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>models</strong> (<em>seq[PlotObject], optional</em>) &#8211; models to enable callbacks for (default: None)
+If models is None, enables callbacks on all models in
+this Document.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.execute_callback_queue">
+<tt class="descname">execute_callback_queue</tt><big>(</big><em>models=None</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.execute_callback_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute all queued callbacks on the given models.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>models</strong> (<em>seq[PlotObject], optional</em>) &#8211; models to execute callbacks for (default: None)
+If models is None, executes the callback queue on all models
+in this Document.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.load">
+<tt class="descname">load</tt><big>(</big><em>*objs</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert json objects to models and load them into this Document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>*objs</strong> (<em>str</em>) &#8211; json object strings to convert</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><ul class="first simple">
+<li><strong>Two optional keyword arguments are stripped from *kwargs:</strong></li>
+<li><strong>existing</strong> (<em>str</em>) &#8211;
+what objects to trigger events on (default: &#8216;existing&#8217;)
+valid values are:
+* &#8216;none&#8217; trigger no events
+* &#8216;all&#8217; trigger events on all models
+* &#8216;new&#8217; trigger events only on new models
+* &#8216;existing&#8217; trigger events on already existing models</li>
+<li><strong>dirty</strong> (<em>bool</em>) &#8211;
+whether to mark models as dirty (default: False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">set[Plotobject] : models loaded from json</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.merge">
+<tt class="descname">merge</tt><big>(</big><em>json_objs</em><big>)</big><a class="headerlink" href="#bokeh.document.Document.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge&#8217;s json objects from another document into this one
+using the plot context id from the json_objs which are passed in
+children from this document are merged with the children from
+the json that is passed in</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>json_objs</strong> &#8211; json objects from session.pull()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.document.Document.prune">
+<tt class="descname">prune</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.document.Document.prune" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all models that are not in the plot context</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-session">
+<span id="id2"></span><h2><a class="toc-backref" href="#id6"><tt class="docutils literal"><span class="pre">bokeh.session</span></tt></a><a class="headerlink" href="#bokeh-session" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.session"></span><p>The session module provides the Session class, which encapsulates a
+connection to a Document that resides on a Bokeh server.</p>
+<p>The Session class provides methods for creating, loading and storing
+documents and objects, as well as methods for user-authentication. These
+are useful when the server is run in multi-user mode.</p>
+<dl class="class">
+<dt id="bokeh.session.Session">
+<em class="property">class </em><tt class="descname">Session</tt><big>(</big><em>name='http://localhost:5006/'</em>, <em>root_url='http://localhost:5006/'</em>, <em>userapikey='nokey'</em>, <em>username='defaultuser'</em>, <em>load_from_config=True</em>, <em>configdir=None</em><big>)</big><a class="headerlink" href="#bokeh.session.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulate a connection to a document stored on a Bokeh Server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str, optional</em>) &#8211; name of server</li>
+<li><strong>root_url</strong> (<em>str, optional</em>) &#8211; root url of server</li>
+<li><strong>userapikey</strong> (<em>str, optional</em>) &#8211; (default: &#8220;nokey&#8221;)</li>
+<li><strong>username</strong> (<em>str, optional</em>) &#8211; (default: &#8220;defaultuser&#8221;)</li>
+<li><strong>load_from_config</strong> (<em>bool, optional</em>) &#8211; Whether to load login information from config. (default: True)
+If False, then we may overwrite the user&#8217;s config.</li>
+<li><strong>configdir</strong> (<em>str</em>) &#8211; location of user configuration information</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="bokeh.session.Session.base_url">
+<tt class="descname">base_url</tt><a class="headerlink" href="#bokeh.session.Session.base_url" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.configdir">
+<tt class="descname">configdir</tt><a class="headerlink" href="#bokeh.session.Session.configdir" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.configfile">
+<tt class="descname">configfile</tt><a class="headerlink" href="#bokeh.session.Session.configfile" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.http_session">
+<tt class="descname">http_session</tt><a class="headerlink" href="#bokeh.session.Session.http_session" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>requests.session</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.userapikey">
+<tt class="descname">userapikey</tt><a class="headerlink" href="#bokeh.session.Session.userapikey" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.userinfo">
+<tt class="descname">userinfo</tt><a class="headerlink" href="#bokeh.session.Session.userinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict</em></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.session.Session.username">
+<tt class="descname">username</tt><a class="headerlink" href="#bokeh.session.Session.username" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.browser_login">
+<tt class="descname">browser_login</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.session.Session.browser_login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a browser with a token that logs the user into a bokeh server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is useful in multi-user mode.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.data_source">
+<tt class="descname">data_source</tt><big>(</big><em>name</em>, <em>data</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.data_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes and uploads a server data source to the server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The server must be configured with a data directory.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; name for the data source object</li>
+<li><strong>data</strong> (<em>pd.DataFrame or np.array</em>) &#8211; data to upload</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">ServerDataSource</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">source</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.execute">
+<tt class="descname">execute</tt><big>(</big><em>method</em>, <em>url</em>, <em>headers=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute an HTTP request using the current session.</p>
+<p>Returns the response</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>method</strong> (<em>string</em>) &#8211; &#8216;get&#8217; or &#8216;post&#8217;</li>
+<li><strong>url</strong> (<em>string</em>) &#8211; url</li>
+<li><strong>headers</strong> (<em>dict, optional</em>) &#8211; any extra HTTP headers</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>Any extra arguments to pass into the requests library</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">response</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Returns the response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.execute_json">
+<tt class="descname">execute_json</tt><big>(</big><em>method</em>, <em>url</em>, <em>headers=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.execute_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>same as execute, except ensure that json content-type is
+set in headers and interprets and returns the json response</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.find_doc">
+<tt class="descname">find_doc</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.find_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the docid of the document with a title matching <tt class="docutils literal"><span class="pre">name</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Creates a new document with the given title if one is not found.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>string</em>) &#8211; name for the document</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">docid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.get_api_key">
+<tt class="descname">get_api_key</tt><big>(</big><em>docid</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.get_api_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the document API key from the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>docid</strong> (<em>string</em>) &#8211; docid of the document to retrive API key for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">apikey</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.get_json">
+<tt class="descname">get_json</tt><big>(</big><em>url</em>, <em>headers=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.get_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the result of an HTTP &#8216;get&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<em>str</em>) &#8211; the URL for the &#8216;get&#8217; request</li>
+<li><strong>headers</strong> (<em>dict, optional</em>) &#8211; any extra HTTP headers</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>Any extra arguments to pass into the requests library</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">JSON</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.list_data">
+<tt class="descname">list_data</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.session.Session.list_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the data soruces on the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">JSON</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">sources</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.load">
+<tt class="descname">load</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.session.Session.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the server configuration information from disk</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.load_document">
+<tt class="descname">load_document</tt><big>(</big><em>doc</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.load_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads data for the session and merge with the given document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>doc</strong> (<em>Document</em>) &#8211; document to load data into</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.load_object">
+<tt class="descname">load_object</tt><big>(</big><em>obj</em>, <em>doc</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.load_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update an object in a document with data pulled from the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>obj</strong> (<em>PlotObject</em>) &#8211; object to be updated</li>
+<li><strong>doc</strong> (<em>Document</em>) &#8211; the object&#8217;s document</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.login">
+<tt class="descname">login</tt><big>(</big><em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a user into a bokeh server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is useful in multi-user mode.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str</em>) &#8211; user name to log in</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; user password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.make_doc">
+<tt class="descname">make_doc</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.make_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a new document with the given title on the server</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">user information is reloaded</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.object_link">
+<tt class="descname">object_link</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.object_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a URL to a server page that will render the given object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>PlotObject</em>) &#8211; object to render</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">url</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.poll_document">
+<tt class="descname">poll_document</tt><big>(</big><em>document</em>, <em>interval=0.5</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.poll_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Periodically ask the server for updates to the <cite>document</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.post_json">
+<tt class="descname">post_json</tt><big>(</big><em>url</em>, <em>headers=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.post_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the result of an HTTP &#8216;post&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> (<em>str</em>) &#8211; the URL for the &#8216;get&#8217; request</li>
+<li><strong>headers</strong> (<em>dict, optional</em>) &#8211; any extra HTTP headers</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Keyword Arguments:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first"><strong>Any extra arguments to pass into the requests library</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">JSON</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">response</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.pull">
+<tt class="descname">pull</tt><big>(</big><em>typename=None</em>, <em>objid=None</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.pull" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pull JSON objects from the server.</p>
+<p>Returns a specific object if both <tt class="docutils literal"><span class="pre">typename</span></tt> and <tt class="docutils literal"><span class="pre">objid</span></tt> are
+supplied. Otherwise, returns all objects for the currently configured
+document.</p>
+<p>This is a low-level function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>typename</strong> (<em>str, optional</em>) &#8211; name of the type of object to pull</li>
+<li><strong>objid</strong> (<em>str, optional</em>) &#8211; ID of the object to pull</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">you must supply either <tt class="docutils literal"><span class="pre">typename</span></tt> AND <tt class="docutils literal"><span class="pre">objid</span></tt> or omit both.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">JSON</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">attrs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.push">
+<tt class="descname">push</tt><big>(</big><em>*jsonobjs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.push" title="Permalink to this definition">¶</a></dt>
+<dd><p>Push JSON objects to the server.</p>
+<p>This is a low-level function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*jsonobjs</strong> (<em>JSON</em>) &#8211; objects to push to the server</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.register">
+<tt class="descname">register</tt><big>(</big><em>username</em>, <em>password</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new user with a bokeh server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is useful in multi-user mode.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str</em>) &#8211; user name to register</li>
+<li><strong>password</strong> (<em>str</em>) &#8211; user password for account</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.save">
+<tt class="descname">save</tt><big>(</big><big>)</big><a class="headerlink" href="#bokeh.session.Session.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the server configuration information to JSON</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.show">
+<tt class="descname">show</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an object as HTML in IPython using its display protocol.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj</strong> (<em>PlotObject</em>) &#8211; object to display</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.store_document">
+<tt class="descname">store_document</tt><big>(</big><em>doc</em>, <em>dirty_only=True</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.store_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store a document on the server.</p>
+<p>Returns the models that were actually pushed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>doc</strong> (<em>Document</em>) &#8211; the document to store</li>
+<li><strong>dirty_only</strong> (<em>bool, optional</em>) &#8211; whether to store only dirty objects. (default: True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list[PlotObject]</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">models</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.store_objects">
+<tt class="descname">store_objects</tt><big>(</big><em>*objs</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.store_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store objects on the server</p>
+<p>Returns the objects that were actually stored.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*objs</strong> (<em>PlotObject</em>) &#8211; objects to store</td>
+</tr>
+</tbody>
+</table>
+<dl class="docutils">
+<dt>Keywords Args:</dt>
+<dd>dirty_only (bool, optional) : whether to store only dirty objects. (default: True)</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">set[PlotObject]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">models</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.session.Session.use_doc">
+<tt class="descname">use_doc</tt><big>(</big><em>name=None</em>, <em>docid=None</em><big>)</big><a class="headerlink" href="#bokeh.session.Session.use_doc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure the session to use a given document.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str, optional</em>) &#8211; name of the document to use</li>
+<li><strong>docid</strong> (<em>str, optional</em>) &#8211; id of the document to use</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">only one of <tt class="docutils literal"><span class="pre">name</span></tt> or <tt class="docutils literal"><span class="pre">docid</span></tt> may be supplied.</p>
+</div>
+<p>Creates a document for with the given name if one is not present on
+the server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<tt class="descname">configdir</tt></dt>
+<dd><p>filename where our config are stored.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.session.TestSession">
+<em class="property">class </em><tt class="descname">TestSession</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#bokeh.session.TestSession" title="Permalink to this definition">¶</a></dt>
+<dd><p>Currently, register and login do not work, everything else should work
+in theory, but we&#8217;ll have to test this as we go along and convert tests</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="resources_embedding.html">Prev</a> |
+      
+      
+      <a href="plotting.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/plot_objects.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

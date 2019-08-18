@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.tools &mdash; Bokeh 0.12.9 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.9";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/reference/models/tools.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.9</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.9/">0.12.9</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../releases/0.12.9.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">bokeh.models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annotations.html">bokeh.models.annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrow_heads.html">bokeh.models.arrow_heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes.html">bokeh.models.axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.models.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">bokeh.models.expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">bokeh.models.filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatters.html">bokeh.models.formatters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">bokeh.models.glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html">bokeh.models.graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grids.html">bokeh.models.grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images.html">bokeh.models.images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouts.html">bokeh.models.layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_plots.html">bokeh.models.map_plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mappers.html">bokeh.models.mappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">bokeh.models.markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plots.html">bokeh.models.plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranges.html">bokeh.models.ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderers.html">bokeh.models.renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scales.html">bokeh.models.scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sources.html">bokeh.models.sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickers.html">bokeh.models.tickers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiles.html">bokeh.models.tiles</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.models.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html">bokeh.models.transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.buttons.html">bokeh.models.widgets.buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.groups.html">bokeh.models.widgets.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.icons.html">bokeh.models.widgets.icons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.inputs.html">bokeh.models.widgets.inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.markups.html">bokeh.models.widgets.markups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.panels.html">bokeh.models.widgets.panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.sliders.html">bokeh.models.widgets.sliders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.tables.html">bokeh.models.widgets.tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.widget.html">bokeh.models.widgets.widget</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.9.html">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.7.html">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.5.html">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-models-tools">
+<span id="id1"></span><h1>bokeh.models.tools<a class="headerlink" href="#bokeh-models-tools" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.models.tools"></span><p>Bokeh comes with a number of interactive tools.</p>
+<p>There are five types of tool interactions:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li>Pan/Drag</li>
+</ul>
+</td><td><ul class="simple">
+<li>Click/Tap</li>
+</ul>
+</td><td><ul class="simple">
+<li>Scroll/Pinch</li>
+</ul>
+</td><td><ul class="simple">
+<li>Actions</li>
+</ul>
+</td><td><ul class="simple">
+<li>Inspectors</li>
+</ul>
+</td></tr></table>
+<p>For the first three comprise the category of gesture tools, and only
+one tool for each gesture can be active at any given time. The active
+tool is indicated on the toolbar by a highlight next to to the tool.
+Actions are immediate or modal operations that are only activated when
+their button in the toolbar is pressed. Inspectors are passive tools that
+merely report information or annotate the plot in some way, and may
+always be active regardless of what other tools are currently active.</p>
+<dl class="class">
+<dt id="bokeh.models.tools.Action">
+<em class="property">class </em><code class="descname">Action</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tool</span></code></a></p>
+<p>A base class for tools that are buttons in the toolbar.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1d6073b5-7e5c-405d-b6a0-5f4960f37e4c&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.BoxSelectTool">
+<em class="property">class </em><code class="descname">BoxSelectTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#BoxSelectTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Drag" title="bokeh.models.tools.Drag"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Drag</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/BoxSelect.png"><img alt="box_select_icon" src="../../../_images/BoxSelect.png" style="height: 18pt;" /></a></p>
+<p>The box selection tool allows users to make selections on a
+Plot by indicating a rectangular region by dragging the
+mouse or a finger over the plot region. The end of the drag
+event indicates the selection region is ready.</p>
+<p>See <a class="reference internal" href="../../user_guide/styling.html#userguide-styling-selected-unselected-glyphs"><span class="std std-ref">Selected and Unselected Glyphs</span></a> for information
+on styling selected and unselected glyphs.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to run in the browser on completion of drawing a selection box.
+The cb_data parameter that is available to the Callback code will contain
+one BoxSelectTool-specific field:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Geometry:</th><td class="field-body">object containing the coordinates of the selection box</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the box selection is to be free in. By default,
+users may freely draw selections boxes with any dimensions. If only
+&#8220;width&#8221; is supplied, the box will be constrained to span the entire
+vertical space of the plot, only the horizontal dimension can be
+controlled. If only &#8220;height&#8221; is supplied, the box will be constrained
+to span the entire horizontal space of the plot, and the vertical
+dimension can be controlled.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal"><span class="pre">name</span></code> attribute will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.overlay">
+<code class="descname">overlay</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="annotations.html#bokeh.models.annotations.BoxAnnotation" title="bokeh.models.annotations.BoxAnnotation"><code class="xref py py-class docutils literal"><span class="pre">BoxAnnotation</span></code></a>  )</p>
+<p>A shaded annotation drawn to indicate the selection region.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to hit test again. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxSelectTool.select_every_mousemove">
+<code class="descname">select_every_mousemove</code><a class="headerlink" href="#bokeh.models.tools.BoxSelectTool.select_every_mousemove" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether a selection computation should happen on every mouse
+event, or only once, when the selection region is completed. Default: False</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;57af22e3-f5cc-4adc-a1a5-1d6839d9dc8e&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;overlay&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;c9a6253d-5a9d-4740-93c1-f9629a9f747d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BoxAnnotation&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;select_every_mousemove&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.BoxZoomTool">
+<em class="property">class </em><code class="descname">BoxZoomTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#BoxZoomTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.BoxZoomTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Drag" title="bokeh.models.tools.Drag"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Drag</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/BoxZoom.png"><img alt="box_zoom_icon" src="../../../_images/BoxZoom.png" style="height: 18pt;" /></a></p>
+<p>The box zoom tool allows users to define a rectangular
+region of a Plot to zoom to by dragging he mouse or a
+finger over the plot region. The end of the drag
+event indicates the selection region is ready.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxZoomTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.BoxZoomTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the zoom box is to be free in. By default,
+users may freely draw zoom boxes with any dimensions. If only
+&#8220;width&#8221; is supplied, the box will be constrained to span the entire
+vertical space of the plot, only the horizontal dimension can be
+controlled. If only &#8220;height&#8221; is supplied, the box will be constrained
+to span the entire horizontal space of the plot, and the vertical
+dimension can be controlled.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxZoomTool.match_aspect">
+<code class="descname">match_aspect</code><a class="headerlink" href="#bokeh.models.tools.BoxZoomTool.match_aspect" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether the box zoom region should be restricted to have the same
+aspect ratio as the plot region.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the tool is restricted to one dimension, this value has
+no effect.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.BoxZoomTool.overlay">
+<code class="descname">overlay</code><a class="headerlink" href="#bokeh.models.tools.BoxZoomTool.overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="annotations.html#bokeh.models.annotations.BoxAnnotation" title="bokeh.models.annotations.BoxAnnotation"><code class="xref py py-class docutils literal"><span class="pre">BoxAnnotation</span></code></a>  )</p>
+<p>A shaded annotation drawn to indicate the selection region.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;41e8a18e-6327-4b96-9d18-68da364a8a91&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;match_aspect&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;overlay&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1462fa22-b7a3-49b2-a49c-8ddedca8796a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BoxAnnotation&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.CrosshairTool">
+<em class="property">class </em><code class="descname">CrosshairTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#CrosshairTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.CrosshairTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Inspection" title="bokeh.models.tools.Inspection"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Inspection</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Crosshair.png"><img alt="crosshair_icon" src="../../../_images/Crosshair.png" style="height: 18pt;" /></a></p>
+<p>The crosshair tool is a passive inspector tool. It is generally on
+at all times, but can be configured in the inspector&#8217;s menu
+associated with the <em>toolbar icon</em> shown above.</p>
+<p>The crosshair tool draws a crosshair annotation over the plot,
+centered on the current mouse position. The crosshair tool may be
+configured to draw across only one dimension by setting the
+<code class="docutils literal"><span class="pre">dimension</span></code> property to only <code class="docutils literal"><span class="pre">width</span></code> or <code class="docutils literal"><span class="pre">height</span></code>.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.CrosshairTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.CrosshairTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the crosshair tool is to track. By default, both a
+vertical and horizontal line will be drawn. If only &#8220;width&#8221; is supplied,
+only a horizontal line will be drawn. If only &#8220;height&#8221; is supplied,
+only a vertical line will be drawn.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.CrosshairTool.line_alpha">
+<code class="descname">line_alpha</code><a class="headerlink" href="#bokeh.models.tools.CrosshairTool.line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>An alpha value to use to stroke paths with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.CrosshairTool.line_color">
+<code class="descname">line_color</code><a class="headerlink" href="#bokeh.models.tools.CrosshairTool.line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal"><span class="pre">Color</span></code></a></p>
+<p>A color to use to stroke paths with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal"><span class="pre">'green'</span></code>, <code class="docutils literal"><span class="pre">'indigo'</span></code></li>
+<li>an RGB(A) hex value, e.g., <code class="docutils literal"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal"><span class="pre">'#44444444'</span></code></li>
+<li>a 3-tuple of integers (r,g,b) between 0 and 255</li>
+<li>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.CrosshairTool.line_width">
+<code class="descname">line_width</code><a class="headerlink" href="#bokeh.models.tools.CrosshairTool.line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal"><span class="pre">Float</span></code></a></p>
+<p>Stroke width in units of pixels.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1135b63e-b7b8-454f-866f-e28b8b4b42df&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;line_alpha&quot;</span><span class="o">:</span> <span class="mf">1.0</span><span class="p">,</span>
+  <span class="s2">&quot;line_color&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;line_width&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;toggleable&quot;</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Drag">
+<em class="property">class </em><code class="descname">Drag</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Drag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Drag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tool</span></code></a></p>
+<p>A base class for tools that respond to drag events.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;badd5144-81da-40e4-9263-f3bdfa67e0cb&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.HelpTool">
+<em class="property">class </em><code class="descname">HelpTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#HelpTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.HelpTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p>A button tool to provide a &#8220;help&#8221; link to users.</p>
+<p>The hover text can be customized through the <code class="docutils literal"><span class="pre">help_tooltip</span></code> attribute
+and the redirect site overridden as well.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.HelpTool.help_tooltip">
+<code class="descname">help_tooltip</code><a class="headerlink" href="#bokeh.models.tools.HelpTool.help_tooltip" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>Tooltip displayed when hovering over the help icon.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HelpTool.redirect">
+<code class="descname">redirect</code><a class="headerlink" href="#bokeh.models.tools.HelpTool.redirect" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a></p>
+<p>Site to be redirected through upon click.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;help_tooltip&quot;</span><span class="o">:</span> <span class="s2">&quot;Click the question mark to learn more about Bokeh plot tools.&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1ca01882-ea3b-46c8-9d86-705408018a1f&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;redirect&quot;</span><span class="o">:</span> <span class="s2">&quot;https://bokeh.pydata.org/en/latest/docs/user_guide/tools.html#built-in-tools&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.HoverTool">
+<em class="property">class </em><code class="descname">HoverTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#HoverTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.HoverTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Inspection" title="bokeh.models.tools.Inspection"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Inspection</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Crosshair.png"><img alt="crosshair_icon" src="../../../_images/Crosshair.png" style="height: 18pt;" /></a></p>
+<p>The hover tool is a passive inspector tool. It is generally on at
+all times, but can be configured in the inspector&#8217;s menu associated
+with the <em>toolbar icon</em> shown above.</p>
+<p>By default, the hover tool displays informational tooltips whenever
+the cursor is directly over a glyph. The data to show comes from the
+glyph&#8217;s data source, and what is to be displayed is configurable with
+the <code class="docutils literal"><span class="pre">tooltips</span></code> attribute that maps display names to columns in the
+data source, or to special known variables.</p>
+<p>Here is an example of how to configure and use the hover tool:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Add tooltip (name, field) pairs to the tool. See below for a</span>
+<span class="c1"># description of possible field values.</span>
+<span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;$index&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;(x,y)&quot;</span><span class="p">,</span> <span class="s2">&quot;($x, $y)&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="s2">&quot;@radius&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;fill color&quot;</span><span class="p">,</span> <span class="s2">&quot;$color[hex, swatch]:fill_color&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;@foo&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;@bar&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;baz&quot;</span><span class="p">,</span> <span class="s2">&quot;@baz</span><span class="si">{safe}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="s2">&quot;@total{$0,0.00}&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>You can also supply a <code class="docutils literal"><span class="pre">Callback</span></code> to the HoverTool, to build custom
+interactions on hover. In this case you may want to turn the tooltips
+off by setting <code class="docutils literal"><span class="pre">tooltips=None</span></code>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>Hover tool does not currently work with the following glyphs:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li>annulus</li>
+<li>arc</li>
+<li>bezier</li>
+<li>image</li>
+</ul>
+</td><td><ul class="simple">
+<li>image_rgba</li>
+<li>image_url</li>
+<li>oval</li>
+<li>patch</li>
+</ul>
+</td><td><ul class="simple">
+<li>quadratic</li>
+<li>ray</li>
+<li>text</li>
+</ul>
+</td></tr></table>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.anchor">
+<code class="descname">anchor</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.anchor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Anchor" title="bokeh.core.enums.Anchor"><code class="xref py py-class docutils literal"><span class="pre">Anchor</span></code></a>  )</p>
+<p>If point policy is set to <cite>&#8220;snap_to_data&#8221;</cite>, <cite>anchor</cite> defines the attachment
+point of a tooltip. The default is to attach to the center of a glyph.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.attachment">
+<code class="descname">attachment</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.attachment" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(horizontal, vertical) )</p>
+<p>Whether tooltip&#8217;s arrow should appear in the horizontal or vertical dimension.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to run in the browser whenever the input&#8217;s value changes. The
+cb_data parameter that is available to the Callback code will contain two
+HoverTool specific fields:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Index:</th><td class="field-body">object containing the indices of the hovered points in the data source</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Geometry:</th><td class="field-body">object containing the coordinates of the hover cursor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.formatters">
+<code class="descname">formatters</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.formatters" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TooltipFieldFormatter" title="bokeh.core.enums.TooltipFieldFormatter"><code class="xref py py-class docutils literal"><span class="pre">TooltipFieldFormatter</span></code></a>  ) )</p>
+<p>Specify the formatting scheme for data source columns, e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="o">.</span><span class="n">formatters</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">date</span><span class="o">=</span><span class="s2">&quot;datetime&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will cause format specifications for the &#8220;date&#8221; column to be interpreted
+according to the &#8220;datetime&#8221; formatting scheme. The following schemed are
+available:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">&#8220;numeral&#8221;:</th><td class="field-body">Provides a wide variety of formats for numbers, currency, bytes, times,
+and percentages. The full set of formats can be found in the
+<a class="reference internal" href="formatters.html#bokeh.models.formatters.NumeralTickFormatter" title="bokeh.models.formatters.NumeralTickFormatter"><code class="xref py py-class docutils literal"><span class="pre">NumeralTickFormatter</span></code></a> reference documentation.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">&#8220;datetime&#8221;:</th><td class="field-body">Provides formats for date and time values. The full set of formats is
+listed in the <a class="reference internal" href="formatters.html#bokeh.models.formatters.DatetimeTickFormatter" title="bokeh.models.formatters.DatetimeTickFormatter"><code class="xref py py-class docutils literal"><span class="pre">DatetimeTickFormatter</span></code></a> reference documentation.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">&#8220;printf&#8221;:</th><td class="field-body">Provides formats similar to C-style &#8220;printf&#8221; type specifiers. See the
+<a class="reference internal" href="formatters.html#bokeh.models.formatters.PrintfTickFormatter" title="bokeh.models.formatters.PrintfTickFormatter"><code class="xref py py-class docutils literal"><span class="pre">PrintfTickFormatter</span></code></a> reference documentation for complete details.</td>
+</tr>
+</tbody>
+</table>
+<p>If no formatter is specified for a column name, the default <code class="docutils literal"><span class="pre">&quot;numeral&quot;</span></code>
+formatter is assumed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.line_policy">
+<code class="descname">line_policy</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.line_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(prev, next, nearest, interp, none) )</p>
+<p>When showing tooltips for lines, designates whether the tooltip position
+should be the &#8220;previous&#8221; or &#8220;next&#8221; points on the line, the &#8220;nearest&#8221; point
+to the current mouse position, or &#8220;interpolate&#8221; along the line to the
+current mouse position.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.mode">
+<code class="descname">mode</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(mouse, hline, vline) )</p>
+<p>Whether to consider hover pointer as a point (x/y values), or a
+span on h or v directions.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal"><span class="pre">name</span></code> attribute will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.point_policy">
+<code class="descname">point_policy</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.point_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(snap_to_data, follow_mouse, none) )</p>
+<p>Whether the tooltip position should snap to the &#8220;center&#8221; (or other anchor)
+position of the associated glyph, or always follow the current mouse cursor
+position.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to hit test again. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.show_arrow">
+<code class="descname">show_arrow</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.show_arrow" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether tooltip&#8217;s arrow should be showed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.HoverTool.tooltips">
+<code class="descname">tooltips</code><a class="headerlink" href="#bokeh.models.tools.HoverTool.tooltips" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  ) ) )</p>
+<p>The (name, field) pairs describing what the hover tool should
+display when there is a hit.</p>
+<p>Field names starting with &#8220;&#64;&#8221; are interpreted as columns on the
+data source. For instance, &#8220;&#64;temp&#8221; would look up values to display
+from the &#8220;temp&#8221; column of the data source.</p>
+<p>Field names starting with &#8220;$&#8221; are special, known fields:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">$index:</th><td class="field-body">index of selected point in the data source</td>
+</tr>
+<tr class="field-even field"><th class="field-name">$x:</th><td class="field-body">x-coordinate under the cursor in data space</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">$y:</th><td class="field-body">y-coordinate under the cursor in data space</td>
+</tr>
+<tr class="field-even field"><th class="field-name">$sx:</th><td class="field-body">x-coordinate under the cursor in screen (canvas) space</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">$sy:</th><td class="field-body">y-coordinate under the cursor in screen (canvas) space</td>
+</tr>
+<tr class="field-even field"><th class="field-name">$color:</th><td class="field-body">color data from data source, with the syntax:
+<code class="docutils literal"><span class="pre">$color[options]:field_name</span></code>. The available options
+are: &#8216;hex&#8217; (to display the color as a hex value), and
+&#8216;swatch&#8217; to also display a small color swatch.</td>
+</tr>
+</tbody>
+</table>
+<p>Field names that begin with <code class="docutils literal"><span class="pre">&#64;</span></code> are associated with columns in a
+<code class="docutils literal"><span class="pre">ColumnDataSource</span></code>. For instance the field name <code class="docutils literal"><span class="pre">&quot;&#64;price&quot;</span></code> will
+display values from the <code class="docutils literal"><span class="pre">&quot;price&quot;</span></code> column whenever a hover is triggered.
+If the hover is for the 17th glyph, then the hover tooltip will
+correspondingly display the 17th price value.</p>
+<p>Note that if a column name contains spaces, the it must be supplied by
+surrounding it in curly braces, e.g. <code class="docutils literal"><span class="pre">&#64;{adjusted</span> <span class="pre">close}</span></code> will display
+values from a column named <code class="docutils literal"><span class="pre">&quot;adjusted</span> <span class="pre">close&quot;</span></code>.</p>
+<p>By default, values for fields (e.g. <code class="docutils literal"><span class="pre">&#64;foo</span></code>) are displayed in a basic
+numeric format. However it is possible to control the formatting of values
+more precisely. Fields can be modified by appending a format specified to
+the end in curly braces. Some examples are below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="s2">&quot;@foo{0,0.000}&quot;</span>    <span class="c1"># formats 10000.1234 as: 10,000.123</span>
+
+<span class="s2">&quot;@foo{(.00)}&quot;</span>      <span class="c1"># formats -10000.1234 as: (10000.123)</span>
+
+<span class="s2">&quot;@foo{($ 0.00 a)}&quot;</span> <span class="c1"># formats 1230974 as: $ 1.23 m</span>
+</pre></div>
+</div>
+<p>Specifying a format <code class="docutils literal"><span class="pre">{safe}</span></code> after a field name will override automatic
+escaping of the tooltip data source. Any HTML tags in the data tags will
+be rendered as HTML in the resulting HoverTool output. See
+<a class="reference internal" href="../../user_guide/tools.html#custom-hover-tooltip"><span class="std std-ref">Custom Tooltip</span></a> for a more detailed example.</p>
+<p><code class="docutils literal"><span class="pre">None</span></code> is also a valid value for tooltips. This turns off the
+rendering of tooltips. This is mostly useful when supplying other
+actions on hover via the callback property.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The tooltips attribute can also be configured with a mapping type,
+e.g. <code class="docutils literal"><span class="pre">dict</span></code> or <code class="docutils literal"><span class="pre">OrderedDict</span></code>. However, if a <code class="docutils literal"><span class="pre">dict</span></code> is used,
+the visual presentation order is unspecified.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;anchor&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;attachment&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatters&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d459ea9e-2c44-4faa-886c-937e42d35594&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;line_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;nearest&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mode&quot;</span><span class="o">:</span> <span class="s2">&quot;mouse&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;point_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;snap_to_data&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;show_arrow&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;toggleable&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;tooltips&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;index&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;$index&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;data (x, y)&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;($x, $y)&quot;</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">&quot;canvas (x, y)&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;($sx, $sy)&quot;</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Inspection">
+<em class="property">class </em><code class="descname">Inspection</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Inspection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Inspection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tool</span></code></a></p>
+<p>A base class for tools that perform &#8220;inspections&#8221;, e.g. <code class="docutils literal"><span class="pre">HoverTool</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.Inspection.toggleable">
+<code class="descname">toggleable</code><a class="headerlink" href="#bokeh.models.tools.Inspection.toggleable" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether an on/off toggle button should appear in the toolbar for this
+inpection tool. If <code class="docutils literal"><span class="pre">False</span></code>, the viewers of a plot will not be able to
+toggle the inspector on or off using the toolbar.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;d8a8db83-e2ec-464d-9de0-8fcdc1447101&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;toggleable&quot;</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.LassoSelectTool">
+<em class="property">class </em><code class="descname">LassoSelectTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#LassoSelectTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Drag" title="bokeh.models.tools.Drag"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Drag</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/LassoSelect.png"><img alt="lasso_select_icon" src="../../../_images/LassoSelect.png" style="height: 18pt;" /></a></p>
+<p>The lasso selection tool allows users to make selections on a
+Plot by indicating a free-drawn &#8220;lasso&#8221; region by dragging the
+mouse or a finger over the plot region. The end of the drag
+event indicates the selection region is ready.</p>
+<p>See <a class="reference internal" href="../../user_guide/styling.html#userguide-styling-selected-unselected-glyphs"><span class="std std-ref">Selected and Unselected Glyphs</span></a> for information
+on styling selected and unselected glyphs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Selections can be comprised of multiple regions, even those
+made by different selection tools. Hold down the &lt;&lt;shift&gt;&gt; key
+while making a selection to append the new selection to any
+previous selection that might exist.</p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.LassoSelectTool.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to run in the browser on every selection of a lasso area.
+The cb_data parameter that is available to the Callback code will contain
+one LassoSelectTool-specific field:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Geometry:</th><td class="field-body">object containing the coordinates of the lasso area</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.LassoSelectTool.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal"><span class="pre">name</span></code> attribute will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.LassoSelectTool.overlay">
+<code class="descname">overlay</code><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool.overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="annotations.html#bokeh.models.annotations.PolyAnnotation" title="bokeh.models.annotations.PolyAnnotation"><code class="xref py py-class docutils literal"><span class="pre">PolyAnnotation</span></code></a>  )</p>
+<p>A shaded annotation drawn to indicate the selection region.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.LassoSelectTool.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to hit test again. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.LassoSelectTool.select_every_mousemove">
+<code class="descname">select_every_mousemove</code><a class="headerlink" href="#bokeh.models.tools.LassoSelectTool.select_every_mousemove" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether a selection computation should happen on every mouse
+event, or only once, when the selection region is completed. Default: True</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;e2a7ad38-6a70-4f54-9763-d90fe8f09a69&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;overlay&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;c58f53e9-9a67-4779-9da2-1404068779dd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;PolyAnnotation&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;select_every_mousemove&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.PanTool">
+<em class="property">class </em><code class="descname">PanTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#PanTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.PanTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Drag" title="bokeh.models.tools.Drag"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Drag</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Pan.png"><img alt="pan_icon" src="../../../_images/Pan.png" style="height: 18pt;" /></a></p>
+<p>The pan tool allows the user to pan a Plot by left-dragging
+a mouse, or on touch devices by dragging a finger or stylus, across
+the plot region.</p>
+<p>The pan tool also activates the border regions of a Plot for &#8220;single
+axis&#8221; panning. For instance, dragging in the vertical border or axis
+will effect a pan in the vertical direction only, with the horizontal
+dimension kept fixed.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.PanTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.PanTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the pan tool is constrained to act in. By default
+the pan tool will pan in any dimension, but can be configured to only
+pan horizontally across the width of the plot, or vertically across the
+height of the plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;2df9561a-6343-4cdd-82a9-587936dfd535&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.PolySelectTool">
+<em class="property">class </em><code class="descname">PolySelectTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#PolySelectTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.PolySelectTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tap" title="bokeh.models.tools.Tap"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tap</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/PolygonSelect.png"><img alt="poly_select_icon" src="../../../_images/PolygonSelect.png" style="height: 18pt;" /></a></p>
+<p>The polygon selection tool allows users to make selections on a
+Plot by indicating a polygonal region with mouse clicks. single
+clicks (or taps) add successive points to the definition of the
+polygon, and a double click (or tap) indicates the selection
+region is ready.</p>
+<p>See <a class="reference internal" href="../../user_guide/styling.html#userguide-styling-selected-unselected-glyphs"><span class="std std-ref">Selected and Unselected Glyphs</span></a> for information
+on styling selected and unselected glyphs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Selections can be comprised of multiple regions, even those
+made by different selection tools. Hold down the &lt;&lt;shift&gt;&gt; key
+while making a selection to append the new selection to any
+previous selection that might exist.</p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.PolySelectTool.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.tools.PolySelectTool.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to run in the browser on completion of drawing a polygon.
+The cb_data parameter that is available to the Callback code will contain
+one PolySelectTool-specific field:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Geometry:</th><td class="field-body">object containing the coordinates of the polygon</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.PolySelectTool.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.tools.PolySelectTool.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal"><span class="pre">name</span></code> attribute will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.PolySelectTool.overlay">
+<code class="descname">overlay</code><a class="headerlink" href="#bokeh.models.tools.PolySelectTool.overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="annotations.html#bokeh.models.annotations.PolyAnnotation" title="bokeh.models.annotations.PolyAnnotation"><code class="xref py py-class docutils literal"><span class="pre">PolyAnnotation</span></code></a>  )</p>
+<p>A shaded annotation drawn to indicate the selection region.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.PolySelectTool.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.tools.PolySelectTool.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to hit test again. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;b0a98fb1-42b9-45a0-b3fb-8ab651a764a9&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;overlay&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;418f90e4-5d9f-41d4-aba2-d1ba74be240e&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;PolyAnnotation&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.RedoTool">
+<em class="property">class </em><code class="descname">RedoTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#RedoTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.RedoTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Redo.png"><img alt="redo_icon" src="../../../_images/Redo.png" style="height: 18pt;" /></a></p>
+<p>Redo tool reverses the last action performed by undo tool.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;ee6a4113-54f9-48b5-8154-da018ec4860c&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ResetTool">
+<em class="property">class </em><code class="descname">ResetTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ResetTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ResetTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Reset.png"><img alt="reset_icon" src="../../../_images/Reset.png" style="height: 18pt;" /></a></p>
+<p>The reset tool is an action. When activated in the toolbar, the tool
+resets the data bounds of the plot to their values when the plot was
+initially created.</p>
+<p>Optionally, the reset tool also resets the plat canvas dimensions to
+their original size</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.ResetTool.reset_size">
+<code class="descname">reset_size</code><a class="headerlink" href="#bokeh.models.tools.ResetTool.reset_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Whether activating the Reset tool should also reset the plot&#8217;s canvas
+dimensions to their original size.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;2c7bd183-6f1c-407e-aea7-6c2a024fdd66&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;reset_size&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ResizeTool">
+<em class="property">class </em><code class="descname">ResizeTool</code><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ResizeTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ResizeTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>DEPRECATED in 0.12.7, attempting to use will be a NO-OP</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.models.tools.SaveTool">
+<em class="property">class </em><code class="descname">SaveTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#SaveTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.SaveTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Save.png"><img alt="save_icon" src="../../../_images/Save.png" style="height: 18pt;" /></a></p>
+<p>The save tool is an action. When activated, the tool opens a download dialog
+which allows to save an image reproduction of the plot in PNG format. If
+automatic download is not support by a web browser, the tool falls back to
+opening the generated image in a new tab or window. User then can manually
+save it by right clicking on the image and choosing &#8220;Save As&#8221; (or similar)
+menu item.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;04da1221-8b70-4147-9490-526484c79686&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Scroll">
+<em class="property">class </em><code class="descname">Scroll</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Scroll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Scroll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tool</span></code></a></p>
+<p>A base class for tools that respond to scroll events.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;163a3993-3ee0-4f9e-aaf0-55006f0b8b75&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Tap">
+<em class="property">class </em><code class="descname">Tap</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Tap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Tap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tool</span></code></a></p>
+<p>A base class for tools that respond to tap/click events.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;02d9f068-2cfd-402c-85fc-12d2d75fc6c7&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.TapTool">
+<em class="property">class </em><code class="descname">TapTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#TapTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.TapTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Tap" title="bokeh.models.tools.Tap"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Tap</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Tap.png"><img alt="tap_icon" src="../../../_images/Tap.png" style="height: 18pt;" /></a></p>
+<p>The tap selection tool allows the user to select at single points by
+left-clicking a mouse, or tapping with a finger.</p>
+<p>See <a class="reference internal" href="../../user_guide/styling.html#userguide-styling-selected-unselected-glyphs"><span class="std std-ref">Selected and Unselected Glyphs</span></a> for information
+on styling selected and unselected glyphs.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Selections can be comprised of multiple regions, even those
+made by different selection tools. Hold down the &lt;&lt;shift&gt;&gt; key
+while making a selection to append the new selection to any
+previous selection that might exist.</p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.TapTool.behavior">
+<code class="descname">behavior</code><a class="headerlink" href="#bokeh.models.tools.TapTool.behavior" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(select, inspect) )</p>
+<p>This tool can be configured to either make selections or inspections
+on associated data sources. The difference is that selection changes
+propagate across bokeh and other components (e.g. selection glyph)
+will be notified. Inspecions don&#8217;t act like this, so it&#8217;s useful to
+configure <cite>callback</cite> when setting <cite>behavior=&#8217;inspect&#8217;</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.TapTool.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.tools.TapTool.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to execute <em>whenever a glyph is &#8220;hit&#8221;</em> by a mouse click
+or tap.</p>
+<p>This is often useful with the  <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.OpenURL" title="bokeh.models.callbacks.OpenURL"><code class="xref py py-class docutils literal"><span class="pre">OpenURL</span></code></a>
+model to open URLs based on a user clicking or tapping a specific glyph.</p>
+<p>However, it may also be a <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.CustomJS" title="bokeh.models.callbacks.CustomJS"><code class="xref py py-class docutils literal"><span class="pre">CustomJS</span></code></a>
+which can execute arbitrary JavaScript code in response to clicking or
+tapping glyphs. The callback will be executed for each individual glyph
+that is it hit by a click or tap, and will receive the <code class="docutils literal"><span class="pre">TapTool</span></code> model
+as  <code class="docutils literal"><span class="pre">cb_obj</span></code>. The optional <code class="docutils literal"><span class="pre">cb_data</span></code> will have the data source as
+its <code class="docutils literal"><span class="pre">.source</span></code> attribute and the selection geometry as its
+<code class="docutils literal"><span class="pre">.geometries</span></code> attribute.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This callback does <em>not</em> execute on every tap, only when a glyphs is
+&#8220;hit&#8221;. If you would like to execute a callback on every mouse tap,
+please see <a class="reference internal" href="../../user_guide/interaction/callbacks.html#userguide-interaction-jscallbacks-customjs-interactions"><span class="std std-ref">CustomJS for User Interaction Events</span></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.TapTool.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.tools.TapTool.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal"><span class="pre">name</span></code> attribute will be used.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.TapTool.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.tools.TapTool.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to hit test again. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;behavior&quot;</span><span class="o">:</span> <span class="s2">&quot;select&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;e38edb9e-a7d3-4c00-b5d4-836d4ddb4a71&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Tool">
+<em class="property">class </em><code class="descname">Tool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Tool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Tool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal"><span class="pre">bokeh.model.Model</span></code></a></p>
+<p>A base class for all interactive tool types.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.Tool.plot">
+<code class="descname">plot</code><a class="headerlink" href="#bokeh.models.tools.Tool.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;fdf795a9-0267-41cc-bc06-9aae3f288dce&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.Toolbar">
+<em class="property">class </em><code class="descname">Toolbar</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#Toolbar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.Toolbar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.ToolbarBase" title="bokeh.models.tools.ToolbarBase"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.ToolbarBase</span></code></a></p>
+<p>Collect tools to display for a single plot.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.Toolbar.active_drag">
+<code class="descname">active_drag</code><a class="headerlink" href="#bokeh.models.tools.Toolbar.active_drag" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Drag" title="bokeh.models.tools.Drag"><code class="xref py py-class docutils literal"><span class="pre">Drag</span></code></a>  ) )</p>
+<p>Specify a drag tool to be active when the plot is displayed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.Toolbar.active_inspect">
+<code class="descname">active_inspect</code><a class="headerlink" href="#bokeh.models.tools.Toolbar.active_inspect" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Inspection" title="bokeh.models.tools.Inspection"><code class="xref py py-class docutils literal"><span class="pre">Inspection</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Inspection" title="bokeh.models.tools.Inspection"><code class="xref py py-class docutils literal"><span class="pre">Inspection</span></code></a>  ) ) )</p>
+<p>Specify an inspection tool or sequence of inspection tools to be active when
+the plot is displayed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.Toolbar.active_scroll">
+<code class="descname">active_scroll</code><a class="headerlink" href="#bokeh.models.tools.Toolbar.active_scroll" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Scroll" title="bokeh.models.tools.Scroll"><code class="xref py py-class docutils literal"><span class="pre">Scroll</span></code></a>  ) )</p>
+<p>Specify a scroll/pinch tool to be active when the plot is displayed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.Toolbar.active_tap">
+<code class="descname">active_tap</code><a class="headerlink" href="#bokeh.models.tools.Toolbar.active_tap" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Tap" title="bokeh.models.tools.Tap"><code class="xref py py-class docutils literal"><span class="pre">Tap</span></code></a>  ) )</p>
+<p>Specify a tap/click tool to be active when the plot is displayed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;active_drag&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;active_inspect&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;active_scroll&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;active_tap&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;2e3e7eba-0947-469b-ba53-63f3e4f61ddc&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;logo&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tools&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ToolbarBase">
+<em class="property">class </em><code class="descname">ToolbarBase</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ToolbarBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ToolbarBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="layouts.html#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.layouts.LayoutDOM</span></code></a></p>
+<p>A base class for different toolbars.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBase.logo">
+<code class="descname">logo</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBase.logo" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(normal, grey) )</p>
+<p>What version of the Bokeh logo to display on the toolbar. If
+set to None, no logo will be displayed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBase.tools">
+<code class="descname">tools</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBase.tools" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">Tool</span></code></a>  ) )</p>
+<p>A list of tools to add to the plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;af262a30-8231-4094-8326-db9fd7976b2b&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;logo&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tools&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ToolbarBox">
+<em class="property">class </em><code class="descname">ToolbarBox</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ToolbarBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ToolbarBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="layouts.html#bokeh.models.layouts.Box" title="bokeh.models.layouts.Box"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.layouts.Box</span></code></a></p>
+<p>A layoutable toolbar that can accept the tools of multiple plots, and
+can merge the tools into a single button for convenience.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBox.logo">
+<code class="descname">logo</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBox.logo" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( Enumeration(normal, grey) )</p>
+<p>What version of the Bokeh logo to display on the toolbar. If
+set to None, no logo will be displayed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBox.merge_tools">
+<code class="descname">merge_tools</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBox.merge_tools" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal"><span class="pre">Bool</span></code></a></p>
+<p>Merge all the tools together so there is one tool to control all the plots.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBox.toolbar_location">
+<code class="descname">toolbar_location</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBox.toolbar_location" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Location" title="bokeh.core.enums.Location"><code class="xref py py-class docutils literal"><span class="pre">Location</span></code></a>  )</p>
+<p>Should the toolbar be presented as if it was stuck to the <cite>above</cite>, <cite>right</cite>, <cite>left</cite>, <cite>below</cite>
+edge of a plot. Default is <cite>right</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ToolbarBox.tools">
+<code class="descname">tools</code><a class="headerlink" href="#bokeh.models.tools.ToolbarBox.tools" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.tools.Tool" title="bokeh.models.tools.Tool"><code class="xref py py-class docutils literal"><span class="pre">Tool</span></code></a>  ) )</p>
+<p>A list of tools to add to the plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;01fad113-8b82-4b98-8f58-544f5f6a552e&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;logo&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;merge_tools&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;toolbar_location&quot;</span><span class="o">:</span> <span class="s2">&quot;right&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tools&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.UndoTool">
+<em class="property">class </em><code class="descname">UndoTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#UndoTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.UndoTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/Undo.png"><img alt="undo_icon" src="../../../_images/Undo.png" style="height: 18pt;" /></a></p>
+<p>Undo tool allows to restore previous state of the plot.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;fdf693d1-daf7-42bb-9156-a233b4203a49&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.WheelPanTool">
+<em class="property">class </em><code class="descname">WheelPanTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#WheelPanTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.WheelPanTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Scroll" title="bokeh.models.tools.Scroll"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Scroll</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/WheelPan.png"><img alt="wheel_pan_icon" src="../../../_images/WheelPan.png" style="height: 18pt;" /></a></p>
+<p>The wheel pan tool allows the user to pan the plot along the configured
+dimension using the scroll wheel.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.WheelPanTool.dimension">
+<code class="descname">dimension</code><a class="headerlink" href="#bokeh.models.tools.WheelPanTool.dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimension" title="bokeh.core.enums.Dimension"><code class="xref py py-class docutils literal"><span class="pre">Dimension</span></code></a>  )</p>
+<p>Which dimension the wheel pan tool is constrained to act in. By
+default the wheel pan tool will pan the plot along the x-axis.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimension&quot;</span><span class="o">:</span> <span class="s2">&quot;width&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;363a3853-600f-431f-b109-31deded6dea2&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.WheelZoomTool">
+<em class="property">class </em><code class="descname">WheelZoomTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#WheelZoomTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.WheelZoomTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Scroll" title="bokeh.models.tools.Scroll"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Scroll</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/WheelZoom.png"><img alt="wheel_zoom_icon" src="../../../_images/WheelZoom.png" style="height: 18pt;" /></a></p>
+<p>The wheel zoom tool will zoom the plot in and out, centered on the
+current mouse location.</p>
+<p>The wheel zoom tool also activates the border regions of a Plot for
+&#8220;single axis&#8221; zooming. For instance, zooming in the vertical border or
+axis will effect a zoom in the vertical direction only, with the
+horizontal dimension kept fixed.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.WheelZoomTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.WheelZoomTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the wheel zoom tool is constrained to act in. By
+default the wheel zoom tool will zoom in any dimension, but can be
+configured to only zoom horizontally across the width of the plot, or
+vertically across the height of the plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;2cad9a15-29d6-4fc7-8264-d0ca1e6d6c04&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ZoomInTool">
+<em class="property">class </em><code class="descname">ZoomInTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ZoomInTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ZoomInTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/ZoomIn.png"><img alt="zoom_in_icon" src="../../../_images/ZoomIn.png" style="height: 18pt;" /></a></p>
+<p>The zoom-in tool allows users to click a button to zoom in
+by a fixed amount.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.ZoomInTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.ZoomInTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the zoom-in tool is constrained to act in. By
+default the zoom-in zoom tool will zoom in any dimension, but can be
+configured to only zoom horizontally across the width of the plot, or
+vertically across the height of the plot.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ZoomInTool.factor">
+<code class="descname">factor</code><a class="headerlink" href="#bokeh.models.tools.ZoomInTool.factor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal"><span class="pre">Percent</span></code></a></p>
+<p>Percentage to zoom for each click of the zoom-in tool.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;factor&quot;</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;6f26d1c5-d8dc-41a4-b5ce-a7d55931b638&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.tools.ZoomOutTool">
+<em class="property">class </em><code class="descname">ZoomOutTool</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/tools.html#ZoomOutTool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.tools.ZoomOutTool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.tools.Action" title="bokeh.models.tools.Action"><code class="xref py py-class docutils literal"><span class="pre">bokeh.models.tools.Action</span></code></a></p>
+<p><em>toolbar icon</em>: <a class="reference internal" href="../../../_images/ZoomOut.png"><img alt="zoom_out_icon" src="../../../_images/ZoomOut.png" style="height: 18pt;" /></a></p>
+<p>The zoom-out tool allows users to click a button to zoom out
+by a fixed amount.</p>
+<dl class="attribute">
+<dt id="bokeh.models.tools.ZoomOutTool.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#bokeh.models.tools.ZoomOutTool.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Dimensions" title="bokeh.core.enums.Dimensions"><code class="xref py py-class docutils literal"><span class="pre">Dimensions</span></code></a>  )</p>
+<p>Which dimensions the zoom-out tool is constrained to act in. By
+default the zoom-out tool will zoom in any dimension, but can be
+configured to only zoom horizontally across the width of the plot, or
+vertically across the height of the plot.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.tools.ZoomOutTool.factor">
+<code class="descname">factor</code><a class="headerlink" href="#bokeh.models.tools.ZoomOutTool.factor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal"><span class="pre">Percent</span></code></a></p>
+<p>Percentage to zoom for each click of the zoom-in tool.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;dimensions&quot;</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;factor&quot;</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;36211c38-3d07-4c3e-b931-bfa31c9ec839&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="function">
+<dt id="bokeh.models.tools.DEFAULT_BOX_OVERLAY">
+<code class="descname">DEFAULT_BOX_OVERLAY</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.tools.DEFAULT_BOX_OVERLAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="bokeh.models.tools.DEFAULT_POLY_OVERLAY">
+<code class="descname">DEFAULT_POLY_OVERLAY</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bokeh.models.tools.DEFAULT_POLY_OVERLAY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

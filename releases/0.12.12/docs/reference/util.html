@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.util &mdash; Bokeh 0.12.12 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.12";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/reference/util.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.12.12</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.12/">0.12.12</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.11/">0.12.11</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.10/">0.12.10</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.9/">0.12.9</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.12.12.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transform.html">bokeh.transform</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">bokeh.util</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-browser"><code class="docutils literal"><span class="pre">bokeh.util.browser</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-callback-manager"><code class="docutils literal"><span class="pre">bokeh.util.callback_manager</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-compiler"><code class="docutils literal"><span class="pre">bokeh.util.compiler</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-dependencies"><code class="docutils literal"><span class="pre">bokeh.util.dependencies</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-deprecation"><code class="docutils literal"><span class="pre">bokeh.util.deprecation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-future"><code class="docutils literal"><span class="pre">bokeh.util.future</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-logconfig"><code class="docutils literal"><span class="pre">bokeh.util.logconfig</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-options"><code class="docutils literal"><span class="pre">bokeh.util.options</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-paths"><code class="docutils literal"><span class="pre">bokeh.util.paths</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-platform"><code class="docutils literal"><span class="pre">bokeh.util.platform</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-plot-utils"><code class="docutils literal"><span class="pre">bokeh.util.plot_utils</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-serialization"><code class="docutils literal"><span class="pre">bokeh.util.serialization</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-session-id"><code class="docutils literal"><span class="pre">bokeh.util.session_id</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-string"><code class="docutils literal"><span class="pre">bokeh.util.string</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-testing"><code class="docutils literal"><span class="pre">bokeh.util.testing</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-tornado"><code class="docutils literal"><span class="pre">bokeh.util.tornado</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-version"><code class="docutils literal"><span class="pre">bokeh.util.version</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-util-warnings"><code class="docutils literal"><span class="pre">bokeh.util.warnings</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.11.html">0.12.11 (Nov 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.10.html">0.12.10 (Oct 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.9.html">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.7.html">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.5.html">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-util">
+<span id="id1"></span><h1>bokeh.util<a class="headerlink" href="#bokeh-util" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.util"></span><p>Provide a collection of general utilities useful for implementing Bokeh
+functionality.</p>
+<div class="section" id="bokeh-util-browser">
+<span id="id2"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.browser</span></code><a class="headerlink" href="#bokeh-util-browser" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.browser"></span><p>Utility functions for helping with operations involving browsers.</p>
+<dl class="class">
+<dt id="bokeh.util.browser.DummyWebBrowser">
+<em class="property">class </em><code class="descname">DummyWebBrowser</code><a class="reference internal" href="../../_modules/bokeh/util/browser.html#DummyWebBrowser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.browser.DummyWebBrowser" title="Permalink to this definition">¶</a></dt>
+<dd><p>A &#8220;no-op&#8221; web-browser controller.</p>
+<dl class="method">
+<dt id="bokeh.util.browser.DummyWebBrowser.open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>url</em>, <em>new=0</em>, <em>autoraise=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/browser.html#DummyWebBrowser.open"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.browser.DummyWebBrowser.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive standard arguments and take no action.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.browser.get_browser_controller">
+<code class="descname">get_browser_controller</code><span class="sig-paren">(</span><em>browser=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/browser.html#get_browser_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.browser.get_browser_controller" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a browser controller.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>browser</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/constants.html#None" title="(in Python v2.7)"><em>None</em></a>) &#8211; <p>browser name, or <code class="docutils literal"><span class="pre">None</span></code> (default: <code class="docutils literal"><span class="pre">None</span></code>)
+If passed the string <code class="docutils literal"><span class="pre">'none'</span></code>, a dummy web browser controller
+is returned</p>
+<p>Otherwise, use the value to select an appropriate controller using
+the <code class="docutils literal"><span class="pre">webbrowser</span></code> standard library module. In the value is
+<code class="docutils literal"><span class="pre">None</span></code> then a system default is used.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the environment variable <code class="docutils literal"><span class="pre">BOKEH_BROWSER</span></code> is set, it will take
+precedence.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a web browser controller</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">controller</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.browser.view">
+<code class="descname">view</code><span class="sig-paren">(</span><em>location</em>, <em>browser=None</em>, <em>new='same'</em>, <em>autoraise=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/browser.html#view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.browser.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a browser to view the specified location.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>location</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Location to open
+If location does not begin with &#8220;http:&#8221; it is assumed
+to be a file path on the local filesystem.</li>
+<li><strong>browser</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/constants.html#None" title="(in Python v2.7)"><em>None</em></a>) &#8211; what browser to use (default: None)
+If <code class="docutils literal"><span class="pre">None</span></code>, use the system default browser.</li>
+<li><strong>new</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <p>How to open the location. Valid values are:</p>
+<p><code class="docutils literal"><span class="pre">'same'</span></code> - open in the current tab</p>
+<p><code class="docutils literal"><span class="pre">'tab'</span></code> - open a new tab in the current window</p>
+<p><code class="docutils literal"><span class="pre">'window'</span></code> - open in a new window</p>
+</li>
+<li><strong>autoraise</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a>) &#8211; Whether to automatically raise the location
+in a new browser window (default: True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-callback-manager">
+<span id="id3"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.callback_manager</span></code><a class="headerlink" href="#bokeh-util-callback-manager" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.callback_manager"></span><p>Provides <code class="docutils literal"><span class="pre">PropertyCallbackManager</span></code> and <code class="docutils literal"><span class="pre">EventCallbackManager</span></code>
+mixin classes for adding <code class="docutils literal"><span class="pre">on_change</span></code> and <code class="docutils literal"><span class="pre">on_event</span></code> callback
+interfaces to classes.</p>
+<dl class="class">
+<dt id="bokeh.util.callback_manager.EventCallbackManager">
+<em class="property">class </em><code class="descname">EventCallbackManager</code><span class="sig-paren">(</span><em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/callback_manager.html#EventCallbackManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.callback_manager.EventCallbackManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin class to provide an interface for registering and
+triggering event callbacks on the Python side.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.callback_manager.PropertyCallbackManager">
+<em class="property">class </em><code class="descname">PropertyCallbackManager</code><span class="sig-paren">(</span><em>*args</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/callback_manager.html#PropertyCallbackManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.callback_manager.PropertyCallbackManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>A mixin class to provide an interface for registering and
+triggering callbacks.</p>
+<dl class="method">
+<dt id="bokeh.util.callback_manager.PropertyCallbackManager.on_change">
+<code class="descname">on_change</code><span class="sig-paren">(</span><em>attr</em>, <em>*callbacks</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/callback_manager.html#PropertyCallbackManager.on_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.callback_manager.PropertyCallbackManager.on_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a callback on this object to trigger when <code class="docutils literal"><span class="pre">attr</span></code> changes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; an attribute name on this object</li>
+<li><strong>callback</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#callable" title="(in Python v2.7)"><em>callable</em></a>) &#8211; a callback function to register</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.util.callback_manager.PropertyCallbackManager.remove_on_change">
+<code class="descname">remove_on_change</code><span class="sig-paren">(</span><em>attr</em>, <em>*callbacks</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/callback_manager.html#PropertyCallbackManager.remove_on_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.callback_manager.PropertyCallbackManager.remove_on_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a callback from this object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.util.callback_manager.PropertyCallbackManager.trigger">
+<code class="descname">trigger</code><span class="sig-paren">(</span><em>attr</em>, <em>old</em>, <em>new</em>, <em>hint=None</em>, <em>setter=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/callback_manager.html#PropertyCallbackManager.trigger"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.callback_manager.PropertyCallbackManager.trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigger callbacks for <code class="docutils literal"><span class="pre">attr</span></code> on this object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>attr</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; </li>
+<li><strong>old</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) &#8211; </li>
+<li><strong>new</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-compiler">
+<span id="id4"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.compiler</span></code><a class="headerlink" href="#bokeh-util-compiler" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.compiler"></span><p>Provide functions and classes to help with various JS and CSS compilation.</p>
+<dl class="exception">
+<dt id="bokeh.util.compiler.CompilationError">
+<em class="property">exception </em><code class="descname">CompilationError</code><span class="sig-paren">(</span><em>error</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#CompilationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.CompilationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>A RuntimeError subclass for reporting JS compilation errors.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.AttrDict">
+<em class="property">class </em><code class="descname">AttrDict</code><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#AttrDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.AttrDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide a dict subclass that supports access by named attributes.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.CoffeeScript">
+<em class="property">class </em><code class="descname">CoffeeScript</code><span class="sig-paren">(</span><em>code</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#CoffeeScript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.CoffeeScript" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation for a Bokeh custom model in CoffeeSript.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyExt</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="n">CoffeeScript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; &lt;CoffeeScript code&gt; &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal"><span class="pre">CoffeeScript</span></code> is the default implementation language for
+custom model implementations. The following is equivalent to example above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyExt</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__implementation__</span> <span class="o">==</span> <span class="s2">&quot;&quot;&quot; &lt;some coffeescript code&gt; &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.CustomModel">
+<em class="property">class </em><code class="descname">CustomModel</code><span class="sig-paren">(</span><em>cls</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#CustomModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.CustomModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represent a custom (user-defined) Bokeh model.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.FromFile">
+<em class="property">class </em><code class="descname">FromFile</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#FromFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.FromFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>A custom model implementation read from a separate source file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The path to the file containing the extension source code</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.Implementation">
+<em class="property">class </em><code class="descname">Implementation</code><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#Implementation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.Implementation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for representing Bokeh custom model implementations.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.Inline">
+<em class="property">class </em><code class="descname">Inline</code><span class="sig-paren">(</span><em>code</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#Inline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.Inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for representing Bokeh custom model implementations that may
+be given as inline code in some language.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>code</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The source code for the implementation</li>
+<li><strong>file</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) &#8211; A file path to a file containing the source text (default: None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.JavaScript">
+<em class="property">class </em><code class="descname">JavaScript</code><span class="sig-paren">(</span><em>code</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#JavaScript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.JavaScript" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation for a Bokeh custom model in JavaSript</p>
+<p class="rubric">Example</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyExt</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="n">Javacript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; &lt;Javactipt code&gt; &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.Less">
+<em class="property">class </em><code class="descname">Less</code><span class="sig-paren">(</span><em>code</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#Less"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.Less" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation of a Less CSS style sheet.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.util.compiler.TypeScript">
+<em class="property">class </em><code class="descname">TypeScript</code><span class="sig-paren">(</span><em>code</em>, <em>file=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#TypeScript"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.TypeScript" title="Permalink to this definition">¶</a></dt>
+<dd><p>An implementation for a Bokeh custom model in TypeSript</p>
+<p class="rubric">Example</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyExt</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="n">TypeScript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot; &lt;TypeSctipt code&gt; &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.compiler.bundle_models">
+<code class="descname">bundle_models</code><span class="sig-paren">(</span><em>models</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#bundle_models"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.bundle_models" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bundle of <cite>models</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.compiler.calc_cache_key">
+<code class="descname">calc_cache_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/compiler.html#calc_cache_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.compiler.calc_cache_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a key to cache a custom extension implementation with.</p>
+<p>There is no metadata other than the Model classes, so this is the only
+base to generate a cache key.</p>
+<p>We build the model keys from the list of <code class="docutils literal"><span class="pre">model.full_name</span></code>. This is
+not ideal but possibly a better solution can be found found later.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="bokeh.util.compiler.exts">
+<code class="descname">exts</code><em class="property"> = ('.coffee', '.ts', '.tsx', '.js', '.css', '.less')</em><a class="headerlink" href="#bokeh.util.compiler.exts" title="Permalink to this definition">¶</a></dt>
+<dd><p>recognized extensions that can be compiled</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-dependencies">
+<span id="id5"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.dependencies</span></code><a class="headerlink" href="#bokeh-util-dependencies" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.dependencies"></span><p>Utilities for checking dependencies</p>
+<dl class="function">
+<dt id="bokeh.util.dependencies.detect_phantomjs">
+<code class="descname">detect_phantomjs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/dependencies.html#detect_phantomjs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.dependencies.detect_phantomjs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect if PhantomJS is avaiable in PATH.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.dependencies.import_optional">
+<code class="descname">import_optional</code><span class="sig-paren">(</span><em>mod_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/dependencies.html#import_optional"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.dependencies.import_optional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to import an optional dependency.</p>
+<p>Silently returns None if the requested module is not available.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mod_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; name of the optional module to try to import</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">imported module or None, if import fails</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.dependencies.import_required">
+<code class="descname">import_required</code><span class="sig-paren">(</span><em>mod_name</em>, <em>error_msg</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/dependencies.html#import_required"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.dependencies.import_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to import a required dependency.</p>
+<p>Raises a RuntimeError if the requested module is not available.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mod_name</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; name of the required module to try to import</li>
+<li><strong>error_msg</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; error message to raise when the module is missing</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">imported module</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-deprecation">
+<span id="id6"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.deprecation</span></code><a class="headerlink" href="#bokeh-util-deprecation" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.deprecation"></span></div>
+<div class="section" id="bokeh-util-future">
+<span id="id7"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.future</span></code><a class="headerlink" href="#bokeh-util-future" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.future"></span><p>Utilities for Py2/Py3 interop.</p>
+<dl class="function">
+<dt id="bokeh.util.future.with_metaclass">
+<code class="descname">with_metaclass</code><span class="sig-paren">(</span><em>meta</em>, <em>*bases</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/future.html#with_metaclass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.future.with_metaclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add metaclasses in both Python 2 and Python 3.</p>
+<p>Function from jinja2/_compat.py. License: BSD.</p>
+<p>Use it like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseForm</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">FormType</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">FormType</span><span class="p">,</span> <span class="n">BaseForm</span><span class="p">)):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>This requires a bit of explanation: the basic idea is to make a
+dummy metaclass for one level of class instantiation that replaces
+itself with the actual metaclass.  Because of internal type checks
+we also need to make sure that we downgrade the custom metaclass
+for one level to something closer to type (that&#8217;s why __call__ and
+__init__ comes back from type etc.).</p>
+<p>This has the advantage over six.with_metaclass of not introducing
+dummy classes into the final MRO.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-logconfig">
+<span id="id8"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.logconfig</span></code><a class="headerlink" href="#bokeh-util-logconfig" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.logconfig"></span><p>Configure the logging system for Bokeh.</p>
+<p>By default, logging is not configured, to allow users of Bokeh to have full
+control over logging policy. However, it is useful to be able to enable
+logging arbitrarily during when developing Bokeh. This can be accomplished
+by setting the environment variable <code class="docutils literal"><span class="pre">BOKEH_PY_LOG_LEVEL</span></code>. Valid values are,
+in order of increasing severity:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">debug</span></code></li>
+<li><code class="docutils literal"><span class="pre">info</span></code></li>
+<li><code class="docutils literal"><span class="pre">warn</span></code></li>
+<li><code class="docutils literal"><span class="pre">error</span></code></li>
+<li><code class="docutils literal"><span class="pre">fatal</span></code></li>
+<li><code class="docutils literal"><span class="pre">none</span></code></li>
+</ul>
+</div></blockquote>
+<p>The default logging level is <code class="docutils literal"><span class="pre">none</span></code>.</p>
+<dl class="function">
+<dt id="bokeh.util.logconfig.basicConfig">
+<code class="descname">basicConfig</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/logconfig.html#basicConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.logconfig.basicConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>A logging.basicConfig() wrapper that also undoes the default
+Bokeh-specific configuration.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-options">
+<span id="id9"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.options</span></code><a class="headerlink" href="#bokeh-util-options" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.options"></span><p>Utilities for specifying, validating, and documenting configuration
+options.</p>
+<dl class="class">
+<dt id="bokeh.util.options.Options">
+<em class="property">class </em><code class="descname">Options</code><span class="sig-paren">(</span><em>kw=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/options.html#Options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.options.Options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Leverage the Bokeh properties type system for specifying and
+validating configuration options.</p>
+<p>Subclasses of <code class="docutils literal"><span class="pre">Options</span></code> specify a set of configuration options
+using standard Bokeh properties:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConnectOpts</span><span class="p">(</span><span class="n">Options</span><span class="p">):</span>
+
+    <span class="n">host</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a host value&quot;</span><span class="p">)</span>
+
+    <span class="n">port</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5590</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;a port value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then a <code class="docutils literal"><span class="pre">ConnectOpts</span></code> can be created by passing a dictionary
+containing keys and values corresponding to the configuration options,
+as well as any additional keys and values. The items corresponding
+to the properties on <code class="docutils literal"><span class="pre">ConnectOpts</span></code> will be <strong>*removed*</strong> from the
+dictionary. This can be useful for functions that accept their own
+set of config keyword arguments in addition to some set of Bokeh model
+properties.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-paths">
+<span id="id10"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.paths</span></code><a class="headerlink" href="#bokeh-util-paths" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.paths"></span><dl class="function">
+<dt id="bokeh.util.paths.bokehjsdir">
+<code class="descname">bokehjsdir</code><span class="sig-paren">(</span><em>dev=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/paths.html#bokehjsdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.paths.bokehjsdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the location of the bokehjs source files. If dev is True,
+the files in bokehjs/build are preferred. Otherwise uses the files
+in bokeh/server/static.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.paths.serverdir">
+<code class="descname">serverdir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/paths.html#serverdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.paths.serverdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the location of the server subpackage</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-platform">
+<span id="id11"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.platform</span></code><a class="headerlink" href="#bokeh-util-platform" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.platform"></span><p>Functions for testing what kind of Python or Python environment is in use.</p>
+<dl class="function">
+<dt id="bokeh.util.platform.is_py3">
+<code class="descname">is_py3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/platform.html#is_py3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.platform.is_py3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether we are running Python 3.</p>
+<dl class="docutils">
+<dt>Returns</dt>
+<dd>True if we are running Python 3, otherwise False</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-plot-utils">
+<span id="id12"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.plot_utils</span></code><a class="headerlink" href="#bokeh-util-plot-utils" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.plot_utils"></span></div>
+<div class="section" id="bokeh-util-serialization">
+<span id="id13"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.serialization</span></code><a class="headerlink" href="#bokeh-util-serialization" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.serialization"></span><p>Functions for helping with serialization and deserialization of
+Bokeh objects.</p>
+<p>Certain NunPy array dtypes can be serialized to a binary format for
+performance and efficiency. The list of supported dtypes is:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">np.uint8</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.uint32</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int8</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.uint16</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int16</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.float64</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int32</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.float32</span></code></li>
+</ul>
+<dl class="function">
+<dt id="bokeh.util.serialization.array_encoding_disabled">
+<code class="descname">array_encoding_disabled</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#array_encoding_disabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.array_encoding_disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether an array may be binary encoded.</p>
+<p>The NumPy array dtypes that can be encoded are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">np.uint8</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.uint32</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int8</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.uint16</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int16</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.float64</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.int32</span></code></li>
+<li><code class="docutils literal"><span class="pre">np.float32</span></code></li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>array</strong> (<em>np.ndarray</em>) &#8211; the array to check</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.convert_datetime_type">
+<code class="descname">convert_datetime_type</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#convert_datetime_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.convert_datetime_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert any recognized date, datetime or time delta value to
+floating point milliseconds</p>
+<p>Date and Datetime values are converted to milliseconds since epoch.</p>
+<p>TimeDeleta values are converted to absolute milliseconds.</p>
+<dl class="docutils">
+<dt>Arg:</dt>
+<dd>obj (object) : the object to convert</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">milliseconds</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#float" title="(in Python v2.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.decode_base64_dict">
+<code class="descname">decode_base64_dict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#decode_base64_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.decode_base64_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a base64 encoded array into a NumPy array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; encoded array data to decode</td>
+</tr>
+</tbody>
+</table>
+<p>Data should have the format encoded by <a class="reference internal" href="#bokeh.util.serialization.encode_base64_dict" title="bokeh.util.serialization.encode_base64_dict"><code class="xref py py-func docutils literal"><span class="pre">encode_base64_dict()</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.encode_base64_dict">
+<code class="descname">encode_base64_dict</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#encode_base64_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.encode_base64_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode a NumPy array using base64:</p>
+<p>The encoded format is a dict with the following structure:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;__ndarray__&#39;</span> <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">base64</span> <span class="n">encoded</span> <span class="n">array</span> <span class="n">data</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;shape&#39;</span>       <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">array</span> <span class="n">shape</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;dtype&#39;</span>       <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">dtype</span> <span class="n">name</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>array</strong> (<em>np.ndarray</em>) &#8211; an array to encode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.encode_binary_dict">
+<code class="descname">encode_binary_dict</code><span class="sig-paren">(</span><em>array</em>, <em>buffers</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#encode_binary_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.encode_binary_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a numpy array as an unencoded binary buffer</p>
+<p>The encoded format is a dict with the following structure:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;__buffer__&#39;</span> <span class="p">:</span>  <span class="o">&lt;&lt;</span> <span class="n">an</span> <span class="n">ID</span> <span class="n">to</span> <span class="n">locate</span> <span class="n">the</span> <span class="n">buffer</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;shape&#39;</span>      <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">array</span> <span class="n">shape</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;dtype&#39;</span>      <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">dtype</span> <span class="n">name</span> <span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="s1">&#39;order&#39;</span>      <span class="p">:</span> <span class="o">&lt;&lt;</span> <span class="n">byte</span> <span class="n">order</span> <span class="n">at</span> <span class="n">origin</span> <span class="p">(</span><span class="n">little</span> <span class="ow">or</span> <span class="n">big</span><span class="p">)</span><span class="o">&gt;&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array</strong> (<em>np.ndarray</em>) &#8211; an array to encode</li>
+<li><strong>buffers</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)"><em>set</em></a>) &#8211; <p>Set to add buffers to</p>
+<p><strong>This is an &#8220;out&#8221; parameter</strong>. The values it contains will be
+modified in-place.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.is_datetime_type">
+<code class="descname">is_datetime_type</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#is_datetime_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.is_datetime_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether an object is any date, datetime, or time delta type
+recognized by Bokeh.</p>
+<dl class="docutils">
+<dt>Arg:</dt>
+<dd>obj (object) : the object to test</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if <code class="docutils literal"><span class="pre">obj</span></code> is a datetime type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.make_id">
+<code class="descname">make_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#make_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.make_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new unique ID for a Bokeh object.</p>
+<p>Normally this function will return UUIDs to use for identifying Bokeh
+objects. This is especally important for Bokeh objects stored on a
+Bokeh server. However, it is convenient to have more human-readable
+IDs during development, so this behavior can be overridden by
+setting the environment variable <code class="docutils literal"><span class="pre">BOKEH_SIMPLE_IDS=yes</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.serialize_array">
+<code class="descname">serialize_array</code><span class="sig-paren">(</span><em>array</em>, <em>force_list=False</em>, <em>buffers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#serialize_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.serialize_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a NumPy array into serialized form.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array</strong> (<em>np.ndarray</em>) &#8211; the NumPy array to transform</li>
+<li><strong>force_list</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; whether to only output to standard lists
+This function can encode some dtypes using a binary encoding, but
+setting this argument to True will override that and cause only
+standard Python lists to be emitted. (default: False)</li>
+<li><strong>buffers</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)"><em>set</em></a><em>, </em><em>optional</em>) &#8211; <p>If binary buffers are desired, the buffers parameter may be
+provided, and any columns that may be sent as binary buffers
+will be added to the set. If None, then only base64 encodinfg
+will be used (default: None)</p>
+<p>If force_list is True, then this value will be ignored, and
+no buffers will be generated.</p>
+<p><strong>This is an &#8220;out&#8221; parameter</strong>. The values it contains will be
+modified in-place.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list or dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.transform_array">
+<code class="descname">transform_array</code><span class="sig-paren">(</span><em>array</em>, <em>force_list=False</em>, <em>buffers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#transform_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.transform_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a NumPy arrays into serialized format</p>
+<p>Converts un-serializable dtypes and returns JSON serializable
+format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array</strong> (<em>np.ndarray</em>) &#8211; a NumPy array to be transformed</li>
+<li><strong>force_list</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; whether to only output to standard lists
+This function can encode some dtypes using a binary encoding, but
+setting this argument to True will override that and cause only
+standard Python lists to be emitted. (default: False)</li>
+<li><strong>buffers</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)"><em>set</em></a><em>, </em><em>optional</em>) &#8211; <p>If binary buffers are desired, the buffers parameter may be
+provided, and any columns that may be sent as binary buffers
+will be added to the set. If None, then only base64 encodinfg
+will be used (default: None)</p>
+<p>If force_list is True, then this value will be ignored, and
+no buffers will be generated.</p>
+<p><strong>This is an &#8220;out&#8221; parameter</strong>. The values it contains will be
+modified in-place.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">JSON</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.transform_array_to_list">
+<code class="descname">transform_array_to_list</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#transform_array_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.transform_array_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a NumPy array into a list of values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>array</strong> (<em>np.nadarray</em>) &#8211; the NumPy array series to transform</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list or dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.transform_column_source_data">
+<code class="descname">transform_column_source_data</code><span class="sig-paren">(</span><em>data</em>, <em>buffers=None</em>, <em>cols=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#transform_column_source_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.transform_column_source_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform ColumnSourceData data to a serialized format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; the mapping of names to data columns to transform</li>
+<li><strong>buffers</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)"><em>set</em></a><em>, </em><em>optional</em>) &#8211; <p>If binary buffers are desired, the buffers parameter may be
+provided, and any columns that may be sent as binary buffers
+will be added to the set. If None, then only base64 encodinfg
+will be used (default: None)</p>
+<p><strong>This is an &#8220;out&#8221; parameter</strong>. The values it contains will be
+modified in-place.</p>
+</li>
+<li><strong>cols</strong> (<em>list</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) &#8211; Optional list of subset of columns to transform. If None, all
+columns will be transformed (default: None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">JSON compatible dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.transform_series">
+<code class="descname">transform_series</code><span class="sig-paren">(</span><em>series</em>, <em>force_list=False</em>, <em>buffers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#transform_series"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.transform_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a Pandas series into serialized form</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>series</strong> (<em>pd.Series</em>) &#8211; the Pandas series to transform</li>
+<li><strong>force_list</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; whether to only output to standard lists
+This function can encode some dtypes using a binary encoding, but
+setting this argument to True will override that and cause only
+standard Python lists to be emitted. (default: False)</li>
+<li><strong>buffers</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#set" title="(in Python v2.7)"><em>set</em></a><em>, </em><em>optional</em>) &#8211; <p>If binary buffers are desired, the buffers parameter may be
+provided, and any columns that may be sent as binary buffers
+will be added to the set. If None, then only base64 encodinfg
+will be used (default: None)</p>
+<p>If force_list is True, then this value will be ignored, and
+no buffers will be generated.</p>
+<p><strong>This is an &#8220;out&#8221; parameter</strong>. The values it contains will be
+modified in-place.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list or dict</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.serialization.traverse_data">
+<code class="descname">traverse_data</code><span class="sig-paren">(</span><em>obj</em>, <em>use_numpy=True</em>, <em>buffers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/serialization.html#traverse_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.serialization.traverse_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively traverse an object until a flat list is found.</p>
+<p>If NumPy is available, the flat list is converted to a numpy array
+and passed to transform_array() to handle <code class="docutils literal"><span class="pre">nan</span></code>, <code class="docutils literal"><span class="pre">inf</span></code>, and
+<code class="docutils literal"><span class="pre">-inf</span></code>.</p>
+<p>Otherwise, iterate through all items, converting non-JSON items</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>obj</strong> (<em>list</em>) &#8211; a list of values or lists</li>
+<li><strong>use_numpy</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; This argument is only useful for testing (default: True)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-session-id">
+<span id="id14"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.session_id</span></code><a class="headerlink" href="#bokeh-util-session-id" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.session_id"></span><p>Utilities for generating and manipulating session IDs.</p>
+<p>A session ID would typically be associated with each browser tab viewing
+an application or plot. Each session has its own state separate from any
+other sessions hosted by the server.</p>
+<dl class="function">
+<dt id="bokeh.util.session_id.check_session_id_signature">
+<code class="descname">check_session_id_signature</code><span class="sig-paren">(</span><em>session_id</em>, <em>secret_key=None</em>, <em>signed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/session_id.html#check_session_id_signature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.session_id.check_session_id_signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the signature of a session ID, returning True if it&#8217;s valid.</p>
+<p>The server uses this function to check whether a session ID
+was generated with the correct secret key. If signed sessions are disabled,
+this function always returns True.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The session ID to check</li>
+<li><strong>secret_key</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) &#8211; Secret key (default: value of &#8216;BOKEH_SECRET_KEY&#8217; env var)</li>
+<li><strong>signed</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; Whether to check anything (default: value of
+&#8216;BOKEH_SIGN_SESSIONS&#8217; env var)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.session_id.generate_secret_key">
+<code class="descname">generate_secret_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/session_id.html#generate_secret_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.session_id.generate_secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a new securely-generated secret key appropriate
+for SHA-256 HMAC signatures. This key could be used to
+sign Bokeh server session IDs for example.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.session_id.generate_session_id">
+<code class="descname">generate_session_id</code><span class="sig-paren">(</span><em>secret_key=None</em>, <em>signed=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/session_id.html#generate_session_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.session_id.generate_session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random session ID.</p>
+<p>Typically, each browser tab connected to a Bokeh application
+has its own session ID.  In production deployments of a Bokeh
+app, session IDs should be random and unguessable - otherwise
+users of the app could interfere with one another.</p>
+<p>If session IDs are signed with a secret key, the server can
+verify that the generator of the session ID was &#8220;authorized&#8221;
+(the generator had to know the secret key). This can be used
+to have a separate process, such as another web application,
+which generates new sessions on a Bokeh server. This other
+process may require users to log in before redirecting them to
+the Bokeh server with a valid session ID, for example.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>secret_key</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) &#8211; Secret key (default: value of &#8216;BOKEH_SECRET_KEY&#8217; env var)</li>
+<li><strong>signed</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><em>bool</em></a><em>, </em><em>optional</em>) &#8211; Whether to sign the session ID (default: value of
+&#8216;BOKEH_SIGN_SESSIONS&#8217; env var)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-string">
+<span id="id15"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.string</span></code><a class="headerlink" href="#bokeh-util-string" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.string"></span><p>Functions useful for string manipulations or encoding.</p>
+<dl class="function">
+<dt id="bokeh.util.string.decode_utf8">
+<code class="descname">decode_utf8</code><span class="sig-paren">(</span><em>u</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#decode_utf8"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.decode_utf8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a sequence of bytes to a UTF-8 string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>u</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the bytes to decode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">UTF-8 string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.string.encode_utf8">
+<code class="descname">encode_utf8</code><span class="sig-paren">(</span><em>u</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#encode_utf8"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.encode_utf8" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode a UTF-8 string to a sequence of bytes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>u</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; the string to encode</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">bytes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.string.format_docstring">
+<code class="descname">format_docstring</code><span class="sig-paren">(</span><em>docstring</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#format_docstring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.format_docstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Safely format docstrings.</p>
+<p>When Python is executed with the <code class="docutils literal"><span class="pre">-OO</span></code> option, doc strings are removed and
+replaced the value <code class="docutils literal"><span class="pre">None</span></code>. This function guards against applying the string
+formatting options in that case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docstring</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/2/library/constants.html#None" title="(in Python v2.7)"><em>None</em></a>) &#8211; The docstring to format, or <code class="docutils literal"><span class="pre">None</span></code></li>
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#tuple" title="(in Python v2.7)"><em>tuple</em></a>) &#8211; string formatting arguments for the docsring</li>
+<li><strong>kwargs</strong> (<a class="reference external" href="https://docs.python.org/2/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; string formatting arguments for the docsring</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">str or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.string.indent">
+<code class="descname">indent</code><span class="sig-paren">(</span><em>text</em>, <em>n=2</em>, <em>ch=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#indent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.indent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indent all the lines in a given block of text by a specified ammount.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>text</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The text to indent</li>
+<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a><em>, </em><em>optional</em>) &#8211; The amount to indent each line by (default: 2)</li>
+<li><strong>ch</strong> (<em>char</em><em>, </em><em>optional</em>) &#8211; What character to fill the indentation with (default: &#8221; &#8221;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.string.nice_join">
+<code class="descname">nice_join</code><span class="sig-paren">(</span><em>seq</em>, <em>sep='</em>, <em>'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#nice_join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.nice_join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join together sequences of strings into English-friendly phrases using
+the conjunction <code class="docutils literal"><span class="pre">or</span></code> when appropriate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>seq</strong> (<em>seq</em><em>[</em><a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>]</em>) &#8211; a sequence of strings to nicely join</li>
+<li><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a><em>, </em><em>optional</em>) &#8211; a sequence delimiter to use (default: &#8221;, &#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a joined string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nice_join</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="go">&#39;a, b or c&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="bokeh.util.string.snakify">
+<code class="descname">snakify</code><span class="sig-paren">(</span><em>name</em>, <em>sep='_'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/string.html#snakify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.string.snakify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert CamelCase to snake_case.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-testing">
+<span id="id16"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.testing</span></code><a class="headerlink" href="#bokeh-util-testing" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.testing"></span><p>Functions to help with testing Bokeh and reporting issues.</p>
+<dl class="function">
+<dt id="bokeh.util.testing.skipIfPy3">
+<code class="descname">skipIfPy3</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/testing.html#skipIfPy3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.testing.skipIfPy3" title="Permalink to this definition">¶</a></dt>
+<dd><p>unittest decorator to skip a test for Python 3</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-tornado">
+<span id="id17"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.tornado</span></code><a class="headerlink" href="#bokeh-util-tornado" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.tornado"></span><p>Internal utils related to Tornado</p>
+<dl class="function">
+<dt id="bokeh.util.tornado.yield_for_all_futures">
+<code class="descname">yield_for_all_futures</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/util/tornado.html#yield_for_all_futures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.tornado.yield_for_all_futures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts result into a Future by collapsing any futures inside result.</p>
+<p>If result is a Future we yield until it&#8217;s done, then if the value inside
+the Future is another Future we yield until it&#8217;s done as well, and so on.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-version">
+<span id="id18"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.version</span></code><a class="headerlink" href="#bokeh-util-version" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.version"></span><p>Provide a version for the Bokeh library.</p>
+<p>This module uses <a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a> to manage version strings. During development,
+<a class="reference external" href="https://github.com/warner/python-versioneer">versioneer</a> will compute a version string from the current git revision.
+For packaged releases based off tags, the version string is hard coded in the
+files packaged for distribution.</p>
+<dl class="attribute">
+<dt id="bokeh.util.version.__version__">
+<code class="descname">__version__</code><a class="headerlink" href="#bokeh.util.version.__version__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full version string for this installed Bokeh library</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.util.version.__base_version__">
+<code class="descname">__base_version__</code><a class="headerlink" href="#bokeh.util.version.__base_version__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base version string , without any &#8220;dev&#8221;, &#8220;rc&#8221; or local build
+information appended.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="bokeh-util-warnings">
+<span id="id19"></span><h2><code class="docutils literal"><span class="pre">bokeh.util.warnings</span></code><a class="headerlink" href="#bokeh-util-warnings" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-bokeh.util.warnings"></span><p>Provide Bokeh-specific warning subclasses.</p>
+<p>The primary use of these subclasses to to force them to be unconditionally
+displayed to users by default.</p>
+<dl class="exception">
+<dt id="bokeh.util.warnings.BokehDeprecationWarning">
+<em class="property">exception </em><code class="descname">BokehDeprecationWarning</code><a class="reference internal" href="../../_modules/bokeh/util/warnings.html#BokehDeprecationWarning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.warnings.BokehDeprecationWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Bokeh-specific <code class="docutils literal"><span class="pre">DeprecationWarning</span></code> subclass.</p>
+<p>Used to selectively filter Bokeh deprecations for unconditional display.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="bokeh.util.warnings.BokehUserWarning">
+<em class="property">exception </em><code class="descname">BokehUserWarning</code><a class="reference internal" href="../../_modules/bokeh/util/warnings.html#BokehUserWarning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.util.warnings.BokehUserWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Bokeh-specific <code class="docutils literal"><span class="pre">UserWarning</span></code> subclass.</p>
+<p>Used to selectively filter Bokeh warnings for unconditional display.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring and Styling Bokeh Objects &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="User Guide" href="../user_guide.html" />
+    <link rel="next" title="Using the Bokeh Server" href="server.html" />
+    <link rel="prev" title="High Level Charts" href="charts.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html">High Level Charts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Configuring and Styling Bokeh Objects</a><ul>
+<li><a class="reference internal" href="#plots">Plots</a></li>
+<li><a class="reference internal" href="#glyphs">Glyphs</a><ul>
+<li><a class="reference internal" href="#markers">Markers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#styling">Styling</a><ul>
+<li><a class="reference internal" href="#properties">Properties</a><ul>
+<li><a class="reference internal" href="#line-properties">Line Properties</a></li>
+<li><a class="reference internal" href="#fill-properties">Fill Properties</a></li>
+<li><a class="reference internal" href="#text-properties">Text Properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ranges">Ranges</a><ul>
+<li><a class="reference internal" href="#automatic-ranges">Automatic Ranges</a></li>
+<li><a class="reference internal" href="#numerical-ranges">Numerical Ranges</a></li>
+<li><a class="reference internal" href="#categorical-ranges">Categorical Ranges</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#guides">Guides</a><ul>
+<li><a class="reference internal" href="#axes">Axes</a></li>
+<li><a class="reference internal" href="#grids">Grids</a></li>
+<li><a class="reference internal" href="#legends">Legends</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tools">Tools</a><ul>
+<li><a class="reference internal" href="#pan-drag-tools">Pan/Drag Tools</a><ul>
+<li><a class="reference internal" href="#boxselecttool">BoxSelectTool</a></li>
+<li><a class="reference internal" href="#boxzoomtool">BoxZoomTool</a></li>
+<li><a class="reference internal" href="#lassoselecttool">LassoSelectTool</a></li>
+<li><a class="reference internal" href="#pantool">PanTool</a></li>
+<li><a class="reference internal" href="#resizetool">ResizeTool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#click-tap-tools">Click/Tap Tools</a><ul>
+<li><a class="reference internal" href="#polyselecttool">PolySelectTool</a></li>
+<li><a class="reference internal" href="#tapselecttool">TapSelectTool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scroll-pinch-tools">Scroll/Pinch Tools</a><ul>
+<li><a class="reference internal" href="#wheelzoomtool">WheelZoomTool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#actions">Actions</a><ul>
+<li><a class="reference internal" href="#resettool">ResetTool</a></li>
+<li><a class="reference internal" href="#savetool">SaveTool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inspectors">Inspectors</a><ul>
+<li><a class="reference internal" href="#crosshairtool">CrosshairTool</a></li>
+<li><a class="reference internal" href="#hovertool">HoverTool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="charts.html" title="Previous Chapter: High Level Charts"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; High Level Chart...</span>
+    </a>
+  </li>
+  <li>
+    <a href="server.html" title="Next Chapter: Using the Bokeh Server"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using the Bokeh ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html">High Level Charts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/objects.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="configuring-and-styling-bokeh-objects">
+<span id="userguide-objects"></span><h1>Configuring and Styling Bokeh Objects<a class="headerlink" href="#configuring-and-styling-bokeh-objects" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#plots" id="id3">Plots</a></li>
+<li><a class="reference internal" href="#glyphs" id="id4">Glyphs</a><ul>
+<li><a class="reference internal" href="#markers" id="id5">Markers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#styling" id="id6">Styling</a><ul>
+<li><a class="reference internal" href="#properties" id="id7">Properties</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ranges" id="id8">Ranges</a><ul>
+<li><a class="reference internal" href="#automatic-ranges" id="id9">Automatic Ranges</a></li>
+<li><a class="reference internal" href="#numerical-ranges" id="id10">Numerical Ranges</a></li>
+<li><a class="reference internal" href="#categorical-ranges" id="id11">Categorical Ranges</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#guides" id="id12">Guides</a><ul>
+<li><a class="reference internal" href="#axes" id="id13">Axes</a></li>
+<li><a class="reference internal" href="#grids" id="id14">Grids</a></li>
+<li><a class="reference internal" href="#legends" id="id15">Legends</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tools" id="id16">Tools</a><ul>
+<li><a class="reference internal" href="#pan-drag-tools" id="id17">Pan/Drag Tools</a></li>
+<li><a class="reference internal" href="#click-tap-tools" id="id18">Click/Tap Tools</a></li>
+<li><a class="reference internal" href="#scroll-pinch-tools" id="id19">Scroll/Pinch Tools</a></li>
+<li><a class="reference internal" href="#actions" id="id20">Actions</a></li>
+<li><a class="reference internal" href="#inspectors" id="id21">Inspectors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="plots">
+<span id="userguide-objects-plots"></span><h2><a class="toc-backref" href="#id3">Plots</a><a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h2>
+<p>Plots can be configured with several keyword arguments that control appearance:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">background_fill</span></tt> &#8212; a color to fill the inner plot area with</li>
+<li><tt class="docutils literal"><span class="pre">border_fill</span></tt> &#8212; a color to fill the border region around the plot area with.</li>
+<li><tt class="docutils literal"><span class="pre">min_border</span></tt> &#8212; a minimum size in pixels for the border. This applies to all sides of the plot. May set individual border widths with <tt class="docutils literal"><span class="pre">min_border_left</span></tt>, <tt class="docutils literal"><span class="pre">min_border_right</span></tt>, <tt class="docutils literal"><span class="pre">min_border_top</span></tt>, and <tt class="docutils literal"><span class="pre">min_border_bottom</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">h_symmetry</span></tt>, <tt class="docutils literal"><span class="pre">v_symmetry</span></tt> &#8212; whether to symmetrize plot borders on opposite horizontal or vertical sides of the plot.</li>
+<li><tt class="docutils literal"><span class="pre">title</span></tt> &#8212; a title to display above the plot.
+- &#8220;title&#8221; is also the prefix for a set of <a class="reference internal" href="#userguide-objects-text-properties"><em>Text Properties</em></a>, so you can set the font for the title with the parameter <tt class="docutils literal"><span class="pre">title_text_font</span></tt>.</li>
+<li>&#8220;outline&#8221; &#8212; is the prefix for a set of <a class="reference internal" href="#userguide-objects-line-properties"><em>Line Properties</em></a> that control the appearance of an outline around the plot, for instance you can set the color of the outline with <tt class="docutils literal"><span class="pre">outline_line_color</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">x_range</span></tt> &#8212; the extent of the plotting area in the x-dimension. See <a class="reference internal" href="#userguide-objects-ranges"><em>Ranges</em></a></li>
+<li><tt class="docutils literal"><span class="pre">y_range</span></tt> &#8212; the extent of the plotting area in the y-dimension. See <a class="reference internal" href="#userguide-objects-ranges"><em>Ranges</em></a></li>
+<li><tt class="docutils literal"><span class="pre">plot_width</span></tt>, <tt class="docutils literal"><span class="pre">plot_height</span></tt> &#8212; width and height of the entire plot in pixels, including border space</li>
+<li><tt class="docutils literal"><span class="pre">x_axis_type</span></tt>, <tt class="docutils literal"><span class="pre">y_axis_type</span></tt> &#8212; can be set to <tt class="docutils literal"><span class="pre">&quot;datetime&quot;</span></tt> to create datetime axis</li>
+<li><tt class="docutils literal"><span class="pre">x_mapper_type</span></tt>, <tt class="docutils literal"><span class="pre">y_mapper_type</span></tt> &#8212; can be set to <tt class="docutils literal"><span class="pre">&quot;log&quot;</span></tt> to specifically set the mapper used for the axis</li>
+</ul>
+<p>These parameters can be passed to glyph functions such a <tt class="docutils literal"><span class="pre">circle</span></tt> or <tt class="docutils literal"><span class="pre">rect</span></tt> but it is often useful
+to pass them to a call to <tt class="docutils literal"><span class="pre">figure</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figure</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s">&quot;My Plot&quot;</span><span class="p">,</span>
+    <span class="n">title_text_font_size</span><span class="o">=</span><span class="s">&quot;20pt&quot;</span><span class="p">,</span>
+    <span class="n">plot_width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">outline_line_color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span>
+    <span class="n">x_axis_type</span><span class="o">=</span><span class="s">&quot;datetime&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="glyphs">
+<span id="userguide-objects-glyphs"></span><h2><a class="toc-backref" href="#id4">Glyphs</a><a class="headerlink" href="#glyphs" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh plots are centered around glyphs, which generally have some combination of line, fill, or
+text properties, depending on what is appropriate for a given glyph. For example, the <tt class="docutils literal"><span class="pre">Circle</span></tt>
+glyph has both line and fill properties, but the <tt class="docutils literal"><span class="pre">Bezier</span></tt> glyph only has line properties.
+These properties may be specified as keyword arguments when calling the glyph functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="markers">
+<span id="userguide-objects-markers"></span><h3><a class="toc-backref" href="#id5">Markers</a><a class="headerlink" href="#markers" title="Permalink to this headline">¶</a></h3>
+<p>Markers are a subset of Bokeh glyphs that have a prescribed interface.
+Markers all respond to:</p>
+<ul class="simple">
+<li><cite>x</cite>, <cite>y</cite></li>
+<li><cite>size</cite> (screen units)</li>
+<li><a class="reference internal" href="#userguide-objects-line-properties"><em>Line Properties</em></a></li>
+<li><a class="reference internal" href="#userguide-objects-fill-properties"><em>Fill Properties</em></a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="styling">
+<span id="userguide-objects-styling"></span><h2><a class="toc-backref" href="#id6">Styling</a><a class="headerlink" href="#styling" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="properties">
+<h3><a class="toc-backref" href="#id7">Properties</a><a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<p>Many of the styling options are grouped into three categories of properties: <a class="reference internal" href="#userguide-objects-line-properties"><em>Line Properties</em></a>,
+<a class="reference internal" href="#userguide-objects-fill-properties"><em>Fill Properties</em></a>, and <a class="reference internal" href="#userguide-objects-text-properties"><em>Text Properties</em></a>.</p>
+<div class="section" id="line-properties">
+<span id="userguide-objects-line-properties"></span><h4>Line Properties<a class="headerlink" href="#line-properties" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">line_color</span></tt> - color to use to stroke lines with<ul>
+<li>any of the <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">147 named CSS colors</a>, e.g <tt class="docutils literal"><span class="pre">'green'</span></tt>, <tt class="docutils literal"><span class="pre">'indigo'</span></tt></li>
+<li>an RGB(A) hex value, e.g., <tt class="docutils literal"><span class="pre">'#FF0000'</span></tt>, <tt class="docutils literal"><span class="pre">'#44444444'</span></tt></li>
+<li>a 3-tuple of integers (r,g,b) between 0 and 255</li>
+<li>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">line_width</span></tt> - stroke width in units of pixels</li>
+<li><tt class="docutils literal"><span class="pre">line_alpha</span></tt> - floating point between 0 (transparent) and 1 (opaque)</li>
+<li><tt class="docutils literal"><span class="pre">line_join</span></tt> - how path segments should be joined together<ul>
+<li><tt class="docutils literal"><span class="pre">'miter'</span></tt> <a class="reference internal" href="../../_images/miter_join.png"><img alt="miter_join" src="../../_images/miter_join.png" style="height: 30px;" /></a></li>
+<li><tt class="docutils literal"><span class="pre">'round'</span></tt> <a class="reference internal" href="../../_images/round_join.png"><img alt="round_join" src="../../_images/round_join.png" style="height: 30px;" /></a></li>
+<li><tt class="docutils literal"><span class="pre">'bevel'</span></tt> <a class="reference internal" href="../../_images/bevel_join.png"><img alt="bevel_join" src="../../_images/bevel_join.png" style="height: 30px;" /></a></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">line_cap</span></tt> - how path segments should be terminated<ul>
+<li><tt class="docutils literal"><span class="pre">'butt'</span></tt> <a class="reference internal" href="../../_images/butt_cap.png"><img alt="butt_cap" src="../../_images/butt_cap.png" style="height: 30px;" /></a></li>
+<li><tt class="docutils literal"><span class="pre">'round'</span></tt> <a class="reference internal" href="../../_images/round_cap.png"><img alt="round_cap" src="../../_images/round_cap.png" style="height: 30px;" /></a></li>
+<li><tt class="docutils literal"><span class="pre">'square'</span></tt> <a class="reference internal" href="../../_images/square_cap.png"><img alt="square_cap" src="../../_images/square_cap.png" style="height: 30px;" /></a></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">line_dash</span></tt> - array of integer pixel distances that describe the on-off pattern of dashing to use</li>
+<li><tt class="docutils literal"><span class="pre">line_dash_offset</span></tt> - the distance in pixels into the <tt class="docutils literal"><span class="pre">line_dash</span></tt> that the pattern should start from</li>
+</ul>
+</div>
+<div class="section" id="fill-properties">
+<span id="userguide-objects-fill-properties"></span><h4>Fill Properties<a class="headerlink" href="#fill-properties" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">fill_color</span></tt> - color to use to fill paths with<ul>
+<li>any of the <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">147 named CSS colors</a>, e.g <tt class="docutils literal"><span class="pre">'green'</span></tt>, <tt class="docutils literal"><span class="pre">'indigo'</span></tt></li>
+<li>an RGB(A) hex value, e.g., <tt class="docutils literal"><span class="pre">'#FF0000'</span></tt>, <tt class="docutils literal"><span class="pre">'#44444444'</span></tt></li>
+<li>a 3-tuple of integers (r,g,b) between 0 and 255</li>
+<li>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">fill_alpha</span></tt> - floating point between 0 (transparent) and 1 (opaque)</li>
+</ul>
+</div>
+<div class="section" id="text-properties">
+<span id="userguide-objects-text-properties"></span><h4>Text Properties<a class="headerlink" href="#text-properties" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is currently only support for filling text. An interface to stroke the outlines of text have not yet been exposed.</p>
+</div>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">text_font</span></tt> - font name, e.g., <tt class="docutils literal"><span class="pre">'times'</span></tt>, <tt class="docutils literal"><span class="pre">'helvetica'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">text_font_size</span></tt> - font size in <em>px</em>, <em>em</em>, or <em>pt</em>, e.g., <tt class="docutils literal"><span class="pre">'12pt'</span></tt>, <tt class="docutils literal"><span class="pre">'1.5em'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">text_font_style</span></tt><ul>
+<li><tt class="docutils literal"><span class="pre">'normal'</span></tt> normal text</li>
+<li><tt class="docutils literal"><span class="pre">'italic'</span></tt> <em>italic text</em></li>
+<li><tt class="docutils literal"><span class="pre">'bold'</span></tt> <strong>bold text</strong></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">text_color</span></tt> - color to use to render text with<ul>
+<li>any of the <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">147 named CSS colors</a>, e.g <tt class="docutils literal"><span class="pre">'green'</span></tt>, <tt class="docutils literal"><span class="pre">'indigo'</span></tt></li>
+<li>an RGB(A) hex value, e.g., <tt class="docutils literal"><span class="pre">'#FF0000'</span></tt>, <tt class="docutils literal"><span class="pre">'#44444444'</span></tt></li>
+<li>a 3-tuple of integers (r,g,b) between 0 and 255</li>
+<li>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">text_alpha</span></tt>- floating point between 0 (transparent) and 1 (opaque)</li>
+<li><tt class="docutils literal"><span class="pre">text_align</span></tt> - horizontal anchor point for text<ul>
+<li><tt class="docutils literal"><span class="pre">'left'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'right'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'center'</span></tt></li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">text_baseline</span></tt> - vertical anchor point for text<ul>
+<li><tt class="docutils literal"><span class="pre">'top'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'middle'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'bottom'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'alphabetic'</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">'hanging'</span></tt></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="ranges">
+<span id="userguide-objects-ranges"></span><h2><a class="toc-backref" href="#id8">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h2>
+<p>To control the ranges that Bokeh plots show, there are two keyword parameters
+<cite>x_range</cite> and <cite>y_range</cite>. These may be passed into the <a class="reference internal" href="../reference/plotting.html#bokeh.plotting.figure" title="bokeh.plotting.figure"><tt class="xref py py-class docutils literal"><span class="pre">bokeh.plotting.figure</span></tt></a>
+function, or they may also be set as attributes on a plot object.</p>
+<div class="section" id="automatic-ranges">
+<h3><a class="toc-backref" href="#id9">Automatic Ranges</a><a class="headerlink" href="#automatic-ranges" title="Permalink to this headline">¶</a></h3>
+<p>If <cite>None</cite> is passed in as the value of <cite>x_range</cite> or <cite>y_range</cite>, then the plot will be configured
+with a <cite>DataRange1d</cite> which computes the envelope of all the plot data to determine the range.
+This is the default behavior.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For non-scatter glyphs with spatial extent, the <cite>DataRange1d</cite> may not
+compute the necessary bounds fully.</p>
+</div>
+</div>
+<div class="section" id="numerical-ranges">
+<h3><a class="toc-backref" href="#id10">Numerical Ranges</a><a class="headerlink" href="#numerical-ranges" title="Permalink to this headline">¶</a></h3>
+<p>To set the range on a plot that has numerical range values, you can pass a sequence of
+numbers with length two:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figure</span><span class="p">(</span><span class="nb">xrange</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This will prepare a new plot that has an x-axis range that spans the interval <cite>[0, 100]</cite>.
+You can also pass a <tt class="xref py py-class docutils literal"><span class="pre">bokeh.models.Range1D</span></tt> object explicitly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figure</span><span class="p">(</span><span class="nb">xrange</span><span class="o">=</span><span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This will prepare a new plot that has an x-axis range that spans the interval <cite>[2, 8]</cite>.
+Alternatively, you can set the range as a property on a Plot object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">plot</span><span class="o">.</span><span class="n">y_range</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="categorical-ranges">
+<h3><a class="toc-backref" href="#id11">Categorical Ranges</a><a class="headerlink" href="#categorical-ranges" title="Permalink to this headline">¶</a></h3>
+<p>For plots with categorical ranges, it is necessary to specify the range as a sequence
+of strings that give the categories in the desired order. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">figure</span><span class="p">(</span><span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;baz&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>will prepare a plot whose y-axis range is categorical, with the categories &#8220;foo&#8221;,
+&#8220;bar&#8221;, and &#8220;baz&#8221;. Please see <a class="reference external" href="http://bokeh.pydata.org/docs/gallery/categorical.html">this categorical example</a>
+from the gallery for a concrete example.</p>
+<p>You can also pass in a <cite>FactorRange</cite> explicitly as well.</p>
+</div>
+</div>
+<div class="section" id="guides">
+<span id="userguide-objects-guides"></span><h2><a class="toc-backref" href="#id12">Guides</a><a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="axes">
+<span id="userguide-objects-axes"></span><h3><a class="toc-backref" href="#id13">Axes</a><a class="headerlink" href="#axes" title="Permalink to this headline">¶</a></h3>
+<p>Axes in Bokeh also have line properties for the axis rule line, as well as for the major ticks. These standard
+line properties are prefixed with <tt class="docutils literal"><span class="pre">axis_</span></tt> and <tt class="docutils literal"><span class="pre">major_tick_</span></tt> respectively. Axes also have text
+properties, for the axis label and major tick labels. These are prefixed <tt class="docutils literal"><span class="pre">axis_label_</span></tt> and
+<tt class="docutils literal"><span class="pre">major_tick_label_</span></tt>, respectively.</p>
+<ul class="simple">
+<li><strong>dimension</strong>: currently <tt class="docutils literal"><span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">1</span></tt>, corresponding to &#8220;x&#8221; or &#8220;y&#8221; axis</li>
+<li><strong>location</strong>: where should labels and ticks be located in relation to the axis rule: <tt class="docutils literal"><span class="pre">&quot;auto&quot;,</span> <span class="pre">&quot;left&quot;,</span> <span class="pre">&quot;right&quot;,</span> <span class="pre">&quot;above&quot;,</span> <span class="pre">&quot;below&quot;</span></tt></li>
+<li><strong>bounds</strong>: bounds for the axis, either <tt class="docutils literal"><span class="pre">&quot;auto&quot;</span></tt> or a 2-tuple of <tt class="docutils literal"><span class="pre">(start,</span> <span class="pre">stop)</span></tt></li>
+<li><strong>axis_label_standoff</strong>: a number of pixels to stand tick labels away from ticks</li>
+<li><strong>major_label_standoff</strong>: a number of pixels to stand axis labels away from tick labels</li>
+<li><strong>major_label_orientation</strong>: the angle that major tick labels should be rendered at, one of <tt class="docutils literal"><span class="pre">&quot;horizontal&quot;,</span> <span class="pre">&quot;vertical&quot;,</span> <span class="pre">&quot;normal&quot;,</span> <span class="pre">&quot;parallel&quot;</span></tt> or a floating point angle (in radians)</li>
+<li><strong>major_tick_in</strong> a distance in pixels that major ticks should extend into the plot area</li>
+<li><strong>major_tick_out</strong> a distance in pixels that major ticks should extend out the plot area</li>
+</ul>
+<p>Some examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ax</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">major_label_orientation</span> <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mi">4</span>
+</pre></div>
+</div>
+<p>Axes for a plot may be conveniently obtained using the <tt class="docutils literal"><span class="pre">xaxis</span></tt>, <tt class="docutils literal"><span class="pre">yaxis</span></tt>,
+and <tt class="docutils literal"><span class="pre">axis</span></tt> properties. These return collections of axes that can be
+indexed to retrieve individual axes, or can that have attributes set
+directly on them to update all axes. Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">axis_line_width</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># update all x-axes</span>
+<span class="n">p</span><span class="o">.</span><span class="n">yaxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span> <span class="c"># only updates the first y-axis</span>
+<span class="n">p</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="c"># set bounds for all axes</span>
+</pre></div>
+</div>
+<p>Typically after updating these attributes, a call to <tt class="xref py py-func docutils literal"><span class="pre">bokeh.plotting.show()</span></tt> will be required.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">bounds</span></tt> attribute here controls only the extent of the axis! It does
+not set the range of the plot. For that, see <a class="reference internal" href="#userguide-objects-ranges"><em>Ranges</em></a>.
+As an example, a plot window may extend from 0 to 10, but you may only want
+the axis to render between 4 and 8, in order to highlight a particular
+sub-area of the plot.</p>
+</div>
+</div>
+<div class="section" id="grids">
+<span id="userguide-objects-grids"></span><h3><a class="toc-backref" href="#id14">Grids</a><a class="headerlink" href="#grids" title="Permalink to this headline">¶</a></h3>
+<p>Grids for a plot may be conveniently obtained using the <tt class="docutils literal"><span class="pre">xgrid</span></tt>, <tt class="docutils literal"><span class="pre">ygrid</span></tt>,
+and <tt class="docutils literal"><span class="pre">grid</span></tt> properties. These return collections of axes that can be
+indexed to retrieve individual grids, or can that have attributes set
+directly on them to update all axes. Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">p</span><span class="o">.</span><span class="n">xgrid</span><span class="o">.</span><span class="n">axis_line_dash</span> <span class="o">=</span> <span class="s">&quot;3 3&quot;</span> <span class="c"># update all x-grids</span>
+<span class="n">p</span><span class="o">.</span><span class="n">ygrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axis_line_color</span> <span class="o">=</span> <span class="bp">None</span> <span class="c"># only updates the first y-grid</span>
+<span class="n">p</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="c"># set bounds for all grids</span>
+</pre></div>
+</div>
+<p>Typically after updating these attributes, a call to <tt class="xref py py-func docutils literal"><span class="pre">bokeh.plotting.show()</span></tt> will be required.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">bounds</span></tt> attribute here controls only the extent of the grid! It does
+not set the range of the plot. For that, see <a class="reference internal" href="#userguide-objects-ranges"><em>Ranges</em></a>.
+As an example, a plot window may extend from 0 to 10, but you may only want
+the grid to render between 4 and 8, in order to highlight a particular
+sub-area of the plot.</p>
+</div>
+</div>
+<div class="section" id="legends">
+<span id="userguide-objects-legends"></span><h3><a class="toc-backref" href="#id15">Legends</a><a class="headerlink" href="#legends" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="tools">
+<h2><a class="toc-backref" href="#id16">Tools</a><a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh comes with a number of interactive tools. There are five categories of tool
+interactions:</p>
+<ul class="simple">
+<li>Pan/Drag</li>
+<li>Click/Tap</li>
+<li>Scroll/Pinch</li>
+<li>Actions</li>
+<li>Inspectors</li>
+</ul>
+<p>For the first three categories, one tool can be active at any given time, and
+the active tool is indicated on the toolbar by a highlight next to to the tool.
+Actions are immediate or modal operations that are only activated when their
+button in the toolbar is pressed. Inspectors are passive tools that merely
+report information or annotate the plot in some way.</p>
+<p>When using the <a class="reference internal" href="plotting.html#userguide-plotting"><em>Basic Plotting with Glyphs</em></a> interface, tools are added to plots with the
+<tt class="docutils literal"><span class="pre">tools</span></tt> keyword argument, which has as its value a comma separated string
+listing the tools to add to the plot, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">tools</span> <span class="o">=</span> <span class="s">&quot;pan,wheel_zoom,box_zoom,reset,resize&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="pan-drag-tools">
+<h3><a class="toc-backref" href="#id17">Pan/Drag Tools</a><a class="headerlink" href="#pan-drag-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by panning (on touch devices) or left-dragging (on
+mouse devices). Only one pan/drag tool may be active at a time.</p>
+<div class="section" id="boxselecttool">
+<h4>BoxSelectTool<a class="headerlink" href="#boxselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'box_select'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/BoxSelect.png"><img alt="box_select_icon" src="../../_images/BoxSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The box selection tool allows the user to define a rectangular selection
+region by left-dragging a mouse, or dragging a finger across the plot area.
+The box select tool may be configured to select across only one dimension by
+setting the <tt class="docutils literal"><span class="pre">dimension</span></tt> property to <tt class="docutils literal"><span class="pre">width</span></tt> or <tt class="docutils literal"><span class="pre">height</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, you have to press the SHIFT key and
+to clear the selection you have to press ESC key.</p>
+</div>
+</div>
+<div class="section" id="boxzoomtool">
+<h4>BoxZoomTool<a class="headerlink" href="#boxzoomtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'box_zoom'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/BoxZoom.png"><img alt="box_zoom_icon" src="../../_images/BoxZoom.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The box zoom tool allows the user to degine a rectangular region to zoom the
+plot bounds too, by left-dragging a mouse, or dragging a finger across the
+plot area.</p>
+</div>
+<div class="section" id="lassoselecttool">
+<h4>LassoSelectTool<a class="headerlink" href="#lassoselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'lasso_select'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/LassoSelect.png"><img alt="lasso_select_icon" src="../../_images/LassoSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The lasso selection tool allows the user to define an arbitrary region for
+selection by left-dragging a mouse, or dragging a finger across the plot area.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, you have to press the SHIFT key and
+to clear the selection you have to press ESC key.</p>
+</div>
+</div>
+<div class="section" id="pantool">
+<h4>PanTool<a class="headerlink" href="#pantool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'pan'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/Pan.png"><img alt="pan_icon" src="../../_images/Pan.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The pan tool allows the user to pan the plot by left-dragging a mouse or dragging a
+finger across the plot region.</p>
+<p>It is also possible to constraint the pan tool to only act on either just the x-axis or
+just the y-axis by setting the <tt class="docutils literal"><span class="pre">dimension</span></tt> property to <tt class="docutils literal"><span class="pre">width</span></tt> or <tt class="docutils literal"><span class="pre">height</span></tt>.
+Additionally, there are tool aliases <tt class="docutils literal"><span class="pre">'xpan'</span></tt> and <tt class="docutils literal"><span class="pre">'ypan'</span></tt>, respectively.</p>
+</div>
+<div class="section" id="resizetool">
+<h4>ResizeTool<a class="headerlink" href="#resizetool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'resize_select'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/Resize.png"><img alt="resize_icon" src="../../_images/Resize.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The resize tool allows the user to left-drag a mouse or drag a finger to resize
+the entire plot.</p>
+</div>
+</div>
+<div class="section" id="click-tap-tools">
+<h3><a class="toc-backref" href="#id18">Click/Tap Tools</a><a class="headerlink" href="#click-tap-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by tapping (on touch devices) or left-clicking (on
+mouse devices). Only one click/tap tool may be active at a time.</p>
+<div class="section" id="polyselecttool">
+<h4>PolySelectTool<a class="headerlink" href="#polyselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'poly_select'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/PolygonSelect.png"><img alt="poly_select_icon" src="../../_images/PolygonSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The polygon selection tool allows the user to define an arbitrary polygonal
+regions for selection by left-clicking a mouse, or tapping a finger at different
+locations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To complete the selection, you have to make a double left-click or tapping
+Also, to make a multiple selection, you have to press the SHIFT key and
+to clear the selection you have to press ESC key.</p>
+</div>
+</div>
+<div class="section" id="tapselecttool">
+<h4>TapSelectTool<a class="headerlink" href="#tapselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'tap_select'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/TapSelect.png"><img alt="tap_select_icon" src="../../_images/TapSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The tap selection tool allows the user to select at single points by clicking
+a left mouse button, or tapping with a finger.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, you have to press the SHIFT key and
+to clear the selection you have to press ESC key.</p>
+</div>
+</div>
+</div>
+<div class="section" id="scroll-pinch-tools">
+<h3><a class="toc-backref" href="#id19">Scroll/Pinch Tools</a><a class="headerlink" href="#scroll-pinch-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by pinching (on touch devices) or scrolling (on
+mouse devices). Only one scroll/pinch tool may be active at a time.</p>
+<div class="section" id="wheelzoomtool">
+<h4>WheelZoomTool<a class="headerlink" href="#wheelzoomtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'wheel_zoom'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/WheelZoom.png"><img alt="wheel_zoom_icon" src="../../_images/WheelZoom.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The wheel zoom tool will zoom the plot in and out, centered on the curren
+t mouse location.</p>
+<p>It is also possible to constraint the wheel zoom tool to only act on either
+just the x-axis or just the y-axis by setting the <tt class="docutils literal"><span class="pre">dimension</span></tt> property to
+<tt class="docutils literal"><span class="pre">width</span></tt> or <tt class="docutils literal"><span class="pre">height</span></tt>. Additionally, there are tool aliases <tt class="docutils literal"><span class="pre">'xwheel_zoom'</span></tt>
+and <tt class="docutils literal"><span class="pre">'ywheel_zoom'</span></tt>, respectively.</p>
+</div>
+</div>
+<div class="section" id="actions">
+<h3><a class="toc-backref" href="#id20">Actions</a><a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p>Actions are operations that are activated only when their button in the toolbar
+is tapped or clicked. They are typically modal or immediate-acting.</p>
+<div class="section" id="resettool">
+<h4>ResetTool<a class="headerlink" href="#resettool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'reset'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/Reset.png"><img alt="reset_icon" src="../../_images/Reset.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The reset tool will restore the plot ranges to their original values.</p>
+</div>
+<div class="section" id="savetool">
+<h4>SaveTool<a class="headerlink" href="#savetool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'save'</span></tt></li>
+<li>icon: <a class="reference internal" href="../../_images/Save.png"><img alt="save_icon" src="../../_images/Save.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The save tool pops up a modal dialog that allows the user to save a PNG image
+of the plot.</p>
+</div>
+</div>
+<div class="section" id="inspectors">
+<h3><a class="toc-backref" href="#id21">Inspectors</a><a class="headerlink" href="#inspectors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>menu icon: <a class="reference internal" href="../../_images/Inspector.png"><img alt="inspector_icon" src="../../_images/Inspector.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>Inpectors are passive tools that annotate or otherwise report information about
+the plot, based on the current cursor position. Any number of inspectors may be
+active at any given time. The inspectors menu in the toolbar allows users to
+toggle the active state of any inspector.</p>
+<div class="section" id="crosshairtool">
+<h4>CrosshairTool<a class="headerlink" href="#crosshairtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'crosshair'</span></tt></li>
+</ul>
+<p>Th crosshair tool draws a crosshair annotation over the plot, centered on
+the current mouse position. The crosshair tool may be configured to draw
+accross only one dimension by setting the <tt class="docutils literal"><span class="pre">dimension</span></tt> property to
+<tt class="docutils literal"><span class="pre">width</span></tt> or <tt class="docutils literal"><span class="pre">height</span></tt>.</p>
+</div>
+<div class="section" id="hovertool">
+<h4>HoverTool<a class="headerlink" href="#hovertool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <tt class="docutils literal"><span class="pre">'hover'</span></tt></li>
+</ul>
+<p>The hover tool pops up a tooltip div whenever the cursor is over a glyph.
+The information comes from the glyphs data source and is configurable through
+a simple tooltips dictionary that maps displayed names to columns in the data source,
+or to special known variables. Here is an example of how to configure the hover tool:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># We want to add some fields for the hover tool to interrogate, but first we</span>
+<span class="c"># have to get ahold of the tool. We can use the &#39;select&#39; method for that.</span>
+<span class="n">hover</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">HoverTool</span><span class="p">))</span>
+
+<span class="c"># Add tooltip (name, value) pairs to tooltips. Variables from the data source</span>
+<span class="c"># are available with a &quot;@&quot; prefix, e.g., &quot;@foo&quot; will display the value for</span>
+<span class="c"># the &#39;foo&#39; column value under the cursor. There are also some special known</span>
+<span class="c"># values that start with &quot;$&quot; symbol:</span>
+<span class="c">#   - $index     index of selected point in the data source</span>
+<span class="c">#   - $x, $y     &quot;data&quot; coordinates under cursor</span>
+<span class="c">#   - $sx, $sy   canvas coordinates under cursor</span>
+<span class="c">#   - $color     color data from data source, syntax: $color[options]:field_name</span>
+<span class="c">#                available options for $color are: hex, swatch</span>
+<span class="c"># NOTE: we use an OrderedDict here to preserve the order in the displayed tooltip</span>
+<span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([</span>
+    <span class="p">(</span><span class="s">&quot;index&quot;</span><span class="p">,</span> <span class="s">&quot;$index&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;(x,y)&quot;</span><span class="p">,</span> <span class="s">&quot;($x, $y)&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;radius&quot;</span><span class="p">,</span> <span class="s">&quot;@radius&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;fill color&quot;</span><span class="p">,</span> <span class="s">&quot;$color[hex, swatch]:fill_color&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;@foo&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;@bar&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Point hit testing is not currently available on all glyphs. Hover tool currently does
+not work with line or image type glyphs.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="charts.html">Prev</a> |
+      
+      
+      <a href="server.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/objects.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

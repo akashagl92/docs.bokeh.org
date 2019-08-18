@@ -1,0 +1,1513 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>High Level Charts &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="User Guide" href="../user_guide.html" />
+    <link rel="next" title="Configuring and Styling Bokeh Objects" href="objects.html" />
+    <link rel="prev" title="Basic Plotting with Glyphs" href="plotting.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">High Level Charts</a><ul>
+<li><a class="reference internal" href="#generic-arguments">Generic arguments</a></li>
+<li><a class="reference internal" href="#interface-inputs">Interface inputs</a></li>
+<li><a class="reference internal" href="#specific-arguments">Specific arguments</a><ul>
+<li><a class="reference internal" href="#area">Area</a></li>
+<li><a class="reference internal" href="#bar">Bar</a></li>
+<li><a class="reference internal" href="#boxplot">BoxPlot</a></li>
+<li><a class="reference internal" href="#donut">Donut</a></li>
+<li><a class="reference internal" href="#dot">Dot</a></li>
+<li><a class="reference internal" href="#heatmap">HeatMap</a></li>
+<li><a class="reference internal" href="#histogram">Histogram</a></li>
+<li><a class="reference internal" href="#horizon">Horizon</a></li>
+<li><a class="reference internal" href="#line">Line</a></li>
+<li><a class="reference internal" href="#scatter">Scatter</a></li>
+<li><a class="reference internal" href="#step">Step</a></li>
+<li><a class="reference internal" href="#timeseries">TimeSeries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interface-outputs">Interface outputs</a></li>
+<li><a class="reference internal" href="#chart-builders">Chart Builders</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="plotting.html" title="Previous Chapter: Basic Plotting with Glyphs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Basic Plotting w...</span>
+    </a>
+  </li>
+  <li>
+    <a href="objects.html" title="Next Chapter: Configuring and Styling Bokeh Objects"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Configuring and ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/charts.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="high-level-charts">
+<span id="userguide-charts"></span><h1>High Level Charts<a class="headerlink" href="#high-level-charts" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#generic-arguments" id="id1">Generic arguments</a></li>
+<li><a class="reference internal" href="#interface-inputs" id="id2">Interface inputs</a></li>
+<li><a class="reference internal" href="#specific-arguments" id="id3">Specific arguments</a><ul>
+<li><a class="reference internal" href="#area" id="id4">Area</a></li>
+<li><a class="reference internal" href="#bar" id="id5">Bar</a></li>
+<li><a class="reference internal" href="#boxplot" id="id6">BoxPlot</a></li>
+<li><a class="reference internal" href="#donut" id="id7">Donut</a></li>
+<li><a class="reference internal" href="#dot" id="id8">Dot</a></li>
+<li><a class="reference internal" href="#heatmap" id="id9">HeatMap</a></li>
+<li><a class="reference internal" href="#histogram" id="id10">Histogram</a></li>
+<li><a class="reference internal" href="#horizon" id="id11">Horizon</a></li>
+<li><a class="reference internal" href="#line" id="id12">Line</a></li>
+<li><a class="reference internal" href="#scatter" id="id13">Scatter</a></li>
+<li><a class="reference internal" href="#step" id="id14">Step</a></li>
+<li><a class="reference internal" href="#timeseries" id="id15">TimeSeries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interface-outputs" id="id16">Interface outputs</a></li>
+<li><a class="reference internal" href="#chart-builders" id="id17">Chart Builders</a></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> interface is still new, and is very likely to change
+in upcoming releases. Although we always try to be consistent, we cannot guarantee
+backwards compatibility for now. Please take this into consideration when using it.</p>
+</div>
+<p><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> provides a very high level API to create rich charts commonly used without
+having to access lower level components.</p>
+<p>The current <tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> interface implementation supports the following chart types:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">Area</span></tt> (overlapped and stacked)</li>
+<li><tt class="docutils literal"><span class="pre">Bar</span></tt> (grouped and stacked)</li>
+<li><tt class="docutils literal"><span class="pre">BoxPlot</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Donut</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Dot</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">HeatMap</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Histogram</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Horizon</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Line</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Scatter</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Step</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Timeseries</span></tt></li>
+</ul>
+<p>To use them, you only have to import the chart factory of interest from <tt class="docutils literal"><span class="pre">bokeh.charts</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span>
+</pre></div>
+</div>
+<p>initialize your plot with the chart specific arguments to customize the chart:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">normal_dist</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">)</span>
+<span class="n">hist</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">normal_dist</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span>
+                 <span class="n">title</span><span class="o">=</span><span class="s">&quot;kwargs, dict_input&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;frequency&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span><span class="p">,</span>
+                 <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and finally call the <tt class="docutils literal"><span class="pre">show()</span></tt> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hist</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>or use the plotting interface functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;histogram.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/charts_histogram_cdf.png" class="align-center" src="../../_images/charts_histogram_cdf.png" />
+<div class="section" id="generic-arguments">
+<span id="charts-generic-arguments"></span><h2><a class="toc-backref" href="#id1">Generic arguments</a><a class="headerlink" href="#generic-arguments" title="Permalink to this headline">¶</a></h2>
+<p>Charts support a long list of arguments that you can pass when instantiating a class, as we have shown before.
+Available optional arguments are:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">title</span></tt> (str): the title of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">xlabel</span></tt> (str): the x-axis label of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">ylabel</span></tt> (str): the y-axis label of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">legend</span></tt> (str, bool): the legend of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">xscale</span></tt> (str): the x-axis type scale of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">yscale</span></tt> (str): the y-axis type scale of your chart.</li>
+<li><tt class="docutils literal"><span class="pre">xgrid</span></tt> (bool): whether to draw an x-grid.</li>
+<li><tt class="docutils literal"><span class="pre">ygrid</span></tt> (bool): whether to draw an y-grid.</li>
+<li><tt class="docutils literal"><span class="pre">width</span></tt> (int): the width of your plot in pixels.</li>
+<li><tt class="docutils literal"><span class="pre">height</span></tt> (int): the height of you plot in pixels.</li>
+<li><tt class="docutils literal"><span class="pre">tools</span></tt> (str or bool): to enable or disable the tools in your chart.</li>
+<li><tt class="docutils literal"><span class="pre">palette</span></tt> (list): a list containing the colormap as hex values.</li>
+<li><tt class="docutils literal"><span class="pre">filename</span></tt> (str or bool): the name of the file where your chart will be written.</li>
+<li><tt class="docutils literal"><span class="pre">server</span></tt> (str or bool): the name of your chart in the server.</li>
+<li><tt class="docutils literal"><span class="pre">notebook</span></tt> (bool):if you want to output (or not) your chart into the IPython notebook.</li>
+</ul>
+</div>
+<div class="section" id="interface-inputs">
+<span id="charts-interface-inputs"></span><h2><a class="toc-backref" href="#id2">Interface inputs</a><a class="headerlink" href="#interface-inputs" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> support any of the following:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">list</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">dict</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">OrderedDict</span></tt></li>
+<li>numpy <tt class="docutils literal"><span class="pre">arrays</span></tt></li>
+<li>pandas <tt class="docutils literal"><span class="pre">DataFrame</span> <span class="pre">objects</span></tt></li>
+</ul>
+<p>In general inputs are supposed to be iterables representing each single data series values
+(i.e: list of lists, dict/ordered dict of lists, etc.. containing iterable of scalar values).
+The idea behind this canonical format is to easily represent groups of data and easily plot
+them through the interface.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Scatter chart also supports pandas groupby objects as input. As we have
+mentioned <tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> is still very experimental so the number of supported
+inputs is very likely to grow.</p>
+</div>
+<p>Here are a few examples showing charts using different kind of inputs:</p>
+<ul>
+<li><p class="first">Using a pandas <tt class="docutils literal"><span class="pre">groupby</span></tt> object (only supported by Scatter):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.sampledata.iris</span> <span class="kn">import</span> <span class="n">flowers</span>
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">flowers</span><span class="p">[[</span><span class="s">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s">&quot;species&quot;</span><span class="p">]]</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&quot;species&quot;</span><span class="p">)</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;iris dataset GroupBy&quot;</span><span class="p">)</span>
+<span class="n">scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Using <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> (or dict-like objects):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;setosa&#39;</span><span class="p">,</span> <span class="s">&#39;versicolor&#39;</span><span class="p">,</span> <span class="s">&#39;virginica&#39;</span><span class="p">]:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s">&#39;petal_length&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="s">&#39;petal_width&#39;</span><span class="p">)</span>
+    <span class="n">xyvalues</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;iris dataset, OrderedDic&quot;</span><span class="p">)</span>
+<span class="n">scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Using a <tt class="docutils literal"><span class="pre">hierarchical</span></tt> pandas <tt class="docutils literal"><span class="pre">dataframe</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="n">dfvalues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">)</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">dfvalues</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;iris dataset, DataFrame&quot;</span><span class="p">)</span>
+<span class="n">scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Using a <tt class="docutils literal"><span class="pre">list</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lxyvalues</span> <span class="o">=</span> <span class="n">xyvalues</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">lxyvalues</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;iris dataset, List&quot;</span><span class="p">)</span>
+<span class="n">scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Using a numpy <tt class="docutils literal"><span class="pre">array</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">nxyvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xyvalues</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">nxyvalues</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;iris dataset, Array&quot;</span><span class="p">)</span>
+<span class="n">scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>All the previous examples render the chart in <a class="reference internal" href="#charts-generic-arguments-scatter"><em>Scatter</em></a> with
+the difference that numpy <tt class="docutils literal"><span class="pre">array</span></tt> and <tt class="docutils literal"><span class="pre">list</span></tt> inputs will render different legends from
+mappings like <tt class="docutils literal"><span class="pre">dict</span></tt>, <tt class="docutils literal"><span class="pre">OrderedDict</span></tt>, pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt> or <tt class="docutils literal"><span class="pre">GroupBy</span></tt> objects
+(if <tt class="docutils literal"><span class="pre">legend</span></tt> is True).</p>
+</div>
+<div class="section" id="specific-arguments">
+<h2><a class="toc-backref" href="#id3">Specific arguments</a><a class="headerlink" href="#specific-arguments" title="Permalink to this headline">¶</a></h2>
+<p>For some chart types we support specific arguments which only make sense in that
+specific chart context. For instance, if you use a Timeseries chart, the x-value
+(index) for each group has to be datetime values. Or, if you want to use the
+Categorical HeatMap, columns names and the specified index have to be string
+type values.</p>
+<p>Going ahead with a few more examples: as you have seen before, in the Histogram
+chart you need to setup the <tt class="docutils literal"><span class="pre">bins</span></tt> and, additionally, you can pass a <tt class="docutils literal"><span class="pre">mu</span></tt>
+and <tt class="docutils literal"><span class="pre">sigma</span></tt> to get the <tt class="docutils literal"><span class="pre">pdf</span></tt> and the <tt class="docutils literal"><span class="pre">cdf</span></tt> line plots of theoretical
+normal distributions for these parameters.</p>
+<p>In the Bar charts case, if you pass several groups, they will be shown <tt class="docutils literal"><span class="pre">grouped</span></tt>
+by default:</p>
+<img alt="../../_images/charts_bar_grouped.png" class="align-center" src="../../_images/charts_bar_grouped.png" />
+<p>But if you specify the argument <tt class="docutils literal"><span class="pre">stacked</span></tt> as True, it will be shown as stacked
+bars as follows:</p>
+<img alt="../../_images/charts_bar_stacked.png" class="align-center" src="../../_images/charts_bar_stacked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>So, besides the shared arguments specified in <a class="reference internal" href="#charts-generic-arguments"><em>Generic arguments</em></a> and
+the general <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a> we have listed in the previous paragraph,
+each class support the following custom arguments:</p>
+<div class="section" id="area">
+<h3><a class="toc-backref" href="#id4">Area</a><a class="headerlink" href="#area" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">index</span></tt> (str | 1d iterable of any sort, optional): can be used to specify a common custom index for all data series as follows:<ul>
+<li>As a 1d iterable of any sort that will be used as series common index</li>
+<li>As a string that corresponds to the <tt class="docutils literal"><span class="pre">key</span></tt> of the mapping to be used as index (and not as data series) if <tt class="docutils literal"><span class="pre">area.values</span></tt> is a mapping (like a <tt class="docutils literal"><span class="pre">dict</span></tt>, an <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> or a pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt>)</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">stacked</span></tt> (bool, optional):<ul>
+<li><tt class="docutils literal"><span class="pre">True</span></tt>: areas are draw as a stack to show the relationship of parts to a whole</li>
+<li><tt class="docutils literal"><span class="pre">False</span></tt>: areas are layered on the same chart figure. Defaults to <tt class="docutils literal"><span class="pre">False</span></tt>.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-0"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Area</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="c"># create some example data</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">111</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">226</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;area.html&quot;</span><span class="p">)</span>
+
+<span class="n">area</span> <span class="o">=</span> <span class="n">Area</span><span class="p">(</span>
+    <span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Area Chart&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">&#39;time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;memory&#39;</span><span class="p">,</span>
+    <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&quot;top_left&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s">&quot;top_left&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-174ccd91aa03f033b8b10801920d8b1c.js"
+        id="8388d9df-401c-4792-9341-2e3c2074d649"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="180193ae-58ed-4bf7-b3fb-2114a75e066a"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="bar">
+<h3><a class="toc-backref" href="#id5">Bar</a><a class="headerlink" href="#bar" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">cat</span></tt> (list, optional): list of string representing the categories. Defaults to None.</li>
+<li><tt class="docutils literal"><span class="pre">stacked</span></tt> (bool, optional):<ul>
+<li><tt class="docutils literal"><span class="pre">True</span></tt>: bars are draw as a stack to show the relationship of parts to a whole.</li>
+<li><tt class="docutils literal"><span class="pre">False</span></tt>: bars are groupped on the same chart figure. Defaults to <tt class="docutils literal"><span class="pre">False</span></tt>.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">continuous_range</span></tt> (<a class="reference internal" href="../reference/models.html#bokeh-models-ranges"><em>Range</em></a>, optional): An explicit range for the continuous
+axis of the chart (the y-dimension).</li>
+</ul>
+<p>In the case where no <tt class="docutils literal"><span class="pre">continuous_range</span></tt> object is passed, it is calculated
+based on the data provided in values, according to the following rules:</p>
+<ul class="simple">
+<li>with all positive data: start = 0, end = 1.1 * max</li>
+<li>with all negative data: start = 1.1 * min, end = 0</li>
+<li>with mixed sign data:   start = 1.1 * min, end = 1.1 * max</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-1"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.olympics2014</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">])</span>
+
+<span class="c"># filter by countries with at least one medal and sort</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.total&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&quot;medals.total&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c"># get the countries and we group the data by medal type</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">abbr</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">gold</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.gold&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">silver</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.silver&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">bronze</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.bronze&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c"># build a dict containing the grouped data</span>
+<span class="n">medals</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">bronze</span><span class="o">=</span><span class="n">bronze</span><span class="p">,</span> <span class="n">silver</span><span class="o">=</span><span class="n">silver</span><span class="p">,</span> <span class="n">gold</span><span class="o">=</span><span class="n">gold</span><span class="p">)</span>
+
+<span class="c"># any of the following commented are also alid Bar inputs</span>
+<span class="c">#medals = pd.DataFrame(medals)</span>
+<span class="c">#medals = list(medals.values())</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;stacked_bar.html&quot;</span><span class="p">)</span>
+
+<span class="n">bar</span> <span class="o">=</span> <span class="n">Bar</span><span class="p">(</span><span class="n">medals</span><span class="p">,</span> <span class="n">countries</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Stacked bars&quot;</span><span class="p">,</span> <span class="n">stacked</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-e7dbd3198cf08d9e6ee2fecc015ff1bb.js"
+        id="8fd98b13-85c1-4fe8-a4f2-3ff33e384fa7"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="586e529f-f9f2-42f4-8383-81c5e98ec351"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="boxplot">
+<h3><a class="toc-backref" href="#id6">BoxPlot</a><a class="headerlink" href="#boxplot" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">marker</span></tt> (int or string, optional): the marker type to use if outliers=True (e.g., <cite>circle</cite>). Defaults to <cite>circle</cite>.</li>
+<li><tt class="docutils literal"><span class="pre">outliers</span></tt> (bool, optional): whether or not to plot outliers. Defaults to <tt class="docutils literal"><span class="pre">True</span></tt>.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-2"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">BoxPlot</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.olympics2014</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="c"># create a DataFrame with the sample data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">])</span>
+
+<span class="c"># filter by countries with at least one medal and sort</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.total&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&quot;medals.total&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c"># get the countries and group the data by medal type</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">abbr</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">gold</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.gold&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">silver</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.silver&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">bronze</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.bronze&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c"># build a dict containing the grouped data</span>
+<span class="n">medals</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">bronze</span><span class="o">=</span><span class="n">bronze</span><span class="p">,</span> <span class="n">silver</span><span class="o">=</span><span class="n">silver</span><span class="p">,</span> <span class="n">gold</span><span class="o">=</span><span class="n">gold</span><span class="p">)</span>
+
+<span class="c"># any of the following commented are valid BoxPlot inputs</span>
+<span class="c">#medals = pd.DataFrame(medals)</span>
+<span class="c">#medals = list(medals.values())</span>
+<span class="c">#medals = tuple(medals.values())</span>
+<span class="c">#medals = np.array(list(medals.values()))</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;boxplot.html&quot;</span><span class="p">)</span>
+
+<span class="n">boxplot</span> <span class="o">=</span> <span class="n">BoxPlot</span><span class="p">(</span>
+    <span class="n">medals</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;circle&#39;</span><span class="p">,</span> <span class="n">outliers</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;boxplot test&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;medal type&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;medal count&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">boxplot</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-8696d2a0c1f94cfa2f27947d78f8c647.js"
+        id="e2b294a9-871b-4fb8-a787-2ccbc5077492"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="4f9d76d3-86ac-45cd-84d4-d0a6146c7cd0"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="donut">
+<h3><a class="toc-backref" href="#id7">Donut</a><a class="headerlink" href="#donut" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-3"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Donut</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.olympics2014</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="c"># throw the data into a pandas data frame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">])</span>
+
+<span class="c"># filter by countries with at least one medal and sort</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.total&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s">&quot;medals.total&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c"># get the countries and we group the data by medal type</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">abbr</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">gold</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.gold&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">silver</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.silver&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">bronze</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;medals.bronze&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c"># build a dict containing the grouped data</span>
+<span class="n">medals</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">medals</span><span class="p">[</span><span class="s">&#39;bronze&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bronze</span>
+<span class="n">medals</span><span class="p">[</span><span class="s">&#39;silver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">silver</span>
+<span class="n">medals</span><span class="p">[</span><span class="s">&#39;gold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gold</span>
+
+<span class="c"># any of the following commented are also valid Donut inputs</span>
+<span class="c">#medals = list(medals.values())</span>
+<span class="c">#medals = np.array(list(medals.values()))</span>
+<span class="c">#medals = pd.DataFrame(medals)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;donut.html&quot;</span><span class="p">)</span>
+
+<span class="n">donut</span> <span class="o">=</span> <span class="n">Donut</span><span class="p">(</span><span class="n">medals</span><span class="p">,</span> <span class="n">countries</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">donut</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-ac1083fa33ef7ba86ab6a51348477afa.js"
+        id="dbade11d-d615-4dbf-a772-f5401de8eb1c"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="d4477a28-1a4c-45df-829c-da8b337d298f"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="dot">
+<h3><a class="toc-backref" href="#id8">Dot</a><a class="headerlink" href="#dot" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">cat</span></tt> (list, optional): list of string representing the categories. Defaults to None.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-4"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Dot</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="c"># create some example data</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># any of the following commented are also valid Dot inputs</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#xyvalues = list(xyvalues.values())</span>
+<span class="c">#xyvalues = np.array(list(xyvalues.values()))</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;dots.html&quot;</span><span class="p">)</span>
+
+<span class="n">dots</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span>
+    <span class="n">xyvalues</span><span class="p">,</span> <span class="n">cat</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;lists&#39;</span><span class="p">,</span><span class="s">&#39;loops&#39;</span><span class="p">,</span><span class="s">&#39;dicts&#39;</span><span class="p">,</span> <span class="s">&#39;gen exp&#39;</span><span class="p">,</span> <span class="s">&#39;exceptions&#39;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s">&quot;Dots Example&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Performance&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span>
+<span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-945a5b8614d7478423137a865db914d4.js"
+        id="577eb1d3-6758-4f25-9958-331c0ea0bc67"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="be5eb410-f8f9-4c91-ad04-a4d8c568d3f8"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="heatmap">
+<h3><a class="toc-backref" href="#id9">HeatMap</a><a class="headerlink" href="#heatmap" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">cat</span></tt> (list, optional): list of string representing the categories. Defaults to None.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-5"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">HeatMap</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.unemployment1948</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="c"># pandas magic</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;cat_heatmap.html&quot;</span><span class="p">)</span>
+
+<span class="n">hm</span> <span class="o">=</span> <span class="n">HeatMap</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;categorical heatmap&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">hm</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-626bc9471aec5e95861a73e45f21fdcd.js"
+        id="3ab62d49-17b3-4906-8de1-e454b9e28178"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="26a93627-b45a-4490-8951-56a5f03f9362"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="histogram">
+<h3><a class="toc-backref" href="#id10">Histogram</a><a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">bins</span></tt> (int): number of bins to use when building the Histogram.</li>
+<li><tt class="docutils literal"><span class="pre">mu</span></tt> (float, optional): theoretical mean value for the normal distribution. Defaults to <tt class="docutils literal"><span class="pre">None</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">sigma</span></tt> (float, optional): theoretical sigma value for the normal distribution. Defaults to <tt class="docutils literal"><span class="pre">None</span></tt>.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-6"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="c"># build some distributions and load them into a dict</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">lognormal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">lognormal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">distributions</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">normal</span><span class="o">=</span><span class="n">normal</span><span class="p">,</span> <span class="n">lognormal</span><span class="o">=</span><span class="n">lognormal</span><span class="p">)</span>
+
+<span class="c"># create a pandas data frame from the dict</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">distributions</span><span class="p">)</span>
+<span class="n">distributions</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">distributions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">distributions</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<span class="c"># any of the following commented are valid Histogram inputs</span>
+<span class="c">#df = list(distributions.values())</span>
+<span class="c">#df = tuple(distributions.values())</span>
+<span class="c">#df = tuple([tuple(x) for x in distributions.values()])</span>
+<span class="c">#df = np.array(list(distributions.values()))</span>
+<span class="c">#df = list(distributions.values())[0]</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;histograms.html&quot;</span><span class="p">)</span>
+
+<span class="n">hist</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-7b54677c28161020088975551624be09.js"
+        id="2d98ca3c-04f5-4b4b-8be2-46ede3087828"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="f915e9a3-7d49-49ee-a8d9-5201b3533bfe"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="horizon">
+<h3><a class="toc-backref" href="#id11">Horizon</a><a class="headerlink" href="#horizon" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">index</span></tt> (str | 1d iterable of any sort, optional): can be used to specify a common custom index for all data series as follows:<ul>
+<li>As a 1d iterable of any sort that will be used as series common index</li>
+<li>As a string that corresponds to the <tt class="docutils literal"><span class="pre">key</span></tt> of the mapping to be used as index (and not as data series) if <tt class="docutils literal"><span class="pre">area.values</span></tt> is a mapping (like a <tt class="docutils literal"><span class="pre">dict</span></tt>, an <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> or a pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt>)</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">num_folds</span></tt> (int, optional): number of folds stacked on top of each other. (default: 3)</li>
+<li><tt class="docutils literal"><span class="pre">pos_color</span></tt> (color, optional): The color of the positive folds. Defaults to <tt class="docutils literal"><span class="pre">#006400</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">neg_color</span></tt> (color, optional): The color of the negative folds. Defaults to <tt class="docutils literal"><span class="pre">#6495ed</span></tt>.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-7"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Horizon</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="c"># read in some stock data from the Yahoo Finance API</span>
+<span class="n">AAPL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=AAPL&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">MSFT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=MSFT&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">IBM</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=IBM&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">AAPL</span><span class="o">=</span><span class="n">AAPL</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+    <span class="n">Date</span><span class="o">=</span><span class="n">AAPL</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">],</span>
+    <span class="n">MSFT</span><span class="o">=</span><span class="n">MSFT</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+    <span class="n">IBM</span><span class="o">=</span><span class="n">IBM</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;horizon.html&quot;</span><span class="p">)</span>
+
+<span class="n">hp</span> <span class="o">=</span> <span class="n">Horizon</span><span class="p">(</span>
+    <span class="n">xyvalues</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s">&#39;Date&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s">&quot;horizon plot using stock inputs&quot;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span>
+<span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">hp</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-10af379f1fe7fd7fb95a6e42f2281789.js"
+        id="63b88bd4-0682-4127-9466-a7190b64625e"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="441c9a5c-13ad-4a55-a1e0-fc24becbee20"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="line">
+<h3><a class="toc-backref" href="#id12">Line</a><a class="headerlink" href="#line" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">index</span></tt> (str | 1d iterable of any sort, optional): can be used to specify a common custom index for all chart data series as follows:<ul>
+<li>As a 1d iterable of any sort that will be used as series common index</li>
+<li>As a string that corresponds to the <tt class="docutils literal"><span class="pre">key</span></tt> of the mapping to be used as index (and not as data series) if <tt class="docutils literal"><span class="pre">area.values</span></tt> is a mapping (like a <tt class="docutils literal"><span class="pre">dict</span></tt>, an <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> or a pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt>)</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-8"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Line</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">111</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">254</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">226</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">130</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># any of the following commented are also valid Line inputs</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#xyvalues = xyvalues.values()</span>
+<span class="c">#xyvalues = np.array(xyvalues.values())</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;lines.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;line.py example&quot;</span><span class="p">)</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Lines&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;measures&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-02544696289b512992eac24790443d83.js"
+        id="eb35e292-4b8e-44b9-820f-55ec0521a97d"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="8ba8bcf2-1223-4c42-b78d-dde2642244cb"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="scatter">
+<span id="charts-generic-arguments-scatter"></span><h3><a class="toc-backref" href="#id13">Scatter</a><a class="headerlink" href="#scatter" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of x, y pairs, like i.e.: <tt class="docutils literal"><span class="pre">[(1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">7),</span> <span class="pre">...,</span> <span class="pre">(20122,</span> <span class="pre">91)]</span></tt></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-9"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Scatter</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.iris</span> <span class="kn">import</span> <span class="n">flowers</span>
+
+<span class="c"># fill a data frame with the data of interest and create a groupby object</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">flowers</span><span class="p">[[</span><span class="s">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s">&quot;species&quot;</span><span class="p">]]</span>
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">g</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">&quot;species&quot;</span><span class="p">)</span>
+
+<span class="c"># drop that groupby object into a dict</span>
+<span class="n">pdict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+    <span class="n">xname</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">yname</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">xname</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_group</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">yname</span><span class="p">)</span>
+    <span class="n">pdict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c"># any of the following commented are also valid Scatter inputs</span>
+<span class="c">#xyvalues = pdict</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#xyvalues = xyvalues.values()</span>
+<span class="c">#xyvalues = np.array(xyvalues.values())</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;iris_scatter.html&quot;</span><span class="p">)</span>
+
+<span class="n">TOOLS</span><span class="o">=</span><span class="s">&quot;resize,crosshair,pan,wheel_zoom,box_zoom,reset,previewsave&quot;</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">Scatter</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;petal_width&#39;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">scatter</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-c1297cb12988d5ada898e475e7578e81.js"
+        id="ba89ffee-7096-46c3-89f9-d6a77be176cd"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="4ad344ff-3b42-4e5e-a15c-ba38aeca7fd7"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="step">
+<h3><a class="toc-backref" href="#id14">Step</a><a class="headerlink" href="#step" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">index</span></tt> (str | 1d iterable of any sort, optional): can be used to specify a common custom index for all chart data series as follows:<ul>
+<li>As a 1d iterable of any sort that will be used as series common index</li>
+<li>As a string that corresponds to the <tt class="docutils literal"><span class="pre">key</span></tt> of the mapping to be used as index (and not as data series) if <tt class="docutils literal"><span class="pre">area.values</span></tt> is a mapping (like a <tt class="docutils literal"><span class="pre">dict</span></tt>, an <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> or a pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt>)</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-10"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">Step</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">python</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">83</span><span class="p">],</span>
+    <span class="n">pypy</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">354</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span> <span class="mi">287</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">230</span><span class="p">],</span>
+    <span class="n">jython</span><span class="o">=</span><span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">160</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># any of the following commented are also valid Step inputs</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#xyvalues = list(xyvalues.values())</span>
+<span class="c">#xyvalues = np.array(list(xyvalues.values()))</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;steps.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;line.py example&quot;</span><span class="p">)</span>
+
+<span class="n">chart</span> <span class="o">=</span> <span class="n">Step</span><span class="p">(</span><span class="n">xyvalues</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Steps&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;measures&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="s">&#39;top_left&#39;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-678ffd6314e9f02827e96054c822d558.js"
+        id="2d63908b-58c2-4001-80ca-dc033df79c72"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="b8b279f6-47ef-4199-afcf-2004189385ba"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table></div>
+<div class="section" id="timeseries">
+<h3><a class="toc-backref" href="#id15">TimeSeries</a><a class="headerlink" href="#timeseries" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">values</span></tt> (see <a class="reference internal" href="#charts-interface-inputs"><em>Interface inputs</em></a>): data series to be plotted. Container values must be 1d iterable of scalars.</li>
+<li><tt class="docutils literal"><span class="pre">index</span></tt> (str | 1d iterable of any sort of <tt class="docutils literal"><span class="pre">datetime</span></tt> values, optional): can be used to specify a common custom index for all chart data series as follows:<ul>
+<li>As a 1d iterable of any sort that will be used as series common index</li>
+<li>As a string that corresponds to the <tt class="docutils literal"><span class="pre">key</span></tt> of the mapping to be used as index (and not as data series) if <tt class="docutils literal"><span class="pre">area.values</span></tt> is a mapping (like a <tt class="docutils literal"><span class="pre">dict</span></tt>, an <tt class="docutils literal"><span class="pre">OrderedDict</span></tt> or a pandas <tt class="docutils literal"><span class="pre">DataFrame</span></tt>)</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python" id="charts.rst.bokeh-plot-11"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.charts</span> <span class="kn">import</span> <span class="n">TimeSeries</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+
+<span class="c"># read in some stock data from the Yahoo Finance API</span>
+<span class="n">AAPL</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=AAPL&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">MSFT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=MSFT&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">IBM</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s">&quot;http://ichart.yahoo.com/table.csv?s=IBM&amp;a=0&amp;b=1&amp;c=2000&amp;d=0&amp;e=1&amp;f=2010&quot;</span><span class="p">,</span>
+    <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">])</span>
+
+<span class="n">xyvalues</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="n">AAPL</span><span class="o">=</span><span class="n">AAPL</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+    <span class="n">Date</span><span class="o">=</span><span class="n">AAPL</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">],</span>
+    <span class="n">MSFT</span><span class="o">=</span><span class="n">MSFT</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+    <span class="n">IBM</span><span class="o">=</span><span class="n">IBM</span><span class="p">[</span><span class="s">&#39;Adj Close&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c"># any of the following commented are valid Bar inputs</span>
+<span class="c">#xyvalues = pd.DataFrame(xyvalues)</span>
+<span class="c">#lindex = xyvalues.pop(&#39;Date&#39;)</span>
+<span class="c">#lxyvalues = list(xyvalues.values())</span>
+<span class="c">#lxyvalues = np.array(xyvalues.values())</span>
+
+<span class="n">TOOLS</span><span class="o">=</span><span class="s">&quot;resize,pan,wheel_zoom,box_zoom,reset,previewsave&quot;</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s">&quot;stocks_timeseries.html&quot;</span><span class="p">)</span>
+
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="p">(</span>
+    <span class="n">xyvalues</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s">&quot;timeseries, pd_input&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s">&#39;Stock Prices&#39;</span><span class="p">)</span>
+
+<span class="c"># usage with iterable index</span>
+<span class="c">#ts = TimeSeries(</span>
+<span class="c">#    lxyvalues, index=lindex,</span>
+<span class="c">#    title=&quot;timeseries, pd_input&quot;, ylabel=&#39;Stock Prices&#39;)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<table>
+  <tr>
+    <td>
+    <script
+        src="bokeh-plot-5adbd184ba779d6f296e73ea3bcca230.js"
+        id="e6818fab-b995-4fef-b10e-581c739a2003"
+        async="true"
+        data-bokeh-data="static"
+        data-bokeh-modelid="05930305-58c8-4340-8a46-d9d6fcd99ed6"
+        data-bokeh-modeltype="Plot"
+        data-bokeh-loglevel="info"
+    ></script>
+    </td>
+  </tr>
+</table><p>Here you can find a summary table that makes it easier to group and visualize those differences:</p>
+<table border="0" class="table">
+    <colgroup>
+    <col width="8%">
+    <col width="8%">
+    <col width="9%">
+    <col width="8%">
+    <col width="8%">
+    <col width="9%">
+    <col width="8%">
+    <col width="8%">
+    <col width="8%">
+    <col width="8%">
+    <col width="7%">
+    <col width="7%">
+    <col width="8%">
+    </colgroup>
+    <thead valign="bottom">
+    <tr class="row-odd"><th class="head">Argument</th>
+    <th class="head">Area</th>
+    <th class="head">Bar</th>
+    <th class="head">BoxPlot</th>
+    <th class="head">HeatMap</th>
+    <th class="head">Donut</th>
+    <th class="head">Dot</th>
+    <th class="head">Histogram</th>
+    <th class="head">Horizon</th>
+    <th class="head">Line</th>
+    <th class="head">Scatter</th>
+    <th class="head">Step</th>
+    <th class="head">TimeSeries</th>
+    </tr>
+    </thead>
+    <tbody valign="top">
+    <tr class="row-even"><td>values</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE"><em>Yes</em></td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    </tr>
+    <tr class="row-odd"><td>index</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    </tr>
+    <tr class="row-even"><td>cat</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>stacked</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-odd"><td>pallette</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>bins</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-odd"><td>mu</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>sigma</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>num_folds</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>pos_color</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    <tr class="row-even"><td>ned_color</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#D4F5CE">Yes</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    <td bgcolor="#F5CECE">No</td>
+    </tr>
+    </tbody>
+</table><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Scatter values are supposed to be iterables of coupled values. I.e.: <tt class="docutils literal"><span class="pre">[[(1,</span> <span class="pre">20),</span> <span class="pre">...,</span> <span class="pre">(200,</span> <span class="pre">21)],</span> <span class="pre">...,</span> <span class="pre">[(1,</span> <span class="pre">12),...</span> <span class="pre">(200,</span> <span class="pre">19)]]</span></tt></p>
+</div>
+</div>
+</div>
+<div class="section" id="interface-outputs">
+<h2><a class="toc-backref" href="#id16">Interface outputs</a><a class="headerlink" href="#interface-outputs" title="Permalink to this headline">¶</a></h2>
+<p>As with the low and middle level <tt class="docutils literal"><span class="pre">Bokeh</span></tt> plotting APIs, in <tt class="docutils literal"><span class="pre">bokeh.charts</span></tt>,
+we also support the chart output to:</p>
+<ul>
+<li><p class="first">a file:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hist</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">distributions</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s">&quot;hist.html&quot;</span><span class="p">)</span>
+<span class="n">hist</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c"># or use</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">output_file</span><span class="p">(</span><span class="s">&#39;hist.html&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">to <tt class="docutils literal"><span class="pre">bokeh-server</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hist</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">distributions</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">hist</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c"># or use</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_server</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">output_server</span><span class="p">(</span><span class="s">&#39;hist&#39;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">to IPython notebook:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">hist</span> <span class="o">=</span> <span class="n">Histogram</span><span class="p">(</span><span class="n">distributions</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">hist</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c"># or use</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span>
+<span class="n">output_notebook</span><span class="p">()</span>
+<span class="n">show</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can output to any or all of these 3 possibilities because, right now, they are not mutually exclusive.</p>
+</div>
+</div>
+<div class="section" id="chart-builders">
+<span id="charts-builders"></span><h2><a class="toc-backref" href="#id17">Chart Builders</a><a class="headerlink" href="#chart-builders" title="Permalink to this headline">¶</a></h2>
+<p>Since 0.8 release <cite>Charts</cite> creation is streamlined by specific
+objects called Builders. Builders are convenience classes that create
+all computation, validation and low-level geometries needed to render a High Level
+Chart. This provides clear pattern to easily extend the <cite>Charts</cite> interface
+with new charts. For more info about this refer to  <a class="reference internal" href="../reference/charts.html#bokeh-dot-charts-builders"><em>Builders</em></a>
+reference.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="plotting.html">Prev</a> |
+      
+      
+      <a href="objects.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/charts.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

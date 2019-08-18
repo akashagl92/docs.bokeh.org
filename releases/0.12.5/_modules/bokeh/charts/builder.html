@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.charts.builder &mdash; Bokeh 0.12.5 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.5";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/_modules/bokeh/charts/builder.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.5</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/releases/0.12.5.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/charts.html">Making High-level Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/charts.html">bokeh.charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.charts.builder</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; This is the Bokeh charts interface. It gives you a high level API to build</span>
+<span class="sd">complex plot is a simple way.</span>
+
+<span class="sd">This is the Builder class, a minimal prototype class to build more chart</span>
+<span class="sd">types on top of it.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.core.enums</span> <span class="k">import</span> <span class="n">SortDirection</span>
+<span class="kn">from</span> <span class="nn">bokeh.core.has_props</span> <span class="k">import</span> <span class="n">HasProps</span>
+<span class="kn">from</span> <span class="nn">bokeh.core.properties</span> <span class="k">import</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Either</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.ranges</span> <span class="k">import</span> <span class="n">FactorRange</span><span class="p">,</span> <span class="n">Range</span><span class="p">,</span> <span class="n">Range1d</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.sources</span> <span class="k">import</span> <span class="n">ColumnDataSource</span>
+
+<span class="kn">from</span> <span class="nn">.attributes</span> <span class="k">import</span> <span class="n">AttrSpec</span><span class="p">,</span> <span class="n">CatAttr</span><span class="p">,</span> <span class="n">ColorAttr</span>
+<span class="kn">from</span> <span class="nn">.chart</span> <span class="k">import</span> <span class="n">Chart</span>
+<span class="kn">from</span> <span class="nn">.data_source</span> <span class="k">import</span> <span class="n">ChartDataSource</span><span class="p">,</span> <span class="n">OrderedAssigner</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="k">import</span> <span class="n">CompositeGlyph</span>
+<span class="kn">from</span> <span class="nn">.properties</span> <span class="k">import</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">ColumnLabel</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">build_hover_tooltips</span><span class="p">,</span> <span class="n">collect_attribute_columns</span><span class="p">,</span> <span class="n">label_from_index_dict</span>
+
+<span class="k">def</span> <span class="nf">create_and_build</span><span class="p">(</span><span class="n">builder_class</span><span class="p">,</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A factory function for handling Chart and Builder generation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        :class:`Chart`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">builder_class</span><span class="p">,</span> <span class="s1">&#39;dimensions&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Each builder must specify its dimensions, </span><span class="si">%s</span><span class="s1"> does not.&#39;</span> <span class="o">%</span> <span class="n">builder_class</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">builder_class</span><span class="p">,</span> <span class="s1">&#39;default_attributes&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Each builder must specify its default_attributes, </span><span class="si">%s</span><span class="s1"> does not.&#39;</span> <span class="o">%</span> <span class="n">builder_class</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="n">builder_props</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">builder_class</span><span class="o">.</span><span class="n">properties</span><span class="p">())</span> <span class="o">|</span> \
+        <span class="nb">set</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">builder_class</span><span class="p">,</span> <span class="s2">&quot;__deprecated_attributes__&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+
+    <span class="c1"># append dimensions to the builder props</span>
+    <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">builder_class</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+        <span class="n">builder_props</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+
+    <span class="c1"># append attributes to the builder props</span>
+    <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">builder_class</span><span class="o">.</span><span class="n">default_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">builder_props</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
+
+    <span class="c1"># create the new builder</span>
+    <span class="n">builder_kws</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kws</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">builder_props</span><span class="p">}</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">builder_class</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">builder_kws</span><span class="p">)</span>
+
+    <span class="c1"># create a chart to return, since there isn&#39;t one already</span>
+    <span class="n">chart_kws</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kws</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builder_props</span><span class="p">}</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">Chart</span><span class="p">(</span><span class="o">**</span><span class="n">chart_kws</span><span class="p">)</span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">add_builder</span><span class="p">(</span><span class="n">builder</span><span class="p">)</span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">start_plot</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">chart</span>
+
+
+<div class="viewcode-block" id="Builder"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder">[docs]</a><span class="k">class</span> <span class="nc">Builder</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; A prototype class to inherit each new chart Builder type.</span>
+
+<span class="sd">    It provides useful methods to be used by the inherited builder classes,</span>
+<span class="sd">    in order to automate most of the charts creation tasks and leave the</span>
+<span class="sd">    core customization to specialized builder classes. In that pattern</span>
+<span class="sd">    inherited builders just need to provide the following methods:</span>
+
+<span class="sd">    Required:</span>
+
+<span class="sd">    * :meth:`~bokeh.charts.builder.Builder.yield_renderers`: yields the glyphs to be</span>
+<span class="sd">      rendered into the plot. Here you should call the</span>
+<span class="sd">      :meth:`~bokeh.charts.builder.Builder.add_glyph` method so that the builder can</span>
+<span class="sd">      setup the legend for you.</span>
+<span class="sd">    * :meth:`~bokeh.charts.builder.Builder.set_ranges`: setup the ranges for the</span>
+<span class="sd">      glyphs. This is called after glyph creation, so you are able to inspect the</span>
+<span class="sd">      comp_glyphs for their minimum and maximum values. See the</span>
+<span class="sd">      :meth:`~bokeh.charts.builder.Builder.create` method for more information on</span>
+<span class="sd">      when this is called and how the builder provides the ranges to the containing</span>
+<span class="sd">      :class:`Chart` using the :meth:`Chart.add_ranges` method.</span>
+
+<span class="sd">    Optional:</span>
+
+<span class="sd">    * :meth:`~bokeh.charts.builder.Builder.setup`: provides an area</span>
+<span class="sd">      where subclasses of builder can introspect properties, setup attributes, or change</span>
+<span class="sd">      property values. This is called before</span>
+<span class="sd">      :meth:`~bokeh.charts.builder.Builder.process_data`.</span>
+<span class="sd">    * :meth:`~bokeh.charts.builder.Builder.process_data`: provides an area</span>
+<span class="sd">      where subclasses of builder can manipulate the source data before renderers are</span>
+<span class="sd">      created.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Optional Inputs</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Range</span><span class="p">)</span>
+    <span class="n">y_range</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Range</span><span class="p">)</span>
+
+    <span class="n">xlabel</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">ylabel</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+
+    <span class="n">xscale</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+    <span class="n">yscale</span> <span class="o">=</span> <span class="n">String</span><span class="p">()</span>
+
+    <span class="n">palette</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Color</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Optional input to override the default palette used</span>
+<span class="s2">        by any color attribute.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Dimension Configuration</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The dimension labels that drive the position of the</span>
+<span class="sd">    glyphs. Subclasses should implement this so that the Builder</span>
+<span class="sd">    base class knows which dimensions it needs to operate on.</span>
+<span class="sd">    An example for a builder working with cartesian x and y</span>
+<span class="sd">    coordinates would be dimensions = [&#39;x&#39;, &#39;y&#39;]. You should</span>
+<span class="sd">    then instantiate the x and y dimensions as attributes of the</span>
+<span class="sd">    subclass of builder using the :class:`Dimension</span>
+<span class="sd">    &lt;bokeh.charts.properties.Dimension&gt;` class. One for x, as x</span>
+<span class="sd">    = Dimension(...), and one as y = Dimension(...).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># None because it MUST be overridden</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The dimension labels that must exist to produce the</span>
+<span class="sd">    glyphs. This specifies what are the valid configurations for</span>
+<span class="sd">    the chart, with the option of specifying the type of the</span>
+<span class="sd">    columns. The</span>
+<span class="sd">    :class:`~bokeh.charts.data_source.ChartDataSource` will</span>
+<span class="sd">    inspect this property of your subclass of Builder and use</span>
+<span class="sd">    this to fill in any required dimensions if no keyword</span>
+<span class="sd">    arguments are used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">req_dimensions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Attribute Configuration</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Instance</span><span class="p">(</span><span class="n">AttrSpec</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        The attribute specs used to group data. This is a mapping between the role of</span>
+<span class="s2">        the attribute spec (e.g. &#39;color&#39;) and the</span>
+<span class="s2">        :class:`~bokeh.charts.attributes.AttrSpec` class (e.g.,</span>
+<span class="s2">        :class:`~bokeh.charts.attributes.ColorAttr`). The Builder will use this</span>
+<span class="s2">        attributes property during runtime, which will consist of any attribute specs</span>
+<span class="s2">        that are passed into the chart creation function (e.g.,</span>
+<span class="s2">        :class:`~bokeh.charts.Bar`), ones that are created for the user from simple</span>
+<span class="s2">        input types (e.g. `Bar(..., color=&#39;red&#39;)` or `Bar(..., color=&lt;column_name&gt;)`),</span>
+<span class="s2">        or lastly, the attribute spec found in the default_attributes configured for</span>
+<span class="s2">        the subclass of :class:`~bokeh.charts.builder.Builder`.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The default attribute specs used to group data. This is</span>
+<span class="sd">    where the subclass of Builder should specify what the</span>
+<span class="sd">    default attributes are that will yield attribute values to</span>
+<span class="sd">    each group of data, and any specific configuration. For</span>
+<span class="sd">    example, the :class:`ColorAttr` utilizes a default palette</span>
+<span class="sd">    for assigning color based on groups of data. If the user</span>
+<span class="sd">    doesn&#39;t assign a column of the data to the associated</span>
+<span class="sd">    attribute spec, then the default attrspec is used, which</span>
+<span class="sd">    will yield a constant color value for each group of</span>
+<span class="sd">    data. This is by default the first color in the default</span>
+<span class="sd">    palette, but can be customized by setting the default color</span>
+<span class="sd">    in the ColorAttr.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">default_attributes</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># None because it MUST be overridden</span>
+
+    <span class="c1"># Derived properties (created by Builder at runtime)</span>
+    <span class="n">attribute_columns</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">ColumnLabel</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        All columns used for specifying attributes for the Chart. The Builder will set</span>
+<span class="s2">        this value on creation so that the subclasses can know the distinct set of columns</span>
+<span class="s2">        that are being used to assign attributes.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">comp_glyphs</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Instance</span><span class="p">(</span><span class="n">CompositeGlyph</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        A list of composite glyphs, where each represents a unique subset of data. The</span>
+<span class="s2">        composite glyph is a helper class that encapsulates all low level</span>
+<span class="s2">        :class:`~bokeh.models.glyphs.Glyph`, that represent a higher level group of</span>
+<span class="s2">        data. For example, the :class:`BoxGlyph` is a single class that yields</span>
+<span class="s2">        each :class:`GlyphRenderer` needed to produce a Box on a :class:`BoxPlot`. The</span>
+<span class="s2">        single Box represents a full array of values that are aggregated, and is made</span>
+<span class="s2">        up of multiple :class:`~bokeh.models.glyphs.Rect` and</span>
+<span class="s2">        :class:`~bokeh.models.glyphs.Segment` glyphs.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Represents the unique labels to be used for legends.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="sd">&quot;&quot;&quot;List of attributes to use for legends.&quot;&quot;&quot;</span>
+    <span class="n">label_attributes</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used to assign columns to dimensions when no selections have been provided. The</span>
+<span class="sd">    default behavior is provided by the :class:`OrderedAssigner`, which assigns</span>
+<span class="sd">    a single column to each dimension available in the `Builder`&#39;s `dims` property.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">column_selector</span> <span class="o">=</span> <span class="n">OrderedAssigner</span>
+
+    <span class="n">comp_glyph_types</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Instance</span><span class="p">(</span><span class="n">CompositeGlyph</span><span class="p">))</span>
+
+    <span class="n">sort_dim</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">{})</span>
+
+    <span class="n">legend_sort_field</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Attribute that should be used to sort the legend, for example: color,</span>
+<span class="s2">        dash, maker, etc. Valid values for this property depend on the type</span>
+<span class="s2">        of chart.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">legend_sort_direction</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">SortDirection</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Sort direction to apply to :attr:`~bokeh.charts.builder.Builder.sort_legend`.</span>
+<span class="s2">    Valid values are: `ascending` or `descending`.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">source</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColumnDataSource</span><span class="p">)</span>
+
+    <span class="n">tooltips</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">List</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="p">)),</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">),</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        Tells the builder to add tooltips to the chart by either using the columns</span>
+<span class="s2">        specified to the chart attributes (True), or by generating tooltips for each</span>
+<span class="s2">        column specified (list(str)), or by explicit specification of the tooltips</span>
+<span class="s2">        using the valid input for the `HoverTool` tooltips kwarg.</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">__deprecated_attributes__</span> <span class="o">=</span> <span class="p">()</span>
+
+<div class="viewcode-block" id="Builder.__init__"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Common arguments to be used by all the inherited classes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (:ref:`userguide_charts_data_types`): source data for the chart</span>
+<span class="sd">            legend (str, bool): the legend of your plot. The legend content is</span>
+<span class="sd">                inferred from incoming input.It can be ``top_left``,</span>
+<span class="sd">                ``top_right``, ``bottom_left``, ``bottom_right``.</span>
+<span class="sd">                It is ``top_right`` is you set it as True.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            source (obj): datasource object for your plot,</span>
+<span class="sd">                initialized as a dummy None.</span>
+<span class="sd">            x_range (obj): x-associated datarange object for you plot,</span>
+<span class="sd">                initialized as a dummy None.</span>
+<span class="sd">            y_range (obj): y-associated datarange object for you plot,</span>
+<span class="sd">                initialized as a dummy None.</span>
+<span class="sd">            groups (list): to be filled with the incoming groups of data.</span>
+<span class="sd">                Useful for legend construction.</span>
+<span class="sd">            data (dict): to be filled with the incoming data and be passed</span>
+<span class="sd">                to the ChartDataSource for each Builder class.</span>
+<span class="sd">            attr (list(AttrSpec)): to be filled with the new attributes created after</span>
+<span class="sd">                loading the data dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">kws</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="c1"># chart dimensions can be literal dimensions or attributes</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">+</span> <span class="n">attrs</span>
+
+            <span class="c1"># pop the dimension inputs from kwargs</span>
+            <span class="n">data_args</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">kws</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">data_args</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">kws</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span>
+
+            <span class="c1"># build chart data source from inputs, given the dimension configuration</span>
+            <span class="n">data_args</span><span class="p">[</span><span class="s1">&#39;dims&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
+            <span class="n">data_args</span><span class="p">[</span><span class="s1">&#39;required_dims&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">req_dimensions</span><span class="p">)</span>
+            <span class="n">data_args</span><span class="p">[</span><span class="s1">&#39;attrs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attrs</span>
+            <span class="n">data_args</span><span class="p">[</span><span class="s1">&#39;column_assigner&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_selector</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">ChartDataSource</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">data_args</span><span class="p">)</span>
+
+            <span class="c1"># make sure that the builder dimensions have access to the chart data source</span>
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span><span class="p">:</span>
+                <span class="nb">getattr</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="s1">&#39;set_data&#39;</span><span class="p">)(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c1"># handle input attrs and ensure attrs have access to data</span>
+            <span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setup_attrs</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kws</span><span class="p">)</span>
+
+            <span class="c1"># remove inputs handled by dimensions and chart attributes</span>
+            <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dims</span><span class="p">:</span>
+                <span class="n">kws</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attributes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="n">kws</span><span class="p">[</span><span class="s1">&#39;attributes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Builder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+
+        <span class="c1"># collect unique columns used for attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attribute_columns</span> <span class="o">=</span> <span class="n">collect_attribute_columns</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__deprecated_attributes__</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kws</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">kws</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_legends</span> <span class="o">=</span> <span class="p">[]</span></div>
+
+    <span class="k">def</span> <span class="nf">_setup_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">kws</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle overridden attributes and initialize them with data.</span>
+
+<span class="sd">        Makes sure that all attributes have access to the data</span>
+<span class="sd">        source, which is used for mapping attributes to groups</span>
+<span class="sd">        of data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">attr_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">custom_palette</span> <span class="o">=</span> <span class="n">kws</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;palette&#39;</span><span class="p">)</span>
+
+        <span class="n">attributes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attr_names</span><span class="p">:</span>
+
+            <span class="n">attr</span> <span class="o">=</span> <span class="n">kws</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="c1"># if given an attribute use it</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">AttrSpec</span><span class="p">):</span>
+                <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">attr</span>
+
+            <span class="c1"># if we are given columns, use those</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+                <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">_clone</span><span class="p">()</span>
+
+                <span class="c1"># override palette if available</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">],</span> <span class="n">ColorAttr</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">custom_palette</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">iterable</span> <span class="o">=</span> <span class="n">custom_palette</span>
+
+                <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">attr</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># override palette if available</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">],</span> <span class="n">ColorAttr</span><span class="p">)</span> <span class="ow">and</span>
+                        <span class="n">custom_palette</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+                    <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">_clone</span><span class="p">()</span>
+                    <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">iterable</span> <span class="o">=</span> <span class="n">custom_palette</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">_clone</span><span class="p">()</span>
+
+        <span class="c1"># make sure all have access to data source</span>
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attr_names</span><span class="p">:</span>
+            <span class="n">attributes</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span><span class="o">.</span><span class="n">update_data</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attributes</span>
+
+<div class="viewcode-block" id="Builder.setup"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform any initial pre-processing, attribute config.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Builder.process_data"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.process_data">[docs]</a>    <span class="k">def</span> <span class="nf">process_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make any global data manipulations before grouping.</span>
+
+<span class="sd">        It has to be implemented by any of the inherited class</span>
+<span class="sd">        representing each different chart type. It is the place</span>
+<span class="sd">        where we make specific calculations for each chart.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Builder.yield_renderers"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.yield_renderers">[docs]</a>    <span class="k">def</span> <span class="nf">yield_renderers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Generator that yields the glyphs to be draw on the plot</span>
+
+<span class="sd">        It has to be implemented by any of the inherited class</span>
+<span class="sd">        representing each different chart type.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            :class:`GlyphRenderer`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Subclasses of </span><span class="si">%s</span><span class="s1"> must implement _yield_renderers.&#39;</span> <span class="o">%</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Builder.set_ranges"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.set_ranges">[docs]</a>    <span class="k">def</span> <span class="nf">set_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate and set the x and y ranges.</span>
+
+<span class="sd">        It has to be implemented by any of the subclasses of builder</span>
+<span class="sd">        representing each different chart type, and is called after</span>
+<span class="sd">        :meth:`yield_renderers`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Subclasses of </span><span class="si">%s</span><span class="s1"> must implement _set_ranges.&#39;</span> <span class="o">%</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Builder.get_dim_extents"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.get_dim_extents">[docs]</a>    <span class="k">def</span> <span class="nf">get_dim_extents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method to retrieve maximum extents of all the renderers.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            a dict mapping between dimension and value for x_max, y_max, x_min, y_min</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x_max&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">([</span><span class="n">renderer</span><span class="o">.</span><span class="n">x_max</span> <span class="k">for</span> <span class="n">renderer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="p">]),</span>
+                <span class="s1">&#39;y_max&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">([</span><span class="n">renderer</span><span class="o">.</span><span class="n">y_max</span> <span class="k">for</span> <span class="n">renderer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="p">]),</span>
+                <span class="s1">&#39;x_min&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">([</span><span class="n">renderer</span><span class="o">.</span><span class="n">x_min</span> <span class="k">for</span> <span class="n">renderer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="p">]),</span>
+                <span class="s1">&#39;y_min&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">([</span><span class="n">renderer</span><span class="o">.</span><span class="n">y_min</span> <span class="k">for</span> <span class="n">renderer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="p">])</span>
+                <span class="p">}</span></div>
+
+<div class="viewcode-block" id="Builder.add_glyph"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.add_glyph">[docs]</a>    <span class="k">def</span> <span class="nf">add_glyph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">glyph</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a composite glyph.</span>
+
+<span class="sd">        Manages the legend, since the builder might not want all attribute types</span>
+<span class="sd">        used for the legend.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group (:class:`DataGroup`): the data the `glyph` is associated with</span>
+<span class="sd">            glyph (:class:`CompositeGlyph`): the glyph associated with the `group`</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">glyph</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">sub_glyph</span> <span class="ow">in</span> <span class="n">glyph</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_glyph</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">comp_glyphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">glyph</span><span class="p">)</span>
+
+        <span class="c1"># handle cases where builders have specified which attributes to use for labels</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_attributes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_attributes</span><span class="p">:</span>
+                <span class="c1"># this will get the last attribute group label for now</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_group_label</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="n">attr</span><span class="p">)</span>
+
+        <span class="c1"># if no special case for labeling, just use the group label</span>
+        <span class="k">if</span> <span class="n">label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_group_label</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+
+        <span class="c1"># add to legend if new and unique label</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels</span> <span class="ow">and</span> <span class="n">label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_legends</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">label</span><span class="p">,</span> <span class="n">glyph</span><span class="o">.</span><span class="n">renderers</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_group_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the label of the group by the attribute name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            group (:attr:`DataGroup`: the group of data</span>
+<span class="sd">            attr (str, optional): the attribute name containing the label, defaults to</span>
+<span class="sd">                &#39;label&#39;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the label for the group</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="ow">is</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">label</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_label</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_label</span><span class="p">(</span><span class="n">raw_label</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts a label by string or tuple to a string representation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            raw_label (str or tuple(any, any)): a unique identifier for the data group</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: a label that is usable in charts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># don&#39;t convert None type to string so we can test for it later</span>
+        <span class="k">if</span> <span class="n">raw_label</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_label</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_label</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="ow">and</span> \
+                       <span class="nb">len</span><span class="p">(</span><span class="n">raw_label</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">raw_label</span> <span class="o">=</span> <span class="n">raw_label</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_label</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">raw_label</span> <span class="o">=</span> <span class="n">label_from_index_dict</span><span class="p">(</span><span class="n">raw_label</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw_label</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Builder.collect_attr_kwargs"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.collect_attr_kwargs">[docs]</a>    <span class="k">def</span> <span class="nf">collect_attr_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span> <span class="s1">&#39;default_attributes&#39;</span><span class="p">):</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span>
+                <span class="p">(</span><span class="nb">super</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">default_attributes</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">attrs</span></div>
+
+<div class="viewcode-block" id="Builder.get_group_kwargs"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.get_group_kwargs">[docs]</a>    <span class="k">def</span> <span class="nf">get_group_kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">attrs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">attr</span><span class="p">:</span> <span class="n">group</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="Builder.create"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chart</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Builds the renderers, adding them and other components to the chart.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            chart (:class:`Chart`, optional): the chart that will contain the glyph</span>
+<span class="sd">                renderers that the `Builder` produces.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Chart`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># call methods that allow customized setup by subclasses</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_data</span><span class="p">()</span>
+
+        <span class="c1"># create and add renderers to chart</span>
+        <span class="n">renderers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">yield_renderers</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">chart</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">chart</span> <span class="o">=</span> <span class="n">Chart</span><span class="p">()</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_renderers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderers</span><span class="p">)</span>
+
+        <span class="c1"># handle ranges after renders, since ranges depend on aggregations</span>
+        <span class="c1"># ToDo: should reconsider where this occurs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_ranges</span><span class="p">()</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_ranges</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_ranges</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_range</span><span class="p">)</span>
+
+        <span class="c1"># sort the legend if we are told to</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_legends</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sort_legend</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">legend_sort_field</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">legend_sort_direction</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_legends</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+        <span class="c1"># always contribute legends, let Chart sort it out</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_legend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_legends</span><span class="p">)</span>
+
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlabel</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylabel</span><span class="p">)</span>
+
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_scales</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xscale</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">add_scales</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yscale</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tooltips</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">tooltips</span> <span class="o">=</span> <span class="n">build_hover_tooltips</span><span class="p">(</span><span class="n">hover_spec</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tooltips</span><span class="p">,</span>
+                                            <span class="n">chart_cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute_columns</span><span class="p">)</span>
+            <span class="n">chart</span><span class="o">.</span><span class="n">add_tooltips</span><span class="p">(</span><span class="n">tooltips</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">chart</span></div>
+
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Builder.generate_help"><a class="viewcode-back" href="../../../docs/reference/charts.html#bokeh.charts.builder.Builder.generate_help">[docs]</a>    <span class="k">def</span> <span class="nf">generate_help</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="n">help_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">comp_glyph</span> <span class="ow">in</span> <span class="n">cls</span><span class="o">.</span><span class="n">comp_glyph_types</span><span class="p">:</span>
+            <span class="n">help_str</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">comp_glyph</span><span class="o">.</span><span class="n">glyph_properties</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">help_str</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_sort_legend</span><span class="p">(</span><span class="n">legend_sort_field</span><span class="p">,</span> <span class="n">legend_sort_direction</span><span class="p">,</span> <span class="n">legends</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sort legends sorted by looping though sort_legend items (</span>
+<span class="sd">        see :attr:`Builder.sort_legend` for more details)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">legend_sort_field</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">attributes</span><span class="p">[</span><span class="n">legend_sort_field</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+                <span class="c1"># TODO(fpliger): attributes should be consistent and not</span>
+                <span class="c1">#               need any type checking but for</span>
+                <span class="c1">#               the moment it is not, specially when going</span>
+                <span class="c1">#               though a process like binning or when data</span>
+                <span class="c1">#               is built for HeatMap, Scatter, etc...</span>
+                <span class="n">item_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+                    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">[</span><span class="n">legend_sort_field</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+                <span class="n">item_order</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">string_types</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">item_order</span><span class="p">]</span>
+
+                <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">leg</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">item_order</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">leg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">reverse</span> <span class="o">=</span> <span class="n">legend_sort_direction</span> <span class="o">==</span> <span class="s1">&#39;descending&#39;</span>
+                <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">legends</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">foo</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="n">reverse</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">legends</span></div>
+
+<span class="k">class</span> <span class="nc">XYBuilder</span><span class="p">(</span><span class="n">Builder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implements common functionality for XY Builders.&quot;&quot;&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Dimension</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">Dimension</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">dimensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    <span class="n">req_dimensions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
+                      <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
+                      <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">]]</span>
+
+    <span class="n">default_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">ColorAttr</span><span class="p">()}</span>
+
+    <span class="k">def</span> <span class="nf">set_ranges</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate and set the x and y ranges.&quot;&quot;&quot;</span>
+        <span class="c1"># ToDo: handle when only single dimension is provided</span>
+        <span class="n">extents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dim_extents</span><span class="p">()</span>
+
+        <span class="n">endx</span> <span class="o">=</span> <span class="n">extents</span><span class="p">[</span><span class="s1">&#39;x_max&#39;</span><span class="p">]</span>
+        <span class="n">startx</span> <span class="o">=</span> <span class="n">extents</span><span class="p">[</span><span class="s1">&#39;x_min&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_range</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">startx</span><span class="p">,</span> <span class="n">endx</span><span class="p">)</span>
+
+        <span class="n">endy</span> <span class="o">=</span> <span class="n">extents</span><span class="p">[</span><span class="s1">&#39;y_max&#39;</span><span class="p">]</span>
+        <span class="n">starty</span> <span class="o">=</span> <span class="n">extents</span><span class="p">[</span><span class="s1">&#39;y_min&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_range</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">starty</span><span class="p">,</span> <span class="n">endy</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">xlabel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">selection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">select</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">selection</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">select</span> <span class="o">=</span> <span class="p">[</span><span class="n">select</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">select</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">select</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ylabel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">selection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">select</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">selection</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">select</span> <span class="o">=</span> <span class="p">[</span><span class="n">select</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">select</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">select</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a :class:`Range` for the :class:`Chart`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dim (str): the name of the dimension, which is an attribute of the builder</span>
+<span class="sd">            start: the starting value of the range</span>
+<span class="sd">            end: the ending value of the range</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :class:`Range`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dim_ref</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">dim_ref</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">dim_ref</span><span class="o">.</span><span class="n">dtype</span>
+
+        <span class="n">sort</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_dim</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+
+        <span class="c1"># object data or single value</span>
+        <span class="k">if</span> <span class="n">dtype</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+            <span class="n">factors</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
+                <span class="c1"># TODO (fpliger):   this handles pandas API change so users do not experience</span>
+                <span class="c1">#                   the related annoying deprecation warning. This is probably worth</span>
+                <span class="c1">#                   removing when pandas deprecated version (0.16) is &quot;old&quot; enough</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">factors</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="n">factors</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span> <span class="o">+</span> <span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="s1">&#39;categorical&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="n">factors</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span> <span class="o">+</span> <span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">end</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span> <span class="o">+</span> <span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="s1">&#39;categorical&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;None&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">diff</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span> <span class="o">+</span> <span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">diff</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">diff</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AggregateBuilder</span><span class="p">(</span><span class="n">Builder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A base class for deriving specific builders performing aggregation with stats.</span>
+
+<span class="sd">    The typical AggregateBuilder takes a single dimension of values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">Dimension</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span>
+
+    <span class="n">default_attributes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">CatAttr</span><span class="p">(),</span>
+                          <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">ColorAttr</span><span class="p">()}</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

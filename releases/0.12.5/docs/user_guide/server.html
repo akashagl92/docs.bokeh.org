@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Running a Bokeh Server &mdash; Bokeh 0.12.5 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.5";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/docs/user_guide/server.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.12.5</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.12.5.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts.html">Making High-level Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running a Bokeh Server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-case-scenarios">Use Case Scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#local-or-individual-use">Local or Individual Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-deployable-applications">Creating Deployable Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shared-publishing">Shared Publishing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-bokeh-applications">Building Bokeh Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#single-module-format">Single module format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-format">Directory format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-the-http-request">Accessing the HTTP Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#callbacks-and-events">Callbacks and Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#javascript-callbacks-in-the-browser">JavaScript Callbacks in the Browser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-callbacks-with-jupyter-interactors">Python Callbacks with Jupyter Interactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-from-threads">Updating From Threads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-from-unlocked-callbacks">Updating from Unlocked Callbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lifecycle-hooks">Lifecycle Hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#embedding-bokeh-server-as-a-library">Embedding Bokeh Server as a Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-with-bokeh-client">Connecting with <code class="docutils literal"><span class="pre">bokeh.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-scenarios">Deployment Scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standalone-bokeh-server">Standalone Bokeh Server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-tunnels">SSH Tunnels</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-reverse-proxy-setup">Basic Reverse Proxy Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nginx">Nginx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apache">Apache</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#reverse-proxying-with-nginx-and-ssl">Reverse Proxying with Nginx and SSL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-balancing-with-nginx">Load Balancing with Nginx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process-control-with-supervisord">Process Control with Supervisord</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaling-the-server">Scaling the server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-full-example-with-automation">A Full Example with Automation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/charts.html">bokeh.charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="running-a-bokeh-server">
+<span id="userguide-server"></span><h1>Running a Bokeh Server<a class="headerlink" href="#running-a-bokeh-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<span id="userguide-server-purpose"></span><h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>The architecture of Bokeh is such that high-level &#8220;model objects&#8221;
+(representing things like plots, ranges, axes, glyphs, etc.) are created
+in Python, and then converted to a JSON format that is consumed by the
+client library, BokehJS. (See <a class="reference internal" href="concepts.html#userguide-concepts"><span class="std std-ref">Defining Key Concepts</span></a> for a more detailed
+discussion.) By itself, this flexible and decoupled design offers advantages,
+for instance it is easy to have other languages (R, Scala, Lua, ...) drive
+the exact same Bokeh plots and visualizations in the browser.</p>
+<p>However, if it were possible to keep the &#8220;model objects&#8221; in python and in
+the browser in sync with one another, then more additional and powerful
+possibilities immediately open up:</p>
+<ul class="simple">
+<li>respond to UI and tool events generated in a browser with computations or
+queries using the full power of python</li>
+<li>automatically push server-side updates to the UI (i.e. widgets or plots in a browser)</li>
+<li>use periodic, timeout, and asynchronous callbacks to drive streaming updates</li>
+</ul>
+<p><strong>This capability to synchronize between python and the browser is the main
+purpose of the Bokeh Server.</strong></p>
+<hr class="docutils" />
+<p>The simple example below, embedded from <a class="reference external" href="https://demo.bokeh.org">demo.bokeh.org</a>, illustrates
+this.</p>
+<div>
+<iframe
+    src="http://demo.bokeh.org/sliders"
+    frameborder="0"
+    style="overflow:hidden;height:400px;width: 90%;
+
+    -moz-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;"
+    height="460"
+></iframe>
+</div><p>When the controls are manipulated, their new values are automatically
+synced in the Bokeh server. Callbacks are triggered that also update the
+date for the plot in the server. These changes are automatically synced back
+to the browser, and the plot updates.</p>
+</div>
+<div class="section" id="use-case-scenarios">
+<span id="userguide-server-use-case"></span><h2>Use Case Scenarios<a class="headerlink" href="#use-case-scenarios" title="Permalink to this headline">¶</a></h2>
+<p>Now that we know what the Bokeh server is for, and what it is capable of
+doing, it&#8217;s worth considering a few different scenarios when you might
+want to use a Bokeh Server.</p>
+<div class="section" id="local-or-individual-use">
+<span id="userguide-server-use-case-individual"></span><h3>Local or Individual Use<a class="headerlink" href="#local-or-individual-use" title="Permalink to this headline">¶</a></h3>
+<p>One way that you might want to use the Bokeh server is during exploratory
+data analysis, possibly in a Jupyter notebook. Alternatively, you might
+want to create a small app that you can run locally, or that you can send
+to colleagues to run locally. The Bokeh server is very useful and easy to
+use in this scenario. Both of the methods here below can be used effectively:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#userguide-server-bokeh-client"><span class="std std-ref">Connecting with bokeh.client</span></a></li>
+<li><a class="reference internal" href="#userguide-server-applications"><span class="std std-ref">Building Bokeh Applications</span></a></li>
+</ul>
+<p>For the most flexible approach, that could transition most directly to a
+deployable application, it is suggested to follow the techniques in
+<a class="reference internal" href="#userguide-server-applications"><span class="std std-ref">Building Bokeh Applications</span></a>.</p>
+</div>
+<div class="section" id="creating-deployable-applications">
+<span id="userguide-server-use-case-deployed"></span><h3>Creating Deployable Applications<a class="headerlink" href="#creating-deployable-applications" title="Permalink to this headline">¶</a></h3>
+<p>Another way that you might want to use the Bokeh server is to publish
+interactive data visualizations and applications that can be viewed and
+used by a wider audience (perhaps on the internet, or perhaps on an
+internal company network). The Bokeh Server is also well-suited to this
+usage, and you will want to first consult the sections:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#userguide-server-applications"><span class="std std-ref">Building Bokeh Applications</span></a> - how to create Bokeh Applications, and then refer to the section</li>
+<li><a class="reference internal" href="#userguide-server-deployment"><span class="std std-ref">Deployment Scenarios</span></a> - how to deploy the Bokeh server with your application.</li>
+</ul>
+</div>
+<div class="section" id="shared-publishing">
+<span id="userguide-server-use-case-shared"></span><h3>Shared Publishing<a class="headerlink" href="#shared-publishing" title="Permalink to this headline">¶</a></h3>
+<p>Both of the scenarios above involve a <em>single creator</em> making applications
+on the server, either for their own local use, or for consumption by a
+larger audience. Another scenario is the case where a group of <em>several
+creators</em> all want publish different applications to the same server. <strong>This
+is not a good use-case for single Bokeh server.</strong> Because it is possible to
+create applications that execute arbitrary python code, process isolation and
+security concerns make this kind of shared tenancy prohibitive.</p>
+<p>In order to support this kind of multi-creator, multi-application environment,
+one approach is to build up infrastructure that can run as many Bokeh servers
+as-needed, either on a per-app, or at least a per-user basis. It is possible
+that we may create a public service to enable just this kind of usage in the
+future, and it would also certainly be possible for third parties to build
+their own private infrastructure to do so as well, but that is beyond the
+scope of this User&#8217;s Guide.</p>
+<p>Another possibility is to have a single centrally created app (perhaps by an
+organization), that can access data or other artifacts published by many
+different people (possibly with access controls). This sort of scenario <em>is</em>
+possible with the Bokeh server, but often involves integrating a Bokeh
+server with other web application frameworks. See a complete example at
+<a class="reference external" href="https://github.com/bokeh/bokeh-demos/tree/master/happiness">https://github.com/bokeh/bokeh-demos/tree/master/happiness</a></p>
+</div>
+</div>
+<div class="section" id="building-bokeh-applications">
+<span id="userguide-server-applications"></span><h2>Building Bokeh Applications<a class="headerlink" href="#building-bokeh-applications" title="Permalink to this headline">¶</a></h2>
+<p>By far the most flexible way to create interactive data visualizations using
+the Bokeh server is to create Bokeh Applications, and serve them with the
+<code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> command. In this scenario, a Bokeh server uses the application
+code to create sessions and documents for all browsers that connect:</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/bokeh_serve.svg"><img alt="../../_images/bokeh_serve.svg" src="../../_images/bokeh_serve.svg" width="65%" /></a>
+<p class="caption"><span class="caption-text">A Bokeh server (left) uses Application code to create Bokeh Documents.
+Every new connection from a browser (right) results in the Bokeh server
+creating a new document, just for that session.</span></p>
+</div>
+<p>The application code is executed in the Bokeh server every time a new
+connection is made, to create the new Bokeh <code class="docutils literal"><span class="pre">Document</span></code> that will be synced
+to the browser. The application code also sets up any callbacks that should be
+run whenever properties such as widget values are changes.</p>
+<p>There are a few different ways to provide the application code.</p>
+<div class="section" id="single-module-format">
+<span id="userguide-server-applications-single-module"></span><h3>Single module format<a class="headerlink" href="#single-module-format" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s look again at a complete example and then examine some specific parts
+in more detail:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># myapp.py</span>
+
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">bokeh.palettes</span> <span class="kn">import</span> <span class="n">RdYlBu3</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">curdoc</span>
+
+<span class="c1"># create a plot and style its properties</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">border_fill_color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">background_fill_color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">outline_line_color</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">p</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">grid_line_color</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># add a text renderer to our plot (no data yet)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">text</span><span class="o">=</span><span class="p">[],</span> <span class="n">text_color</span><span class="o">=</span><span class="p">[],</span> <span class="n">text_font_size</span><span class="o">=</span><span class="s2">&quot;20pt&quot;</span><span class="p">,</span>
+           <span class="n">text_baseline</span><span class="o">=</span><span class="s2">&quot;middle&quot;</span><span class="p">,</span> <span class="n">text_align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">data_source</span>
+
+<span class="c1"># create a callback that will add a number in a random location</span>
+<span class="k">def</span> <span class="nf">callback</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">i</span>
+
+    <span class="c1"># BEST PRACTICE --- update .data in one step with a new dict</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">70</span> <span class="o">+</span> <span class="mi">15</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="mi">70</span> <span class="o">+</span> <span class="mi">15</span><span class="p">]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;text_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;text_color&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">RdYlBu3</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="p">]]</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">new_data</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="c1"># add a button widget and configure with the call back</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Press Me&quot;</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="c1"># put the button and plot in a layout and add to the document</span>
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Notice that we have not specified an output or connection method anywhere in
+this code. It is a simple script that creates and updates objects. The
+flexibility of the <code class="docutils literal"><span class="pre">bokeh</span></code> command line tool means that we can defer
+output options until the end. We could, e.g., run <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">json</span> <span class="pre">myapp.py</span></code> to
+get a JSON serialized version of the the application. But in this case,
+we would like to run the app on a Bokeh server, so we execute:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve --show myapp.py
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">--show</span></code> option will cause a browser to open up a new tab automatically
+to the address of the running application, which in this case is:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http://localhost:5006/myapp
+</pre></div>
+</div>
+<p>If you have only one application, the server root will redirect to it.
+Otherwise, You can see an index of all running applications at the server root:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>http://localhost:5006/
+</pre></div>
+</div>
+<p>This index can be disabled with the <code class="docutils literal"><span class="pre">--disable-index</span></code> option, and the redirect
+behavior can be disabled with the <code class="docutils literal"><span class="pre">--disable-index-redirect</span></code> option.</p>
+<p>In addition to creating Bokeh applications from single python files, it is
+also possible to create applications from directories.</p>
+</div>
+<div class="section" id="directory-format">
+<span id="userguide-server-applications-directory"></span><h3>Directory format<a class="headerlink" href="#directory-format" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh applications may also be created by creating and populating a filesystem
+directory with the appropriate files. To start a directory application in a
+directory <code class="docutils literal"><span class="pre">myapp</span></code>, execute <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> with the name of the directory, for
+instance:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve --show myapp
+</pre></div>
+</div>
+<p>At a minimum, the directory must contain a <code class="docutils literal"><span class="pre">main.py</span></code> that constructs a
+Document for the Bokeh Server to serve:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>myapp
+   |
+   +---main.py
+</pre></div>
+</div>
+<p>The full set of files that Bokeh server knows about is:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>myapp
+   |
+   +---main.py
+   +---server_lifecycle.py
+   +---static
+   +---theme.yaml
+   +---templates
+        +---index.html
+</pre></div>
+</div>
+<p>The optional components are</p>
+<ul class="simple">
+<li>A <code class="docutils literal"><span class="pre">server_lifecycle.py</span></code> file that allows optional callbacks to be triggered at different stages of application creation, as descriped in <a class="reference internal" href="#userguide-server-applications-lifecycle"><span class="std std-ref">Lifecycle Hooks</span></a>.</li>
+<li>A <code class="docutils literal"><span class="pre">static</span></code> subdirectory that can be used to serve static resources associated with this application.</li>
+<li>A <code class="docutils literal"><span class="pre">theme.yaml</span></code> file that declaratively defines default attributes to be applied to Bokeh model types.</li>
+<li>A <code class="docutils literal"><span class="pre">templates</span></code> subdirectory with <code class="docutils literal"><span class="pre">index.html</span></code> Jinja template file. The directory may contain additional Jinja templates for <code class="docutils literal"><span class="pre">index.html</span></code> to refer to. The template should have the same parameters as the <a class="reference internal" href="../reference/core/templates.html#bokeh.core.templates.FILE" title="bokeh.core.templates.FILE"><code class="xref py py-class docutils literal"><span class="pre">FILE</span></code></a> template.</li>
+</ul>
+<p>Custom variables can be passed to the template via the
+<code class="docutils literal"><span class="pre">curdoc().template_variables</span></code> dictionary in place:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># set a new single key/value</span>
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">template_variables</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_id</span>
+
+<span class="c1"># or update multiple at once</span>
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">template_variables</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">first_name</span><span class="o">=</span><span class="s2">&quot;Mary&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s2">&quot;Jones&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When executing your <code class="docutils literal"><span class="pre">main.py</span></code> Bokeh server ensures that the standard
+<code class="docutils literal"><span class="pre">__file__</span></code> module attribute works as you would expect. So it is possible
+to include data files or custom user defined models in your directory
+however you like. Additionally, the application directory is also added
+to <code class="docutils literal"><span class="pre">sys.path</span></code> so that python modules in the application directory may
+be easily imported.</p>
+<p>An example might be:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>myapp
+   |
+   +---data
+   |    +---things.csv
+   |
+   +---helpers.py
+   +---main.py
+   |---models
+   |    +---custom.js
+   |
+   +---server_lifecycle.py
+   +---static
+   |    +---css
+   |    |    +---special.css
+   |    |
+   |    +---images
+   |    |    +---foo.png
+   |    |    +---bar.png
+   |    |
+   |    +---js
+   |        +---special.js
+   |
+   |---templates
+   |    +---index.html
+   |
+   +---theme.yaml
+</pre></div>
+</div>
+<p>In this case you might have code similar to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">join</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">load_data</span>
+
+<span class="n">load_data</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;things.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And similar code to load the JavaScript implementation for a custom model
+from <code class="docutils literal"><span class="pre">models/custom.js</span></code></p>
+</div>
+<div class="section" id="accessing-the-http-request">
+<span id="userguide-server-session-request"></span><h3>Accessing the HTTP Request<a class="headerlink" href="#accessing-the-http-request" title="Permalink to this headline">¶</a></h3>
+<p>When a session is created for a Bokeh application, the session context is made
+available as <code class="docutils literal"><span class="pre">curdoc().session_context</span></code>. The most useful function of the
+session context is to make the Tornado HTTP request object available to the
+application as <code class="docutils literal"><span class="pre">session_context.request</span></code>. The request object has a number of
+fields, such as <code class="docutils literal"><span class="pre">arguments</span></code>, <code class="docutils literal"><span class="pre">cookies</span></code>, <code class="docutils literal"><span class="pre">protocol</span></code>, etc. See the
+documentation for <a class="reference external" href="http://www.tornadoweb.org/en/stable/httputil.html#tornado.httputil.HTTPServerRequest">HTTPServerRequest</a> for full details.</p>
+<p>As an example, the following code will access the request <code class="docutils literal"><span class="pre">arguments</span></code> to set
+a value for a variable <code class="docutils literal"><span class="pre">N</span></code> (perhaps controlling the number of points in a
+plot):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># request.arguments is a dict that maps argument names to lists of strings,</span>
+<span class="c1"># e.g, the query string ?N=10 will result in {&#39;N&#39;: [b&#39;10&#39;]}</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">session_context</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">arguments</span>
+
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The request object is provided so that values such as <code class="docutils literal"><span class="pre">arguments</span></code> may be
+easily inspected. Calling any of the Tornado methods such as <code class="docutils literal"><span class="pre">finish()</span></code> or
+writing directly to <code class="docutils literal"><span class="pre">request.connection</span></code> is unsupported and will result in
+undefined behavior.</p>
+</div>
+</div>
+<div class="section" id="callbacks-and-events">
+<span id="userguide-server-applications-callbacks"></span><h3>Callbacks and Events<a class="headerlink" href="#callbacks-and-events" title="Permalink to this headline">¶</a></h3>
+<p>Before jumping in to callbacks and events specifically in the context of the
+Bokeh Server, it&#8217;s worth discussing different use-cases for callbacks in
+general.</p>
+<div class="section" id="javascript-callbacks-in-the-browser">
+<h4>JavaScript Callbacks in the Browser<a class="headerlink" href="#javascript-callbacks-in-the-browser" title="Permalink to this headline">¶</a></h4>
+<p>Regardless of whether there is a Bokeh Server involved, it is possible to
+create callbacks that execute in the browser, using <code class="docutils literal"><span class="pre">CustomJS</span></code> and other
+methods. See <a class="reference internal" href="interaction/callbacks.html#userguide-interaction-actions-customjs"><span class="std std-ref">CustomJS for Generic Events</span></a> for more detailed
+information and examples.</p>
+<p>It is critical to note that <strong>no python code is ever executed when a CustomJS
+callback is used</strong>. This is true even when the call back is supplied as python
+code to be translated to JavaScript. A <code class="docutils literal"><span class="pre">CustomJS</span></code> callback is only executed
+inside the browser&#8217;s JavaScript interpreter, and thus can only directly interact
+with JavaScript data and functions (e.g., BokehJS Backbone models).</p>
+</div>
+<div class="section" id="python-callbacks-with-jupyter-interactors">
+<h4>Python Callbacks with Jupyter Interactors<a class="headerlink" href="#python-callbacks-with-jupyter-interactors" title="Permalink to this headline">¶</a></h4>
+<p>If you are working in the Jupyter Notebook, it is possible to use Jupyter
+interactors to quickly create simple GUI forms automatically. Updates to the
+widgets in the GUI can trigger python callback functions that execute in
+the Jupyter Python kernel. It is often useful to have these callbacks call
+<a class="reference internal" href="../reference/io.html#bokeh.io.push_notebook" title="bokeh.io.push_notebook"><code class="xref py py-func docutils literal"><span class="pre">push_notebook()</span></code></a> to push updates to displayed plots. For more
+detailed information, see <a class="reference internal" href="notebook.html#userguide-notebook-jupyter-interactors"><span class="std std-ref">Jupyter Interactors</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is currently possible to push udpates from python, to BokehJS (i.e.,
+to update plots, etc.) using <a class="reference internal" href="../reference/io.html#bokeh.io.push_notebook" title="bokeh.io.push_notebook"><code class="xref py py-func docutils literal"><span class="pre">push_notebook()</span></code></a>. It is not
+currently possible to get events or updates from the other direction (e.g.
+to have a range or selection update trigger a python callback) without
+using a Bokeh Server as described in the next section. Adding the
+capability for two-way Python&lt;&#8211;&gt;JS synchronization through Jupyter comms
+is a planned future addition.</p>
+</div>
+</div>
+<div class="section" id="updating-from-threads">
+<h4>Updating From Threads<a class="headerlink" href="#updating-from-threads" title="Permalink to this headline">¶</a></h4>
+<p>If the app needs to perform blocking computation, it is possible to perform
+that work in a separate thread. However, updates to the Document must be
+scheduled via a next-tick callback.  The callback
+will execute as soon as possible on the next iteration of the
+Tornado event loop, and will automatically acquire necessary locks to update the
+document state safely.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The ONLY safe operations to perform on a document from a different thread
+is <a class="reference internal" href="../reference/document.html#bokeh.document.Document.add_next_tick_callback" title="bokeh.document.Document.add_next_tick_callback"><code class="xref py py-func docutils literal"><span class="pre">add_next_tick_callback()</span></code></a> and
+<a class="reference internal" href="../reference/document.html#bokeh.document.Document.remove_next_tick_callback" title="bokeh.document.Document.remove_next_tick_callback"><code class="xref py py-func docutils literal"><span class="pre">remove_next_tick_callback()</span></code></a></p>
+</div>
+<p>It is important to emphasize that the document update must be scheduled in a &#8220;next tick callback&#8221;.
+Any usage that directly updates the document state from another thread, either by calling other document
+methods, or by setting properties on Bokeh models, risks data and protocol
+corruption.</p>
+<p>It is also important to save a local copy of <code class="docutils literal"><span class="pre">curdoc()</span></code> so that all
+threads have access to the same document. This is illustrated in the example
+below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">curdoc</span><span class="p">,</span> <span class="n">figure</span>
+
+<span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>
+
+<span class="c1"># this must only be modified from a Bokeh session allback</span>
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># This is important! Save curdoc() to make sure all threads</span>
+<span class="c1"># see then same document.</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">curdoc</span><span class="p">()</span>
+
+<span class="nd">@gen.coroutine</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">y</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">blocking_task</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c1"># do some blocking computation</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="p">(),</span> <span class="n">random</span><span class="p">()</span>
+
+        <span class="c1"># but update the document from callback</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">add_next_tick_callback</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="n">thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">blocking_task</span><span class="p">)</span>
+<span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To see this example in action, save it to a python file, e.g. <code class="docutils literal"><span class="pre">testapp.py</span></code> and
+then execute</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve --show testapp.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There is currently no locking around adding next tick callbacks to
+documents. It is recommended that at most one thread add callbacks to
+the document. It is planned to add more fine grained locking to
+callback methods in the future.</p>
+</div>
+</div>
+<div class="section" id="updating-from-unlocked-callbacks">
+<h4>Updating from Unlocked Callbacks<a class="headerlink" href="#updating-from-unlocked-callbacks" title="Permalink to this headline">¶</a></h4>
+<p>Normally Bokeh session callbacks recursively lock the document until all
+future work they initiate is completed.  However, you may want to drive
+blocking computations from callbacks using Tornado&#8217;s
+<code class="docutils literal"><span class="pre">ThreadPoolExecutor</span></code> in an asynchronous callback. This can work, but requires
+the Bokeh provided <a class="reference internal" href="../reference/document.html#bokeh.document.without_document_lock" title="bokeh.document.without_document_lock"><code class="xref py py-func docutils literal"><span class="pre">without_document_lock()</span></code></a> decorator
+to suppress the normal locking behavior.</p>
+<p>As with the thread example above, <strong>all actions that update document state
+must go through a next-tick callback</strong>.</p>
+<p>The following example demonstrates an application that drives a blocking
+computation from one unlocked Bokeh session callback, by yielding to a
+blocking function that runs on the thread pool executor and updates by using
+a next-tick callback. The example also updates the state simply from a standard
+locked session callback on a different update rate.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<span class="kn">from</span> <span class="nn">tornado</span> <span class="kn">import</span> <span class="n">gen</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.document</span> <span class="kn">import</span> <span class="n">without_document_lock</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">curdoc</span><span class="p">,</span> <span class="n">figure</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">]))</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">curdoc</span><span class="p">()</span>
+
+<span class="n">executor</span> <span class="o">=</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">blocking_task</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">i</span>
+
+<span class="c1"># the unlocked callback uses this locked callback to safely update</span>
+<span class="nd">@gen.coroutine</span>
+<span class="k">def</span> <span class="nf">locked_update</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">]))</span>
+
+<span class="c1"># this unclocked callback will not prevent other session callbacks from</span>
+<span class="c1"># executing while it is in flight</span>
+<span class="nd">@gen.coroutine</span>
+<span class="nd">@without_document_lock</span>
+<span class="k">def</span> <span class="nf">unlocked_task</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">i</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">blocking_task</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">add_next_tick_callback</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">locked_update</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">res</span><span class="p">))</span>
+
+<span class="nd">@gen.coroutine</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">]))</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
+<span class="n">l</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">unlocked_task</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As before, you can run this example by saving to a python file and running
+<code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span></code> on it.</p>
+</div>
+</div>
+<div class="section" id="lifecycle-hooks">
+<span id="userguide-server-applications-lifecycle"></span><h3>Lifecycle Hooks<a class="headerlink" href="#lifecycle-hooks" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it is desirable to have code execute at specific times in a server
+or session lifetime. For instance, if you are using a Bokeh Server along side
+a Django server, you would need to call <code class="docutils literal"><span class="pre">django.setup()</span></code> once, as each
+Bokeh server starts, to initialize Django properly for use by Bokeh
+application code.</p>
+<p>Bokeh provides this capability through a set of <em>Lifecycle Hooks</em>. To use
+these hooks, you must create your application in
+<a class="reference internal" href="#userguide-server-applications-directory"><span class="std std-ref">Directory format</span></a>, and include a designated file
+called <code class="docutils literal"><span class="pre">server_lifecycle.py</span></code> in the directory. In this file you can include
+any or all of the following conventionally named functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_server_loaded</span><span class="p">(</span><span class="n">server_context</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; If present, this function is called when the server first starts. &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">on_server_unloaded</span><span class="p">(</span><span class="n">server_context</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; If present, this function is called when the server shuts down. &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">on_session_created</span><span class="p">(</span><span class="n">session_context</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; If present, this function is called when a session is created. &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">on_session_destroyed</span><span class="p">(</span><span class="n">session_context</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; If present, this function is called when a session is closed. &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="embedding-bokeh-server-as-a-library">
+<span id="userguide-server-embedding"></span><h2>Embedding Bokeh Server as a Library<a class="headerlink" href="#embedding-bokeh-server-as-a-library" title="Permalink to this headline">¶</a></h2>
+<p>It can be useful to embed the Bokeh Server in a larger Tornado application, or the
+Jupyter notebook, and use the already existing Tornado <code class="docutils literal"><span class="pre">IOloop</span></code>.  Here is the
+basis of how to integrate Bokeh in such a scenario:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.server.server</span> <span class="kn">import</span> <span class="n">Server</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span>
+    <span class="n">bokeh_applications</span><span class="p">,</span>  <span class="c1"># list of Bokeh applications</span>
+    <span class="n">io_loop</span><span class="o">=</span><span class="n">loop</span><span class="p">,</span>        <span class="c1"># Tornado IOLoop</span>
+    <span class="o">**</span><span class="n">server_kwargs</span>      <span class="c1"># port, num_procs, etc.</span>
+<span class="p">)</span>
+
+<span class="c1"># start timers and services and immediately return</span>
+<span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It is also possible to create and control an <code class="docutils literal"><span class="pre">IOLoop</span></code> directly. This can
+be useful to create standalone &#8220;normal&#8221; python scripts that serve Bokeh apps,
+or to embed a Bokeh application into a framework like Flask or Django without
+having to run a separate Bokeh server process. Some examples of this technique
+can be found in the examples directory:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/bokeh/bokeh/tree/0.12.5/examples/howto/server_embed/flask_embed.py">examples/howto/server_embed/flask_embed.py</a></li>
+<li><a class="reference external" href="https://github.com/bokeh/bokeh/tree/0.12.5/examples/howto/server_embed/notebook_embed.ipynb">examples/howto/server_embed/notebook_embed.ipynb</a></li>
+<li><a class="reference external" href="https://github.com/bokeh/bokeh/tree/0.12.5/examples/howto/server_embed/standalone_embed.py">examples/howto/server_embed/standalone_embed.py</a></li>
+<li><a class="reference external" href="https://github.com/bokeh/bokeh/tree/0.12.5/examples/howto/server_embed/tornado_embed.py">examples/howto/server_embed/tornado_embed.py</a></li>
+</ul>
+</div>
+<div class="section" id="connecting-with-bokeh-client">
+<span id="userguide-server-bokeh-client"></span><h2>Connecting with <code class="docutils literal"><span class="pre">bokeh.client</span></code><a class="headerlink" href="#connecting-with-bokeh-client" title="Permalink to this headline">¶</a></h2>
+<p>With the new Tornado and websocket-based server introduced in Bokeh 0.11,
+there is also a proper client API for interacting directly with a Bokeh
+Server. This client API can be used to trigger updates to the plots and
+widgets in the browser, either in response to UI events from the browser
+or as a results of periodic or asynchronous callbacks.</p>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/bokeh_serve_client.svg"><img alt="../../_images/bokeh_serve_client.svg" src="../../_images/bokeh_serve_client.svg" width="65%" /></a>
+<p class="caption"><span class="caption-text">Typically web browsers make connections to a Bokeh server, but it is
+possible to connect from python by using the <code class="docutils literal"><span class="pre">bokeh.client</span></code> module.</span></p>
+</div>
+<p>There are some important difference to note when using <code class="docutils literal"><span class="pre">bokeh.client</span></code>
+instead of running Bokeh apps directly on a Bokeh server:</p>
+<ul class="simple">
+<li>Callbacks execute in the separate python script, not in the Bokeh server. In
+for callbacks to function, the script must stay running indefinitely.
+Typically this is achieved by making a blocking call to
+<code class="docutils literal"><span class="pre">session.loop_until_closed()</span></code> at the end of the script. <strong>If the python
+script terminates, callbacks for widgets, etc. will no longer function</strong>.</li>
+<li>In this scenario the Bokeh server is merely an intermediary that facilitates
+the synchronization between the <code class="docutils literal"><span class="pre">Document</span></code> in the python script, and the
+one in the browser. As a result, <strong>the required network traffic is doubled</strong>.</li>
+<li>To open sessions to apps created this way, browsers must navigate to URLs
+that explicitly refer to a specific session. If multiple browsers open the
+URL, they will all <em>share the exact same application state</em>. That is, there
+will be a &#8220;Google Docs&#8221; style of operation: <strong>scrubbing a slider in one
+browser will also update the slider in any other browser opened to the same
+session.</strong> This may or may not be desirable.</li>
+<li>Apps created in this way are typically more difficult to scale compared
+to apps run with <code class="docutils literal"><span class="pre">bokeh</span> <span class="pre">serve</span> <span class="pre">app.py</span></code> where we can simply run more servers
+behind a load balancer. <strong>If you need to scale out a Bokeh application,
+running them directly on a Bokeh server is preferable.</strong></li>
+</ul>
+<p>As before, the first step is to start a Bokeh Server. However in this case it
+started without specifying any app script:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve
+</pre></div>
+</div>
+<p>Next, let&#8217;s look at a complete example, and then examine a few key lines
+individually:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.client</span> <span class="kn">import</span> <span class="n">push_session</span>
+<span class="kn">from</span> <span class="nn">bokeh.driving</span> <span class="kn">import</span> <span class="n">cosine</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">curdoc</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;firebrick&quot;</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># open a session to keep our local document in sync with server</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">push_session</span><span class="p">(</span><span class="n">curdoc</span><span class="p">())</span>
+
+<span class="nd">@cosine</span><span class="p">(</span><span class="n">w</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="c1"># updating a single column of the the *same length* is OK</span>
+    <span class="n">r2</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">step</span>
+    <span class="n">r2</span><span class="o">.</span><span class="n">glyph</span><span class="o">.</span><span class="n">line_alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="n">session</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1"># open the document in a browser</span>
+
+<span class="n">session</span><span class="o">.</span><span class="n">loop_until_closed</span><span class="p">()</span> <span class="c1"># run forever</span>
+</pre></div>
+</div>
+<p>If you run this script, you will see a plot with an animated line appear in
+a new browser tab. The first half of the script is like most any script that
+uses the <code class="docutils literal"><span class="pre">bokeh.plotting</span></code> interface. The first interesting line is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">session</span> <span class="o">=</span> <span class="n">push_session</span><span class="p">(</span><span class="n">curdoc</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>This line opens a new session with the Bokeh Server, initializing it with our
+current Document. This local Document will be automatically kept in sync with
+the server. The next few lines define and add a periodic callback to be run
+every 50 milliseconds:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@cosine</span><span class="p">(</span><span class="n">w</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="c1"># updating a single column of the the *same length* is OK</span>
+    <span class="n">r2</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">step</span>
+    <span class="n">r2</span><span class="o">.</span><span class="n">glyph</span><span class="o">.</span><span class="n">line_alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">add_periodic_callback</span><span class="p">(</span><span class="n">update</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, analogous to <a class="reference internal" href="../reference/io.html#bokeh.io.show" title="bokeh.io.show"><code class="xref py py-func docutils literal"><span class="pre">bokeh.io.show()</span></code></a>, there is this a
+<a class="reference internal" href="../reference/client.html#bokeh.client.session.ClientSession.show" title="bokeh.client.session.ClientSession.show"><code class="xref py py-func docutils literal"><span class="pre">show()</span></code></a> on session objects that will
+automatically open a browser tab to display the synced Document.</p>
+<p>Finally, we need to tell the session to loop forever, so that the periodic
+callbacks happen:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">session</span><span class="o">.</span><span class="n">loop_until_closed</span><span class="p">()</span> <span class="c1"># run forever</span>
+</pre></div>
+</div>
+<p>It may be undesirable or not possible to run a blocking function on the main
+thread, e.g. when using <code class="docutils literal"><span class="pre">bokeh.client</span></code> to create sessions from a web
+framework such as Django or Flask. In these cases calling
+<code class="docutils literal"><span class="pre">loop_until_closed()</span></code> from another thread may be an option. Another
+possibility is to not use <code class="docutils literal"><span class="pre">bokeh.client</span></code> at all. See the section
+<a class="reference internal" href="#userguide-server-embedding"><span class="std std-ref">Embedding Bokeh Server as a Library</span></a> for some alternatives.</p>
+</div>
+<div class="section" id="deployment-scenarios">
+<span id="userguide-server-deployment"></span><h2>Deployment Scenarios<a class="headerlink" href="#deployment-scenarios" title="Permalink to this headline">¶</a></h2>
+<p>With an application we are developing, we can run it locally any time we want to interact
+with it. To share it with other people who are able to install the required
+python stack, we can share the application with them, and let them run it locally
+themselves in the same manner. However, we might also want to deploy the application
+in a way that other people can access it as a service:
+* without having to install all of the prerequisites
+* without needing to have the source code
+* like any other webpage</p>
+<p>This section describes some of the considerations that arise when deploying
+Bokeh server applications as a service for others to use.</p>
+<div class="section" id="standalone-bokeh-server">
+<span id="userguide-server-deployment-standalone"></span><h3>Standalone Bokeh Server<a class="headerlink" href="#standalone-bokeh-server" title="Permalink to this headline">¶</a></h3>
+<p>First, it is possible to simply run the Bokeh server on a network for users
+to interact with directly. Depending on the computational burden of your
+application code, the number of users, the power of the machine used to run
+on, etc., this could be a simple and immediate option for deployment an
+internal network.</p>
+<p>However, it is often the case that there are needs around authentication,
+scaling, and uptime. In these cases, more sophisticated deployment
+configurations are needed. In the following sections we discuss some of
+these considerations.</p>
+<div class="section" id="ssh-tunnels">
+<h4>SSH Tunnels<a class="headerlink" href="#ssh-tunnels" title="Permalink to this headline">¶</a></h4>
+<p>It may be convenient or necessary to run a standalone instance of the Bokeh
+server on a host to which direct access cannot be allowed. In such cases, SSH
+can be used to &#8220;tunnel&#8221; to the server.</p>
+<p>In the simplest scenario, the Bokeh server will run on one host and will be
+accessed from another location, e.g., a laptop, with no intermediary machines.</p>
+<p>Run the server as usual on the <strong>remote host</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh server
+</pre></div>
+</div>
+<p>Next, issue the following command on the <strong>local machine</strong> to establish an SSH
+tunnel to the remote host:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>ssh -NfL localhost:5006:localhost:5006 user@remote.host
+</pre></div>
+</div>
+<p>Replace <em>user</em> with your username on the remote host and <em>remote.host</em> with
+the hostname/IP address of the system hosting the Bokeh server. You may be
+prompted for login credentials for the remote system. After the connection
+is set up you will be able to navigate to <code class="docutils literal"><span class="pre">localhost:5006</span></code> as though the
+Bokeh server were running on the local machine.</p>
+<p>The second, slightly more complicated case occurs when there is a gateway
+between the server and the local machine.  In that situation a reverse tunnel
+must be estabished from the server to the gateway. Additionally the tunnel
+from the local machine will also point to the gateway.</p>
+<p>Issue the following commands on the <strong>remote host</strong> where the Bokeh server
+will run:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>nohup bokeh server <span class="p">&amp;</span>
+ssh -NfR 5006:localhost:5006 user@gateway.host
+</pre></div>
+</div>
+<p>Replace <em>user</em> with your username on the gateway and <em>gateway.host</em> with the
+hostname/IP address of the gateway. You may be prompted for login credentials
+for the gateway.</p>
+<p>Now set up the other half of the tunnel, from the local machine to the
+gateway. On the <strong>local machine</strong>:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>ssh -NfL localhost:5006:localhost:5006 user@gateway.host
+</pre></div>
+</div>
+<p>Again, replace <em>user</em> with your username on the gateway and <em>gateway.host</em>
+with the hostname/IP address of the gateway. You should now be able to access
+the Bokeh server from the local machine by navigating to <code class="docutils literal"><span class="pre">localhost:5006</span></code>
+on the local machine, as if the Bokeh server were running on the local machine.
+You can even set up client connections from a Jupyter notebook running on the
+local machine.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We intend to expand this section with more guidance for other tools and
+configurations. If have experience with other web deployment scenarios
+and wish to contribute your knowledge here, please
+<a class="reference external" href="https://groups.google.com/a/continuum.io/forum/#!forum/bokeh">contact us on the mailing list</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="basic-reverse-proxy-setup">
+<span id="userguide-server-deplyoment-proxy"></span><h3>Basic Reverse Proxy Setup<a class="headerlink" href="#basic-reverse-proxy-setup" title="Permalink to this headline">¶</a></h3>
+<p>If the goal is to serve an web application to the general Internet, it is
+often desirable to host the application on an internal network, and proxy
+connections to it through some dedicated HTTP server. This sections provides
+guidance for basic configuration behind some common reverse proxies.</p>
+<div class="section" id="nginx">
+<span id="userguide-server-deployment-nginx-proxy"></span><h4>Nginx<a class="headerlink" href="#nginx" title="Permalink to this headline">¶</a></h4>
+<p>One very common HTTP and reverse-proxying server is Nginx. A sample
+server confuguration block is shown below:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span> <span class="s">default_server</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+
+    <span class="kn">access_log</span>  <span class="s">/tmp/bokeh.access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span>   <span class="s">/tmp/bokeh.error.log</span> <span class="s">debug</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:5100</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+        <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host:$server_port</span><span class="p">;</span>
+        <span class="kn">proxy_buffering</span> <span class="no">off</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above <code class="docutils literal"><span class="pre">server</span></code> block sets up Nginx to to proxy incoming connections
+to <code class="docutils literal"><span class="pre">127.0.0.1</span></code> on port 80 to <code class="docutils literal"><span class="pre">127.0.0.1:5100</span></code> internally. To work in this
+configuration, we will need to use some of the command line options to
+configure the Bokeh Server. In particular we need to use <code class="docutils literal"><span class="pre">--port</span></code> to specify
+that the Bokeh Server should listen itself on port 5100.</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve myapp.py --port 5100
+</pre></div>
+</div>
+<p>Note that in the basic server block above we have not configured any special
+handling for static resources, e.g., the Bokeh JS and CSS files. This means
+that these files are served directly by the Bokeh server itself. While this
+works, it places an unnecessary additional load on the Bokeh server, since
+Nginx has a fast static asset handler. To utilize Nginx to serve Bokeh&#8217;s
+static assets, you can add a new stanza inside the <cite>server</cite> block above,
+similar to this:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">location</span> <span class="s">/static</span> <span class="p">{</span>
+    <span class="kn">alias</span> <span class="s">/path/to/bokeh/server/static</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Be careful that the file permissions of the Bokeh resources are accessible to
+whatever user account is running the Nginx server process. Alternatively, you can copy the resources
+to a global static directory during your deployment process. See
+<a class="reference internal" href="#userguide-server-deployment-automation"><span class="std std-ref">A Full Example with Automation</span></a> for a demonstration of this.</p>
+</div>
+<div class="section" id="apache">
+<h4>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h4>
+<p>Another common HTTP server and proxy is Apache. Here is sample confuguration
+for running a Bokeh server behind Apache:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+    <span class="nb">ServerName</span> localhost
+
+    <span class="nb">CustomLog</span> <span class="s2">&quot;/path/to/logs/access_log&quot;</span> combined
+    <span class="nb">ErrorLog</span> <span class="s2">&quot;/path/to/logs/error_log&quot;</span>
+
+    <span class="nb">ProxyPreserveHost</span> <span class="k">On</span>
+    <span class="nb">ProxyPass</span> <span class="sx">/myapp/ws</span> ws://127.0.0.1:5100/myapp/ws
+    <span class="nb">ProxyPassReverse</span> <span class="sx">/myapp/ws</span> ws://127.0.0.1:5100/myapp/ws
+
+    <span class="nb">ProxyPass</span> <span class="sx">/myapp</span> http://127.0.0.1:5100/myapp/
+    <span class="nb">ProxyPassReverse</span> <span class="sx">/myapp</span> http://127.0.0.1:5100/myapp/
+
+    <span class="nt">&lt;Directory</span> <span class="s">/</span><span class="nt">&gt;</span>
+        <span class="nb">Require</span> <span class="k">all</span> granted
+        <span class="nb">Options</span> -Indexes
+    <span class="nt">&lt;/Directory&gt;</span>
+
+    <span class="nb">Alias</span> <span class="sx">/static</span> <span class="sx">/path/to/bokeh/server/static</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/path/to/bokeh/server/static</span><span class="nt">&gt;</span>
+        <span class="c"># directives to effect the static directory</span>
+        <span class="nb">Options</span> +Indexes
+    <span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>The above configuration aliases <cite>/static</cite> to the location of the Bokeh
+static resources directory, however it is also possible (and probably
+preferable) to copy the Bokeh static resources to whatever standard
+static files location is configured for Apache as part of the deployment.</p>
+<p>Note that you may also need to enable some modules for the above
+configuration:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>a2enmod proxy
+a2enmod http_proxy
+a2enmod proxy_wstunnel
+apache2ctl restart
+</pre></div>
+</div>
+<p>These might need to be run with <code class="docutils literal"><span class="pre">sudo</span></code>, depending on your system.</p>
+<p>As before, you would run the Bokeh server with the command:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve myapp.py --port 5100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="reverse-proxying-with-nginx-and-ssl">
+<span id="userguide-server-deployment-nginx-proxy-ssl"></span><h3>Reverse Proxying with Nginx and SSL<a class="headerlink" href="#reverse-proxying-with-nginx-and-ssl" title="Permalink to this headline">¶</a></h3>
+<p>If you would like to deploy a Bokeh Server behind an SSL-terminated Nginx
+proxy, then a few additional customizations are needed. In particular, the
+Bokeh server must be configured with the <code class="docutils literal"><span class="pre">--use-xheaders</span></code> flag:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve myapp.py --port <span class="m">5100</span> --use-xheaders
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">--use-xheaders</span></code> option causes Bokeh to override the remote IP and
+URI scheme/protocol for all requests with <code class="docutils literal"><span class="pre">X-Real-Ip</span></code>, <code class="docutils literal"><span class="pre">X-Forwarded-For</span></code>,
+<code class="docutils literal"><span class="pre">X-Scheme</span></code>, <code class="docutils literal"><span class="pre">X-Forwarded-Proto</span></code> headers when they are available.</p>
+<p>You must also customize Nginx. In particular, you must configure Nginx to
+send the <code class="docutils literal"><span class="pre">X-Forwarded-Proto</span></code> header, as well as configure Nginx for SSL
+termination. Optionally, you may want to redirect all HTTP traffic to HTTPS.
+The complete details of this configuration (e.g. how and where to install
+SSL certificates and keys) will vary by platform, but a reference
+<code class="docutils literal"><span class="pre">nginx.conf</span></code> is provided below:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="c1"># redirect HTTP traffic to HTTPS (optional)</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>      <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">foo.com</span><span class="p">;</span>
+    <span class="kn">return</span>      <span class="mi">301</span> <span class="s">https://</span><span class="nv">$server_name$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>      <span class="mi">443</span> <span class="s">default_server</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">foo.com</span><span class="p">;</span>
+
+    <span class="c1"># add Strict-Transport-Security to prevent man in the middle attacks</span>
+    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&quot;max-age=31536000&quot;</span><span class="p">;</span>
+
+    <span class="kn">ssl</span> <span class="no">on</span><span class="p">;</span>
+
+    <span class="c1"># SSL installation details will vary by platform</span>
+    <span class="kn">ssl_certificate</span> <span class="s">/etc/ssl/certs/my-ssl-bundle.crt</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span> <span class="s">/etc/ssl/private/my_ssl.key</span><span class="p">;</span>
+
+    <span class="c1"># enables all versions of TLS, but not SSLv2 or v3 which are deprecated.</span>
+    <span class="kn">ssl_protocols</span> <span class="s">TLSv1</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span><span class="p">;</span>
+
+    <span class="c1"># disables all weak ciphers</span>
+    <span class="kn">ssl_ciphers</span> <span class="s">&quot;ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4&quot;</span><span class="p">;</span>
+
+    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:5100</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+        <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host:$server_port</span><span class="p">;</span>
+        <span class="kn">proxy_buffering</span> <span class="no">off</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This configuration will proxy all incoming HTTPS connections to <code class="docutils literal"><span class="pre">foo.com</span></code>
+to a Bokeh server running internally on <code class="docutils literal"><span class="pre">http://127.0.0.1:5100</span></code>.</p>
+</div>
+<div class="section" id="load-balancing-with-nginx">
+<span id="userguide-server-deployment-nginx-load-balance"></span><h3>Load Balancing with Nginx<a class="headerlink" href="#load-balancing-with-nginx" title="Permalink to this headline">¶</a></h3>
+<p>The architecture of the Bokeh server is specifically designed to be
+scalable&#8212;by and large, if you need more capacity, you simply run additional
+servers. Often in this situation it is desired to run all the Bokeh server
+instances behind a load balancer, so that new connections are distributed
+amongst the individual servers.</p>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/bokeh_serve_scale.svg"><img alt="../../_images/bokeh_serve_scale.svg" src="../../_images/bokeh_serve_scale.svg" width="65%" /></a>
+<p class="caption"><span class="caption-text">The Bokeh server is horizontally scalable. To add more capacity, more
+servers can be run behind a load balancer.</span></p>
+</div>
+<p>Nginx offers a load balancing capability. We will describe some of the basics
+of one possible configuration, but please also refer to the
+<a class="reference external" href="http://nginx.org/en/docs/http/load_balancing.html">Nginx load balancer documentation</a>. For instance, there are various different
+strategies available for choosing what server to connect to next.</p>
+<p>First we need to add an <code class="docutils literal"><span class="pre">upstream</span></code> stanza to our NGinx configuration,
+typically above the <code class="docutils literal"><span class="pre">server</span></code> stanza. This section looks something like:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">upstream</span> <span class="s">myapp</span> <span class="p">{</span>
+    <span class="kn">least_conn</span><span class="p">;</span>                 <span class="c1"># Use Least Connections strategy</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5100</span><span class="p">;</span>      <span class="c1"># Bokeh Server 0</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5101</span><span class="p">;</span>      <span class="c1"># Bokeh Server 1</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5102</span><span class="p">;</span>      <span class="c1"># Bokeh Server 2</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5103</span><span class="p">;</span>      <span class="c1"># Bokeh Server 3</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5104</span><span class="p">;</span>      <span class="c1"># Bokeh Server 4</span>
+    <span class="kn">server</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">5105</span><span class="p">;</span>      <span class="c1"># Bokeh Server 5</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We have labeled this <code class="docutils literal"><span class="pre">upstream</span></code> stanza as <code class="docutils literal"><span class="pre">myapp</span></code>. We will use this
+name below. Additionally, we have listed the internal connection information
+for six different Bokeh server instances (each running on a different port)
+inside the stanza. You can run and list as many Bokeh servers as you need.</p>
+<p>You would run the Bokeh servers with commands similar to:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>serve myapp.py --port 5100
+serve myapp.py --port 5101
+...
+</pre></div>
+</div>
+<p>Next, in the <code class="docutils literal"><span class="pre">location</span></code> stanza for our Bokeh server, change the
+<code class="docutils literal"><span class="pre">proxy_pass</span></code> value to refer to the <code class="docutils literal"><span class="pre">upstream</span></code> stanza we created
+above. In this case we use <code class="docutils literal"><span class="pre">proxy_pass</span> <span class="pre">http://myapp;</span></code> as shown
+here:</p>
+<div class="highlight-nginx"><div class="highlight"><pre><span></span><span class="k">server</span> <span class="p">{</span>
+
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://myapp</span><span class="p">;</span>
+
+        <span class="c1"># all other settings unchanged</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Upgrade</span> <span class="nv">$http_upgrade</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&quot;upgrade&quot;</span><span class="p">;</span>
+        <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host:$server_port</span><span class="p">;</span>
+        <span class="kn">proxy_buffering</span> <span class="no">off</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="process-control-with-supervisord">
+<span id="userguide-server-deployment-supervisord"></span><h3>Process Control with Supervisord<a class="headerlink" href="#process-control-with-supervisord" title="Permalink to this headline">¶</a></h3>
+<p>It is often desired to use process control and monitoring tools when
+deploying web applications. One popular such tool is <a class="reference external" href="http://supervisord.org">Supervisor</a>, which
+can automatically start and stop process, as well as re-start processes
+if they terminate unexpectedly. Supervisor is configured using INI style
+config files. A sample file that might be used to start a single Bokeh
+Server app is below:</p>
+<div class="highlight-ini"><div class="highlight"><pre><span></span><span class="c1">; supervisor config file</span>
+
+<span class="k">[unix_http_server]</span>
+<span class="na">file</span><span class="o">=</span><span class="s">/tmp/supervisor.sock   ; (the path to the socket file)</span>
+<span class="na">chmod</span><span class="o">=</span><span class="s">0700                  ; sockef file mode (default 0700)</span>
+
+<span class="k">[supervisord]</span>
+<span class="na">logfile</span><span class="o">=</span><span class="s">/var/log/supervisord.log ; (main log file; default $CWD/supervisord.log)</span>
+<span class="na">pidfile</span><span class="o">=</span><span class="s">/var/run/supervisord.pid ; (supervisord pidfile; default $CWD/supervisord.pid)</span>
+<span class="na">childlogdir</span><span class="o">=</span><span class="s">/var/log/supervisor  ; (&#39;AUTO&#39; child log dir, default $TEMP)</span>
+
+<span class="c1">; The section below must be in the present for the RPC (supervisorctl/web)</span>
+<span class="c1">; interface in to function.</span>
+<span class="k">[rpcinterface:supervisor]</span>
+<span class="na">supervisor.rpcinterface_factory</span> <span class="o">=</span> <span class="s">supervisor.rpcinterface:make_main_rpcinterface</span>
+
+<span class="k">[supervisorctl]</span>
+<span class="na">serverurl</span><span class="o">=</span><span class="s">unix:///tmp/supervisor.sock ; use a unix:// URL for a unix socket</span>
+
+<span class="k">[program:myapp]</span>
+<span class="na">command</span><span class="o">=</span><span class="s">/path/to/bokeh serve myapp.py</span>
+<span class="na">directory</span><span class="o">=</span><span class="s">/path/to/workdir</span>
+<span class="na">autostart</span><span class="o">=</span><span class="s">false</span>
+<span class="na">autorestart</span><span class="o">=</span><span class="s">true</span>
+<span class="na">startretries</span><span class="o">=</span><span class="s">3</span>
+<span class="na">numprocs</span><span class="o">=</span><span class="s">4</span>
+<span class="na">process_name</span><span class="o">=</span><span class="s">%(program_name)s_%(process_num)02d</span>
+<span class="na">stderr_logfile</span><span class="o">=</span><span class="s">/var/log/myapp.err.log</span>
+<span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/var/log/myapp.out.log</span>
+<span class="na">user</span><span class="o">=</span><span class="s">someuser</span>
+<span class="na">environment</span><span class="o">=</span><span class="s">USER=&quot;someuser&quot;,HOME=&quot;/home/someuser&quot;</span>
+</pre></div>
+</div>
+<p>The standard location for the supervisor config file varies from system to
+system. Consult the <a class="reference external" href="http://supervisord.org/configuration.html">Supervisor configuration documentation</a> for more
+details. It is also possible to specify a config file explicity. To do this,
+execute:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>supervisord -c /path/to/supervisord.conf
+</pre></div>
+</div>
+<p>to start the Supervisor process. Then to control processes execute
+<code class="docutils literal"><span class="pre">supervisorctl</span></code> commands. For instance to start all processes, run:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>supervisorctl -c /path/to/supervisord.conf start all
+</pre></div>
+</div>
+<p>To stop all processes run:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>supervisorctl -c /path/to/supervisord.conf start all
+</pre></div>
+</div>
+<p>And to update the process control after editing the config file, run:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>supervisorctl -c /path/to/supervisord.conf update
+</pre></div>
+</div>
+</div>
+<div class="section" id="scaling-the-server">
+<span id="userguide-server-scaling"></span><h3>Scaling the server<a class="headerlink" href="#scaling-the-server" title="Permalink to this headline">¶</a></h3>
+<p>You can fork multiple server processes with the <cite>num-procs</cite> option. For
+example, to fork 3 processes:</p>
+<div class="highlight-sh"><div class="highlight"><pre><span></span>bokeh serve --num-procs 3
+</pre></div>
+</div>
+<p>Note that the forking operation happens in the underlying Tornado Server,
+see notes in the <a class="reference external" href="http://www.tornadoweb.org/en/stable/tcpserver.html#tornado.tcpserver.TCPServer.start">Tornado docs</a>.</p>
+</div>
+<div class="section" id="a-full-example-with-automation">
+<span id="userguide-server-deployment-automation"></span><h3>A Full Example with Automation<a class="headerlink" href="#a-full-example-with-automation" title="Permalink to this headline">¶</a></h3>
+<p>To deploy the demo site at <a class="reference external" href="http://demo.bokeh.org">http://demo.bokeh.org</a> we combine all of the
+above techniques. Additionally, we used <a class="reference external" href="http://saltstack.com">SaltStack</a> to automate many aspects
+of the deployment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Other devops automation tools include <a class="reference external" href="https://puppetlabs.com">Puppet</a>, <a class="reference external" href="http://www.ansible.com">Ansible</a>, and <a class="reference external" href="https://www.chef.io/chef/">Chef</a>.
+We would like to provide specific guidance where ever we can, so if you
+have experience with these tools and would be interested in contributing
+your knowledge, please <a class="reference external" href="https://groups.google.com/a/continuum.io/forum/#!forum/bokeh">contact us on the mailing list</a>.</p>
+</div>
+<p>You can see all the code for deploying the site at the public GitHub
+repository here:</p>
+<p><a class="reference external" href="https://github.com/bokeh/demo.bokeh.org">https://github.com/bokeh/demo.bokeh.org</a></p>
+<p>You can modify or deploy your own version of this site on an Amazon Linux
+instance by simply running the <code class="docutils literal"><span class="pre">deploy.sh</span></code> script at the top level. With
+minor modifications, this machinery should work on many linux variants.</p>
+</div>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>Now that you are familiar with the concepts of <a class="reference internal" href="#userguide-server"><span class="std std-ref">Running a Bokeh Server</span></a>, you
+may be interested in learning more about the internals of the Bokeh server
+in <a class="reference internal" href="../dev_guide/server.html#devguide-server"><span class="std std-ref">Server Architecture</span></a></p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

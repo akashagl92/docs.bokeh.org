@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.ranges &mdash; Bokeh 0.12.13 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.13";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/_modules/bokeh/models/ranges.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.13</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.13/">0.12.13</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.12/">0.12.12</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.11/">0.12.11</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.10/">0.12.10</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.9/">0.12.9</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.7/">0.12.7</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/releases/0.12.13.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.11.html">0.12.11 (Nov 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.10.html">0.12.10 (Oct 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.9.html">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.7.html">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.5.html">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.models.ranges</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39; Models for describing different kinds of ranges of values</span>
+<span class="sd">in different kinds of spaces (e.g., continuous or categorical)</span>
+<span class="sd">and with options for &quot;auto sizing&quot;.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">from</span> <span class="nn">..core.enums</span> <span class="k">import</span> <span class="n">PaddingUnits</span><span class="p">,</span> <span class="n">StartEnd</span>
+<span class="kn">from</span> <span class="nn">..core.has_props</span> <span class="k">import</span> <span class="n">abstract</span>
+<span class="kn">from</span> <span class="nn">..core.properties</span> <span class="k">import</span> <span class="p">(</span><span class="n">Bool</span><span class="p">,</span> <span class="n">Datetime</span><span class="p">,</span> <span class="n">Either</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span>
+                               <span class="n">List</span><span class="p">,</span> <span class="n">MinMaxBounds</span><span class="p">,</span> <span class="n">Seq</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">TimeDelta</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..model</span> <span class="k">import</span> <span class="n">Model</span>
+
+<span class="kn">from</span> <span class="nn">.callbacks</span> <span class="k">import</span> <span class="n">Callback</span>
+<span class="kn">from</span> <span class="nn">.renderers</span> <span class="k">import</span> <span class="n">Renderer</span>
+
+
+<span class="nd">@abstract</span>
+<div class="viewcode-block" id="Range"><a class="viewcode-back" href="../../../docs/reference/models/ranges.html#bokeh.models.ranges.Range">[docs]</a><span class="k">class</span> <span class="nc">Range</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A base class for all range types.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">callback</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Callback</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A callback to run in the browser whenever the range is updated.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Range1d"><a class="viewcode-back" href="../../../docs/reference/models/ranges.html#bokeh.models.ranges.Range1d">[docs]</a><span class="k">class</span> <span class="nc">Range1d</span><span class="p">(</span><span class="n">Range</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A fixed, closed range [start, end] in a continuous scalar</span>
+<span class="sd">    dimension.</span>
+
+<span class="sd">    In addition to supplying ``start`` and ``end`` keyword arguments</span>
+<span class="sd">    to the ``Range1d`` initializer, you can also instantiate with</span>
+<span class="sd">    the convenience syntax::</span>
+
+<span class="sd">        Range(0, 10) # equivalent to Range(start=0, end=10)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">Datetime</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The start of the range.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">Datetime</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The end of the range.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">MinMaxBounds</span><span class="p">(</span><span class="n">accept_datetime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The bounds that the range is allowed to go to. Typically used to prevent</span>
+<span class="s2">    the user from panning/zooming/etc away from the data.</span>
+
+<span class="s2">    If set to ``&#39;auto&#39;``, the bounds will be computed to the start and end of the Range.</span>
+
+<span class="s2">    Bounds are provided as a tuple of ``(min, max)`` so regardless of whether your range is</span>
+<span class="s2">    increasing or decreasing, the first item should be the minimum value of the range and the</span>
+<span class="s2">    second item should be the maximum. Setting min &gt; max will result in a ``ValueError``.</span>
+
+<span class="s2">    By default, bounds are ``None`` and your plot to pan/zoom as far as you want. If you only</span>
+<span class="s2">    want to constrain one end of the plot, you can set min or max to None.</span>
+
+<span class="s2">    Examples:</span>
+
+<span class="s2">        Range1d(0, 1, bounds=&#39;auto&#39;)  # Auto-bounded to 0 and 1 (Default behavior)</span>
+<span class="s2">        Range1d(start=0, end=1, bounds=(0, None))  # Maximum is unbounded, minimum bounded to 0</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">min_interval</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">TimeDelta</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom in, expressed as the</span>
+<span class="s2">    minimum visible interval. If set to ``None`` (default), the minimum</span>
+<span class="s2">    interval is not bound. Can be a timedelta. &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">max_interval</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Float</span><span class="p">,</span> <span class="n">TimeDelta</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom out, expressed as the</span>
+<span class="s2">    maximum visible interval. Can be a timedelta. Note that ``bounds`` can</span>
+<span class="s2">    impose an implicit constraint on the maximum interval as well. &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;start&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">or</span> <span class="s1">&#39;end&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;start&#39; and &#39;end&#39; keywords cannot be used with positional arguments&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only Range1d(start, end) acceptable when using positional arguments&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Range1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<span class="nd">@abstract</span>
+<div class="viewcode-block" id="DataRange"><a class="viewcode-back" href="../../../docs/reference/models/ranges.html#bokeh.models.ranges.DataRange">[docs]</a><span class="k">class</span> <span class="nc">DataRange</span><span class="p">(</span><span class="n">Range</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A base class for all data range types.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">names</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A list of names to query for. If set, only renderers that</span>
+<span class="s2">    have a matching value for their ``name`` attribute will be used</span>
+<span class="s2">    for autoranging.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">renderers</span> <span class="o">=</span> <span class="n">List</span><span class="p">(</span><span class="n">Instance</span><span class="p">(</span><span class="n">Renderer</span><span class="p">),</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An explicit list of renderers to autorange against. If unset,</span>
+<span class="s2">    defaults to all renderers on a plot.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DataRange1d"><a class="viewcode-back" href="../../../docs/reference/models/ranges.html#bokeh.models.ranges.DataRange1d">[docs]</a><span class="k">class</span> <span class="nc">DataRange1d</span><span class="p">(</span><span class="n">DataRange</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; An auto-fitting range in a continuous scalar dimension.</span>
+<span class="sd">    The upper and lower bounds are set to the min and max of the data.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">range_padding</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How much padding to add around the computed data bounds.</span>
+
+<span class="s2">    When ``range_padding_units`` is set to ``&quot;percent&quot;``, the span of the</span>
+<span class="s2">    range span is expanded to make the range ``range_padding`` percent larger.</span>
+
+<span class="s2">    When ``range_padding_units`` is set to ``&quot;absolute&quot;``, the start and end</span>
+<span class="s2">    of the range span are extended by the amount ``range_padding``.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">range_padding_units</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">PaddingUnits</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether the ``range_padding`` should be interpreted as a percentage, or</span>
+<span class="s2">    as an absolute quantity. (default: ``&quot;percent&quot;``)</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An explicitly supplied range start. If provided, will override</span>
+<span class="s2">    automatically computed start value.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An explicitly supplied range end. If provided, will override</span>
+<span class="s2">    automatically computed end value.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">MinMaxBounds</span><span class="p">(</span><span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The bounds that the range is allowed to go to. Typically used to prevent</span>
+<span class="s2">    the user from panning/zooming/etc away from the data.</span>
+
+<span class="s2">    By default, the bounds will be None, allowing your plot to pan/zoom as far</span>
+<span class="s2">    as you want. If bounds are &#39;auto&#39; they will be computed to be the same as</span>
+<span class="s2">    the start and end of the DataRange1d.</span>
+
+<span class="s2">    Bounds are provided as a tuple of ``(min, max)`` so regardless of whether</span>
+<span class="s2">    your range is increasing or decreasing, the first item should be the</span>
+<span class="s2">    minimum value of the range and the second item should be the maximum.</span>
+<span class="s2">    Setting ``min &gt; max`` will result in a ``ValueError``.</span>
+
+<span class="s2">    If you only want to constrain one end of the plot, you can set ``min`` or</span>
+<span class="s2">    ``max`` to ``None`` e.g. ``DataRange1d(bounds=(None, 12))``</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">min_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom in, expressed as the</span>
+<span class="s2">    minimum visible interval. If set to ``None`` (default), the minimum</span>
+<span class="s2">    interval is not bound.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">max_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom out, expressed as the</span>
+<span class="s2">    maximum visible interval. Note that ``bounds`` can impose an</span>
+<span class="s2">    implicit constraint on the maximum interval as well.&quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">flipped</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether the range should be &quot;flipped&quot; from its normal direction when</span>
+<span class="s2">    auto-ranging.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">follow</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">StartEnd</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Configure the data to follow one or the other data extreme, with a</span>
+<span class="s2">    maximum range size of ``follow_interval``.</span>
+
+<span class="s2">    If set to ``&quot;start&quot;`` then the range will adjust so that ``start`` always</span>
+<span class="s2">    corresponds to the minimum data value (or maximum, if ``flipped`` is</span>
+<span class="s2">    ``True``).</span>
+
+<span class="s2">    If set to ``&quot;end&quot;`` then the range will adjust so that ``end`` always</span>
+<span class="s2">    corresponds to the maximum data value (or minimum, if ``flipped`` is</span>
+<span class="s2">    ``True``).</span>
+
+<span class="s2">    If set to ``None`` (default), then auto-ranging does not follow, and</span>
+<span class="s2">    the range will encompass both the minimum and maximum data values.</span>
+
+<span class="s2">    ``follow`` cannot be used with bounds, and if set, bounds will be set to</span>
+<span class="s2">    ``None``.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">follow_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    If ``follow`` is set to ``&quot;start&quot;`` or ``&quot;end&quot;`` then the range will</span>
+<span class="s2">    always be constrained to that::</span>
+
+<span class="s2">         abs(r.start - r.end) &lt;= follow_interval</span>
+
+<span class="s2">    is maintained.</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">default_span</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A default width for the interval, in case ``start`` is equal to ``end``</span>
+<span class="s2">    (if used with a log axis, default_span is in powers of 10).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;follow&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DataRange1d</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FactorRange"><a class="viewcode-back" href="../../../docs/reference/models/ranges.html#bokeh.models.ranges.FactorRange">[docs]</a><span class="k">class</span> <span class="nc">FactorRange</span><span class="p">(</span><span class="n">Range</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A Range of values for a categorical dimension.</span>
+
+<span class="sd">    In addition to supplying ``factors`` as a keyword argument to the</span>
+<span class="sd">    ``FactorRange`` initializer, you may also instantiate with a sequence of</span>
+<span class="sd">    positional arguments:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        FactorRange(&quot;foo&quot;, &quot;bar&quot;) # equivalent to FactorRange(factors=[&quot;foo&quot;, &quot;bar&quot;])</span>
+
+<span class="sd">    Users will normally supply categorical values directly:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        p.circle(x=[&quot;foo&quot;, &quot;bar&quot;], ...)</span>
+
+<span class="sd">    BokehJS will create a mapping from ``&quot;foo&quot;`` and ``&quot;bar&quot;`` to a numerical</span>
+<span class="sd">    coordinate system called *synthetic coordinates*. In the simplest cases,</span>
+<span class="sd">    factors are separated by a distance of 1.0 in synthetic coordinates,</span>
+<span class="sd">    however the exact mapping from factors to synthetic coordinates is</span>
+<span class="sd">    affected by he padding properties as well as whether the number of levels</span>
+<span class="sd">    the factors have.</span>
+
+<span class="sd">    Users typically do not need to worry about the details of this mapping,</span>
+<span class="sd">    however it can be useful to fine tune positions by adding offsets. When</span>
+<span class="sd">    supplying factors as coordinates or values, it is possible to add an</span>
+<span class="sd">    offset in the synthetic coordinate space by adding a final number value</span>
+<span class="sd">    to a factor tuple. For example:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        p.circle(x=[(&quot;foo&quot;, 0.3), ...], ...)</span>
+
+<span class="sd">    will position the first circle at an ``x`` position that is offset by</span>
+<span class="sd">    adding 0.3 to the synthetic coordinate for ``&quot;foo&quot;``.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">factors</span> <span class="o">=</span> <span class="n">Either</span><span class="p">(</span><span class="n">Seq</span><span class="p">(</span><span class="n">String</span><span class="p">),</span> <span class="n">Seq</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="p">)),</span> <span class="n">Seq</span><span class="p">(</span><span class="n">Tuple</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="p">)),</span> <span class="n">default</span><span class="o">=</span><span class="p">[],</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A sequence of factors to define this categorical range.</span>
+
+<span class="s2">    Factors may have 1, 2, or 3 levels. For 1-level factors, each factor is</span>
+<span class="s2">    simply a string. For example:</span>
+
+<span class="s2">    .. code-block: python</span>
+
+<span class="s2">        FactorRange(factors=[&quot;sales&quot;, &quot;marketing&quot;, &quot;engineering&quot;])</span>
+
+<span class="s2">    defines a range with three simple factors that might represent different</span>
+<span class="s2">    units of a business.</span>
+
+<span class="s2">    For 2- and 3- level factors, each factor is a tuple of strings:</span>
+
+<span class="s2">    .. code-block:: python</span>
+
+<span class="s2">        FactorRange(factors=[</span>
+<span class="s2">            [&quot;2016&quot;, &quot;sales&#39;], [&quot;2016&quot;, &quot;marketing&#39;], [&quot;2016&quot;, &quot;engineering&quot;],</span>
+<span class="s2">            [&quot;2017&quot;, &quot;sales&#39;], [&quot;2017&quot;, &quot;marketing&#39;], [&quot;2017&quot;, &quot;engineering&quot;],</span>
+<span class="s2">        ])</span>
+
+<span class="s2">    defines a range with six 2-level factors that might represent the three</span>
+<span class="s2">    business units, grouped by year.</span>
+
+<span class="s2">    Note that factors and sub-factors *may only be strings*.</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">factor_padding</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How much padding to add in between all lowest-level factors. When</span>
+<span class="s2">    ``factor_padding`` is non-zero, every factor in every group will have the</span>
+<span class="s2">    padding value applied.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">subgroup_padding</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How much padding to add in between mid-level groups of factors. This</span>
+<span class="s2">    property only applies when the overall factors have three levels. For</span>
+<span class="s2">    example with:</span>
+
+<span class="s2">    .. code-block:: python</span>
+
+<span class="s2">        FactorRange(factors=[</span>
+<span class="s2">            [&#39;foo&#39;, &#39;A&#39;, &#39;1&#39;],  [&#39;foo&#39;, &#39;A&#39;, &#39;2&#39;], [&#39;foo&#39;, &#39;A&#39;, &#39;3&#39;],</span>
+<span class="s2">            [&#39;foo&#39;, &#39;B&#39;, &#39;2&#39;],</span>
+<span class="s2">            [&#39;bar&#39;, &#39;A&#39;, &#39;1&#39;],  [&#39;bar&#39;, &#39;A&#39;, &#39;2&#39;]</span>
+<span class="s2">        ])</span>
+
+<span class="s2">    This property dictates how much padding to add between the three factors</span>
+<span class="s2">    in the `[&#39;foo&#39;, &#39;A&#39;]` group, and between the two factors in the the</span>
+<span class="s2">    [`bar`]</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">group_padding</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How much padding to add in between top-level groups of factors. This</span>
+<span class="s2">    property only applies when the overall range factors have either two or</span>
+<span class="s2">    three levels. For example, with:</span>
+
+<span class="s2">    .. code-block:: python</span>
+
+<span class="s2">        FactorRange(factors=[[&quot;foo&quot;, &quot;1&#39;], [&quot;foo&quot;, &quot;2&#39;], [&quot;bar&quot;, &quot;1&quot;]])</span>
+
+<span class="s2">    The top level groups correspond to ``&quot;foo&quot;` and ``&quot;bar&quot;``, and the</span>
+<span class="s2">    group padding will be applied between the factors``[&quot;foo&quot;, &quot;2&#39;]`` and</span>
+<span class="s2">    ``[&quot;bar&quot;, &quot;1&quot;]``</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">range_padding</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How much padding to add around the outside of computed range bounds.</span>
+
+<span class="s2">    When ``range_padding_units`` is set to ``&quot;percent&quot;``, the span of the</span>
+<span class="s2">    range span is expanded to make the range ``range_padding`` percent larger.</span>
+
+<span class="s2">    When ``range_padding_units`` is set to ``&quot;absolute&quot;``, the start and end</span>
+<span class="s2">    of the range span are extended by the amount ``range_padding``.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">range_padding_units</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">PaddingUnits</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;percent&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether the ``range_padding`` should be interpreted as a percentage, or</span>
+<span class="s2">    as an absolute quantity. (default: ``&quot;percent&quot;``)</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">readonly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The start of the range, in synthetic coordinates.</span>
+
+<span class="s2">        Synthetic coordinates are only computed in the browser, based on the</span>
+<span class="s2">        factors and various padding properties. The value of ``end`` will only</span>
+<span class="s2">        be available in situations where bidirectional communication is</span>
+<span class="s2">        available (e.g. server, notebook).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">readonly</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The end of the range, in synthetic coordinates.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Synthetic coordinates are only computed in the browser, based on the</span>
+<span class="s2">        factors and various padding properties. The value of ``end`` will only</span>
+<span class="s2">        be available in situations where bidirectional communication is</span>
+<span class="s2">        available (e.g. server, notebook).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">MinMaxBounds</span><span class="p">(</span><span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The bounds (in synthetic coordinates) that the range is allowed to go to.</span>
+<span class="s2">    Typically used to prevent the user from panning/zooming/etc away from the</span>
+<span class="s2">    data.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Synthetic coordinates are only computed in the browser, based on the</span>
+<span class="s2">        factors and various padding properties. Some experimentation may be</span>
+<span class="s2">        required to arrive at bounds suitable for specific situations.</span>
+
+<span class="s2">    By default, the bounds will be None, allowing your plot to pan/zoom as far</span>
+<span class="s2">    as you want. If bounds are &#39;auto&#39; they will be computed to be the same as</span>
+<span class="s2">    the start and end of the FactorRange.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">min_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom in, expressed as the</span>
+<span class="s2">    minimum visible interval in synthetic coordinates. If set to ``None``</span>
+<span class="s2">    (default), the minimum interval is not bounded.</span>
+
+<span class="s2">    The default &quot;width&quot; of a category is 1.0 in synthetic coordinates.</span>
+<span class="s2">    However, the distance between factors is affected by the various</span>
+<span class="s2">    padding properties and whether or not factors are grouped.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">max_interval</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The level that the range is allowed to zoom out, expressed as the</span>
+<span class="s2">    maximum visible interval in synthetic coordinates.. Note that ``bounds``</span>
+<span class="s2">    can impose an implicit constraint on the maximum interval as well.</span>
+
+<span class="s2">    The default &quot;width&quot; of a category is 1.0 in synthetic coordinates.</span>
+<span class="s2">    However, the distance between factors is affected by the various</span>
+<span class="s2">    padding properties and whether or not factors are grouped.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">and</span> <span class="s2">&quot;factors&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;factors&#39; keyword cannot be used with positional arguments&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">args</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;factors&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FactorRange</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

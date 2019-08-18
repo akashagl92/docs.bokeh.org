@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bokeh Server REST API &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="Reference Guide" href="../reference.html" />
+    <link rel="next" title="BokehJS Interface Reference" href="bokehjs.html" />
+    <link rel="prev" title="Compatibility Layers" href="compat.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/charts.html">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/server.html">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Bokeh Server REST API</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="compat.html" title="Previous Chapter: Compatibility Layers"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Compatibility La...</span>
+    </a>
+  </li>
+  <li>
+    <a href="bokehjs.html" title="Next Chapter: BokehJS Interface Reference"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">BokehJS Interfac... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Reference Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/rest_api.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#bokeh-server-rest-api" id="id1">Bokeh Server REST API</a></li>
+</ul>
+</div>
+<div class="section" id="bokeh-server-rest-api">
+<span id="bokeh-server-rest"></span><h1><a class="toc-backref" href="#id1">Bokeh Server REST API</a><a class="headerlink" href="#bokeh-server-rest-api" title="Permalink to this headline">¶</a></h1>
+<dl class="get">
+<dt id="get--bokeh-loginfromapikey">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/loginfromapikey</tt><a class="headerlink" href="#get--bokeh-loginfromapikey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log in a user from an API key.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> &#8211; redirect to index on success, to login on failure</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-favicon.ico">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/favicon.ico</tt><a class="headerlink" href="#get--bokeh-favicon.ico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return favicon.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; return favicon</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-sampleerror">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/sampleerror</tt><a class="headerlink" href="#get--bokeh-sampleerror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-register">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/register</tt><a class="headerlink" href="#get--bokeh-register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new user via a view.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; render registration form</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-register">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/register</tt><a class="headerlink" href="#post--bokeh-register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new user via a submission.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; registration result</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-userinfo-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/userinfo/</tt><a class="headerlink" href="#get--bokeh-userinfo-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-logout">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/logout</tt><a class="headerlink" href="#get--bokeh-logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log out the current user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> &#8211; redirect to index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-login">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/login</tt><a class="headerlink" href="#get--bokeh-login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log in a user from a form.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; render login view</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-login">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/login</tt><a class="headerlink" href="#post--bokeh-login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log in user from a submission.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; if API flag set, log in status</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> &#8211; if API flag not set, redirect to index on
+success, to login on failue</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-wsurl-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/wsurl/</tt><a class="headerlink" href="#get--bokeh-wsurl-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-ping">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/ping</tt><a class="headerlink" href="#get--bokeh-ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether Bokeh server is up.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-doc-">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/doc/</tt><a class="headerlink" href="#post--bokeh-doc-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-doc">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/doc</tt><a class="headerlink" href="#post--bokeh-doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-doc-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/doc/</tt><a class="headerlink" href="#get--bokeh-doc-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="put">
+<dt id="put--compute.json">
+<tt class="descname">PUT </tt><tt class="descname">/compute.json</tt><a class="headerlink" href="#put--compute.json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--compute.json">
+<tt class="descname">GET </tt><tt class="descname">/compute.json</tt><a class="headerlink" href="#get--compute.json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--compute.json">
+<tt class="descname">POST </tt><tt class="descname">/compute.json</tt><a class="headerlink" href="#post--compute.json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--datashape">
+<tt class="descname">GET </tt><tt class="descname">/datashape</tt><a class="headerlink" href="#get--datashape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--configure">
+<tt class="descname">POST </tt><tt class="descname">/configure</tt><a class="headerlink" href="#post--configure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--upload">
+<tt class="descname">POST </tt><tt class="descname">/upload</tt><a class="headerlink" href="#post--upload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/</tt><a class="headerlink" href="#get--bokeh-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render main page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; if current user logged in</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> &#8211; otherwise redirect to login</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--ls">
+<tt class="descname">GET </tt><tt class="descname">/ls</tt><a class="headerlink" href="#get--ls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--">
+<tt class="descname">GET </tt><tt class="descname">/</tt><a class="headerlink" href="#get--" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render main page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; if current user logged in</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.3">302 Found</a> &#8211; otherwise redirect to login</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-jsgenerate-(parentname)-(modulename)-(classname)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/jsgenerate/</tt><big>(</big><em>parentname</em><big>)</big><tt class="descname">/</tt><big>(</big><em>modulename</em><big>)</big><tt class="descname">/</tt><big>(</big><em>classname</em><big>)</big><a class="headerlink" href="#get--bokeh-jsgenerate-(parentname)-(modulename)-(classname)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-bb-(docid)-(typename)-(id)-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><big>(</big><em>id</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--bokeh-bb-(docid)-(typename)-(id)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a specific model with a given id and typename for a
+given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+<li><strong>typename</strong> &#8211; the type of objects to find and return</li>
+<li><strong>id</strong> &#8211; unique id of the object to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="put">
+<dt id="put--bokeh-bb-(docid)-(typename)-(id)-">
+<tt class="descname">PUT </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><big>(</big><em>id</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#put--bokeh-bb-(docid)-(typename)-(id)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a specific model with a given id and typename for a
+given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+<li><strong>typename</strong> &#8211; the type of objects to find and return</li>
+<li><strong>id</strong> &#8211; unique id of the object to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="patch">
+<dt id="patch--bokeh-bb-(docid)-(typename)-(id)-">
+<tt class="descname">PATCH </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><big>(</big><em>id</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#patch--bokeh-bb-(docid)-(typename)-(id)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a specific model with a given id and typename for a
+given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+<li><strong>typename</strong> &#8211; the type of objects to find and return</li>
+<li><strong>id</strong> &#8211; unique id of the object to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--bokeh-bb-(docid)-(typename)-(id)-">
+<tt class="descname">DELETE </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><big>(</big><em>id</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--bokeh-bb-(docid)-(typename)-(id)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a specific model with a given id and typename for a
+given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+<li><strong>typename</strong> &#8211; the type of objects to find and return</li>
+<li><strong>id</strong> &#8211; unique id of the object to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--render-(docid)-(datasourceid)-(glyphid)">
+<tt class="descname">GET </tt><tt class="descname">/render/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>datasourceid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>glyphid</em><big>)</big><a class="headerlink" href="#get--render-(docid)-(datasourceid)-(glyphid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--render-(docid)-(datasourceid)-(glyphid)">
+<tt class="descname">POST </tt><tt class="descname">/render/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>datasourceid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>glyphid</em><big>)</big><a class="headerlink" href="#post--render-(docid)-(datasourceid)-(glyphid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-objinfo-(docid)-(objid)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/objinfo/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>objid</em><big>)</big><a class="headerlink" href="#get--bokeh-objinfo-(docid)-(objid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-doc-(title)-show">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/doc/</tt><big>(</big><em>title</em><big>)</big><tt class="descname">/show</tt><a class="headerlink" href="#get--bokeh-doc-(title)-show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-doc-(docid)-(objid)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/doc/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>objid</em><big>)</big><a class="headerlink" href="#get--bokeh-doc-(docid)-(objid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-bb-(docid)-bulkupsert">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/bulkupsert</tt><a class="headerlink" href="#post--bokeh-bb-(docid)-bulkupsert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update or insert new objects for a given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-bb-(docid)-gc">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/gc</tt><a class="headerlink" href="#post--bokeh-bb-(docid)-gc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-bb-(docid)-(typename)-">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#post--bokeh-bb-(docid)-(typename)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update or insert new objects for a given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-bb-(docid)-(typename)-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><big>(</big><em>typename</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--bokeh-bb-(docid)-(typename)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all objects of a specified typename for a
+given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+<li><strong>typename</strong> &#8211; the type of objects to find and return</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokehjs-static-(path-filename)">
+<tt class="descname">GET </tt><tt class="descname">/bokehjs/static/</tt><big>(</big><em class="property">path: </em><em>filename</em><big>)</big><a class="headerlink" href="#get--bokehjs-static-(path-filename)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a specific BokehJS deployment file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> &#8211; name of the file to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; file is found</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; file is not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokehjs-src-(path-filename)">
+<tt class="descname">GET </tt><tt class="descname">/bokehjs/src/</tt><big>(</big><em class="property">path: </em><em>filename</em><big>)</big><a class="headerlink" href="#get--bokehjs-src-(path-filename)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a specific BokehJS source code file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> &#8211; name of the file to retrieve</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; file is found</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a> &#8211; file is not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-getdocapikey-(docid)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/getdocapikey/</tt><big>(</big><em>docid</em><big>)</big><a class="headerlink" href="#get--bokeh-getdocapikey-(docid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-autoload.js-(elementid)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/autoload.js/</tt><big>(</big><em>elementid</em><big>)</big><a class="headerlink" href="#get--bokeh-autoload.js-(elementid)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return autoload script for given elementid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>elementid</strong> &#8211; DOM element ID to target</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; return script</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-bokehinfo-(docid)-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/bokehinfo/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--bokeh-bokehinfo-(docid)-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-static-(path-filename)">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/static/</tt><big>(</big><em class="property">path: </em><em>filename</em><big>)</big><a class="headerlink" href="#get--bokeh-static-(path-filename)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used internally to send static files from the static
+folder to the browser.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="delete">
+<dt id="delete--bokeh-doc-(docid)-">
+<tt class="descname">DELETE </tt><tt class="descname">/bokeh/doc/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#delete--bokeh-doc-(docid)-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="delete">
+<dt id="delete--bokeh-doc-(docid)">
+<tt class="descname">DELETE </tt><tt class="descname">/bokeh/doc/</tt><big>(</big><em>docid</em><big>)</big><a class="headerlink" href="#delete--bokeh-doc-(docid)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-doc-(docid)-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/doc/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--bokeh-doc-(docid)-" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--bokeh-bb-(docid)-">
+<tt class="descname">GET </tt><tt class="descname">/bokeh/bb/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/</tt><a class="headerlink" href="#get--bokeh-bb-(docid)-" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all objects for a given <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>docid</strong> &#8211; id of the <a class="reference internal" href="plot_objects.html#bokeh.document.Document" title="bokeh.document.Document"><tt class="xref py py-class docutils literal"><span class="pre">Document</span></tt></a>
+to update or insert into</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Status Codes:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a> &#8211; when user is authorized</li>
+<li><a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2">401 Unauthorized</a> &#8211; when user is not authorized</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="post">
+<dt id="post--bokeh-(docid)-publish">
+<tt class="descname">POST </tt><tt class="descname">/bokeh/</tt><big>(</big><em>docid</em><big>)</big><tt class="descname">/publish</tt><a class="headerlink" href="#post--bokeh-(docid)-publish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="get">
+<dt id="get--static-(path-filename)">
+<tt class="descname">GET </tt><tt class="descname">/static/</tt><big>(</big><em class="property">path: </em><em>filename</em><big>)</big><a class="headerlink" href="#get--static-(path-filename)" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function used internally to send static files from the static
+folder to the browser.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.5.</span></p>
+</div>
+</dd></dl>
+
+<dl class="get">
+<dt id="get--ls-(username)">
+<tt class="descname">GET </tt><tt class="descname">/ls/</tt><big>(</big><em>username</em><big>)</big><a class="headerlink" href="#get--ls-(username)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="compat.html">Prev</a> |
+      
+      
+      <a href="bokehjs.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/reference/rest_api.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

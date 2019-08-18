@@ -1,0 +1,140 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+    
+    (function(global) {
+      function now() {
+        return new Date();
+      }
+    
+      if (typeof (window._bokeh_onload_callbacks) === "undefined") {
+        window._bokeh_onload_callbacks = [];
+      }
+    
+      function run_callbacks() {
+        window._bokeh_onload_callbacks.forEach(function(callback) { callback() });
+        delete window._bokeh_onload_callbacks
+        console.info("Bokeh: all callbacks have finished");
+      }
+    
+      function load_libs(js_urls, callback) {
+        window._bokeh_onload_callbacks.push(callback);
+        if (window._bokeh_is_loading > 0) {
+          console.log("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+          return null;
+        }
+        if (js_urls == null || js_urls.length === 0) {
+          run_callbacks();
+          return null;
+        }
+        console.log("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+        window._bokeh_is_loading = js_urls.length;
+        for (var i = 0; i < js_urls.length; i++) {
+          var url = js_urls[i];
+          var s = document.createElement('script');
+          s.src = url;
+          s.async = false;
+          s.onreadystatechange = s.onload = function() {
+            window._bokeh_is_loading--;
+            if (window._bokeh_is_loading === 0) {
+              console.log("Bokeh: all BokehJS libraries loaded");
+              run_callbacks()
+            }
+          };
+          s.onerror = function() {
+            console.warn("failed to load library " + url);
+          };
+          console.log("Bokeh: injecting script tag for BokehJS library: ", url);
+          document.getElementsByTagName("head")[0].appendChild(s);
+        }
+      };var element = document.getElementById("a11a7be7-0f80-4881-8f07-826208a56ff0");
+      if (element == null) {
+        console.log("Bokeh: ERROR: autoload.js configured with elementid 'a11a7be7-0f80-4881-8f07-826208a56ff0' but no matching script tag was found. ")
+        return false;
+      }
+    
+      var js_urls = ['https://cdn.bokeh.org/bokeh/release/bokeh-0.12.0.min.js', 'https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.0.min.js', 'https://cdn.bokeh.org/bokeh/release/bokeh-compiler-0.12.0.min.js'];
+    
+      var inline_js = [
+        function(Bokeh) {
+          Bokeh.set_log_level("info");
+        },
+        
+        function(Bokeh) {
+          
+          (function outer(modules, cache, entry) {
+            if (typeof Bokeh !== "undefined") {
+              for (var name in modules) {
+                var module = modules[name];
+          
+                if (typeof(module) === "string") {
+                  try {
+                    coffee = Bokeh.require("coffee-script")
+                  } catch (e) {
+                    throw new Error("Compiler requested but failed to import. Make sure bokeh-compiler(-min).js was included.")
+                  }
+          
+                  function compile(code) {
+                    var body = coffee.compile(code, {bare: true, shiftLine: true});
+                    return new Function("require", "module", "exports", body);
+                  }
+          
+                  modules[name] = [compile(module), {}];
+                }
+              }
+          
+              for (var name in modules) {
+                Bokeh.require.modules[name] = modules[name];
+              }
+          
+              for (var i = 0; i < entry.length; i++) {
+                Bokeh.Models.register_locations(Bokeh.require(entry[i]));
+              }
+            } else {
+              throw new Error("Cannot find Bokeh. You have to load it prior to loading plugins.");
+            }
+          })({
+           "custom/main":[function(require,module,exports){
+             module.exports = { Custom: require("custom/custom"),
+          DrawTool: require("custom/draw_tool"),
+          MyFormatter: require("custom/my_formatter"),
+          Surface3d: require("custom/surface3d") };
+           }, {}],
+           "custom/custom": "\n_ = require \"underscore\"\n$ = require \"jquery\"\n\np = require \"core/properties\"\nLayoutDOM = require \"models/layouts/layout_dom\"\n\nclass CustomView extends LayoutDOM.View\n\n  initialize: (options) ->\n    super(options)\n\n    @render()\n\n    # Set Backbone listener so that when the Bokeh slider has a change\n    # event, we can process the new data\n    @listenTo(@model.slider, \'change\', () => @render())\n\n  render: () ->\n    # Backbone Views create <div> elements by default, accessible as @$el.\n    # Many Bokeh views ignore this default <div>, and instead do things\n    # like draw to the HTML canvas. In this case though, we change the\n    # contents of the <div>, based on the current slider value.\n    @$el.html(\"<h1>#{ @model.text }: #{ @model.slider.value }</h1>\")\n    @$(\'h1\').css({ \'color\': \'#686d8e\', \'background-color\': \'#2a3153\' })\n\nclass Custom extends LayoutDOM.Model\n\n  # If there is an associated view, this is boilerplate.\n  default_view: CustomView\n\n  # The ``type`` class attribute should generally match exactly the name\n  # of the corresponding Python class.\n  type: \"Custom\"\n\n  # The @define block adds corresponding \"properties\" to the JS model. These\n  # should basically line up 1-1 with the Python model class. Most property\n  # types have counterparts, e.g. bokeh.core.properties.String will be\n  # p.String in the JS implementation. Where the JS type system is not yet\n  # as rich, you can use p.Any as a \"wildcard\" property type.\n  @define {\n    text:   [ p.String ]\n    slider: [ p.Any    ]\n  }\n\n# This is boilerplate. Every implementation should export a Model\n# and (when applicable) also a View.\nmodule.exports =\n  Model: Custom\n  View: CustomView\n",
+          "custom/draw_tool": "\np = require \"core/properties\"\nGestureTool = require \"models/tools/gestures/gesture_tool\"\n\nclass DrawToolView extends GestureTool.View\n\n  # this is executed when the pan/drag event starts\n  _pan_start: (e) ->\n    @model.source.data = {x: [], y: []}\n\n  # this is executed on subsequent mouse/touch moves\n  _pan: (e) ->\n    frame = @plot_model.frame\n    canvas = @plot_view.canvas\n\n    vx = canvas.sx_to_vx(e.bokeh.sx)\n    vy = canvas.sy_to_vy(e.bokeh.sy)\n    if not frame.contains(vx, vy)\n      return null\n\n    x = frame.get(\'x_mappers\').default.map_from_target(vx)\n    y = frame.get(\'y_mappers\').default.map_from_target(vy)\n\n    @model.source.data.x.push(x)\n    @model.source.data.y.push(y)\n    @model.source.trigger(\'change\')\n\n  # this is executed then the pan/drag ends\n  _pan_end: (e) -> return null\n\nclass DrawTool extends GestureTool.Model\n  default_view: DrawToolView\n  type: \"DrawTool\"\n\n  tool_name: \"Drag Span\"\n  icon: \"bk-tool-icon-lasso-select\"\n  event_type: \"pan\"\n  default_order: 12\n\n  @define { source: [ p.Instance ] }\n\nmodule.exports =\n  Model: DrawTool\n  View: DrawToolView\n",
+          "custom/my_formatter": "\nTickFormatter = require \"models/formatters/tick_formatter\"\n\nclass MyFormatter extends TickFormatter.Model\n  type: \"MyFormatter\"\n\n  # TickFormatters should implement this method, which accepts a lisst\n  # of numbers (ticks) and returns a list of strings\n  doFormat: (ticks) ->\n    # format the first tick as-is\n    formatted = [\"#{ticks[0]}\"]\n\n    # format the remaining ticks as a difference from the first\n    for i in [1...ticks.length]\n       formatted.push(\"+#{(ticks[i]-ticks[0]).toPrecision(2)}\")\n\n    return formatted\n\nmodule.exports =\n  Model: MyFormatter\n",
+          "custom/surface3d": "\n# This file contains the JavaScript (CoffeeScript) implementation\n# for a Bokeh custom extension. The \"surface3d.py\" contains the\n# python counterpart.\n#\n# This custom model wraps one part of the third-party vis.js library:\n#\n#     http://visjs.org/index.html\n#\n# Making it easy to hook up python data analytics tools (NumPy, SciPy,\n# Pandas, etc.) to web presentations using the Bokeh server.\n\n# These \"require\" lines are similar to python \"import\" statements\n_ = require \"underscore\"\n$ = require \"jquery\"\n\np = require \"core/properties\"\nLayoutDOM = require \"models/layouts/layout_dom\"\n\n# This defines some default options for the Graph3d feature of vis.js\n# See: http://visjs.org/graph3d_examples.html for more details.\nOPTIONS =\n  width:  \'600px\'\n  height: \'600px\'\n  style: \'surface\'\n  showPerspective: true\n  showGrid: true\n  keepAspectRatio: true\n  verticalRatio: 1.0\n  legendLabel: \'stuff\'\n  cameraPosition:\n    horizontal: -0.35\n    vertical: 0.22\n    distance: 1.8\n\n# To create custom model extensions that will render on to the HTML canvas\n# or into the DOM, we must create a View subclass for the model. Currently\n# Bokeh models and views are based on BackBone. More information about\n# using Backbone can be found here:\n#\n#     http://backbonejs.org/\n#\n# In this case we will subclass from the existing BokehJS ``LayoutDOM.View``,\n# corresponding to our\nclass Surface3dView extends LayoutDOM.View\n\n  initialize: (options) ->\n    super(options)\n\n    url = \"https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js\"\n    $.getScript(url).done(@_init)\n\n  # NOTE: we have to use the \"fat arrow\" => here so that \"this\" is bound correctly\n  _init: () =>\n    # Create a new Graph3s using the vis.js API. This assumes the vis.js has\n    # already been loaded (e.g. in a custom app template). In the future Bokeh\n    # models will be able to specify and load external scripts automatically.\n    #\n    # Backbone Views create <div> elements by default, accessible as @$el. Many\n    # Bokeh views ignore this default <div>, and instead do things like draw\n    # to the HTML canvas. In this case though, we use the <div> to attach a\n    # Graph3d to the DOM.\n    @_graph = new vis.Graph3d(@$el[0], @get_data(), OPTIONS)\n\n    # Set Backbone listener so that when the Bokeh data source has a change\n    # event, we can process the new data\n    @listenTo(@model.data_source, \'change\', () =>\n        @_graph.setData(@get_data())\n    )\n\n  # This is the callback executed when the Bokeh data has an change. Its basic\n  # function is to adapt the Bokeh data source to the vis.js DataSet format.\n  get_data: () ->\n    data = new vis.DataSet()\n    source = @model.data_source\n    for i in [0...source.get_length()]\n      data.add({\n        x:     source.get_column(@model.x)[i]\n        y:     source.get_column(@model.y)[i]\n        z:     source.get_column(@model.z)[i]\n        style: source.get_column(@model.color)[i]\n      })\n    return data\n\n# We must also create a corresponding JavaScript Backbone model sublcass to\n# correspond to the python Bokeh model subclass. In this case, since we want\n# an element that can position itself in the DOM according to a Bokeh layout,\n# we subclass from ``LayoutDOM.model``\nclass Surface3d extends LayoutDOM.Model\n\n  # This is usually boilerplate. In some cases there may not be a view.\n  default_view: Surface3dView\n\n  # The ``type`` class attribute should generally match exactly the name\n  # of the corresponding Python class.\n  type: \"Surface3d\"\n\n  # The @define block adds corresponding \"properties\" to the JS model. These\n  # should basically line up 1-1 with the Python model class. Most property\n  # types have counterparts, e.g. ``bokeh.core.properties.String`` will be\n  # ``p.String`` in the JS implementatin. Where the JS type system is not yet\n  # as rich, you can use ``p.Any`` as a \"wildcard\" property type.\n  @define {\n    x:           [ p.String           ]\n    y:           [ p.String           ]\n    z:           [ p.String           ]\n    color:       [ p.String           ]\n    data_source: [ p.Instance         ]\n  }\n\n# This is boilerplate. Every implementation should \"export\" a ``Model``\n# and (when applicable) also a ``View``.\nmodule.exports =\n  Model: Surface3d\n  View: Surface3dView\n"
+          }, {}, ["custom/main"]);
+        },
+        
+        function(Bokeh) {
+          Bokeh.$(function() {
+              var docs_json = {"9a7bb211-d7e5-404d-b575-57f59a76373e":{"roots":{"references":[{"attributes":{"callback":null,"overlay":{"id":"3e1a3756-5c86-40f8-ae74-b6b9897f3a2a","type":"PolyAnnotation"},"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"}},"id":"eb21621b-1342-4f89-a5ae-0ed99bdbac1c","type":"LassoSelectTool"},{"attributes":{"plot":null,"text":"Select and Zoom"},"id":"693c3521-f22f-4100-a193-6f4e7fb8fbbf","type":"Title"},{"attributes":{"callback":null,"overlay":{"id":"a60592bc-d7df-43b7-8f88-242eb87d465b","type":"BoxAnnotation"},"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},"renderers":[{"id":"98bd93d2-2bfc-49e3-98c2-06289e19dc99","type":"GlyphRenderer"}]},"id":"9985dcc5-f0cd-40a7-bb37-5e0228e7b2fe","type":"BoxSelectTool"},{"attributes":{"fill_color":{"value":"#1f77b4"},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":5},"x":{"field":"x"},"y":{"field":"y"}},"id":"4114b032-a506-496c-9d50-a30479ebb4db","type":"Circle"},{"attributes":{},"id":"d00b3dd3-99dd-42ab-acae-c9fe4275d116","type":"BasicTickFormatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":5},"x":{"field":"x"},"y":{"field":"y"}},"id":"80fc94c5-3626-4fa7-b6da-45497c21bb9c","type":"Circle"},{"attributes":{},"id":"3062f6e2-ade3-4e37-ace7-332d3b677ba7","type":"ToolEvents"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":null},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"olive"},"line_dash":[],"line_width":{"value":8},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"64be75b7-aad4-4f74-b75e-ac6e94e343a0","type":"BoxAnnotation"},{"attributes":{"formatter":{"id":"9ac278be-9870-406c-8d61-850faa609ad2","type":"BasicTickFormatter"},"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},"ticker":{"id":"1dda6df7-04c6-4de5-9e89-b7b0adb47012","type":"BasicTicker"}},"id":"f4f3a1b5-d0de-405c-a16a-6917aea24c7a","type":"LinearAxis"},{"attributes":{},"id":"9ac278be-9870-406c-8d61-850faa609ad2","type":"BasicTickFormatter"},{"attributes":{"formatter":{"id":"d00b3dd3-99dd-42ab-acae-c9fe4275d116","type":"BasicTickFormatter"},"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},"ticker":{"id":"67f381f9-054e-4036-a467-2bef70127743","type":"BasicTicker"}},"id":"d7d4a804-a4ff-4292-b547-0841054ae0dc","type":"LinearAxis"},{"attributes":{"dimension":1,"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},"ticker":{"id":"1dda6df7-04c6-4de5-9e89-b7b0adb47012","type":"BasicTicker"}},"id":"ac3f13e2-5bde-4de1-85c0-c3067f1356c1","type":"Grid"},{"attributes":{"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"}},"id":"cbfce8de-2202-49f0-b015-9e30f0deebaa","type":"ResetTool"},{"attributes":{"below":[{"id":"d7d4a804-a4ff-4292-b547-0841054ae0dc","type":"LinearAxis"}],"left":[{"id":"f4f3a1b5-d0de-405c-a16a-6917aea24c7a","type":"LinearAxis"}],"plot_height":400,"plot_width":400,"renderers":[{"id":"d7d4a804-a4ff-4292-b547-0841054ae0dc","type":"LinearAxis"},{"id":"56466d1d-dccc-467c-af91-c6d574c1fea4","type":"Grid"},{"id":"f4f3a1b5-d0de-405c-a16a-6917aea24c7a","type":"LinearAxis"},{"id":"ac3f13e2-5bde-4de1-85c0-c3067f1356c1","type":"Grid"},{"id":"a60592bc-d7df-43b7-8f88-242eb87d465b","type":"BoxAnnotation"},{"id":"64be75b7-aad4-4f74-b75e-ac6e94e343a0","type":"BoxAnnotation"},{"id":"3e1a3756-5c86-40f8-ae74-b6b9897f3a2a","type":"PolyAnnotation"},{"id":"98bd93d2-2bfc-49e3-98c2-06289e19dc99","type":"GlyphRenderer"}],"title":{"id":"693c3521-f22f-4100-a193-6f4e7fb8fbbf","type":"Title"},"tool_events":{"id":"3062f6e2-ade3-4e37-ace7-332d3b677ba7","type":"ToolEvents"},"toolbar":{"id":"21ab4a52-681f-4da6-b6d5-547d91f0d1aa","type":"Toolbar"},"x_range":{"id":"d9f41b40-da4f-406c-bf13-cc0c5a55b9fb","type":"DataRange1d"},"y_range":{"id":"9a9ac19c-bf53-419b-9cfa-a991e1744b06","type":"DataRange1d"}},"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},{"attributes":{"data_source":{"id":"a5678b86-90b0-4b73-a047-9ca59817e48c","type":"ColumnDataSource"},"glyph":{"id":"4114b032-a506-496c-9d50-a30479ebb4db","type":"Circle"},"hover_glyph":null,"nonselection_glyph":{"id":"80fc94c5-3626-4fa7-b6da-45497c21bb9c","type":"Circle"},"selection_glyph":null},"id":"98bd93d2-2bfc-49e3-98c2-06289e19dc99","type":"GlyphRenderer"},{"attributes":{"callback":null,"column_names":["y","x"],"data":{"x":[0.06788596152668913,0.5190617715899559,0.7439880225559655,0.1307840380653268,0.9354655447005729,0.19419115409740528,0.3620921346049083,0.2909310532809921,0.9453894699087104,0.5024193578277507,0.7106336891008724,0.4192606995742546,0.668360889571988,0.2478402679549453,0.7019124135406966,0.5377267325948377,0.633035073463613,0.16284031062594384,0.9101598424973512,0.4676390810059541,0.05360839775096726,0.8913842073555468,0.8952993758485325,0.08028011306513472,0.998807447951453,0.8128650046975633,0.4281225209274293,0.44108354090411583,0.8403212738462416,0.6517883384752015,0.5004792937663022,0.10480862610341002,0.4060757619183266,0.382460396636929,0.2943687286630602,0.7328848708143151,0.9815720684289468,0.9295119786975178,0.3515462327238109,0.18269201384622236,0.9403430678688827,0.5224573675220541,0.2475432272893574,0.2701163088718197,0.7926339846063298,0.7983021153715217,0.9594953366068938,0.8853847381498182,0.5460086095994259,0.745157230943007,0.0009397979917085131,0.9241611170672751,0.377272529356365,0.44291460163864027,0.9388874944475645,0.9641033346614495,0.6614035401161511,0.898333233300351,0.1990695840185357,0.5288706392988534,0.27109233124949084,0.18959601526240222,0.6023363092935048,0.6730161323281841,0.848570979548279,0.12949024936209674,0.5844159590073519,0.6278315903798851,0.5901332765901676,0.4727354868067256,0.08242832084269647,0.8256042223776975,0.8720040861358457,0.1287925015506708,0.04766363599170775,0.3794018108212608,0.21559713531047864,0.23921365504849312,0.7550775653377418,0.4718662504782616,0.03725154735853364,0.3999285633531722,0.6279235510615913,0.27536161506086376,0.7659221744954694,0.16222794791375295,0.4274812475662557,0.4858168712154953,0.737191542387028,0.1558418129703495,0.2350139392039482,0.7973906152522332,0.8713564382062997,0.04427247546591828,0.4906189280424368,0.8247557834645395,0.2464928777400862,0.8562143281067093,0.562071682819398,0.8808931593100671,0.7809571255397049,0.38497088886032416,0.18368793731327882,0.9112393554761403,0.3155032535516211,0.6061047398424912,0.38004834108182506,0.8268487997319286,0.2849329430197688,0.8659199623608574,0.7820438874840016,0.10965114728294667,0.8645950247541048,0.3196328722185061,0.3174626308447319,0.06622859340044729,0.3440421644420135,0.57285569385385,0.859712291245343,0.6862553176421944,0.595643664706302,0.1057965501489817,0.943272953228192,0.8781301292002228,0.5382812928858886,0.650961802934122,0.5384390754118523,0.4142562167165291,0.05307605135051974,0.1688531185533113,0.20994694689183502,0.6981065118728662,0.6078628885559982,0.7126867817004455,0.5610042301419784,0.25063544647007574,0.7606442077563644,0.34369632995227906,0.7626256013589563,0.2560392831135604,0.1545568632658142,0.5021963605757097,0.26201565811341676,0.633910636659071,0.09959657818359247,0.6244120113899447,0.7026083828248926,0.5442078542686746,0.5094269522570365,0.20559627134741465,0.3282816337231602,0.6587882843384385,0.7108095332242759,0.5588536338316751,0.27731518394557786,0.30956527634237774,0.16409333161071304,0.059293343817157895,0.056426419551946716,0.5333843176651119,0.0010412233723302577,0.9905655559515485,0.773984595651434,0.41159441183706247,0.09406664946533405,0.3223009890968068,0.13131060888297197,0.6937569144684267,0.5721624328748407,0.9442620827267311,0.4453117105875697,0.7135738966847922,0.5140367307542413,0.4421206510381185,0.9247506374944365,0.49242775153836416,0.07606782900550968,0.6360006303937773,0.43848940845831974,0.18147150135573498,0.30908729413890135,0.6240021031231642,0.4580418408805814,0.6098121988097902,0.9428105805087257,0.06596209951398557,0.20050257540211547,0.7129897718346078,0.5217900388344567,0.24871996506355787,0.8230202050366567,0.9878024589069843,0.1616070493676881,0.636380079901558,0.3309633631284944,0.9097166532682022,0.7934178170272704,0.2288013109248095,0.891212390856582,0.31071559665982074],"y":[0.10323653335211391,0.6574663990515262,0.43977049763883613,0.4575160402103058,0.8548959754082592,0.40996548231181273,0.2585854046668282,0.1813296576764044,0.8272080506892626,0.42860215525257905,0.1679039923955038,0.16877367517227926,0.21171380390763817,0.21055271038612677,0.5465058274871365,0.681918359896404,0.6398098653275034,0.6373028029384307,0.3576740546711543,0.07373312367930784,0.15892345876074632,0.7763348361281346,0.9192920287953598,0.0039861964289050755,0.7328227317327676,0.8189318195047026,0.50560060072081,0.7185285714425462,0.2008484216469355,0.6656426368878718,0.31946620161294115,0.5764754441035105,0.8570080711899893,0.7598109284971385,0.5852233381005605,0.48336823445950783,0.19730584503160187,0.5537967330821358,0.34280796830162263,0.3685279197913185,0.5202565945816126,0.5803410833827166,0.4377198491950529,0.9042587003021637,0.44104919612908156,0.5432302716143851,0.3968187969738116,0.17686974744775885,0.1221906161450711,0.00044395252267726004,0.9605163339352518,0.8399780023382506,0.8011161990742522,0.4920820283468731,0.4731979096723722,0.8735100376652063,0.11632244463208452,0.29835926455778106,0.8766359589457228,0.5795158704474517,0.2742934526212487,0.9718643301885201,0.09067297113368888,0.07635473014154437,0.3289134596832739,0.44060656280246946,0.9010036007897991,0.6128872929339588,0.11690082677799896,0.6228974732002202,0.5118859963954787,0.5983132734129254,0.24733084123251603,0.7255328553125588,0.08620284583379301,0.1645297723999346,0.40564146175604066,0.9160319737089265,0.8275203092296481,0.5663973037080456,0.40140569085412947,0.7258582187226067,0.5052804840433385,0.4760147291567446,0.49970180458759283,0.5591473422922238,0.14674048978302712,0.9156089539175226,0.043722411115543425,0.30786278125934863,0.29348674948286546,0.614142193458036,0.210818091498863,0.7001129668386946,0.622595894201047,0.7303918786252024,0.6344423512205641,0.24947525399157633,0.8725633031158263,0.4847622573453635,0.8264339749674363,0.757956317765719,0.19708529558114762,0.8384511079609412,0.4427689190721301,0.0881744572997466,0.19885475824065135,0.7398045851571265,0.2967642687445011,0.9620096803156235,0.12834633716253363,0.6558002438593179,0.011752964360254858,0.34331909906819813,0.7639819115056632,0.5769110927393889,0.8649170344538524,0.6156709150653,0.19288851162502152,0.6658593810089352,0.6108149337487432,0.2464234931793039,0.5525715373961616,0.21691205151451654,0.033514177677281376,0.3467917273132459,0.2953498652355482,0.5736539735791364,0.057150391459491856,0.03028482148527667,0.9402602049209728,0.9230724950667922,0.23046368402311923,0.21141118885712018,0.7975413315884783,0.32824664169528806,0.10461848416988617,0.6679728439009662,0.6967025915467254,0.39787190026694863,0.7424021680748527,0.962072471379328,0.22733912021566094,0.7944234597404871,0.2525406328321328,0.264298167381921,0.5451695053059805,0.6665831101625816,0.8649896291972522,0.9417259862244025,0.6798623704597765,0.5582300028541396,0.17261046673153357,0.6451851012841088,0.5559968761735088,0.9970843412653619,0.14736653391124366,0.6367399311058385,0.38668268725340227,0.757700466357454,0.33563818498327114,0.07967825995667555,0.8232662127735086,0.8829384561394149,0.22471370664403123,0.9383574852710937,0.46921071267873615,0.6432892181383605,0.5154719334489805,0.057291609272404065,0.20238539925074173,0.25379735768119327,0.9002858154435527,0.06562313497594552,0.7838418008412464,0.4656357415071054,0.09119007844068616,0.09041204522100288,0.4912013753613166,0.9614131611564686,0.1543518923630145,0.29221588329697645,0.9874837086763002,0.8219561337650992,0.19694269886643023,0.25891272389540343,0.6070433099008261,0.5507623361511649,0.5339940207055688,0.21507608078800078,0.2806026548776259,0.900275521970971,0.16393818369935154,0.4989431380521274,0.8532869175768424,0.6125857823845425,0.5173060027870657,0.3445979482809435,0.1311332746460947,0.9727282588448238]}},"id":"a5678b86-90b0-4b73-a047-9ca59817e48c","type":"ColumnDataSource"},{"attributes":{"callback":null},"id":"9a9ac19c-bf53-419b-9cfa-a991e1744b06","type":"DataRange1d"},{"attributes":{"active_drag":"auto","active_scroll":"auto","active_tap":"auto","tools":[{"id":"9985dcc5-f0cd-40a7-bb37-5e0228e7b2fe","type":"BoxSelectTool"},{"id":"0f62f0fa-1c8e-466b-b213-6de04b0169bc","type":"BoxZoomTool"},{"id":"eb21621b-1342-4f89-a5ae-0ed99bdbac1c","type":"LassoSelectTool"},{"id":"cbfce8de-2202-49f0-b015-9e30f0deebaa","type":"ResetTool"}]},"id":"21ab4a52-681f-4da6-b6d5-547d91f0d1aa","type":"Toolbar"},{"attributes":{"fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[10,10],"line_width":{"value":2},"plot":null,"xs_units":"screen","ys_units":"screen"},"id":"3e1a3756-5c86-40f8-ae74-b6b9897f3a2a","type":"PolyAnnotation"},{"attributes":{},"id":"1dda6df7-04c6-4de5-9e89-b7b0adb47012","type":"BasicTicker"},{"attributes":{"callback":null},"id":"d9f41b40-da4f-406c-bf13-cc0c5a55b9fb","type":"DataRange1d"},{"attributes":{"overlay":{"id":"64be75b7-aad4-4f74-b75e-ac6e94e343a0","type":"BoxAnnotation"},"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"}},"id":"0f62f0fa-1c8e-466b-b213-6de04b0169bc","type":"BoxZoomTool"},{"attributes":{"plot":{"id":"88c7c3dd-6768-42f4-8b57-95e0d948317f","subtype":"Figure","type":"Plot"},"ticker":{"id":"67f381f9-054e-4036-a467-2bef70127743","type":"BasicTicker"}},"id":"56466d1d-dccc-467c-af91-c6d574c1fea4","type":"Grid"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"firebrick"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":null},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"a60592bc-d7df-43b7-8f88-242eb87d465b","type":"BoxAnnotation"},{"attributes":{},"id":"67f381f9-054e-4036-a467-2bef70127743","type":"BasicTicker"}],"root_ids":["88c7c3dd-6768-42f4-8b57-95e0d948317f"]},"title":"Bokeh Application","version":"0.12.0.9128"}};
+              var render_items = [{"docid":"9a7bb211-d7e5-404d-b575-57f59a76373e","elementid":"a11a7be7-0f80-4881-8f07-826208a56ff0","modelid":"88c7c3dd-6768-42f4-8b57-95e0d948317f"}];
+              
+              Bokeh.embed.embed_items(docs_json, render_items);
+          });
+        },
+        function(Bokeh) {
+          console.log("Bokeh: injecting CSS: https://cdn.bokeh.org/bokeh/release/bokeh-0.12.0.min.css");
+          Bokeh.embed.inject_css("https://cdn.bokeh.org/bokeh/release/bokeh-0.12.0.min.css");
+          console.log("Bokeh: injecting CSS: https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.0.min.css");
+          Bokeh.embed.inject_css("https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.0.min.css");
+        }
+      ];
+    
+      function run_inline_js() {
+        for (var i = 0; i < inline_js.length; i++) {
+          inline_js[i](window.Bokeh);
+        }
+      }
+    
+      if (window._bokeh_is_loading === 0) {
+        console.log("Bokeh: BokehJS loaded, going straight to plotting");
+        run_inline_js();
+      } else {
+        load_libs(js_urls, function() {
+          console.log("Bokeh: BokehJS plotting callback run at", now());
+          run_inline_js();
+        });
+      }
+    }(this));
+});

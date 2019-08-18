@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>JavaScript Callbacks &mdash; Bokeh 0.12.6 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.6";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/docs/user_guide/interaction/callbacks.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">0.12.6</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.6/">0.12.6</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.5/">0.12.5</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.4/">0.12.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.3/">0.12.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../../releases/0.12.6.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../interaction.html">Adding Interactions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linking.html">Linking Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="legends.html">Interactive Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Adding Widgets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">JavaScript Callbacks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-callbacks">CustomJS Callbacks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-for-model-property-events">CustomJS for Model Property Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-for-user-interaction-events">CustomJS for User Interaction Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-for-specialized-events">CustomJS for Specialized Events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#customjs-for-widgets">CustomJS for Widgets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customjs-for-tools">CustomJS for Tools</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customjs-for-selections">CustomJS for Selections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customjs-for-hover">CustomJS for Hover</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customjs-for-range-update">CustomJS for Range Update</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-with-coffeescript-code">CustomJS with CoffeeScript code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customjs-with-a-python-function">CustomJS with a Python function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openurl">OpenURL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/icons.html">bokeh.icons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.6.html">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.5.html">0.12.5 (March 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.4.html">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.3.html">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="javascript-callbacks">
+<span id="userguide-interaction-jscallbacks"></span><h1>JavaScript Callbacks<a class="headerlink" href="#javascript-callbacks" title="Permalink to this headline">¶</a></h1>
+<p>While the main goal of Bokeh is to provide a path to create rich interactive
+visualizations in the browser, purely from python, there will always be
+specialized use-cases that are outside the capabilities of the core library.
+For this reason, Bokeh provides different ways for users to supply custom
+JavaScript when necessary, so that users may add custom or specialized
+behaviours in response to property changes and other events.</p>
+<p>One mechanism is the ability to add entire new custom extension models,
+as described in <a class="reference internal" href="../extensions.html#userguide-extensions"><span class="std std-ref">Extending Bokeh</span></a>. However it is also possible
+to supply small snippets of JavaScript as callbacks to use, e.g when property
+values change, or when UI or other events occur. This kind of callback can be
+used to add interesting interactions to Bokeh documents without the need to
+use a Bokeh server (but can also be used in conjunction with a Bokeh server).</p>
+<div class="section" id="customjs-callbacks">
+<span id="userguide-interaction-jscallbacks-customjs"></span><h2>CustomJS Callbacks<a class="headerlink" href="#customjs-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>To supply a snippet of JavaScript code that should be executed (in the
+browser) when some event occurs, use the <code class="docutils literal"><span class="pre">CustomJS</span></code> model:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models.callbacks</span> <span class="k">import</span> <span class="n">CustomJS</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">xr</span><span class="o">=</span><span class="n">plot</span><span class="o">.</span><span class="n">x_range</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">// JavaScript code goes here</span>
+
+<span class="s2">var a = 10;</span>
+
+<span class="s2">// the model that triggered the callback is cb_obj:</span>
+<span class="s2">var b = cb_obj.value;</span>
+
+<span class="s2">// models passed as args are automagically available</span>
+<span class="s2">xr.start = a;</span>
+<span class="s2">xr.end = b;</span>
+
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that in addition to the <code class="docutils literal"><span class="pre">code</span></code> property, <code class="docutils literal"><span class="pre">CustomJS</span></code> also accepts
+an <code class="docutils literal"><span class="pre">args</span></code> property that maps string names to Bokeh models. Any Bokeh
+models that are configured in <code class="docutils literal"><span class="pre">args</span></code> (on the &#8220;Python side&#8221;) will
+automatically be available to the JavaScript code by the corresponding name.
+Additionally, the model that triggers the callback (i.e. the model that
+the callback is attached to) will be available as <code class="docutils literal"><span class="pre">cb_obj</span></code>.</p>
+</div>
+<div class="section" id="customjs-for-model-property-events">
+<span id="userguide-interaction-jscallbacks-customjs-properties"></span><h2>CustomJS for Model Property Events<a class="headerlink" href="#customjs-for-model-property-events" title="Permalink to this headline">¶</a></h2>
+<p>These <code class="docutils literal"><span class="pre">CustomJS</span></code> callbacks can be attached to property change events on
+any Bokeh model, using the <code class="docutils literal"><span class="pre">js_on_change</span></code> method of Bokeh models:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+
+<span class="c1"># execute a callback whenever p.x_range.start changes</span>
+<span class="n">p</span><span class="o">.</span><span class="n">x_range</span><span class="o">.</span><span class="n">js_on_change</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It should be mentioned that the first parameter to <code class="docutils literal"><span class="pre">js_on_change</span></code> is the
+name of actually the name of a Backbone event. The full format for a property
+change event is, e.g. <code class="docutils literal"><span class="pre">&quot;change:start&quot;</span></code> but Bokeh will automatically
+convert any property name into one of these Backbone change events for you.
+Additionally, some Bokeh models have additional specialized events. For
+example, the <code class="docutils literal"><span class="pre">ColumnDataSource</span></code> also supports <code class="docutils literal"><span class="pre">&quot;patch&quot;</span></code> and <code class="docutils literal"><span class="pre">&quot;stream&quot;</span></code>
+events, for executing <code class="docutils literal"><span class="pre">CustomJS</span></code> callbacks whenever the data source is
+patched or streamed to.</p>
+<p>Below is an example that shows how to attach a <code class="docutils literal"><span class="pre">CustomJS</span></code> callback to a
+<code class="docutils literal"><span class="pre">Slider</span></code> widget, so that whenever the slider value updates, the callback
+is executed to update some data:</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-880d1f31bdeb7f12e4a4ebedf9e3710c.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;js_on_change.html&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mf">0.005</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    var data = source.data;</span>
+<span class="s2">    var f = cb_obj.value</span>
+<span class="s2">    x = data[&#39;x&#39;]</span>
+<span class="s2">    y = data[&#39;y&#39;]</span>
+<span class="s2">    for (i = 0; i &lt; x.length; i++) {</span>
+<span class="s2">        y[i] = Math.pow(x[i], f)</span>
+<span class="s2">    }</span>
+<span class="s2">    source.change.emit();</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
+<span class="n">slider</span><span class="o">.</span><span class="n">js_on_change</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">column</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">plot</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-880d1f31bdeb7f12e4a4ebedf9e3710c.js"
+    id="6f8c4713-3e29-469b-90e2-864741ee89b3"
+    data-bokeh-model-id="3953a172-f1ac-4996-a739-5bf5840781e7"
+    data-bokeh-doc-id="7f15deae-2a8f-4c38-814a-b6a60bcc5e0c"
+></script></div>
+<div class="section" id="customjs-for-user-interaction-events">
+<span id="userguide-interaction-jscallbacks-customjs-interactions"></span><h2>CustomJS for User Interaction Events<a class="headerlink" href="#customjs-for-user-interaction-events" title="Permalink to this headline">¶</a></h2>
+<p>In addition to responding to property change events using js_on_change, Bokeh
+allows CustomJS callbacks to be triggered by specific interaction events with
+the plot canvas, on button click events, and on LOD events.</p>
+<p>These event callbacks are defined on models using the js_on_event method,
+with the callback receiving the event object as a locally defined cb_obj
+variable:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models.callbacks</span> <span class="k">import</span> <span class="n">CustomJS</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">// the event that triggered the callback is cb_obj:</span>
+<span class="s2">var event = cb_obj.value;</span>
+<span class="s2">// The event type determines the relevant attributes</span>
+<span class="s2">console.log(&#39;Tap event occured at x-position: &#39; + event.x)</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="c1"># execute a callback whenever the plot canvas is tapped</span>
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="s1">&#39;tap&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The event can be specified as a string such as <code class="docutils literal"><span class="pre">'tap'</span></code> above, or an event
+class import from the <code class="docutils literal"><span class="pre">bokeh.events</span></code> module
+(i.e. <code class="docutils literal"><span class="pre">from</span> <span class="pre">bokeh.events</span> <span class="pre">import</span> <span class="pre">Tap</span></code>).</p>
+<p>The following code imports <code class="docutils literal"><span class="pre">bokeh.events</span></code> and registers all of the
+available event classes using the <code class="docutils literal"><span class="pre">display_event</span></code> function in order to
+generate the <code class="docutils literal"><span class="pre">CustomJS</span></code> objects. This function is used to update the <code class="docutils literal"><span class="pre">Div</span></code>
+with the event name (always accessible from the <code class="docutils literal"><span class="pre">event_name</span></code>
+attribute) as well as all the other applicable event attributes. The
+result is a plot that when interacted with, displays the corresponding
+event on the right:</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-ace85d20c6330fe8dbf289a88bccf08c.js"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh</span> <span class="kn">import</span> <span class="n">events</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">Div</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span><span class="p">,</span> <span class="n">row</span>
+
+<span class="k">def</span> <span class="nf">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">[],</span> <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;float:left;clear:left;font_size=0.5pt&#39;</span><span class="p">):</span>
+    <span class="s2">&quot;Build a suitable CustomJS to display the current event in the div model.&quot;</span>
+    <span class="k">return</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">div</span><span class="o">=</span><span class="n">div</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        var attrs = </span><span class="si">%s</span><span class="s2">; var args = [];</span>
+<span class="s2">        for (var i=0; i&lt;attrs.length; i++ ) {</span>
+<span class="s2">            args.push(attrs[i] + &#39;=&#39; + Number(cb_obj[attrs[i]]).toFixed(2));</span>
+<span class="s2">        }</span>
+<span class="s2">        var line = &quot;&lt;span style=</span><span class="si">%r</span><span class="s2">&gt;&lt;b&gt;&quot; + cb_obj.event_name + &quot;&lt;/b&gt;(&quot; + args.join(&quot;, &quot;) + &quot;)&lt;/span&gt;</span><span class="se">\\</span><span class="s2">n&quot;;</span>
+<span class="s2">        var text = div.text.concat(line);</span>
+<span class="s2">        var lines = text.split(&quot;</span><span class="se">\\</span><span class="s2">n&quot;)</span>
+<span class="s2">        if ( lines.length &gt; 35 ) { lines.shift(); }</span>
+<span class="s2">        div.text = lines.join(&quot;</span><span class="se">\\</span><span class="s2">n&quot;);</span>
+<span class="s2">    &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="n">style</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#</span><span class="si">%02x%02x%02x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="mi">150</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="mi">50</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="mi">30</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">)]</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="s2">&quot;pan,wheel_zoom,zoom_in,zoom_out,reset&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">4000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span>
+          <span class="n">fill_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="n">div</span> <span class="o">=</span> <span class="n">Div</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Button&quot;</span><span class="p">,</span> <span class="n">button_type</span><span class="o">=</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">column</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">row</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">div</span><span class="p">))</span>
+
+<span class="c1">## Events with no attributes</span>
+<span class="n">button</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">ButtonClick</span><span class="p">,</span> <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">))</span> <span class="c1"># Button click</span>
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">LODStart</span><span class="p">,</span> <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">))</span>         <span class="c1"># Start of LOD display</span>
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">LODEnd</span><span class="p">,</span> <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">))</span>           <span class="c1"># End of LOD display</span>
+
+<span class="c1">## Events with attributes</span>
+<span class="n">point_attributes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;sx&#39;</span><span class="p">,</span><span class="s1">&#39;sy&#39;</span><span class="p">]</span>                     <span class="c1"># Point events</span>
+<span class="n">wheel_attributes</span> <span class="o">=</span> <span class="n">point_attributes</span><span class="o">+</span><span class="p">[</span><span class="s1">&#39;delta&#39;</span><span class="p">]</span>              <span class="c1"># Mouse wheel event</span>
+<span class="n">pan_attributes</span> <span class="o">=</span> <span class="n">point_attributes</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;delta_x&#39;</span><span class="p">,</span> <span class="s1">&#39;delta_y&#39;</span><span class="p">]</span> <span class="c1"># Pan event</span>
+<span class="n">pinch_attributes</span> <span class="o">=</span> <span class="n">point_attributes</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">]</span>            <span class="c1"># Pinch event</span>
+
+<span class="n">point_events</span> <span class="o">=</span>  <span class="p">[</span><span class="n">events</span><span class="o">.</span><span class="n">Tap</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">DoubleTap</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">Press</span><span class="p">,</span>
+                 <span class="n">events</span><span class="o">.</span><span class="n">MouseMove</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">MouseEnter</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">MouseLeave</span><span class="p">,</span>
+                 <span class="n">events</span><span class="o">.</span><span class="n">PanStart</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">PanEnd</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">PinchStart</span><span class="p">,</span> <span class="n">events</span><span class="o">.</span><span class="n">PinchEnd</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">point_events</span><span class="p">:</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span><span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">point_attributes</span><span class="p">))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">MouseWheel</span><span class="p">,</span> <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">,</span><span class="n">attributes</span><span class="o">=</span><span class="n">wheel_attributes</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span>        <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">pan_attributes</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">Pinch</span><span class="p">,</span>      <span class="n">display_event</span><span class="p">(</span><span class="n">div</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">pinch_attributes</span><span class="p">))</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;js_events.html&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;JS Events Example&quot;</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-ace85d20c6330fe8dbf289a88bccf08c.js"
+    id="f522adf1-03ce-4e06-b1ab-d7c9ba62e2b7"
+    data-bokeh-model-id="d610b3d1-03c4-4dd8-9c36-9bf95bab1b1a"
+    data-bokeh-doc-id="7b66a71f-4dae-4b26-9e4c-52c698473cfe"
+></script></div>
+<div class="section" id="customjs-for-specialized-events">
+<h2>CustomJS for Specialized Events<a class="headerlink" href="#customjs-for-specialized-events" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the generic mechanisms described above for adding <code class="docutils literal"><span class="pre">CustomJS</span></code>
+callbacks to Bokeh models, there are also a some Bokeh models that have a
+<code class="docutils literal"><span class="pre">.callback</span></code> property specifically for executing <code class="docutils literal"><span class="pre">CustomJS</span></code> in response
+to specific events or situations.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The callbacks described below were added early to Bokeh in an ad-hoc
+fashion. Many of them can be accomplished with the generic mechanism
+described above, and as such, may be deprecated in favor of the generic
+mechanism in the future.</p>
+</div>
+<div class="section" id="customjs-for-widgets">
+<h3>CustomJS for Widgets<a class="headerlink" href="#customjs-for-widgets" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh lets you express even more advanced callbacks that must be called on
+the Javascript side in order to add custom logic and interactivity when a
+widget is used. For instance, we may want to change the data of a plot when
+a user clicks on a button or changes a slider Widget.</p>
+<p>Custom callbacks like these can be set using a CustomJS object and passing it
+as the <code class="docutils literal"><span class="pre">callback</span></code> argument to a Widget object.</p>
+<p>The code below shows an example of CustomJS set on a slider Widget that
+changes the source of a plot when the slider is used.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-473fff4d06ba73aba51c698c9d00b96a.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;callback.html&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mf">0.005</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        var data = source.data;</span>
+<span class="s2">        var f = cb_obj.value</span>
+<span class="s2">        x = data[&#39;x&#39;]</span>
+<span class="s2">        y = data[&#39;y&#39;]</span>
+<span class="s2">        for (i = 0; i &lt; x.length; i++) {</span>
+<span class="s2">            y[i] = Math.pow(x[i], f)</span>
+<span class="s2">        }</span>
+<span class="s2">        source.change.emit();</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">column</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">plot</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-473fff4d06ba73aba51c698c9d00b96a.js"
+    id="0efd9978-1fd6-4edc-a9b7-30f9dbbd5c43"
+    data-bokeh-model-id="6c8d2e76-05d4-432a-8317-afbed0ed816e"
+    data-bokeh-doc-id="1a1be58b-1956-480a-ba0e-f0270b74ef3e"
+></script></div>
+<div class="section" id="customjs-for-tools">
+<h3>CustomJS for Tools<a class="headerlink" href="#customjs-for-tools" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh allows for some tool events to trigger custom Javascript callbacks that
+have access to the tool&#8217;s attributes. Below, a callback on the BoxSelectTool
+uses the selection box dimensions (accessed in the geometry field of the
+cb_data object that is injected into the Callback code attribute), in order to
+add a Rect glyph to the plot with identical dimensions.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-63f0c5b9bfa3d22c4b2c6045517f0a3b.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">BoxSelectTool</span><span class="p">,</span> <span class="n">Range1d</span><span class="p">,</span> <span class="n">Rect</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;boxselecttool_callback.html&quot;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[],</span> <span class="n">width</span><span class="o">=</span><span class="p">[],</span> <span class="n">height</span><span class="o">=</span><span class="p">[]))</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        // get data source from Callback args</span>
+<span class="s2">        var data = source.data;</span>
+
+<span class="s2">        /// get BoxSelectTool dimensions from cb_data parameter of Callback</span>
+<span class="s2">        var geometry = cb_data[&#39;geometry&#39;];</span>
+
+<span class="s2">        /// calculate Rect attributes</span>
+<span class="s2">        var width = geometry[&#39;x1&#39;] - geometry[&#39;x0&#39;];</span>
+<span class="s2">        var height = geometry[&#39;y1&#39;] - geometry[&#39;y0&#39;];</span>
+<span class="s2">        var x = geometry[&#39;x0&#39;] + width/2;</span>
+<span class="s2">        var y = geometry[&#39;y0&#39;] + height/2;</span>
+
+<span class="s2">        /// update data source with new Rect attributes</span>
+<span class="s2">        data[&#39;x&#39;].push(x);</span>
+<span class="s2">        data[&#39;y&#39;].push(y);</span>
+<span class="s2">        data[&#39;width&#39;].push(width);</span>
+<span class="s2">        data[&#39;height&#39;].push(height);</span>
+
+<span class="s2">        // emit update of data source</span>
+<span class="s2">        source.change.emit();</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">box_select</span> <span class="o">=</span> <span class="n">BoxSelectTool</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+           <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+           <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">box_select</span><span class="p">],</span>
+           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select Below&quot;</span><span class="p">,</span>
+           <span class="n">x_range</span><span class="o">=</span><span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+           <span class="n">y_range</span><span class="o">=</span><span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+
+<span class="n">rect</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="s1">&#39;width&#39;</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="s1">&#39;height&#39;</span><span class="p">,</span>
+            <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+            <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;#009933&#39;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">add_glyph</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">rect</span><span class="p">,</span> <span class="n">selection_glyph</span><span class="o">=</span><span class="n">rect</span><span class="p">,</span> <span class="n">nonselection_glyph</span><span class="o">=</span><span class="n">rect</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-63f0c5b9bfa3d22c4b2c6045517f0a3b.js"
+    id="cabb261f-0732-469e-a1eb-d22e51a5bd30"
+    data-bokeh-model-id="75ecb6a4-21a5-492c-9b80-265894ca10b3"
+    data-bokeh-doc-id="b28940fa-58ab-4215-8d11-4fc970160afb"
+></script></div>
+<div class="section" id="customjs-for-selections">
+<h3>CustomJS for Selections<a class="headerlink" href="#customjs-for-selections" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh also provides the means to specify the same kind of callback to be
+executed whenever a selection changes. As a simple demonstration, the example
+below simply copies selected points on the first plot to the second. However,
+more sophisticated actions and computations are easily constructed in a
+similar way.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-a78c427a44b085f421f974aa4bbedd68.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">row</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;callback.html&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;lasso_select&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select Here&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">s1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[],</span> <span class="n">y</span><span class="o">=</span><span class="p">[]))</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Watch Here&quot;</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">s2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">s1</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">s2</span><span class="o">=</span><span class="n">s2</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        var inds = cb_obj.selected[&#39;1d&#39;].indices;</span>
+<span class="s2">        var d1 = cb_obj.data;</span>
+<span class="s2">        var d2 = s2.data;</span>
+<span class="s2">        d2[&#39;x&#39;] = []</span>
+<span class="s2">        d2[&#39;y&#39;] = []</span>
+<span class="s2">        for (i = 0; i &lt; inds.length; i++) {</span>
+<span class="s2">            d2[&#39;x&#39;].push(d1[&#39;x&#39;][inds[i]])</span>
+<span class="s2">            d2[&#39;y&#39;].push(d1[&#39;y&#39;][inds[i]])</span>
+<span class="s2">        }</span>
+<span class="s2">        s2.change.emit();</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">row</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-a78c427a44b085f421f974aa4bbedd68.js"
+    id="963dfca3-e50a-43dd-977d-4617e9122689"
+    data-bokeh-model-id="c317ba7a-c76d-43c6-86bc-31f578d1c33d"
+    data-bokeh-doc-id="bab7c26d-c3e5-4a05-b59a-167b6b1452ac"
+></script><p>Another more sophisticated example is shown below. It computes the average <cite>y</cite>
+value of any selected points (including multiple disjoint selections), and draws
+a line through that value.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-d6367161152f121e0c6c5ad20be89654.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;callback.html&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+<span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;navy&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;lasso_select&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Select Here&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ym</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;ym&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">s2</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">s2</span><span class="o">=</span><span class="n">s2</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        var inds = cb_obj.selected[&#39;1d&#39;].indices;</span>
+<span class="s2">        var d = cb_obj.data;</span>
+<span class="s2">        var ym = 0</span>
+
+<span class="s2">        if (inds.length == 0) { return; }</span>
+
+<span class="s2">        for (i = 0; i &lt; d[&#39;color&#39;].length; i++) {</span>
+<span class="s2">            d[&#39;color&#39;][i] = &quot;navy&quot;</span>
+<span class="s2">        }</span>
+<span class="s2">        for (i = 0; i &lt; inds.length; i++) {</span>
+<span class="s2">            d[&#39;color&#39;][inds[i]] = &quot;firebrick&quot;</span>
+<span class="s2">            ym += d[&#39;y&#39;][inds[i]]</span>
+<span class="s2">        }</span>
+
+<span class="s2">        ym /= inds.length</span>
+<span class="s2">        s2.data[&#39;ym&#39;] = [ym, ym]</span>
+
+<span class="s2">        cb_obj.change.emit();</span>
+<span class="s2">        s2.change.emit();</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-d6367161152f121e0c6c5ad20be89654.js"
+    id="fa172660-1a6c-4549-b1ba-60433e8feb4b"
+    data-bokeh-model-id="2b7c1adf-0174-4061-a29e-cc61fc2158a6"
+    data-bokeh-doc-id="8244ccf7-32e2-471f-b6b9-86a00014d708"
+></script></div>
+<div class="section" id="customjs-for-hover">
+<h3>CustomJS for Hover<a class="headerlink" href="#customjs-for-hover" title="Permalink to this headline">¶</a></h3>
+<p>The HoverTool has a callback which comes with two pieces of built-in data: the
+<cite>index</cite>, and the <cite>geometry</cite>. The <cite>index</cite> is the indices of any points that the
+hover tool is over.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-15c7b0d0fc0494a7132936ae20564c9d.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">CustomJS</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;hover_callback.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># define some points and a little graph between them</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Hover over points&#39;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">({</span><span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;y0&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;y1&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+<span class="n">sr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="s1">&#39;y0&#39;</span><span class="p">,</span> <span class="n">x1</span><span class="o">=</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="n">y1</span><span class="o">=</span><span class="s1">&#39;y1&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;olive&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">cr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;olive&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">hover_color</span><span class="o">=</span><span class="s1">&#39;olive&#39;</span><span class="p">,</span> <span class="n">hover_alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Add a hover tool, that sets the link data for a hovered circle</span>
+<span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">var links = </span><span class="si">%s</span><span class="s2">;</span>
+<span class="s2">var data = {&#39;x0&#39;: [], &#39;y0&#39;: [], &#39;x1&#39;: [], &#39;y1&#39;: []};</span>
+<span class="s2">var cdata = circle.data;</span>
+<span class="s2">var indices = cb_data.index[&#39;1d&#39;].indices;</span>
+<span class="s2">for (i=0; i &lt; indices.length; i++) {</span>
+<span class="s2">    ind0 = indices[i]</span>
+<span class="s2">    for (j=0; j &lt; links[ind0].length; j++) {</span>
+<span class="s2">        ind1 = links[ind0][j];</span>
+<span class="s2">        data[&#39;x0&#39;].push(cdata.x[ind0]);</span>
+<span class="s2">        data[&#39;y0&#39;].push(cdata.y[ind0]);</span>
+<span class="s2">        data[&#39;x1&#39;].push(cdata.x[ind1]);</span>
+<span class="s2">        data[&#39;y1&#39;].push(cdata.y[ind1]);</span>
+<span class="s2">    }</span>
+<span class="s2">}</span>
+<span class="s2">segment.data = data;</span>
+<span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="n">links</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;circle&#39;</span><span class="p">:</span> <span class="n">cr</span><span class="o">.</span><span class="n">data_source</span><span class="p">,</span> <span class="s1">&#39;segment&#39;</span><span class="p">:</span> <span class="n">sr</span><span class="o">.</span><span class="n">data_source</span><span class="p">},</span> <span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">HoverTool</span><span class="p">(</span><span class="n">tooltips</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="n">renderers</span><span class="o">=</span><span class="p">[</span><span class="n">cr</span><span class="p">]))</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-15c7b0d0fc0494a7132936ae20564c9d.js"
+    id="acd20d9b-f973-4d64-bcc0-e6fc56b0b366"
+    data-bokeh-model-id="b200feb6-d7b1-4dfd-94f4-f7384636de19"
+    data-bokeh-doc-id="97afe15d-45f2-4c8a-9cba-7b565ee77e76"
+></script></div>
+<div class="section" id="customjs-for-range-update">
+<h3>CustomJS for Range Update<a class="headerlink" href="#customjs-for-range-update" title="Permalink to this headline">¶</a></h3>
+<p>With Bokeh, ranges have a callback attribute that accept a Callback instance
+and execute javascript code on range updates that are triggered by tool
+interactions such as a box zoom, wheel scroll or pan.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-a9f875448c0b52703987a54f40b934e4.js"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">row</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">Rect</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s1">&#39;range_update_callback.html&#39;</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4000</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.5</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;#</span><span class="si">%02x%02x%02x</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="mi">150</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="mi">50</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="mi">30</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+
+<span class="n">jscode</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    var data = source.data;</span>
+<span class="s2">    var start = cb_obj.start;</span>
+<span class="s2">    var end = cb_obj.end;</span>
+<span class="s2">    data[&#39;</span><span class="si">%s</span><span class="s2">&#39;] = [start + (end - start) / 2];</span>
+<span class="s2">    data[&#39;</span><span class="si">%s</span><span class="s2">&#39;] = [end - start];</span>
+<span class="s2">    source.change.emit();</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pan and Zoom Here&#39;</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s1">&#39;box_zoom,wheel_zoom,pan,reset&#39;</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radii</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="n">p1</span><span class="o">.</span><span class="n">x_range</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="n">jscode</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">))</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">y_range</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="n">jscode</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">))</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;See Zoom Window Here&#39;</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="n">tools</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radii</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">line_color</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">fill_alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+            <span class="n">line_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">add_glyph</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">row</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-a9f875448c0b52703987a54f40b934e4.js"
+    id="23e63208-da44-48e6-83fe-5141a80453e3"
+    data-bokeh-model-id="6eb26641-2ebd-4fdf-bcd5-a00562e37d44"
+    data-bokeh-doc-id="8b17a0fc-5cae-45eb-95e4-4586751f1e75"
+></script></div>
+</div>
+<div class="section" id="customjs-with-coffeescript-code">
+<h2>CustomJS with CoffeeScript code<a class="headerlink" href="#customjs-with-coffeescript-code" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to write the code for <code class="docutils literal"><span class="pre">CustomJS</span></code> callbacks in <a class="reference external" href="http://coffeescript.org">CoffeeScript</a>.
+To accomplish this, use the <code class="docutils literal"><span class="pre">from_coffeescript</span></code> class method, which accepts
+the same <code class="docutils literal"><span class="pre">args</span></code> and <code class="docutils literal"><span class="pre">code</span></code> parameters:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">callback</span> <span class="o">=</span> <span class="n">CustomJS</span><span class="o">.</span><span class="n">from_coffeescript</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">plot</span><span class="p">),</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># coffeescript code here</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customjs-with-a-python-function">
+<h2>CustomJS with a Python function<a class="headerlink" href="#customjs-with-a-python-function" title="Permalink to this headline">¶</a></h2>
+<p>A CustomJS callback can also be implemented as a Python function, which
+is then translated to JavaScript using PyScript. This makes it easier
+for users to define client-side interactions without having to learn
+JavaScript. To use this functionality you need the Flexx library
+(install with <code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">bokeh</span> <span class="pre">flexx</span></code> or <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">flexx</span></code>).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">It is critical to note that <strong>no python code is ever executed when
+a CustomJS callback is used</strong>. This is true even when the callback is
+supplied as python code to be translated to JavaScript as described in
+this section. A <code class="docutils literal"><span class="pre">CustomJS</span></code> callback is only executed inside a browser
+JavaScript interpreter, and can only directly interact JavaScript data
+and functions (e.g., BokehJS Backbone models).</p>
+</div>
+<p>For more information about the subset of Python that is supported in
+callbacks, see the <a class="reference external" href="http://flexx.readthedocs.org/en/stable/pyscript">PyScript documentation</a>.</p>
+<p>We recommend using <code class="docutils literal"><span class="pre">window.x</span></code> for variables specific to JavaScript
+to avoid confusion and help static code analysis tools. You can add
+<code class="docutils literal"><span class="pre">window</span></code> as an argument to the callback function to help readability
+(and pyflakes), as in the example below.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">CustomJS</span><span class="p">,</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;callback.html&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mf">0.005</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">Figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">line_alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">cb_obj</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">change</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">,</span>
+                <span class="n">callback</span><span class="o">=</span><span class="n">CustomJS</span><span class="o">.</span><span class="n">from_py_func</span><span class="p">(</span><span class="n">callback</span><span class="p">))</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">column</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">plot</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-473fff4d06ba73aba51c698c9d00b96a.js"
+    id="0efd9978-1fd6-4edc-a9b7-30f9dbbd5c43"
+    data-bokeh-model-id="6c8d2e76-05d4-432a-8317-afbed0ed816e"
+    data-bokeh-doc-id="1a1be58b-1956-480a-ba0e-f0270b74ef3e"
+></script></div>
+<div class="section" id="openurl">
+<h2>OpenURL<a class="headerlink" href="#openurl" title="Permalink to this headline">¶</a></h2>
+<p>Opening an URL when users click on a glyph (for instance a circle marker) is
+a very popular feature. Bokeh lets users enable this feature by exposing an
+OpenURL callback object that can be passed to a Tap tool in order to have that
+action called whenever the users clicks on the glyph.</p>
+<p>The following code shows how to use the OpenURL action combined with a TapTool
+to open an URL whenever the user clicks on a circle.</p>
+<div class="highlight-python" id="docs/user_guide/interaction/callbacks.bokeh-plot-b2797ac49d1a07cd7354fbc00854acfe.js"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">OpenURL</span><span class="p">,</span> <span class="n">TapTool</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;openurl.html&quot;</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+           <span class="n">tools</span><span class="o">=</span><span class="s2">&quot;tap&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Click the Dots&quot;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;olive&quot;</span><span class="p">,</span> <span class="s2">&quot;firebrick&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">]</span>
+    <span class="p">))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="c1"># use the &quot;color&quot; column of the CDS to complete the URL</span>
+<span class="c1"># e.g. if the glyph at index 10 is selected, then @color</span>
+<span class="c1"># will be replaced with source.data[&#39;color&#39;][10]</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://www.colors.commutercreative.com/@color/&quot;</span>
+<span class="n">taptool</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">TapTool</span><span class="p">)</span>
+<span class="n">taptool</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">OpenURL</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<script
+    src="/en/0.12.6/scripts/bokeh-plot-b2797ac49d1a07cd7354fbc00854acfe.js"
+    id="cb8ebd72-0b91-4f28-bf53-8eef0fd98b15"
+    data-bokeh-model-id="db87ecc2-6a14-4918-8652-950dbffe9177"
+    data-bokeh-doc-id="512d9f09-9e99-408c-8e89-8ec88727f5bd"
+></script><p>Please note that <code class="docutils literal"><span class="pre">OpenURL</span></code> callbacks specifically and only work with
+<code class="docutils literal"><span class="pre">TapTool</span></code>, and are only invoked when a glyph is hit. That is, they do not
+execute on every tap. If you would like to execute a callback on every
+mouse tap, please see <a class="reference internal" href="#userguide-interaction-jscallbacks-customjs-interactions"><span class="std std-ref">CustomJS for User Interaction Events</span></a>.</p>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

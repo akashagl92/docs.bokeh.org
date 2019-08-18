@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Configuring Plot Tools &mdash; Bokeh 0.12.2 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600%7CNoto+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://static.bokeh.org/bokehplots_archive/main.css">
+
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "0.12.2";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="http://bokeh.pydata.org/en/latest/docs/user_guide/tools.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          
+              <li class="nav-link"><a href="//bokeh.org/">About</a></li>
+          
+              <li class="nav-link"><a href="/docs/gallery.html">Gallery</a></li>
+          
+              <li class="nav-link"><a href="//bokeh.pydata.org/en/latest/">Docs</a></li>
+          
+              <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">0.12.2</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.2/">0.12.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.1/">0.12.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.0/">0.12.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.10.0/">0.10.0</a></li>
+              
+            </ul>
+        </li>
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            <li class="nav-link doc-head"><a href="../releases/0.12.2.html">Releases</a></li>
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+  <form role="search" action="../../search.html" method="get">
+    <input type="search" name="q" placeholder="Search" />
+    <button type="submit">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon-black.png" alt="Search Icon">
+    </button>
+  </form>
+</div>
+    </div>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charts.html">Making High-level Charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuring Plot Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#positioning-the-toolbar">Positioning the Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-tools">Specifying Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-the-active-tools">Setting the Active Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-tools">Built-in Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pan-drag-tools">Pan/Drag Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boxselecttool">BoxSelectTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boxzoomtool">BoxZoomTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lassoselecttool">LassoSelectTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pantool">PanTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resizetool">ResizeTool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#click-tap-tools">Click/Tap Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polyselecttool">PolySelectTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tapselecttool">TapSelectTool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#scroll-pinch-tools">Scroll/Pinch Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wheelzoomtool">WheelZoomTool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#actions">Actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#undotool">UndoTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redotool">RedoTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resettool">ResetTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#savetool">SaveTool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inspectors">Inspectors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#crosshairtool">CrosshairTool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hovertool">HoverTool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-tool-visuals">Setting Tool Visuals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hover-tool">Hover Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-tooltips">Basic Tooltips</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-tooltip">Custom Tooltip</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selection-overlays">Selection Overlays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-level-of-detail">Controlling Level of Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction/linking.html">Linking Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction/widgets.html">Adding Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction/callbacks.html">JavaScript Callbacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using <code class="docutils literal"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/bokeh.html"><code class="docutils literal"><span class="pre">bokeh</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/charts.html"><code class="docutils literal"><span class="pre">bokeh.charts</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html"><code class="docutils literal"><span class="pre">bokeh.client</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html"><code class="docutils literal"><span class="pre">bokeh.core</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html"><code class="docutils literal"><span class="pre">bokeh.document</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html"><code class="docutils literal"><span class="pre">bokeh.driving</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html"><code class="docutils literal"><span class="pre">bokeh.embed</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/icons.html"><code class="docutils literal"><span class="pre">bokeh.icons</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html"><code class="docutils literal"><span class="pre">bokeh.io</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html"><code class="docutils literal"><span class="pre">bokeh.layouts</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html"><code class="docutils literal"><span class="pre">bokeh.model</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html"><code class="docutils literal"><span class="pre">bokeh.models</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/mpl.html"><code class="docutils literal"><span class="pre">bokeh.mpl</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html"><code class="docutils literal"><span class="pre">bokeh.palettes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html"><code class="docutils literal"><span class="pre">bokeh.plotting</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html"><code class="docutils literal"><span class="pre">bokeh.resources</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html"><code class="docutils literal"><span class="pre">bokeh.sampledata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html"><code class="docutils literal"><span class="pre">bokeh.server</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html"><code class="docutils literal"><span class="pre">bokeh.settings</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html"><code class="docutils literal"><span class="pre">bokeh.sphinxext</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html"><code class="docutils literal"><span class="pre">bokeh.themes</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html"><code class="docutils literal"><span class="pre">bokeh.tile_providers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html"><code class="docutils literal"><span class="pre">bokeh.util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.2.html">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.1.html">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.12.0.html">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.1.html">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.11.0.html">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.10.0.html">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.3.html">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.2.html">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.1.html">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.9.0.html">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.2.html">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.1.html">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.8.0.html">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.1.html">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.7.0.html">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.1.html">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.6.0.html">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.2.html">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.1.html">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.5.0.html">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.4.html">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.2.html">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.1.html">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.4.0.html">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.3.0.html">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.2.0.html">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/0.1.0.html">0.1.0 (Apr 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="configuring-plot-tools">
+<span id="userguide-tools"></span><h1>Configuring Plot Tools<a class="headerlink" href="#configuring-plot-tools" title="Permalink to this headline">¶</a></h1>
+<p>Bokeh comes with a number of interactive tools. There are three categories of tool
+interactions:</p>
+<ul class="simple">
+<li>Gestures:<ul>
+<li><a class="reference internal" href="#userguide-tools-pandrag"><span class="std std-ref">Pan/Drag Tools</span></a></li>
+<li><a class="reference internal" href="#userguide-tools-clicktap"><span class="std std-ref">Click/Tap Tools</span></a></li>
+<li><a class="reference internal" href="#userguide-tools-scrollpinch"><span class="std std-ref">Scroll/Pinch Tools</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#userguide-tools-actions"><span class="std std-ref">Actions</span></a></li>
+<li><a class="reference internal" href="#userguide-tools-inspectors"><span class="std std-ref">Inspectors</span></a></li>
+</ul>
+<p>For each type of gesture, one tool can be active at any given time, and
+the active tool is indicated on the toolbar by a highlight next to to the
+tool icon. Actions are immediate or modal operations that are only activated
+when their button in the toolbar is pressed. Inspectors are passive tools
+that report information or annotate the plot in some way.</p>
+<div class="section" id="positioning-the-toolbar">
+<span id="userguide-tools-toolbar"></span><h2>Positioning the Toolbar<a class="headerlink" href="#positioning-the-toolbar" title="Permalink to this headline">¶</a></h2>
+<p>By default, Bokeh plots come with a toolbar above the plot. In this section
+you will learn how to specify a different location for the toolbar, or to
+remove it entirely.</p>
+<p>The toolbar location can be specified by passing the <code class="docutils literal"><span class="pre">toolbar_location</span></code>
+parameter to the <code class="xref py py-func docutils literal"><span class="pre">figure()</span></code> function or to any <a class="reference internal" href="../reference/charts.html#bokeh-charts"><span class="std std-ref">bokeh.charts</span></a> Chart function.
+Valid values are:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">&quot;above&quot;</span></code></li>
+<li><code class="docutils literal"><span class="pre">&quot;below&quot;</span></code></li>
+<li><code class="docutils literal"><span class="pre">&quot;left&quot;</span></code></li>
+<li><code class="docutils literal"><span class="pre">&quot;right&quot;</span></code></li>
+</ul>
+<p>If you would like to hide the toolbar entirely, pass <code class="docutils literal"><span class="pre">None</span></code>.</p>
+<p>Below is some code that positions the toolbar below the plot. Try
+running the code and changing the <code class="docutils literal"><span class="pre">toolbar_location</span></code> value.</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-0"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># create a new plot with the toolbar below</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+           <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-4ab29ef3cfd3b34669e503d2636bc847.js"
+        id="9185f43e-d244-4c88-a067-0fa820f88b0a"
+        data-bokeh-model-id="7110ec10-7368-49ca-8d55-bcd5efb755a3"
+        data-bokeh-doc-id="8c1831b5-b26a-49ce-a346-683ab5626038"
+    ></script>
+</div><p>Note that the toolbar position clashes with the default axes, in this case
+setting the <code class="docutils literal"><span class="pre">toolbar_sticky</span></code> option to <code class="docutils literal"><span class="pre">False</span></code> will move the toolbar
+to outside of the region where the axis is drawn.</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-1"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># create a new plot with the toolbar below</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+           <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">toolbar_location</span><span class="o">=</span><span class="s2">&quot;below&quot;</span><span class="p">,</span>
+           <span class="n">toolbar_sticky</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-1f05dbcd1df5f901c4599c85ddb534ae.js"
+        id="13df9313-bb31-48ed-b96c-3caffcc4b2bc"
+        data-bokeh-model-id="9a483b5e-bc07-410c-9faa-2333339356aa"
+        data-bokeh-doc-id="cf01e849-1fe7-46aa-89c6-766cee1c4d8f"
+    ></script>
+</div></div>
+<div class="section" id="specifying-tools">
+<span id="userguide-tools-specifying-tools"></span><h2>Specifying Tools<a class="headerlink" href="#specifying-tools" title="Permalink to this headline">¶</a></h2>
+<p>At the lowest <code class="docutils literal"><span class="pre">bokeh.models</span></code> level, tools are added to a <code class="docutils literal"><span class="pre">Plot</span></code> by
+passing instances of <code class="docutils literal"><span class="pre">Tool</span></code> objects to the <code class="docutils literal"><span class="pre">add_tools</span></code> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">Plot</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">LassoSelectTool</span><span class="p">())</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">WheelZoomTool</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>This explicit way of adding tools works with any Bokeh <code class="docutils literal"><span class="pre">Plot</span></code> or
+<code class="docutils literal"><span class="pre">Plot</span></code> subclass, such as <code class="docutils literal"><span class="pre">Figure</span></code> or <code class="docutils literal"><span class="pre">Chart</span></code>.</p>
+<p>Tools can be specified by passing the <code class="docutils literal"><span class="pre">tools</span></code> parameter to the <code class="xref py py-func docutils literal"><span class="pre">figure()</span></code>
+function or to any <a class="reference internal" href="../reference/charts.html#bokeh-charts"><span class="std std-ref">bokeh.charts</span></a> Chart function. The tools parameter
+accepts a list of tool objects, for instance:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">BoxZoomTool</span><span class="p">(),</span> <span class="n">ResetTool</span><span class="p">()]</span>
+</pre></div>
+</div>
+<p>Tools can also be supplied conveniently with a comma-separate string
+containing tool shortcut names:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tools</span> <span class="o">=</span> <span class="s2">&quot;pan,wheel_zoom,box_zoom,reset&quot;</span>
+</pre></div>
+</div>
+<p>However, this method does not allow setting properties of the tools.</p>
+<p>Finally, it is also always possible to add new tools to a plot by passing
+a tool object to the <code class="docutils literal"><span class="pre">add_tools</span></code> method of a plot. This can also be done
+in conjunction with the <code class="docutils literal"><span class="pre">tools</span></code> keyword described above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="s2">&quot;pan,wheel_zoom,box_zoom,reset&quot;</span><span class="p">)</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">add_tools</span><span class="p">(</span><span class="n">BoxSelectTool</span><span class="p">(</span><span class="n">dimensions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-active-tools">
+<span id="userguide-tools-setting-active-tools"></span><h2>Setting the Active Tools<a class="headerlink" href="#setting-the-active-tools" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh toolbars can have (at most) one active tool from each kind of gesture
+(drag, scroll, tap). By default, Bokeh will use a default pre-defined
+order of preference to choose one of each kind from the set of configured
+tools, to be active.</p>
+<p>However it is possible to exert control over which tool is active. At the
+lowest <code class="docutils literal"><span class="pre">bokeh.models</span></code> level, this is accomplished by using the <code class="docutils literal"><span class="pre">active_drag</span></code>,
+<code class="docutils literal"><span class="pre">active_scroll</span></code>, and <code class="docutils literal"><span class="pre">active_tap</span></code> properties of <code class="docutils literal"><span class="pre">Toolbar</span></code>. These
+properties can take the following values:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">None</span></code> &#8212; there is no active tool of this kind</li>
+<li><code class="docutils literal"><span class="pre">&quot;auto&quot;</span></code> &#8212; Bokeh chooses a tool of this kind to be active (possibly none)</li>
+<li>a <code class="docutils literal"><span class="pre">Tool</span></code> instance &#8212; Bokeh sets the given tool to be the active tool</li>
+</ul>
+<p>As an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># configure so that no drag tools are active</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">active_drag</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># configure so that Bokeh chooses what (if any) scroll tool is active</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">active_scroll</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span>
+
+<span class="c1"># configure so that a specific PolySelect tap tool is active</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">active_tap</span> <span class="o">=</span> <span class="n">poly_select</span>
+</pre></div>
+</div>
+<p>The default value for all of these properties is <code class="docutils literal"><span class="pre">&quot;auto&quot;</span></code>.</p>
+<p>Active tools can be specified by passing the these properties as keyword
+arguments to the <code class="xref py py-func docutils literal"><span class="pre">figure()</span></code> function or to any <a class="reference internal" href="../reference/charts.html#bokeh-charts"><span class="std std-ref">bokeh.charts</span></a> Chart function.
+In this case, it is also possible to pass any one of the string names for,
+ease of configuration:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># configures the lasso tool to be active</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">tools</span><span class="o">=</span><span class="s2">&quot;pan,lasso_select,box_select&quot;</span><span class="p">,</span> <span class="n">active_drag</span><span class="o">=</span><span class="s2">&quot;lasso_select&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="built-in-tools">
+<span id="userguide-tools-builtin-tools"></span><h2>Built-in Tools<a class="headerlink" href="#built-in-tools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pan-drag-tools">
+<span id="userguide-tools-pandrag"></span><h3>Pan/Drag Tools<a class="headerlink" href="#pan-drag-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by panning (on touch devices) or left-dragging (on
+mouse devices). Only one pan/drag tool may be active at a time. Where
+applicable, Pan/Drag tools will respect any max and min values set on ranges.</p>
+<div class="section" id="boxselecttool">
+<h4>BoxSelectTool<a class="headerlink" href="#boxselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'box_select'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/BoxSelect.png"><img alt="box_select_icon" src="../../_images/BoxSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The box selection tool allows the user to define a rectangular selection
+region by left-dragging a mouse, or dragging a finger across the plot area.
+The box select tool may be configured to select across only one dimension by
+setting the <code class="docutils literal"><span class="pre">dimensions</span></code> property to a list containing <code class="docutils literal"><span class="pre">width</span></code> or
+<code class="docutils literal"><span class="pre">height</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, press the SHIFT key. To clear the
+selection, press the ESC key.</p>
+</div>
+</div>
+<div class="section" id="boxzoomtool">
+<h4>BoxZoomTool<a class="headerlink" href="#boxzoomtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'box_zoom'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/BoxZoom.png"><img alt="box_zoom_icon" src="../../_images/BoxZoom.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The box zoom tool allows the user to define a rectangular region to zoom the
+plot bounds too, by left-dragging a mouse, or dragging a finger across the
+plot area.</p>
+</div>
+<div class="section" id="lassoselecttool">
+<h4>LassoSelectTool<a class="headerlink" href="#lassoselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'lasso_select'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/LassoSelect.png"><img alt="lasso_select_icon" src="../../_images/LassoSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The lasso selection tool allows the user to define an arbitrary region for
+selection by left-dragging a mouse, or dragging a finger across the plot area.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, press the SHIFT key. To clear the selection,
+press the ESC key.</p>
+</div>
+</div>
+<div class="section" id="pantool">
+<h4>PanTool<a class="headerlink" href="#pantool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'pan'</span></code>, <code class="docutils literal"><span class="pre">'xpan'</span></code>, <code class="docutils literal"><span class="pre">'ypan'</span></code>,</li>
+<li>icon: <a class="reference internal" href="../../_images/Pan.png"><img alt="pan_icon" src="../../_images/Pan.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The pan tool allows the user to pan the plot by left-dragging a mouse or dragging a
+finger across the plot region.</p>
+<p>It is also possible to constrain the pan tool to only act on either just the x-axis or
+just the y-axis by setting the <code class="docutils literal"><span class="pre">dimensions</span></code> property to a list containing <code class="docutils literal"><span class="pre">width</span></code>
+or <code class="docutils literal"><span class="pre">height</span></code>. Additionally, there are tool aliases <code class="docutils literal"><span class="pre">'xpan'</span></code> and <code class="docutils literal"><span class="pre">'ypan'</span></code>,
+respectively.</p>
+</div>
+<div class="section" id="resizetool">
+<h4>ResizeTool<a class="headerlink" href="#resizetool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'resize'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/Resize.png"><img alt="resize_icon" src="../../_images/Resize.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The resize tool allows the user to left-drag a mouse or drag a finger to resize
+the entire plot.</p>
+</div>
+</div>
+<div class="section" id="click-tap-tools">
+<span id="userguide-tools-clicktap"></span><h3>Click/Tap Tools<a class="headerlink" href="#click-tap-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by tapping (on touch devices) or left-clicking (on
+mouse devices). Only one click/tap tool may be active at a time.</p>
+<div class="section" id="polyselecttool">
+<h4>PolySelectTool<a class="headerlink" href="#polyselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'poly_select'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/PolygonSelect.png"><img alt="poly_select_icon" src="../../_images/PolygonSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The polygon selection tool allows the user to define an arbitrary polygonal
+region for selection by left-clicking a mouse, or tapping a finger at different
+locations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Complete the selection by making a double left-click or tapping. To make a
+multiple selection, press the SHIFT key. To clear the selection, press the
+ESC key.</p>
+</div>
+</div>
+<div class="section" id="tapselecttool">
+<h4>TapSelectTool<a class="headerlink" href="#tapselecttool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'tap'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/TapSelect.png"><img alt="tap_select_icon" src="../../_images/TapSelect.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The tap selection tool allows the user to select at single points by clicking
+a left mouse button, or tapping with a finger.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To make a multiple selection, press the SHIFT key. To clear the selection,
+press the ESC key.</p>
+</div>
+</div>
+</div>
+<div class="section" id="scroll-pinch-tools">
+<span id="userguide-tools-scrollpinch"></span><h3>Scroll/Pinch Tools<a class="headerlink" href="#scroll-pinch-tools" title="Permalink to this headline">¶</a></h3>
+<p>These tools are employed by pinching (on touch devices) or scrolling (on
+mouse devices). Only one scroll/pinch tool may be active at a time.</p>
+<div class="section" id="wheelzoomtool">
+<h4>WheelZoomTool<a class="headerlink" href="#wheelzoomtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'wheel_zoom'</span></code>, <code class="docutils literal"><span class="pre">'xwheel_zoom'</span></code>, <code class="docutils literal"><span class="pre">'ywheel_zoom'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/WheelZoom.png"><img alt="wheel_zoom_icon" src="../../_images/WheelZoom.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The wheel zoom tool will zoom the plot in and out, centered on the current
+mouse location. It will respect any min and max values and ranges preventing
+zooming in and out beyond these.</p>
+<p>It is also possible to constraint the wheel zoom tool to only act on either
+just the x-axis or just the y-axis by setting the <code class="docutils literal"><span class="pre">dimensions</span></code> property to
+a list containing <code class="docutils literal"><span class="pre">width</span></code> or <code class="docutils literal"><span class="pre">height</span></code>. Additionally, there are tool aliases
+<code class="docutils literal"><span class="pre">'xwheel_zoom'</span></code> and <code class="docutils literal"><span class="pre">'ywheel_zoom'</span></code>, respectively.</p>
+</div>
+</div>
+<div class="section" id="actions">
+<span id="userguide-tools-actions"></span><h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p>Actions are operations that are activated only when their button in the toolbar
+is tapped or clicked. They are typically modal or immediate-acting.</p>
+<div class="section" id="undotool">
+<h4>UndoTool<a class="headerlink" href="#undotool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'undo'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/Undo.png"><img alt="undo_icon" src="../../_images/Undo.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The undo tool allows to restore previous state of the plot.</p>
+</div>
+<div class="section" id="redotool">
+<h4>RedoTool<a class="headerlink" href="#redotool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'redo'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/Redo.png"><img alt="redo_icon" src="../../_images/Redo.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The redo tool reverses the last action performed by undo tool.</p>
+</div>
+<div class="section" id="resettool">
+<h4>ResetTool<a class="headerlink" href="#resettool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'reset'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/Reset.png"><img alt="reset_icon" src="../../_images/Reset.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The reset tool will restore the plot ranges to their original values.</p>
+</div>
+<div class="section" id="savetool">
+<h4>SaveTool<a class="headerlink" href="#savetool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'save'</span></code></li>
+<li>icon: <a class="reference internal" href="../../_images/Save.png"><img alt="save_icon" src="../../_images/Save.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>The save tool pops up a modal dialog that allows the user to save a PNG image
+of the plot.</p>
+</div>
+</div>
+<div class="section" id="inspectors">
+<span id="userguide-tools-inspectors"></span><h3>Inspectors<a class="headerlink" href="#inspectors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>menu icon: <a class="reference internal" href="../../_images/Inspector.png"><img alt="inspector_icon" src="../../_images/Inspector.png" style="height: 14pt;" /></a></li>
+</ul>
+<p>Inspectors are passive tools that annotate or otherwise report information about
+the plot, based on the current cursor position. Any number of inspectors may be
+active at any given time. The inspectors menu in the toolbar allows users to
+toggle the active state of any inspector.</p>
+<div class="section" id="crosshairtool">
+<h4>CrosshairTool<a class="headerlink" href="#crosshairtool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'crosshair'</span></code></li>
+</ul>
+<p>Th crosshair tool draws a crosshair annotation over the plot, centered on
+the current mouse position. The crosshair tool may be configured to draw
+across only one dimension by setting the <code class="docutils literal"><span class="pre">dimensions</span></code> property to a
+list containing <code class="docutils literal"><span class="pre">width</span></code> or <code class="docutils literal"><span class="pre">height</span></code>.</p>
+</div>
+<div class="section" id="hovertool">
+<h4>HoverTool<a class="headerlink" href="#hovertool" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>name: <code class="docutils literal"><span class="pre">'hover'</span></code></li>
+</ul>
+<p>The hover tool pops up a tooltip div whenever the cursor is over a glyph.
+The information comes from the glyphs data source and is configurable through
+a simple tooltips dictionary that maps displayed names to columns in the data source,
+or to special known variables</p>
+<hr class="docutils" />
+<p>Below is some code that shows how to specify which tools to add to the
+toolbar.</p>
+<p>Try running the code and changing the name of tools being added to the
+tools with valid values</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-2"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add hover to this comma-separated string and see what changes</span>
+<span class="n">TOOLS</span> <span class="o">=</span> <span class="s1">&#39;box_zoom,box_select,crosshair,resize,reset&#39;</span>
+
+<span class="c1"># create a new plot with the toolbar below</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-061120d9180f5c9e501c35a78929a98e.js"
+        id="67b76154-799d-4abf-9711-fc1f71003ee4"
+        data-bokeh-model-id="6a2431c6-74b8-4748-81f5-932020b40fbc"
+        data-bokeh-doc-id="b4572e20-3271-4414-b827-542cbc0e882a"
+    ></script>
+</div><p>or with a list of the tool instances:</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-3"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span><span class="p">,</span> <span class="n">BoxSelectTool</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+<span class="n">TOOLS</span> <span class="o">=</span> <span class="p">[</span><span class="n">BoxSelectTool</span><span class="p">(),</span> <span class="n">HoverTool</span><span class="p">()]</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-e5b8e9f87b15b2f5fc13b438b8c61dfb.js"
+        id="4c0c5a08-900d-48a4-9626-ddc391d06232"
+        data-bokeh-model-id="b3edbd5e-78c7-4703-8b63-fb5955c5d25d"
+        data-bokeh-doc-id="80132391-d972-44e2-90a7-d7ad7ff889b3"
+    ></script>
+</div></div>
+</div>
+</div>
+<div class="section" id="setting-tool-visuals">
+<h2>Setting Tool Visuals<a class="headerlink" href="#setting-tool-visuals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hover-tool">
+<h3>Hover Tool<a class="headerlink" href="#hover-tool" title="Permalink to this headline">¶</a></h3>
+<p>The hover tool is a passive inspector tool. It is generally on at all times,
+but can be configured in the inspector’s menu associated with the toolbar.</p>
+<p>The hover tool displays informational tooltips whenever the cursor is directly
+over a glyph. The data to show comes from the glyph’s data source, and what is
+to be displayed is configurable through a tooltips attribute that maps display
+names to columns in the data source, or to special known variables.</p>
+<p>Field names starting with “&#64;” are interpreted as columns on the data source.
+Field names starting with “$” are special, known fields, e.g. <cite>$x</cite> will
+display the x-coordinate under the current mouse position. More information
+about those fields can be found in the <a class="reference internal" href="../reference/models/tools.html#bokeh.models.tools.HoverTool" title="bokeh.models.tools.HoverTool"><code class="xref py py-class docutils literal"><span class="pre">HoverTool</span></code></a> reference.</p>
+<div class="section" id="basic-tooltips">
+<h4>Basic Tooltips<a class="headerlink" href="#basic-tooltips" title="Permalink to this headline">¶</a></h4>
+<p>The hover tool will generate a default &#8220;tabular&#8221; tooltip of field names
+and their associated values. These field names and values are supplied
+as a list of <em>(field name, value)</em> tuples. For instance, the tooltip
+list below on the left will produce the basic default tooltip below on
+the right:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="75%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="n">hover</span><span class="o">.</span><span class="n">tooltips</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;$index&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;(x,y)&quot;</span><span class="p">,</span> <span class="s2">&quot;($x, $y)&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;radius&quot;</span><span class="p">,</span> <span class="s2">&quot;@radius&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;fill color&quot;</span><span class="p">,</span> <span class="s2">&quot;$color[hex, swatch]:fill_color&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;@foo&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;@bar&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</td>
+<td><img alt="hover_basic" src="../../_images/hover_basic.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>Here is a complete example of how to configure and use the hover tool with
+default tooltip:</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-4"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+            <span class="n">desc</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span>
+        <span class="n">tooltips</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="s2">&quot;$index&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;(x,y)&quot;</span><span class="p">,</span> <span class="s2">&quot;($x, $y)&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;desc&quot;</span><span class="p">,</span> <span class="s2">&quot;@desc&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">hover</span><span class="p">],</span>
+           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mouse over the dots&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-037fa5b7d15a4d622cd167212c66d966.js"
+        id="930ebed6-7a39-41ed-a613-046e148b9a49"
+        data-bokeh-model-id="41493d01-d868-48ed-8e58-dd4fe3a2fc1e"
+        data-bokeh-doc-id="877274b7-90ad-4d85-afcd-0dfa7a64bf11"
+    ></script>
+</div></div>
+<div class="section" id="custom-tooltip">
+<h4>Custom Tooltip<a class="headerlink" href="#custom-tooltip" title="Permalink to this headline">¶</a></h4>
+<p>It is also possible to supply a custom tooltip template. To do this,
+pass an HTML string, with the Bokeh tooltip field name symbols wherever
+substitutions are desired. An example is shown below:</p>
+<div class="highlight-python" id="tools.rst.bokeh-plot-5"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">ColumnDataSource</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HoverTool</span>
+
+<span class="n">output_file</span><span class="p">(</span><span class="s2">&quot;toolbar.html&quot;</span><span class="p">)</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+            <span class="n">desc</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">],</span>
+            <span class="n">imgs</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s1">&#39;http://bokeh.pydata.org/static/snake.jpg&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;http://bokeh.pydata.org/static/snake2.png&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;http://bokeh.pydata.org/static/snake3D.png&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;http://bokeh.pydata.org/static/snake4_TheRevenge.png&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;http://bokeh.pydata.org/static/snakebite.jpg&#39;</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">hover</span> <span class="o">=</span> <span class="n">HoverTool</span><span class="p">(</span>
+        <span class="n">tooltips</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;div&gt;</span>
+<span class="s2">            &lt;div&gt;</span>
+<span class="s2">                &lt;img</span>
+<span class="s2">                    src=&quot;@imgs&quot; height=&quot;42&quot; alt=&quot;@imgs&quot; width=&quot;42&quot;</span>
+<span class="s2">                    style=&quot;float: left; margin: 0px 15px 15px 0px;&quot;</span>
+<span class="s2">                    border=&quot;2&quot;</span>
+<span class="s2">                &gt;&lt;/img&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+<span class="s2">            &lt;div&gt;</span>
+<span class="s2">                &lt;span style=&quot;font-size: 17px; font-weight: bold;&quot;&gt;@desc&lt;/span&gt;</span>
+<span class="s2">                &lt;span style=&quot;font-size: 15px; color: #966;&quot;&gt;[$index]&lt;/span&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+<span class="s2">            &lt;div&gt;</span>
+<span class="s2">                &lt;span style=&quot;font-size: 15px;&quot;&gt;Location&lt;/span&gt;</span>
+<span class="s2">                &lt;span style=&quot;font-size: 10px; color: #696;&quot;&gt;($x, $y)&lt;/span&gt;</span>
+<span class="s2">            &lt;/div&gt;</span>
+<span class="s2">        &lt;/div&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">hover</span><span class="p">],</span>
+           <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mouse over the dots&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+
+<div class="bk-root">
+    
+    <script
+        src="bokeh-plot-d66f889ba0ebe5db95155e43581d5a56.js"
+        id="71452b6f-5727-465f-9abe-851a5b5d26fd"
+        data-bokeh-model-id="9439d14e-f289-4be0-8889-526269569c04"
+        data-bokeh-doc-id="6a398ea0-2bac-4663-b56d-add460237a57"
+    ></script>
+</div></div>
+</div>
+<div class="section" id="selection-overlays">
+<h3>Selection Overlays<a class="headerlink" href="#selection-overlays" title="Permalink to this headline">¶</a></h3>
+<p>Selection Overlays can also be configured.  See the <a class="reference internal" href="styling.html#userguide-styling-tool-overlays"><span class="std std-ref">Tool Overlays</span></a> section
+for more information.</p>
+</div>
+</div>
+<div class="section" id="controlling-level-of-detail">
+<span id="userguide-tools-lod"></span><h2>Controlling Level of Detail<a class="headerlink" href="#controlling-level-of-detail" title="Permalink to this headline">¶</a></h2>
+<p>Although the HTML canvas can comfortably display tens or even hundreds of
+thousands of glyphs, doing so can have adverse affects on interactive
+performance. In order to accommodate large-ish (but not enormous) data
+sizes, Bokeh plots offer &#8220;Level of Detail&#8221; (LOD) capability in the client.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Another option, when dealing with very large data volumes, is to use the
+Bokeh Server to perform downsampling on data before it is sent to the
+browser. Such an approach is unavoidable past a certain data size. See
+<a class="reference internal" href="server.html#userguide-server"><span class="std std-ref">Running a Bokeh Server</span></a> for more information.</p>
+</div>
+<p>The basic idea is that during interactive operations (e.g., panning or zooming),
+the plot only draws some small fraction of data points. This hopefully allows the
+general sense of the interaction to be preserved mid-flight, while maintaining
+interactive performance. There are four properties on <a class="reference internal" href="../reference/models/plots.html#bokeh.models.plots.Plot" title="bokeh.models.plots.Plot"><code class="xref py py-class docutils literal"><span class="pre">Plot</span></code></a> objects that control
+LOD behavior:</p>
+<dl class="attribute">
+<dt id="bokeh.models.plots.lod_factor">
+<code class="descname">lod_factor</code><a class="headerlink" href="#bokeh.models.plots.lod_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> lod_factor:Int</p>
+<p>Decimation factor to use when applying level-of-detail decimation.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.plots.lod_interval">
+<code class="descname">lod_interval</code><a class="headerlink" href="#bokeh.models.plots.lod_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> lod_interval:Int</p>
+<p>Interval (in ms) during which an interactive tool event will enable
+level-of-detail downsampling.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.plots.lod_threshold">
+<code class="descname">lod_threshold</code><a class="headerlink" href="#bokeh.models.plots.lod_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> lod_threshold:Int</p>
+<p>A number of data points, above which level-of-detail downsampling may
+be performed by glyph renderers. Set to <code class="docutils literal"><span class="pre">None</span></code> to disable any
+level-of-detail downsampling.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.plots.lod_timeout">
+<code class="descname">lod_timeout</code><a class="headerlink" href="#bokeh.models.plots.lod_timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> lod_timeout:Int</p>
+<p>Timeout (in ms) for checking whether interactive tool events are still
+occurring. Once level-of-detail mode is enabled, a check is made every
+<code class="docutils literal"><span class="pre">lod_timeout</span></code> ms. If no interactive tool events have happened,
+level-of-detail mode is disabled.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+          <li><a href="//bokeh.org/">About</a></li>
+      
+          <li><a href="//bokeh.org/team/">Team</a></li>
+      
+          <li><a href="//bokeh.org/team/">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Links</span></li>
+      
+          <li><a href="//bokeh.org/">FAQs</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Technical vision</a></li>
+      
+          <li><a href="//bokeh.org/roadmap/">Roadmap</a></li>
+      
+          <li><a href="//bokeh.org/citation/">Citation</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          <li><a href="//bokeh.org/">Contribute</a></li>
+      
+          <li><a href="//groups.google.com/a/continuum.io/forum/#!forum/bokeh">Mailing list</a></li>
+      
+          <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+      
+          <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+      
+          <li><a href="//www.youtube.com/channel/UCK0rSk29mmg4UT4bIOvPYhw">YouTube</a></li>
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015, Anaconda.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

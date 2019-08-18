@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.axes &mdash; Bokeh 1.0.4 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.0.4";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/reference/models/axes.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.0.4</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">bokeh.models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annotations.html">bokeh.models.annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrow_heads.html">bokeh.models.arrow_heads</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.models.axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.models.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">bokeh.models.expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">bokeh.models.filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatters.html">bokeh.models.formatters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">bokeh.models.glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html">bokeh.models.graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grids.html">bokeh.models.grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouts.html">bokeh.models.layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_plots.html">bokeh.models.map_plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mappers.html">bokeh.models.mappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">bokeh.models.markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plots.html">bokeh.models.plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranges.html">bokeh.models.ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderers.html">bokeh.models.renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scales.html">bokeh.models.scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selections.html">bokeh.models.selections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sources.html">bokeh.models.sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickers.html">bokeh.models.tickers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiles.html">bokeh.models.tiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">bokeh.models.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html">bokeh.models.transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.buttons.html">bokeh.models.widgets.buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.groups.html">bokeh.models.widgets.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.icons.html">bokeh.models.widgets.icons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.inputs.html">bokeh.models.widgets.inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.markups.html">bokeh.models.widgets.markups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.panels.html">bokeh.models.widgets.panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.sliders.html">bokeh.models.widgets.sliders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.tables.html">bokeh.models.widgets.tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.widget.html">bokeh.models.widgets.widget</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#id2">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#id3">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-models-axes">
+<span id="id1"></span><h1>bokeh.models.axes<a class="headerlink" href="#bokeh-models-axes" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.models.axes"></span><p>Guide renderers for various kinds of axes that can be added to
+Bokeh plots</p>
+<dl class="class">
+<dt id="bokeh.models.axes.Axis">
+<em class="property">class </em><code class="descname">Axis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#Axis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.Axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="renderers.html#bokeh.models.renderers.GuideRenderer" title="bokeh.models.renderers.GuideRenderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.renderers.GuideRenderer</span></code></a></p>
+<p>A base class that defines common properties for all axis types.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label">
+<code class="descname">axis_label</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>A text label for the axis, displayed parallel to the axis rule.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">LaTeX notation is not currently supported; please see
+<a class="reference external" href="https://github.com/bokeh/bokeh/issues/647">#647</a> to track progress or contribute.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_standoff">
+<code class="descname">axis_label_standoff</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_standoff" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that the axis labels should be offset
+from the tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_align">
+<code class="descname">axis_label_text_align</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextAlign" title="bokeh.core.enums.TextAlign"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextAlign</span></code></a>  )</p>
+<p>The text align of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_alpha">
+<code class="descname">axis_label_text_alpha</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The text alpha of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_baseline">
+<code class="descname">axis_label_text_baseline</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextBaseline" title="bokeh.core.enums.TextBaseline"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextBaseline</span></code></a>  )</p>
+<p>The text baseline of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_color">
+<code class="descname">axis_label_text_color</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The text color of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_font">
+<code class="descname">axis_label_text_font</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_font" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>The text font of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_font_size">
+<code class="descname">axis_label_text_font_size</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.FontSizeSpec" title="bokeh.core.properties.FontSizeSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontSizeSpec</span></code></a></p>
+<p>The text font size of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_font_style">
+<code class="descname">axis_label_text_font_style</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_font_style" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.FontStyle" title="bokeh.core.enums.FontStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontStyle</span></code></a>  )</p>
+<p>The text font style of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_label_text_line_height">
+<code class="descname">axis_label_text_line_height</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_label_text_line_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The text line height of the axis label.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_alpha">
+<code class="descname">axis_line_alpha</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line alpha of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_cap">
+<code class="descname">axis_line_cap</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineCap" title="bokeh.core.enums.LineCap"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineCap</span></code></a>  )</p>
+<p>The line cap of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_color">
+<code class="descname">axis_line_color</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The line color of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_dash">
+<code class="descname">axis_line_dash</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_dash" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.DashPattern" title="bokeh.core.properties.DashPattern"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashPattern</span></code></a></p>
+<p>The line dash of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_dash_offset">
+<code class="descname">axis_line_dash_offset</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_dash_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The line dash offset of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_join">
+<code class="descname">axis_line_join</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_join" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineJoin" title="bokeh.core.enums.LineJoin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineJoin</span></code></a>  )</p>
+<p>The line join of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.axis_line_width">
+<code class="descname">axis_line_width</code><a class="headerlink" href="#bokeh.models.axes.Axis.axis_line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line width of the axis line.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#bokeh.models.axes.Axis.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal notranslate"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a>  ) )</p>
+<p>Bounds for the rendered axis. If unset, the axis will span the
+entire plot in the given dimension.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.fixed_location">
+<code class="descname">fixed_location</code><a class="headerlink" href="#bokeh.models.axes.Axis.fixed_location" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ) )</p>
+<p>Set to specify a fixed coordinate location to draw the axis. The direction
+of ticks and major labels is determined by the side panel that the axis
+belongs to.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Axes labels are suppressed when axes are positioned at fixed locations
+inside the central plot area.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.formatter">
+<code class="descname">formatter</code><a class="headerlink" href="#bokeh.models.axes.Axis.formatter" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="formatters.html#bokeh.models.formatters.TickFormatter" title="bokeh.models.formatters.TickFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">TickFormatter</span></code></a>  )</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">TickFormatter</span></code> to use for formatting the visual appearance
+of ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_orientation">
+<code class="descname">major_label_orientation</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(horizontal, vertical) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a>  )</p>
+<p>What direction the major label text should be oriented. If a
+number is supplied, the angle of the text is measured from horizontal.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_overrides">
+<code class="descname">major_label_overrides</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_overrides" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  )</p>
+<p>Provide explicit tick label values for specific tick locations that
+override normal formatting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_standoff">
+<code class="descname">major_label_standoff</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_standoff" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that the major tick labels should be
+offset from the associated ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_align">
+<code class="descname">major_label_text_align</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextAlign" title="bokeh.core.enums.TextAlign"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextAlign</span></code></a>  )</p>
+<p>The text align of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_alpha">
+<code class="descname">major_label_text_alpha</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The text alpha of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_baseline">
+<code class="descname">major_label_text_baseline</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextBaseline" title="bokeh.core.enums.TextBaseline"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextBaseline</span></code></a>  )</p>
+<p>The text baseline of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_color">
+<code class="descname">major_label_text_color</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The text color of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_font">
+<code class="descname">major_label_text_font</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_font" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>The text font of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_font_size">
+<code class="descname">major_label_text_font_size</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.FontSizeSpec" title="bokeh.core.properties.FontSizeSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontSizeSpec</span></code></a></p>
+<p>The text font size of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_font_style">
+<code class="descname">major_label_text_font_style</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_font_style" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.FontStyle" title="bokeh.core.enums.FontStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontStyle</span></code></a>  )</p>
+<p>The text font style of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_label_text_line_height">
+<code class="descname">major_label_text_line_height</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_label_text_line_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The text line height of the major tick labels.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_in">
+<code class="descname">major_tick_in</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_in" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that major ticks should extend into the
+main plot area.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_alpha">
+<code class="descname">major_tick_line_alpha</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line alpha of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_cap">
+<code class="descname">major_tick_line_cap</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineCap" title="bokeh.core.enums.LineCap"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineCap</span></code></a>  )</p>
+<p>The line cap of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_color">
+<code class="descname">major_tick_line_color</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The line color of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_dash">
+<code class="descname">major_tick_line_dash</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_dash" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.DashPattern" title="bokeh.core.properties.DashPattern"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashPattern</span></code></a></p>
+<p>The line dash of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_dash_offset">
+<code class="descname">major_tick_line_dash_offset</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_dash_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The line dash offset of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_join">
+<code class="descname">major_tick_line_join</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_join" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineJoin" title="bokeh.core.enums.LineJoin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineJoin</span></code></a>  )</p>
+<p>The line join of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_line_width">
+<code class="descname">major_tick_line_width</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line width of the major ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.major_tick_out">
+<code class="descname">major_tick_out</code><a class="headerlink" href="#bokeh.models.axes.Axis.major_tick_out" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that major ticks should extend out of the
+main plot area.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_in">
+<code class="descname">minor_tick_in</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_in" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that minor ticks should extend into the
+main plot area.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_alpha">
+<code class="descname">minor_tick_line_alpha</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line alpha of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_cap">
+<code class="descname">minor_tick_line_cap</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineCap" title="bokeh.core.enums.LineCap"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineCap</span></code></a>  )</p>
+<p>The line cap of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_color">
+<code class="descname">minor_tick_line_color</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The line color of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_dash">
+<code class="descname">minor_tick_line_dash</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_dash" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.DashPattern" title="bokeh.core.properties.DashPattern"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashPattern</span></code></a></p>
+<p>The line dash of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_dash_offset">
+<code class="descname">minor_tick_line_dash_offset</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_dash_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The line dash offset of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_join">
+<code class="descname">minor_tick_line_join</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_join" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineJoin" title="bokeh.core.enums.LineJoin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineJoin</span></code></a>  )</p>
+<p>The line join of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_line_width">
+<code class="descname">minor_tick_line_width</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line width of the minor ticks.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.minor_tick_out">
+<code class="descname">minor_tick_out</code><a class="headerlink" href="#bokeh.models.axes.Axis.minor_tick_out" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The distance in pixels that major ticks should extend out of the
+main plot area.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.ticker">
+<code class="descname">ticker</code><a class="headerlink" href="#bokeh.models.axes.Axis.ticker" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="tickers.html#bokeh.models.tickers.Ticker" title="bokeh.models.tickers.Ticker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ticker</span></code></a>  )</p>
+<p>A Ticker to use for computing locations of axis components.</p>
+<p>The property may also be passed a sequence of floating point numbers as
+a shorthand for creating and configuring a <code class="docutils literal notranslate"><span class="pre">FixedTicker</span></code>, e.g. the
+following code</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">ticker</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">37.4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>is equivalent to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.models.tickers</span> <span class="kn">import</span> <span class="n">FixedTicker</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">ticker</span> <span class="o">=</span> <span class="n">FixedTicker</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">37.4</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.x_range_name">
+<code class="descname">x_range_name</code><a class="headerlink" href="#bokeh.models.axes.Axis.x_range_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>A particular (named) x-range to use for computing screen
+locations when rendering an axis on the plot. If unset, use the
+default x-range.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.Axis.y_range_name">
+<code class="descname">y_range_name</code><a class="headerlink" href="#bokeh.models.axes.Axis.y_range_name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>A particular (named) y-range to use for computing screen
+locations when rendering an axis on the plot. If unset, use the
+default y-range.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27487&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.CategoricalAxis">
+<em class="property">class </em><code class="descname">CategoricalAxis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#CategoricalAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.Axis" title="bokeh.models.axes.Axis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.Axis</span></code></a></p>
+<p>An axis that displays ticks and labels for categorical ranges.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CategoricalAxis</span></code> can handle factor ranges with up to two levels of
+nesting, including drawing a separator line between top-level groups of
+factors.</p>
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_label_orientation">
+<code class="descname">group_label_orientation</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_label_orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TickLabelOrientation" title="bokeh.core.enums.TickLabelOrientation"><code class="xref py py-class docutils literal notranslate"><span class="pre">TickLabelOrientation</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a>  )</p>
+<p>What direction the group label text should be oriented.</p>
+<p>If a number is supplied, the angle of the text is measured from horizontal.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_align">
+<code class="descname">group_text_align</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextAlign" title="bokeh.core.enums.TextAlign"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextAlign</span></code></a>  )</p>
+<p>The text align of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_alpha">
+<code class="descname">group_text_alpha</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The text alpha of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_baseline">
+<code class="descname">group_text_baseline</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextBaseline" title="bokeh.core.enums.TextBaseline"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextBaseline</span></code></a>  )</p>
+<p>The text baseline of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_color">
+<code class="descname">group_text_color</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The text color of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_font">
+<code class="descname">group_text_font</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_font" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>The text font of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_font_size">
+<code class="descname">group_text_font_size</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.FontSizeSpec" title="bokeh.core.properties.FontSizeSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontSizeSpec</span></code></a></p>
+<p>The text font size of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_font_style">
+<code class="descname">group_text_font_style</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_font_style" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.FontStyle" title="bokeh.core.enums.FontStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontStyle</span></code></a>  )</p>
+<p>The text font style of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.group_text_line_height">
+<code class="descname">group_text_line_height</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.group_text_line_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The text line height of the group categorical labels.</p>
+<p>This property always applies to factors in the outermost level of nesting.
+If the list of categorical factors is flat (i.e. no nesting) then this
+property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_alpha">
+<code class="descname">separator_line_alpha</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line alpha of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_cap">
+<code class="descname">separator_line_cap</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineCap" title="bokeh.core.enums.LineCap"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineCap</span></code></a>  )</p>
+<p>The line cap of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_color">
+<code class="descname">separator_line_color</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The line color of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_dash">
+<code class="descname">separator_line_dash</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_dash" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.DashPattern" title="bokeh.core.properties.DashPattern"><code class="xref py py-class docutils literal notranslate"><span class="pre">DashPattern</span></code></a></p>
+<p>The line dash of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_dash_offset">
+<code class="descname">separator_line_dash_offset</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_dash_offset" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The line dash offset of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_join">
+<code class="descname">separator_line_join</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_join" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.LineJoin" title="bokeh.core.enums.LineJoin"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineJoin</span></code></a>  )</p>
+<p>The line join of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.separator_line_width">
+<code class="descname">separator_line_width</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.separator_line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The line width of the separator line between top-level categorical groups.</p>
+<p>This property always applies to factors in the outermost level of nesting.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_label_orientation">
+<code class="descname">subgroup_label_orientation</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_label_orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TickLabelOrientation" title="bokeh.core.enums.TickLabelOrientation"><code class="xref py py-class docutils literal notranslate"><span class="pre">TickLabelOrientation</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a>  )</p>
+<p>What direction the subgroup label text should be oriented.</p>
+<p>If a number is supplied, the angle of the text is measured from horizontal.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_align">
+<code class="descname">subgroup_text_align</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextAlign" title="bokeh.core.enums.TextAlign"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextAlign</span></code></a>  )</p>
+<p>The text align of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_alpha">
+<code class="descname">subgroup_text_alpha</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>The text alpha of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_baseline">
+<code class="descname">subgroup_text_baseline</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_baseline" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.TextBaseline" title="bokeh.core.enums.TextBaseline"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextBaseline</span></code></a>  )</p>
+<p>The text baseline of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_color">
+<code class="descname">subgroup_text_color</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>The text color of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_font">
+<code class="descname">subgroup_text_font</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_font" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>The text font of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_font_size">
+<code class="descname">subgroup_text_font_size</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_font_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.FontSizeSpec" title="bokeh.core.properties.FontSizeSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontSizeSpec</span></code></a></p>
+<p>The text font size of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_font_style">
+<code class="descname">subgroup_text_font_style</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_font_style" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.FontStyle" title="bokeh.core.enums.FontStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">FontStyle</span></code></a>  )</p>
+<p>The text font style of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.axes.CategoricalAxis.subgroup_text_line_height">
+<code class="descname">subgroup_text_line_height</code><a class="headerlink" href="#bokeh.models.axes.CategoricalAxis.subgroup_text_line_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The text line height of the subgroup categorical labels.</p>
+<p>This property always applies to factors in the middle level of nesting.
+If the list of categorical factors is has only zero or one levels of nesting,
+then this property has no effect.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27542&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;CategoricalTickFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;group_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;parallel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;group_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;grey&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;group_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;group_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27540&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;separator_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;separator_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;separator_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;lightgrey&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;separator_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;separator_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;separator_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;separator_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">2</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;subgroup_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;parallel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;subgroup_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;subgroup_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;subgroup_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27541&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;CategoricalTicker&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.ContinuousAxis">
+<em class="property">class </em><code class="descname">ContinuousAxis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#ContinuousAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.ContinuousAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.Axis" title="bokeh.models.axes.Axis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.Axis</span></code></a></p>
+<p>A base class for all numeric, non-categorical axes types.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27568&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.DatetimeAxis">
+<em class="property">class </em><code class="descname">DatetimeAxis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#DatetimeAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.DatetimeAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.LinearAxis" title="bokeh.models.axes.LinearAxis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.LinearAxis</span></code></a></p>
+<p>A <code class="docutils literal notranslate"><span class="pre">LinearAxis</span></code> that picks nice numbers for tick locations on
+a datetime scale. Configured with a <code class="docutils literal notranslate"><span class="pre">DatetimeTickFormatter</span></code> by
+default.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27571&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;DatetimeTickFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27569&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27570&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;DatetimeTicker&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.LinearAxis">
+<em class="property">class </em><code class="descname">LinearAxis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#LinearAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.LinearAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.ContinuousAxis" title="bokeh.models.axes.ContinuousAxis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.ContinuousAxis</span></code></a></p>
+<p>An axis that picks nice numbers for tick locations on a
+linear scale. Configured with a <code class="docutils literal notranslate"><span class="pre">BasicTickFormatter</span></code> by default.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27574&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BasicTickFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27572&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27573&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BasicTicker&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.LogAxis">
+<em class="property">class </em><code class="descname">LogAxis</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#LogAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.LogAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.ContinuousAxis" title="bokeh.models.axes.ContinuousAxis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.ContinuousAxis</span></code></a></p>
+<p>An axis that picks nice numbers for tick locations on a
+log scale. Configured with a <code class="docutils literal notranslate"><span class="pre">LogTickFormatter</span></code> by default.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27577&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;LogTickFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27575&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27576&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;LogTicker&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.axes.MercatorAxis">
+<em class="property">class </em><code class="descname">MercatorAxis</code><span class="sig-paren">(</span><em>dimension='lat'</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/axes.html#MercatorAxis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.axes.MercatorAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.axes.LinearAxis" title="bokeh.models.axes.LinearAxis"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.axes.LinearAxis</span></code></a></p>
+<p>An axis that picks nice numbers for tick locations on a
+Mercator scale. Configured with a <code class="docutils literal notranslate"><span class="pre">MercatorTickFormatter</span></code> by default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dimension</strong> (<em>'lat'</em><em> or </em><em>'lon'</em><em>, </em><em>optional</em>) – Whether this axis will display latitude or longitude values.
+(default: ‘lat’)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;axis_label&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;10pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;axis_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;axis_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;axis_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;fixed_location&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;formatter&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27581&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;MercatorTickFormatter&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27578&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;level&quot;</span><span class="o">:</span> <span class="s2">&quot;overlay&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_orientation&quot;</span><span class="o">:</span> <span class="s2">&quot;horizontal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_overrides&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;major_label_standoff&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_align&quot;</span><span class="o">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_baseline&quot;</span><span class="o">:</span> <span class="s2">&quot;alphabetic&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;#444444&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font&quot;</span><span class="o">:</span> <span class="s2">&quot;helvetica&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_font_size&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;8pt&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_label_text_font_style&quot;</span><span class="o">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_label_text_line_height&quot;</span><span class="o">:</span> <span class="mf">1.2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_in&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;major_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;major_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;major_tick_out&quot;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_in&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_alpha&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mf">1.0</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_cap&quot;</span><span class="o">:</span> <span class="s2">&quot;butt&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_color&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;black&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_line_dash&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;minor_tick_line_dash_offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_join&quot;</span><span class="o">:</span> <span class="s2">&quot;bevel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;minor_tick_line_width&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;minor_tick_out&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;plot&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;ticker&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;27579&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;MercatorTicker&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;x_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;y_range_name&quot;</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div></div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../team.html">Team</a></li>
+      
+        <li><a href="../../citation.html">Citation</a></li>
+      
+        <li><a href="../../contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

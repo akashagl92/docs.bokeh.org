@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.events &mdash; Bokeh 1.0.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.0.0";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="https://static.bokeh.org/favicon/favicon-32x32.png.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://docs.bokeh.org/en/latest/docs/reference/events.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">1.0.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.12/">0.12.12</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.11/">0.12.11</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.10/">0.12.10</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">bokeh.embed</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">1.0.0 (August 2018)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#june-2018">0.13.0 (June 2018)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#may-2018">0.12.16 (May 2018)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#mar-2018">0.12.15 (Mar 2018)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#feb-2018">0.12.14 (Feb 2018)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#dec-2017">0.12.13 (Dec 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#nov-2017">0.12.11 (Nov 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#oct-2017">0.12.10 (Oct 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#sep-2017">0.12.9 (Sep 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#aug-2017">0.12.7 (Aug 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jun-2017">0.12.6 (Jun 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#mar-2017">0.12.5 (Mar 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jan-2017">0.12.4 (Jan 2017)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#oct-2016">0.12.3 (Oct 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#sept-2016">0.12.2 (Sept 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jul-2016">0.12.1 (Jul 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jun-2016">0.12.0 (Jun 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#feb-2016">0.11.1 (Feb 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jan-2016">0.11.0 (Jan 2016)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#sep-2015">0.10.0 (Sep 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#aug-2015">0.9.3 (Aug 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jul-2015">0.9.2 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#id40">0.9.1 (Jul 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#may-2015">0.9.0 (May 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#mar-2015">0.8.2 (Mar 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#feb-2015">0.8.1 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#id41">0.8.0 (Feb 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jan-2015">0.7.1 (Jan 2015)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#dec-2014">0.7.0 (Dec 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#sep-2014">0.6.1 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#id43">0.6.0 (Sep 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#aug-2014">0.5.2 (Aug 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#jul-2014">0.5.1 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#id44">0.5.0 (Jul 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#apr-2014">0.4.4 (Apr 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#mar-2014">0.4.2 (Mar 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#feb-2014">0.4.1 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#id45">0.4.0 (Feb 2014)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#nov-2013">0.3.0 (Nov 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#oct-2013">0.2.0 (Oct 2013)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#apr-2013">0.1.0 (Apr 2013)</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-events">
+<span id="id1"></span><h1>bokeh.events<a class="headerlink" href="#bokeh-events" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.events"></span><p>Represent granular events that can be used to trigger callbacks.</p>
+<p>Bokeh documents and applications are capable of supporting various kinds of
+interactions. These are often associated with events, such as mouse or touch
+events, interactive downsampling mode activation, widget or tool events, and
+others. The classes in this module represent these different events, so that
+callbacks can be attached and executed when they occur.</p>
+<p>It is possible to respond to events with <code class="docutils literal notranslate"><span class="pre">CustomJS</span></code> callbacks, which will
+function with or without a Bokeh server. This can be accomplished by passing
+and event class, and a <code class="docutils literal notranslate"><span class="pre">CustomJS</span></code> model to the
+<code class="xref py py-func docutils literal notranslate"><span class="pre">js_on_event()</span></code> method. When the <code class="docutils literal notranslate"><span class="pre">CustomJS</span></code> is
+executed in the browser, its <code class="docutils literal notranslate"><span class="pre">cb_obj</span></code> argument will contain the concrete
+event object that triggered the callback.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.events</span> <span class="kn">import</span> <span class="n">ButtonClick</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">CustomJS</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">()</span>
+
+<span class="n">button</span><span class="o">.</span><span class="n">js_on_event</span><span class="p">(</span><span class="n">ButtonClick</span><span class="p">,</span> <span class="n">CustomJS</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;console.log(&quot;JS:Click&quot;)&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Alternatively it is possible to trigger Python code to run when events
+happen, in the context of a Bokeh application running on a Bokeh server.
+This can accomplished by passing an event class, and a callback function
+to the the <code class="xref py py-func docutils literal notranslate"><span class="pre">on_event()</span></code> method. The callback should
+accept a single argument <code class="docutils literal notranslate"><span class="pre">event</span></code>, which will be passed the concrete
+event object that triggered the callback.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.events</span> <span class="kn">import</span> <span class="n">ButtonClick</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Button</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Python:Click&#39;</span><span class="p">)</span>
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_event</span><span class="p">(</span><span class="n">ButtonClick</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is no throttling of events. Some events such as <code class="docutils literal notranslate"><span class="pre">MouseMove</span></code>
+may trigger at a very high rate.</p>
+</div>
+<dl class="class">
+<dt id="bokeh.events.ButtonClick">
+<em class="property">class </em><code class="descname">ButtonClick</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#ButtonClick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.ButtonClick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a button click event on a Bokeh Button widget.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.DoubleTap">
+<em class="property">class </em><code class="descname">DoubleTap</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#DoubleTap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.DoubleTap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a double-tap or double-click event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.DoubleTap.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.DoubleTap.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.DoubleTap.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.DoubleTap.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.DoubleTap.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.DoubleTap.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.DoubleTap.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.DoubleTap.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.LODStart">
+<em class="property">class </em><code class="descname">LODStart</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#LODStart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.LODStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the start of “interactive level-of-detail” mode on a plot.</p>
+<p>During interactive actions such as panning or zooming, Bokeh can
+optionally, temporarily draw a reduced set of the data, in order to
+maintain high interactive rates. This is referred to as interactive
+Level-of-Detail (LOD) mode. This event fires whenever a LOD mode
+has just begun.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.LODEnd">
+<em class="property">class </em><code class="descname">LODEnd</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#LODEnd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.LODEnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the end of “interactive level-of-detail” mode on a plot.</p>
+<p>During interactive actions such as panning or zooming, Bokeh can
+optionally, temporarily draw a reduced set of the data, in order to
+maintain high interactive rates. This is referred to as interactive
+Level-of-Detail (LOD) mode. This event fires whenever a LOD mode
+has just ended.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.MouseEnter">
+<em class="property">class </em><code class="descname">MouseEnter</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#MouseEnter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.MouseEnter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a mouse enter event onto a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.MouseEnter.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.MouseEnter.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseEnter.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.MouseEnter.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseEnter.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.MouseEnter.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseEnter.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.MouseEnter.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The enter event is generated when the mouse leaves the entire Plot
+canvas, including any border padding and space for axes or legends.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.MouseLeave">
+<em class="property">class </em><code class="descname">MouseLeave</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#MouseLeave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.MouseLeave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a mouse leave event from a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.MouseLeave.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.MouseLeave.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseLeave.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.MouseLeave.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseLeave.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.MouseLeave.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseLeave.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.MouseLeave.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The leave event is generated when the mouse leaves the entire Plot
+canvas, including any border padding and space for axes or legends.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.MouseMove">
+<em class="property">class </em><code class="descname">MouseMove</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#MouseMove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.MouseMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a mouse movement event over a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.MouseMove.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.MouseMove.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseMove.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.MouseMove.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseMove.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.MouseMove.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseMove.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.MouseMove.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This event can fire at a very high rate, potentially increasing network
+traffic or CPU load.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.MouseWheel">
+<em class="property">class </em><code class="descname">MouseWheel</code><span class="sig-paren">(</span><em>model</em>, <em>delta=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#MouseWheel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.MouseWheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a mouse wheel event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.MouseWheel.delta">
+<code class="descname">delta</code><a class="headerlink" href="#bokeh.events.MouseWheel.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>the (signed) scroll speed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseWheel.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.MouseWheel.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseWheel.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.MouseWheel.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseWheel.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.MouseWheel.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.MouseWheel.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.MouseWheel.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">By default, Bokeh plots do not prevent default scroll events unless a
+WheelZoomTool or WheelPanTool is active. This may change in future
+releases.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.Pan">
+<em class="property">class </em><code class="descname">Pan</code><span class="sig-paren">(</span><em>model</em>, <em>delta_x=None</em>, <em>delta_y=None</em>, <em>direction=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#Pan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.Pan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a pan event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.Pan.delta_x">
+<code class="descname">delta_x</code><a class="headerlink" href="#bokeh.events.Pan.delta_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>the amount of scroll in the x direction</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.delta_y">
+<code class="descname">delta_y</code><a class="headerlink" href="#bokeh.events.Pan.delta_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>the amount of scroll in the y direction</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.direction">
+<code class="descname">direction</code><a class="headerlink" href="#bokeh.events.Pan.direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>the direction of scroll (1 or -1)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.Pan.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.Pan.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.Pan.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pan.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.Pan.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PanEnd">
+<em class="property">class </em><code class="descname">PanEnd</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PanEnd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PanEnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the end of a pan event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.PanEnd.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.PanEnd.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanEnd.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.PanEnd.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanEnd.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.PanEnd.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanEnd.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.PanEnd.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PanStart">
+<em class="property">class </em><code class="descname">PanStart</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PanStart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PanStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the start of a pan event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.PanStart.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.PanStart.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanStart.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.PanStart.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanStart.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.PanStart.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PanStart.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.PanStart.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.Pinch">
+<em class="property">class </em><code class="descname">Pinch</code><span class="sig-paren">(</span><em>model</em>, <em>scale=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#Pinch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.Pinch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a pinch event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.Pinch.scale">
+<code class="descname">scale</code><a class="headerlink" href="#bokeh.events.Pinch.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>the (signed) amount of scaling</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pinch.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.Pinch.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pinch.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.Pinch.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pinch.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.Pinch.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Pinch.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.Pinch.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This event is only applicable for touch-enabled devices.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PinchEnd">
+<em class="property">class </em><code class="descname">PinchEnd</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PinchEnd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PinchEnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the end of a pinch event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.PinchEnd.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.PinchEnd.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchEnd.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.PinchEnd.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchEnd.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.PinchEnd.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchEnd.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.PinchEnd.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This event is only applicable for touch-enabled devices.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PinchStart">
+<em class="property">class </em><code class="descname">PinchStart</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PinchStart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PinchStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the start of a pinch event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.PinchStart.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.PinchStart.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchStart.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.PinchStart.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchStart.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.PinchStart.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PinchStart.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.PinchStart.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This event is only applicable for touch-enabled devices.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PlotEvent">
+<em class="property">class </em><code class="descname">PlotEvent</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PlotEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PlotEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>PlotEvent is the base class for all events applicable to Plot models.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.PointEvent">
+<em class="property">class </em><code class="descname">PointEvent</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#PointEvent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.PointEvent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for UI events associated with a specific (x,y) point.</p>
+<dl class="attribute">
+<dt id="bokeh.events.PointEvent.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.PointEvent.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PointEvent.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.PointEvent.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PointEvent.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.PointEvent.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.PointEvent.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.PointEvent.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>Note that data space coordinates are relative to the default range, not
+any extra ranges, and the the screen space origin is at the top left of
+the HTML canvas.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.Press">
+<em class="property">class </em><code class="descname">Press</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#Press"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.Press" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a press event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.Press.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.Press.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Press.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.Press.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Press.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.Press.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Press.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.Press.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.Reset">
+<em class="property">class </em><code class="descname">Reset</code><span class="sig-paren">(</span><em>model</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#Reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.Reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a button click event on a plot ResetTool.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.SelectionGeometry">
+<em class="property">class </em><code class="descname">SelectionGeometry</code><span class="sig-paren">(</span><em>model</em>, <em>geometry=None</em>, <em>final=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#SelectionGeometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.SelectionGeometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce the coordinates of a selection event on a plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.SelectionGeometry.geometry">
+<code class="descname">geometry</code><a class="headerlink" href="#bokeh.events.SelectionGeometry.geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>a dictionary containing the coordinates of the
+selection event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.SelectionGeometry.final">
+<code class="descname">final</code><a class="headerlink" href="#bokeh.events.SelectionGeometry.final" title="Permalink to this definition">¶</a></dt>
+<dd><p>whether the selection event is the last selection event
+in the case of selections on every mousemove.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)">bool</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.events.Tap">
+<em class="property">class </em><code class="descname">Tap</code><span class="sig-paren">(</span><em>model</em>, <em>sx=None</em>, <em>sy=None</em>, <em>x=None</em>, <em>y=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/bokeh/events.html#Tap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.events.Tap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Announce a tap or click event on a Bokeh plot.</p>
+<dl class="attribute">
+<dt id="bokeh.events.Tap.sx">
+<code class="descname">sx</code><a class="headerlink" href="#bokeh.events.Tap.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Tap.sy">
+<code class="descname">sy</code><a class="headerlink" href="#bokeh.events.Tap.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>screen</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Tap.x">
+<code class="descname">x</code><a class="headerlink" href="#bokeh.events.Tap.x" title="Permalink to this definition">¶</a></dt>
+<dd><p>x-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.events.Tap.y">
+<code class="descname">y</code><a class="headerlink" href="#bokeh.events.Tap.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>y-coordinate of the event in <em>data</em> space</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../vision.html">Vision and Work</a></li>
+      
+        <li><a href="../team.html">Team</a></li>
+      
+        <li><a href="../citation.html">Citation</a></li>
+      
+        <li><a href="../contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

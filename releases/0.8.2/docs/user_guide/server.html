@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using the Bokeh Server &mdash; Bokeh 0.8.2 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bokeh-docs.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-3.2.0/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="shortcut icon" href="../../_static/bokeh_white_32.ico"/>
+    <link rel="top" title="Bokeh 0.8.2 documentation" href="../../index.html" />
+    <link rel="up" title="User Guide" href="../user_guide.html" />
+    <link rel="next" title="Embedding Bokeh Plots" href="embedding.html" />
+    <link rel="prev" title="Configuring and Styling Bokeh Objects" href="objects.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+
+<div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="logo"> <img height="32" width="32" src="../../_static/bokeh-transparent.png" /></a>
+        <a class="navbar-brand" href="../../index.html">Bokeh</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.8.2</b></span>
+      </div>
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+                <li><a href="../gallery.html">Gallery</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#quick-installation">Quick Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#ipython-notebooks">IPython Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#other-languages">Other Languages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#concepts">Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#more-examples">More examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#bokeh-plot-server">Bokeh Plot Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quickstart.html#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#package-installs">Package Installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#sample-data">Sample Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#installing-from-source">Installing from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-builds">Developer Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#bokehjs-standalone">BokehJS Standalone</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/quick_install.html">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/basic.html">Basic Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/topical.html">Topical Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/advanced.html">Advanced Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/more_info.html">More Information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/anscombe.html">anscombe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/area_chart.html">area_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot.html">boxplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/boxplot_chart.html">boxplot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/brewer.html">brewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/burtin.html">burtin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/candlestick.html">candlestick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/cat_heatmap_chart.html">cat_heatmap_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/categorical.html">categorical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/choropleth.html">choropleth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/color_scatter.html">color_scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/correlation.html">correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/density.html">density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/donut_chart.html">donut_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/dot_chart.html">dot_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/elements.html">elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/ggplot_line.html">ggplot_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/glucose.html">glucose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histogram.html">histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/histograms_chart.html">histograms_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image.html">image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/image_rgba.html">image_rgba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris.html">iris</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_scatter_chart.html">iris_scatter_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/iris_splom.html">iris_splom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/kde.html">kde</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/legend.html">legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/les_mis.html">les_mis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/line_chart.html">line_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/lorenz.html">lorenz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/periodic.html">periodic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/quiver.html">quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/scatter.html">scatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/sinerror.html">sinerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stacked_bar_chart.html">stacked_bar_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step.html">step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/step_chart.html">step_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks.html">stocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/stocks_timeseries_chart.html">stocks_timeseries_chart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/streamline.html">streamline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/texas.html">texas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/unemployment.html">unemployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/violin.html">violin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery/xkcd_density.html">xkcd_density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/aw_animate.html">Animated Glyph Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/crossfilter_server.html">Crossfilter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/line_animate.html">Animated Line Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/sliders_server.html">Sliders Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../server_gallery/stocks_server.html">Stocks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#server-examples">Server Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gallery.html#static-examples">Static Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/process.html">Software Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/building.html">Building and Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/objects.html">Bokeh Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/notes.html">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dev_guide/server.html">Bokeh Server Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html#core-team">Core Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html#technical-questions">Technical Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#release-notes">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../release_notes.html#roadmap">Roadmap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/properties.html">Properties System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/models.html">Model Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/palettes.html">Standard Palettes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/resources_embedding.html">Resources and Embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plot_objects.html">Plot Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/plotting.html"><tt class="docutils literal"><span class="pre">bokeh.plotting</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/charts.html"><tt class="docutils literal"><span class="pre">bokeh.charts</span></tt> Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/compat.html">Compatibility Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/rest_api.html">Bokeh Server REST API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/bokehjs.html">BokehJS Interface Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/glyphs.html">Bokeh Glyph Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sphinxext.html">Sphinx Extensions</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Using the Bokeh Server</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#authentication">Authentication</a></li>
+<li><a class="reference internal" href="#plot-hosting">Plot Hosting</a></li>
+<li><a class="reference internal" href="#streaming-data">Streaming Data</a></li>
+<li><a class="reference internal" href="#large-data">Large Data</a></li>
+<li><a class="reference internal" href="#widgets-and-dashboards">Widgets and Dashboards</a></li>
+<li><a class="reference internal" href="#command-line-configuration">Command Line Configuration</a><ul>
+<li><a class="reference internal" href="#general-usage">General Usage</a></li>
+<li><a class="reference internal" href="#advanced-usage">Advanced Usage</a></li>
+<li><a class="reference internal" href="#storage-backends">Storage Backends</a></li>
+<li><a class="reference internal" href="#websockets">Websockets</a></li>
+<li><a class="reference internal" href="#development-options">Development Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="objects.html" title="Previous Chapter: Configuring and Styling Bokeh Objects"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Configuring and ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="embedding.html" title="Next Chapter: Embedding Bokeh Plots"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Embedding Bokeh ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Bokeh Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gallery.html">Gallery</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">Basic Plotting with Glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="charts.html">High Level Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Configuring and Styling Bokeh Objects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Using the Bokeh Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html">Embedding Bokeh Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.html">Bokeh Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ar.html">Abstract Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes and Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+</ul>
+
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/server.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="using-the-bokeh-server">
+<span id="userguide-server"></span><h1>Using the Bokeh Server<a class="headerlink" href="#using-the-bokeh-server" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#authentication" id="id2">Authentication</a></li>
+<li><a class="reference internal" href="#plot-hosting" id="id3">Plot Hosting</a></li>
+<li><a class="reference internal" href="#streaming-data" id="id4">Streaming Data</a></li>
+<li><a class="reference internal" href="#large-data" id="id5">Large Data</a></li>
+<li><a class="reference internal" href="#widgets-and-dashboards" id="id6">Widgets and Dashboards</a></li>
+<li><a class="reference internal" href="#command-line-configuration" id="id7">Command Line Configuration</a><ul>
+<li><a class="reference internal" href="#general-usage" id="id8">General Usage</a></li>
+<li><a class="reference internal" href="#advanced-usage" id="id9">Advanced Usage</a></li>
+<li><a class="reference internal" href="#storage-backends" id="id10">Storage Backends</a></li>
+<li><a class="reference internal" href="#websockets" id="id11">Websockets</a></li>
+<li><a class="reference internal" href="#development-options" id="id12">Development Options</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<span id="userguide-server-overview"></span><h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Bokeh server is an optional component that can be used to provide
+additional capabilities, such as:</p>
+<ul class="simple">
+<li>hosting and publishing Bokeh plots for wider audiences</li>
+<li>streaming data to plots so that they automatically update</li>
+<li>interactively visualizing very large datasets by employing downsampling and abstract rendering</li>
+<li>building and deploying dashboards and apps with sophisticated user interactions</li>
+</ul>
+<p>The Bokeh server is built on top of <a class="reference external" href="http://flask.pocoo.org">Flask</a>. Bokeh
+ships with a standalone executable <tt class="docutils literal"><span class="pre">bokeh-server</span></tt> that you can easily run,
+and you can also embed the Bokeh server functionality inside another Flask
+server using the Bokeh Server <a class="reference external" href="http://flask.pocoo.org/docs/0.10/blueprints/">Flask Blueprint</a>.</p>
+<p>The basic task of the Bokeh Server is to be a mediator between the original data
+and plot models created by a user, and the reflected data and plot models in the
+BokehJS client:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/bokeh_server.png"><img alt="../../_images/bokeh_server.png" class="align-center" src="../../_images/bokeh_server.png" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Here you can see illustrated the most useful and compelling of the Bokeh server:
+<strong>full two-way communication between the original code and the BokehJS plot.</strong>
+Plots are published by sending them to the server. The data for the plot can be
+updated on the server, and the client will respond and update the plot. Users can
+interact with the plot through tools and widgets in the browser, then the results of
+these interactions can be pulled back to the original code to inform some further
+query or analysis (possibly resulting in updates pushed back the plot).</p>
+<p>We will explore the capabilities afforded by the Bokeh server in detail below.</p>
+</div>
+<div class="section" id="authentication">
+<span id="userguide-server-authentication"></span><h2><a class="toc-backref" href="#id2">Authentication</a><a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh defaults to single user mode - where every request is automatically logged in as a user with username <tt class="docutils literal"><span class="pre">defaultuser</span></tt>.  However for teams, and for plot publishing, it makes more sense to add an authentication layer.  This way users won&#8217;t be able to overwrite each other&#8217;s plots.</p>
+<p>To do enable multi user mode, You need to turn on the <tt class="docutils literal"><span class="pre">multi_user</span></tt> bokeh server setting.  This can be done using the command line parameter <tt class="docutils literal"><span class="pre">-m</span></tt>.  Once this is done, all scripts that use the bokeh server must authenticate with the bokeh server.  A user can be created with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">root_url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or logged in with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">root_url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The bokeh client library will store authentication keys in the <tt class="docutils literal"><span class="pre">~/.bokeh</span></tt> directory, so that in subsequent invocations, logging in is not necessary</p>
+</div>
+<div class="section" id="plot-hosting">
+<span id="userguide-server-hosting"></span><h2><a class="toc-backref" href="#id3">Plot Hosting</a><a class="headerlink" href="#plot-hosting" title="Permalink to this headline">¶</a></h2>
+<p>For plot hosting, we generally recommend running the server in multi user mode.  See the Authentication section for instructions on how to do this.</p>
+<p>Once a plot is created, you have to publish it.  Assuming you have a session that is authenticated against a document:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">use_doc</span><span class="p">(</span><span class="s">&#39;mydocument&#39;</span><span class="p">)</span>
+<span class="c">#do some plots here</span>
+<span class="n">session</span><span class="o">.</span><span class="n">publish</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or if you are using <tt class="docutils literal"><span class="pre">output_server</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">output_server</span><span class="p">(</span><span class="s">&#39;myplot&#39;</span><span class="p">)</span>
+<span class="c">#make some plots</span>
+<span class="n">cursession</span><span class="p">()</span><span class="o">.</span><span class="n">publish</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A public link to a plot on the bokeh server page can be viewed by append <tt class="docutils literal"><span class="pre">?public=true</span></tt> To the url - for example if you have the url to a plot <tt class="docutils literal"><span class="pre">http://localhost:5006/bokeh/doc/some-doc-id/some-plot-id</span></tt>, You can generate a public link to the published plot using <tt class="docutils literal"><span class="pre">http://localhost:5006/bokeh/doc/some-doc-id/some-plot-id?public=true</span></tt>.   In addition, the <tt class="docutils literal"><span class="pre">autoload_server</span></tt> function call in <tt class="docutils literal"><span class="pre">bokeh.embed</span></tt> also takes a <tt class="docutils literal"><span class="pre">public=true</span></tt> keyword argument, which will generate an embeddable html snippet that will load the public version of a given plot</p>
+</div>
+<div class="section" id="streaming-data">
+<span id="userguide-server-streaming"></span><h2><a class="toc-backref" href="#id4">Streaming Data</a><a class="headerlink" href="#streaming-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="large-data">
+<span id="userguide-server-large"></span><h2><a class="toc-backref" href="#id5">Large Data</a><a class="headerlink" href="#large-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="widgets-and-dashboards">
+<span id="userguide-server-widgets"></span><h2><a class="toc-backref" href="#id6">Widgets and Dashboards</a><a class="headerlink" href="#widgets-and-dashboards" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="command-line-configuration">
+<span id="userguide-server-command-line"></span><h2><a class="toc-backref" href="#id7">Command Line Configuration</a><a class="headerlink" href="#command-line-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-usage">
+<h3><a class="toc-backref" href="#id8">General Usage</a><a class="headerlink" href="#general-usage" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">bokeh-server</span></tt> application has some command line options for
+general usage, setting the server port and IP, for instance:</p>
+<dl class="option">
+<dt id="cmdoption-bokeh-server-h">
+<span id="cmdoption-bokeh-server--help"></span><tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-h" title="Permalink to this definition">¶</a></dt>
+<dd><p>show this help message and exit</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--ip">
+<tt class="descname">--ip</tt><tt class="descclassname"> &lt;IP&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>IP address that the bokeh server will listen on (default: 127.0.0.1)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--port">
+<tt class="descname">--port</tt><tt class="descclassname"> &lt;PORT&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--port" title="Permalink to this definition">¶</a></dt>
+<dd><p>port that the bokeh server will listen on (default: 5006)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--url-prefix">
+<tt class="descname">--url-prefix</tt><tt class="descclassname"> &lt;URL_PREFIX&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--url-prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>URL prefix for server. e.g. &#8216;host:port/&lt;prefix&gt;/bokeh&#8217; (default: None)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="advanced-usage">
+<h3><a class="toc-backref" href="#id9">Advanced Usage</a><a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h3>
+<p>Additional configuration options for configuring server data sources,
+multi-user operation, scripts, etc:</p>
+<dl class="option">
+<dt id="cmdoption-bokeh-server-D">
+<span id="cmdoption-bokeh-server--data-directory"></span><tt class="descname">-D</tt><tt class="descclassname"> &lt;DATA_DIRECTORY&gt;</tt><tt class="descclassname">, </tt><tt class="descname">--data-directory</tt><tt class="descclassname"> &lt;DATA_DIRECTORY&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server-D" title="Permalink to this definition">¶</a></dt>
+<dd><p>location for server data sources</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server-m">
+<span id="cmdoption-bokeh-server--multi-user"></span><tt class="descname">-m</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--multi-user</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>start in multi-user configuration (default: False)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--script">
+<tt class="descname">--script</tt><tt class="descclassname"> &lt;SCRIPT&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--script" title="Permalink to this definition">¶</a></dt>
+<dd><p>script to load (for applets)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="storage-backends">
+<h3><a class="toc-backref" href="#id10">Storage Backends</a><a class="headerlink" href="#storage-backends" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh server supports various different backends for data storage:</p>
+<ul class="simple">
+<li>In-Memory &#8212; non-persistent, useful for testing</li>
+<li><a class="reference external" href="https://docs.python.org/2/library/shelve.html">Shelve</a> &#8212; lightweight, available on all platforms</li>
+<li><a class="reference external" href="http://redis.io">Redis</a> &#8212; recommended for production deployments</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Redis can be more difficult to install on Windows, please consult
+<a class="reference internal" href="../installation.html#install-windows"><em>Notes for Windows Users</em></a> for some additional notes.</p>
+</div>
+<p>Additional backends may be added in the future if need or demand arises, or
+if they are contributed by the community.</p>
+<p>You can specify the backend when starting the Bokeh server by supplying
+the <tt class="docutils literal"><span class="pre">--backend</span></tt> command line argument:</p>
+<dl class="option">
+<dt id="cmdoption-bokeh-server--backend">
+<tt class="descname">--backend</tt><tt class="descclassname"> &lt;BACKEND&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>storage backend: [ redis | memory | shelve ] (default: shelve)</p>
+</dd></dl>
+
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ bokeh-server --backend=memory
+</pre></div>
+</div>
+<p>When using the <tt class="docutils literal"><span class="pre">redis</span></tt> backend there are some additional options
+available:</p>
+<dl class="option">
+<dt id="cmdoption-bokeh-server--redis-port">
+<tt class="descname">--redis-port</tt><tt class="descclassname"> &lt;REDIS_PORT&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--redis-port" title="Permalink to this definition">¶</a></dt>
+<dd><p>port for redis server to listen on (default: 7001)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--start-redis">
+<tt class="descname">--start-redis</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server--start-redis" title="Permalink to this definition">¶</a></dt>
+<dd><p>start redis automatically</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--no-start-redis">
+<tt class="descname">--no-start-redis</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server--no-start-redis" title="Permalink to this definition">¶</a></dt>
+<dd><p>do not start redis automatically</p>
+</dd></dl>
+
+<p>By default <tt class="docutils literal"><span class="pre">bokeh-server</span></tt> will start Redis automatically when the
+<tt class="docutils literal"><span class="pre">redis</span></tt> backend is chosen.</p>
+</div>
+<div class="section" id="websockets">
+<h3><a class="toc-backref" href="#id11">Websockets</a><a class="headerlink" href="#websockets" title="Permalink to this headline">¶</a></h3>
+<p>The Bokeh server uses websockets for communication between the server
+and browser clients. There are several options for configuring the
+use of websockets:</p>
+<dl class="option">
+<dt id="cmdoption-bokeh-server--ws-conn-string">
+<tt class="descname">--ws-conn-string</tt><tt class="descclassname"> &lt;WS_CONN_STRING&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--ws-conn-string" title="Permalink to this definition">¶</a></dt>
+<dd><p>connection string for websocket (unnecessary if auto-starting)</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--zmqaddr">
+<tt class="descname">--zmqaddr</tt><tt class="descclassname"> &lt;ZMQADDR&gt;</tt><a class="headerlink" href="#cmdoption-bokeh-server--zmqaddr" title="Permalink to this definition">¶</a></dt>
+<dd><p>ZeroMQ URL</p>
+</dd></dl>
+
+<p>Typically these values do not require much attention. By default,
+<tt class="docutils literal"><span class="pre">bokeh-server</span></tt> automatically starts a ZeroMQ websocket worker.</p>
+</div>
+<div class="section" id="development-options">
+<h3><a class="toc-backref" href="#id12">Development Options</a><a class="headerlink" href="#development-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-bokeh-server-d">
+<span id="cmdoption-bokeh-server--debug"></span><tt class="descname">-d</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--debug</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>use debug mode for Flask</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--dev">
+<tt class="descname">--dev</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server--dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>run server in development mode: -js &#8211;backend=memory</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--filter-logs">
+<tt class="descname">--filter-logs</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server--filter-logs" title="Permalink to this definition">¶</a></dt>
+<dd><p>don&#8217;t show &#8216;GET /static/... 200 OK&#8217;, useful with &#8211;splitjs</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server-j">
+<span id="cmdoption-bokeh-server--debugjs"></span><tt class="descname">-j</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--debugjs</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-j" title="Permalink to this definition">¶</a></dt>
+<dd><p>serve BokehJS files from the bokehjs build directory in the source tree</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server-s">
+<span id="cmdoption-bokeh-server--splitjs"></span><tt class="descname">-s</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--splitjs</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>serve individual JS files instead of compiled bokeh.js, requires &#8211;debugjs</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server--robust-reload">
+<tt class="descname">--robust-reload</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server--robust-reload" title="Permalink to this definition">¶</a></dt>
+<dd><p>protect debug server reloading from syntax errors</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-bokeh-server-v">
+<span id="cmdoption-bokeh-server--verbose"></span><tt class="descname">-v</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--verbose</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-bokeh-server-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <a href="objects.html">Prev</a> |
+      
+      
+      <a href="embedding.html">Next</a> |
+      
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/docs/user_guide/server.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Anaconda.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.<br/>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
