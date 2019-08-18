@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Embedding Plots and Apps &mdash; Bokeh 1.3.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.3.0";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/user_guide/embed.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">1.3.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.0/">1.3.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Exporting Plots</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Embedding Plots and Apps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standalone-documents">Standalone Documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#html-files">HTML files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#json-items">JSON Items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autoload-scripts">Autoload Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bokeh-applications">Bokeh Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app-documents">App Documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app-sessions">App Sessions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#standard-template">Standard template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="embedding-plots-and-apps">
+<span id="userguide-embed"></span><h1>Embedding Plots and Apps<a class="headerlink" href="#embedding-plots-and-apps" title="Permalink to this headline">¶</a></h1>
+<p>Bokeh provides a variety of ways to embed plots and data into HTML documents.
+First, a reminder of the distinction between standalone documents and apps:</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#userguide-embed-standalone"><span class="std std-ref">Standalone Documents</span></a></dt><dd><p>These are Bokeh documents that are not backed by a Bokeh server. They
+may have many tools and interactions (e.g. from <code class="docutils literal notranslate"><span class="pre">CustomJS</span></code> callbacks)
+but are self-contained HTML, JavaScript, and CSS. They can be
+embedded into other HTML pages as one large document, or as a set of
+sub-components templated individually.</p>
+</dd>
+<dt><a class="reference internal" href="#userguide-embed-apps"><span class="std std-ref">Bokeh Applications</span></a></dt><dd><p>These are Bokeh documents that are backed by a Bokeh Server. In addition
+to all the features of standalone documents, it is also possible to connect
+events and tools to real Python callbacks, that execute in the
+Bokeh server. See <a class="reference internal" href="server.html#userguide-server"><span class="std std-ref">Running a Bokeh Server</span></a> for more information about
+creating and running Bokeh apps.</p>
+</dd>
+</dl>
+<div class="section" id="standalone-documents">
+<span id="userguide-embed-standalone"></span><h2>Standalone Documents<a class="headerlink" href="#standalone-documents" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how Bokeh standalone documents (i.e. those that are <em>not</em>
+linked to a Bokeh server) may be published or embedded in a variety of ways.</p>
+<div class="section" id="html-files">
+<span id="userguide-embed-standalone-html"></span><h3>HTML files<a class="headerlink" href="#html-files" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh can generate complete HTML pages for Bokeh documents using the
+<a class="reference internal" href="../reference/embed.html#bokeh.embed.file_html" title="bokeh.embed.file_html"><code class="xref py py-func docutils literal notranslate"><span class="pre">file_html()</span></code></a> function. This function can emit HTML from its own generic
+template, or a template you provide. These files contain the data for the
+plot inline and are completely transportable, while still providing
+interactive tools (pan, zoom, etc.) for your plot. Here is an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.resources</span> <span class="kn">import</span> <span class="n">CDN</span>
+<span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">file_html</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="n">file_html</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">CDN</span><span class="p">,</span> <span class="s2">&quot;my plot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The returned HTML text can be saved to a file using standard python file
+operations. You can also provide your own template and pass in custom, or
+additional, template variables. See the <a class="reference internal" href="../reference/embed.html#bokeh.embed.file_html" title="bokeh.embed.file_html"><code class="xref py py-func docutils literal notranslate"><span class="pre">file_html()</span></code></a> documentation for more
+details.</p>
+<p>This is a fairly low-level, explicit way to generate an HTML file, which
+may be useful for use from a web application, e.g. a Flask app. When using
+the <a class="reference internal" href="../reference/plotting.html#bokeh-plotting"><span class="std std-ref">bokeh.plotting</span></a> interface in a script or Jupyter notebook, users will
+typically call the function <a class="reference internal" href="../reference/io.html#bokeh.io.output_file" title="bokeh.io.output_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">output_file()</span></code></a> in conjunction with <a class="reference internal" href="../reference/io.html#bokeh.io.show" title="bokeh.io.show"><code class="xref py py-func docutils literal notranslate"><span class="pre">show()</span></code></a> or
+<a class="reference internal" href="../reference/io.html#bokeh.io.save" title="bokeh.io.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">save()</span></code></a> instead.</p>
+</div>
+<div class="section" id="json-items">
+<span id="userguide-embed-json-items"></span><h3>JSON Items<a class="headerlink" href="#json-items" title="Permalink to this headline">¶</a></h3>
+<p>Bokeh can also supply a block of JSON that can be easily consumed by a BokehJS
+to render standalone Bokeh content in a specified div. The <a class="reference internal" href="../reference/embed.html#bokeh.embed.json_item" title="bokeh.embed.json_item"><code class="xref py py-func docutils literal notranslate"><span class="pre">json_item()</span></code></a> function
+accepts a Bokeh Model (e.g. a Plot), and optionally a target ID that identifies
+a div to render into:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">item_text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_item</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;myplot&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This output can be used by the <code class="docutils literal notranslate"><span class="pre">Bokeh.embed.embed_item</span></code> function on a webpage:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">item</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">item_text</span><span class="p">);</span>
+<span class="nx">Bokeh</span><span class="p">.</span><span class="nx">embed</span><span class="p">.</span><span class="nx">embed_item</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this situation, the Bokeh plot will render itself into a div with the id
+<em>“myplot”</em>.</p>
+<p>It is also possible to omit the target id when calling <a class="reference internal" href="../reference/embed.html#bokeh.embed.json_item" title="bokeh.embed.json_item"><code class="xref py py-func docutils literal notranslate"><span class="pre">json_item()</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">item_text</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_item</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="c1"># no target_id given</span>
+</pre></div>
+</div>
+<p>Then the target id can be controlled on the JavaScript side:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">item</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">item_text</span><span class="p">);</span>
+<span class="nx">Bokeh</span><span class="p">.</span><span class="nx">embed</span><span class="p">.</span><span class="nx">embed_item</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="s2">&quot;myplot&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As a more complete example, it a Flask server may be configured to serve Bokeh
+JSON items from a <em>/plot</em> endpoint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/plot&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot</span><span class="p">():</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">make_plot</span><span class="p">(</span><span class="s1">&#39;petal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_item</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s2">&quot;myplot&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then the corresponding code on the page might look like:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/plot&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Bokeh</span><span class="p">.</span><span class="nx">embed</span><span class="p">.</span><span class="nx">embed_item</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span> <span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>A full example can be found a <a class="reference external" href="https://github.com/bokeh/bokeh/tree/1.3.0/examples/embed/json_item.py">examples/embed/json_item.py</a>.</p>
+</div>
+<div class="section" id="components">
+<span id="userguide-embed-standalone-components"></span><h3>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to ask Bokeh to return the individual components of a
+standalone document for individual embedding using the <a class="reference internal" href="../reference/embed.html#bokeh.embed.components" title="bokeh.embed.components"><code class="xref py py-func docutils literal notranslate"><span class="pre">components()</span></code></a> function.
+This function returns a <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> that contains the data for your plot,
+together with an accompanying <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> tag that the plot view is loaded into.
+These tags can be used in HTML documents however you like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">components</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">div</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The returned <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> will look something like:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Bokeh</span><span class="p">.</span><span class="nx">safely</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">docs_json</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">DOCUMENT</span> <span class="nx">DATA</span> <span class="nx">HERE</span> <span class="p">};</span>
+      <span class="kd">var</span> <span class="nx">render_items</span> <span class="o">=</span> <span class="p">[{</span>
+        <span class="s2">&quot;docid&quot;</span><span class="o">:</span><span class="s2">&quot;6833819f-9b5b-4904-821e-3f5eec77de9b&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;elementid&quot;</span><span class="o">:</span><span class="s2">&quot;9574d123-9332-4b5f-96cc-6323bef37f40&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;modelid&quot;</span><span class="o">:</span><span class="s2">&quot;7b328b27-9b14-4f7b-a5d8-0138bc7b0f59&quot;</span>
+      <span class="p">}];</span>
+
+      <span class="nx">Bokeh</span><span class="p">.</span><span class="nx">embed</span><span class="p">.</span><span class="nx">embed_items</span><span class="p">(</span><span class="nx">docs_json</span><span class="p">,</span> <span class="nx">render_items</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">!=</span> <span class="s2">&quot;loading&quot;</span><span class="p">)</span> <span class="nx">fn</span><span class="p">();</span>
+  <span class="k">else</span> <span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+<span class="p">})();</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Note that in Jupyter Notebooks, it is not possible to use components and show in
+the same notebook cell.</p>
+<p>All of the data and plot or widget objects are contained in the <code class="docutils literal notranslate"><span class="pre">docs_json</span></code>
+variable (contents omitted here for brevity). The resulting <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> will
+look something like:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bk-root&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;9574d123-9332-4b5f-96cc-6323bef37f40&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>These two elements can be inserted or templated into your HTML text, and the
+script, when executed, will replace the div with the plot.</p>
+<p>Using these components assumes that BokehJS has already been loaded, for
+instance either inline in the document text, or from CDN. To load BokehJS
+from CDN, add the following lines in your HTML text or template with the
+appropriate version replacing <code class="docutils literal notranslate"><span class="pre">x.y.z</span></code>:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-x.y.z.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-widgets-x.y.z.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-tables-x.y.z.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&quot;-widgets&quot;</span></code> files are only necessary if your document includes Bokeh widgets.
+Similarly, the <code class="docutils literal notranslate"><span class="pre">&quot;-tables&quot;</span></code> files are only necessary if you are using Bokeh data tables in
+your document.</p>
+<p>For example, to use version <code class="docutils literal notranslate"><span class="pre">1.1.0</span></code>, including widgets and tables support:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.1.0.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.pydata.org/bokeh/release/bokeh-tables-1.1.0.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must provide the closing <cite>&lt;/script&gt;</cite> tag. This is required by all
+browsers and the page will typically not render without it.</p>
+</div>
+<p>In addition to a single Bokeh model (e.g. a plot), the <a class="reference internal" href="../reference/embed.html#bokeh.embed.components" title="bokeh.embed.components"><code class="xref py py-func docutils literal notranslate"><span class="pre">components()</span></code></a> function
+also accepts a list or tuple of models, or a dictionary of keys and models.
+Each returns a tuple with one script script and a corresponding data structure
+for the divs.</p>
+<p>The following illustrates how different input types correlate to outputs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">components</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span>
+<span class="c1">#=&gt; (script, plot_div)</span>
+
+<span class="n">components</span><span class="p">((</span><span class="n">plot_1</span><span class="p">,</span> <span class="n">plot_2</span><span class="p">))</span>
+<span class="c1">#=&gt; (script, (plot_1_div, plot_2_div))</span>
+
+<span class="n">components</span><span class="p">({</span><span class="s2">&quot;Plot 1&quot;</span><span class="p">:</span> <span class="n">plot_1</span><span class="p">,</span> <span class="s2">&quot;Plot 2&quot;</span><span class="p">:</span> <span class="n">plot_2</span><span class="p">})</span>
+<span class="c1">#=&gt; (script, {&quot;Plot 1&quot;: plot_1_div, &quot;Plot 2&quot;: plot_2_div})</span>
+</pre></div>
+</div>
+<p>Here’s an example of how you would use the multiple plot generator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># scatter.py</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Range1d</span>
+<span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">components</span>
+
+<span class="c1"># create some data</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+
+<span class="c1"># select the tools we want</span>
+<span class="n">TOOLS</span><span class="o">=</span><span class="s2">&quot;pan,wheel_zoom,box_zoom,reset,save&quot;</span>
+
+<span class="c1"># the red and blue graphs will share this data range</span>
+<span class="n">xr1</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">yr1</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># only the green will use this data range</span>
+<span class="n">xr2</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">yr2</span> <span class="o">=</span> <span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># build our figures</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="n">xr1</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="n">yr1</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">p1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="n">xr1</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="n">yr1</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">p2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">p3</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="n">xr2</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="n">yr2</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">TOOLS</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">p3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># plots can be a single Bokeh Model, a list/tuple, or even a dictionary</span>
+<span class="n">plots</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Red&#39;</span><span class="p">:</span> <span class="n">p1</span><span class="p">,</span> <span class="s1">&#39;Blue&#39;</span><span class="p">:</span> <span class="n">p2</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">:</span> <span class="n">p3</span><span class="p">}</span>
+
+<span class="n">script</span><span class="p">,</span> <span class="n">div</span> <span class="o">=</span> <span class="n">components</span><span class="p">(</span><span class="n">plots</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">div</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scatter.py</span></code> will print out:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&lt;script <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span>&gt;
+    var <span class="nv">docs_json</span> <span class="o">=</span> <span class="o">{</span> DOCUMENT DATA HERE <span class="o">}</span>
+    var <span class="nv">render_items</span> <span class="o">=</span> <span class="o">[{</span>
+      <span class="s2">&quot;docid&quot;</span>:<span class="s2">&quot;33961aa6-fd96-4055-886f-b2afec7ff193&quot;</span>,
+      <span class="s2">&quot;elementid&quot;</span>:<span class="s2">&quot;e89297cf-a2dc-4edd-8993-e16f0ca6af04&quot;</span>,
+      <span class="s2">&quot;modelid&quot;</span>:<span class="s2">&quot;4eff3fdb-80f4-4b4c-a592-f99911e14398&quot;</span>
+    <span class="o">}</span>,<span class="o">{</span>
+      <span class="s2">&quot;docid&quot;</span>:<span class="s2">&quot;33961aa6-fd96-4055-886f-b2afec7ff193&quot;</span>,
+      <span class="s2">&quot;elementid&quot;</span>:<span class="s2">&quot;eeb9a417-02a1-47e3-ab82-221abe8a1644&quot;</span>,
+      <span class="s2">&quot;modelid&quot;</span>:<span class="s2">&quot;0e5ccbaf-62af-42cc-98de-7c597d83747a&quot;</span>
+    <span class="o">}</span>,<span class="o">{</span>
+      <span class="s2">&quot;docid&quot;</span>:<span class="s2">&quot;33961aa6-fd96-4055-886f-b2afec7ff193&quot;</span>,
+      <span class="s2">&quot;elementid&quot;</span>:<span class="s2">&quot;c311f123-368f-43ba-88b6-4e3ecd9aed94&quot;</span>,
+      <span class="s2">&quot;modelid&quot;</span>:<span class="s2">&quot;57f18497-9598-4c70-a251-6072baf223ff&quot;</span>
+    <span class="o">}]</span><span class="p">;</span>
+
+    Bokeh.embed.embed_items<span class="o">(</span>docs_json, render_items<span class="o">)</span><span class="p">;</span>
+&lt;/script&gt;
+
+    <span class="o">{</span>
+        <span class="s1">&#39;Green&#39;</span>: <span class="s1">&#39;\n&lt;div class=&quot;bk-root&quot; id=&quot;e89297cf-a2dc-4edd-8993-e16f0ca6af04&quot;&gt;&lt;/div&gt;&#39;</span>,
+        <span class="s1">&#39;Blue&#39;</span>: <span class="s1">&#39;\n&lt;div class=&quot;bk-root&quot; id=&quot;eeb9a417-02a1-47e3-ab82-221abe8a1644&quot;&gt;&lt;/div&gt;&#39;</span>,
+        <span class="s1">&#39;Red&#39;</span>: <span class="s1">&#39;\n&lt;div class=&quot;bk-root&quot; id=&quot;c311f123-368f-43ba-88b6-4e3ecd9aed94&quot;&gt;&lt;/div&gt;&#39;</span>
+    <span class="o">}</span>
+</pre></div>
+</div>
+<p>Then inserting the script and div elements into this boilerplate:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Bokeh Scatter Plots<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;http://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+        <span class="c">&lt;!-- COPY/PASTE SCRIPT HERE --&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- INSERT DIVS HERE --&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Note that above we have not included the <code class="docutils literal notranslate"><span class="pre">&quot;-widgets&quot;</span></code> JS and CSS files, since the
+document does not use Bokeh widgets. If required, the CDN resources are available as HTTPS
+URLs as well.</p>
+<p>You can see an example by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python /bokeh/examples/embed/embed_multiple.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="autoload-scripts">
+<span id="userguide-embed-standalone-autoload"></span><h3>Autoload Scripts<a class="headerlink" href="#autoload-scripts" title="Permalink to this headline">¶</a></h3>
+<p>A final way to embed standalone documents is the <a class="reference internal" href="../reference/embed.html#bokeh.embed.autoload_static" title="bokeh.embed.autoload_static"><code class="xref py py-func docutils literal notranslate"><span class="pre">autoload_static()</span></code></a> function.
+This function with provide a  <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> tag that will replace itself with
+a Bokeh plot, wherever the tag happens to be located. The script will also check
+for BokehJS and load it, if necessary. Using this function it is possible to
+embed a plot by placing this script tag alone in your document.</p>
+<p>This function takes a Bokeh model (e.g. a plot) that you want to display, a
+<code class="docutils literal notranslate"><span class="pre">Resources</span></code> object, and a path to load a script from. Then <a class="reference internal" href="../reference/embed.html#bokeh.embed.autoload_static" title="bokeh.embed.autoload_static"><code class="xref py py-func docutils literal notranslate"><span class="pre">autoload_static()</span></code></a>
+will return a self-contained <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> tag, and a block of JavaScript code.
+The JavaScript code should be saved to the path you provided. The <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code>
+tag, when it is included in a page, will load and run the saved JavaScript in
+order to realize your plot in the browser.</p>
+<p>Here is how you might use <a class="reference internal" href="../reference/embed.html#bokeh.embed.autoload_static" title="bokeh.embed.autoload_static"><code class="xref py py-func docutils literal notranslate"><span class="pre">autoload_static()</span></code></a> with a simple plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.resources</span> <span class="kn">import</span> <span class="n">CDN</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">autoload_static</span>
+
+<span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">()</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">circle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">js</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="n">autoload_static</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">CDN</span><span class="p">,</span> <span class="s2">&quot;some/path&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> tag looks like:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;some/path&quot;</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&quot;c5339dfd-a354-4e09-bba4-466f58a574f1&quot;</span>
+    <span class="na">async</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+    <span class="na">data-bokeh-modelid</span><span class="o">=</span><span class="s">&quot;7b226555-8e16-4c29-ba2a-df2d308588dc&quot;</span>
+    <span class="na">data-bokeh-loglevel</span><span class="o">=</span><span class="s">&quot;info&quot;</span>
+<span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The script tag should be included in the HTML page wherever you wish to load
+the plot.</p>
+<p>The separate JavaScript code should be saved to a file that can be reached
+on the server at <cite>“some/path”</cite>, from the document that has the plot embedded.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code> tag loads a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> in place, so it must be placed
+under <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="bokeh-applications">
+<span id="userguide-embed-apps"></span><h2>Bokeh Applications<a class="headerlink" href="#bokeh-applications" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how entire Bokeh server applications may be embedded.
+Bokeh apps may be embedded so that every page load creates and displays a new
+session and Document, or so that a specific, existing session is loaded.</p>
+<div class="section" id="app-documents">
+<h3>App Documents<a class="headerlink" href="#app-documents" title="Permalink to this headline">¶</a></h3>
+<p>When an application is running on a Bokeh server and available at some URL,
+it is typically desired to embed the entire application in a page so that
+whenever the page is loaded, a completely new session is created and
+presented to the user. This can be accomplished with the <a class="reference internal" href="../reference/embed.html#bokeh.embed.server_document" title="bokeh.embed.server_document"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_document()</span></code></a>
+function, which accepts the URL to a Bokeh server application, and returns
+a script that will embed new sessions from that server any time the script
+is executed.</p>
+<p>Here is an example snipped using <a class="reference internal" href="../reference/embed.html#bokeh.embed.server_document" title="bokeh.embed.server_document"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_document()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">server_document</span>
+<span class="n">script</span> <span class="o">=</span> <span class="n">server_document</span><span class="p">(</span><span class="s2">&quot;https://demo.bokeh.org/sliders&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The returned script tag will look something like this:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span>
+    <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://demo.bokeh.org/sliders/autoload.js?bokeh-autoload-element=1000&amp;bokeh-app-path=/sliders&amp;bokeh-absolute-url=https://demo.bokeh.org/sliders&quot;</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&quot;1000&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>It can be templated in an HTML page to include the Bokeh application at
+that point.</p>
+</div>
+<div class="section" id="app-sessions">
+<h3>App Sessions<a class="headerlink" href="#app-sessions" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, instead of loading a new session, we might wish to load a
+<em>specific</em> session. For instance, a Flask app rendering a page for an
+authenticated user might want to pull a new session, make some
+customizations for the specific user, then serve the specific Bokeh
+server session. This can be accomplished with the <a class="reference internal" href="../reference/embed.html#bokeh.embed.server_session" title="bokeh.embed.server_session"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_session()</span></code></a>
+function which accepts a specific model to embed (or <code class="docutils literal notranslate"><span class="pre">None</span></code> for an
+entire session document), session ID, and a URL to the Bokeh application.</p>
+<p>Here is an example of how to use <a class="reference internal" href="../reference/embed.html#bokeh.embed.server_session" title="bokeh.embed.server_session"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_session()</span></code></a> and Flask:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+
+<span class="kn">from</span> <span class="nn">bokeh.client</span> <span class="kn">import</span> <span class="n">pull_session</span>
+<span class="kn">from</span> <span class="nn">bokeh.embed</span> <span class="kn">import</span> <span class="n">server_session</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">bkapp_page</span><span class="p">():</span>
+
+    <span class="c1"># pull a new session from a running Bokeh server</span>
+    <span class="k">with</span> <span class="n">pull_session</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://localhost:5006/sliders&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+        <span class="c1"># update or customize that session</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">roots</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Special Sliders For A Specific User!&quot;</span>
+
+        <span class="c1"># generate a script to load the customized session</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">server_session</span><span class="p">(</span><span class="n">session_id</span><span class="o">=</span><span class="n">session</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://localhost:5006/sliders&#39;</span><span class="p">)</span>
+
+        <span class="c1"># use the script in the rendered page</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;embed.html&quot;</span><span class="p">,</span> <span class="n">script</span><span class="o">=</span><span class="n">script</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Flask&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="standard-template">
+<h2>Standard template<a class="headerlink" href="#standard-template" title="Permalink to this headline">¶</a></h2>
+<p>Bokeh also provides a standard Jinja template that can be useful for quickly
+embedding different document roots flexibly by extending the “base” template.
+This is especially useful for embedding individual components of a Bokeh app
+in a non-Bokeh layout (e.g. Bootstrap, etc.).</p>
+<p>Below is a minimal example. Assuming that the application creates two roots
+with names properties set:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;scatter&quot;</span><span class="p">)</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+<span class="n">curdoc</span><span class="p">()</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then these roots can be referred to by name in the template, and passed
+to the <code class="docutils literal notranslate"><span class="pre">embed</span></code> macro to place them wherever desired:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends base %}
+
+<span class="c">&lt;!-- goes in head --&gt;</span>
+{% block preamble %}
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;app/static/css/custom.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+{% endblock %}
+
+<span class="c">&lt;!-- goes in body --&gt;</span>
+{% block contents %}
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> {{ embed(roots.scatter) }} <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span> {{ embed(roots.line) }} <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+<p>The full template, with all the sections that can be overridden, is given here:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+{% block head %}
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    {% block inner_head %}
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block title %}{{ title | e if title else &quot;Bokeh Plot&quot; }}{% endblock %}<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    {% block preamble %}{% endblock %}
+    {% block resources %}
+        {% block css_resources %}
+        {{ bokeh_css | indent(8) if bokeh_css }}
+        {% endblock %}
+        {% block js_resources %}
+        {{ bokeh_js | indent(8) if bokeh_js }}
+        {% endblock %}
+    {% endblock %}
+    {% block postamble %}{% endblock %}
+    {% endblock %}
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+{% endblock %}
+{% block body %}
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    {% block inner_body %}
+    {% block contents %}
+        {% for doc in docs %}
+        {{ embed(doc) if doc.elementid }}
+        {% for root in doc.roots %}
+            {{ embed(root) | indent(10) }}
+        {% endfor %}
+        {% endfor %}
+    {% endblock %}
+    {{ plot_script | indent(8) }}
+    {% endblock %}
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+{% endblock %}
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

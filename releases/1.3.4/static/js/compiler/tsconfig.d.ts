@@ -1,0 +1,30 @@
+declare const tsconfig: {
+    "compilerOptions": {
+        "noImplicitAny": boolean;
+        "noImplicitThis": boolean;
+        "noImplicitReturns": boolean;
+        "noUnusedLocals": boolean;
+        "noUnusedParameters": boolean;
+        "strictNullChecks": boolean;
+        "strictBindCallApply": boolean;
+        "strictFunctionTypes": boolean;
+        "strictPropertyInitialization": boolean;
+        "alwaysStrict": boolean;
+        "noErrorTruncation": boolean;
+        "noEmitOnError": boolean;
+        "allowJs": boolean;
+        "declaration": boolean;
+        "sourceMap": boolean;
+        "importHelpers": boolean;
+        "experimentalDecorators": boolean;
+        "module": string;
+        "moduleResolution": string;
+        "resolveJsonModule": boolean;
+        "target": string;
+        "lib": string[];
+        "baseUrl": string;
+        "outDir": string;
+    };
+    "include": string[];
+};
+export default tsconfig;

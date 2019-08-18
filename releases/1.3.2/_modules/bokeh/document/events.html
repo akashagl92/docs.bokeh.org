@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.document.events &mdash; Bokeh 1.3.2 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../../../_static/jquery.js"></script>
+  <script type="text/javascript" src="../../../_static/underscore.js"></script>
+  <script type="text/javascript" src="../../../_static/doctools.js"></script>
+  <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="../../../index.html" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="../../../index.html" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.3.2</a></li>
+            
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../search.html">Search</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">1.3.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-3-1">1.3.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-3-0">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.document.events</h1><div class="highlight"><pre>
+<span></span><span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2012 - 2019, Anaconda, Inc., and Bokeh Contributors.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># The full license is in the file LICENSE.txt, distributed with this software.</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39; Provide events that represent various changes to Bokeh Documents.</span>
+
+<span class="sd">These events are used internally to signal changes to Documents. For</span>
+<span class="sd">information about user-facing (e.g. UI or tool) events, see the reference</span>
+<span class="sd">for :ref:`bokeh.events`.</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Boilerplate</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Imports</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1"># Standard library imports</span>
+
+<span class="c1"># External imports</span>
+
+<span class="c1"># Bokeh imports</span>
+<span class="kn">from</span> <span class="nn">..util.dependencies</span> <span class="k">import</span> <span class="n">import_optional</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Globals and constants</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="n">pd</span> <span class="o">=</span> <span class="n">import_optional</span><span class="p">(</span><span class="s1">&#39;pandas&#39;</span><span class="p">)</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;ColumnDataChangedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ColumnsStreamedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ColumnsPatchedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DocumentChangedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;DocumentPatchedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ModelChangedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RootAddedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RootRemovedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SessionCallbackAdded&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SessionCallbackRemoved&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TitleChangedEvent&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TitleChangedEvent&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># General API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Dev API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="DocumentChangedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentChangedEvent">[docs]</a><span class="k">class</span> <span class="nc">DocumentChangedEvent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class for all internal events representing a change to a</span>
+<span class="sd">    Bokeh Document.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="DocumentChangedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentChangedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                In the context of a Bokeh server application, incoming updates</span>
+<span class="sd">                to properties will be annotated with the session that is</span>
+<span class="sd">                doing the updating. This value is propagated through any</span>
+<span class="sd">                subsequent change notifications that the update triggers.</span>
+<span class="sd">                The session can compare the event setter to itself, and</span>
+<span class="sd">                suppress any updates that originate from itself.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">=</span> <span class="n">document</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setter</span> <span class="o">=</span> <span class="n">setter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback_invoker</span> <span class="o">=</span> <span class="n">callback_invoker</span></div>
+
+<div class="viewcode-block" id="DocumentChangedEvent.combine"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentChangedEvent.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="DocumentChangedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentChangedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._document_changed`` if it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_document_changed&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_document_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="DocumentPatchedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentPatchedEvent">[docs]</a><span class="k">class</span> <span class="nc">DocumentPatchedEvent</span><span class="p">(</span><span class="n">DocumentChangedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A Base class for events that represent updating Bokeh Models and</span>
+<span class="sd">    their properties.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="DocumentPatchedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentPatchedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._document_patched`` if it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_document_patched&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_document_patched</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DocumentPatchedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.DocumentPatchedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        *Sub-classes must implement this method.*</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="ModelChangedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ModelChangedEvent">[docs]</a><span class="k">class</span> <span class="nc">ModelChangedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing updating an attribute and value of a</span>
+<span class="sd">    specific Bokeh Model.</span>
+
+<span class="sd">    This is the &quot;standard&quot; way of updating most Bokeh model attributes. For</span>
+<span class="sd">    special casing situations that can optimized (e.g. streaming, etc.), a</span>
+<span class="sd">    ``hint`` may be supplied that overrides normal mechanisms.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ModelChangedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ModelChangedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">serializable_new</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            model (Model) :</span>
+<span class="sd">                A Model to update</span>
+
+<span class="sd">            attr (str) :</span>
+<span class="sd">                The name of the attribute to update on the model.</span>
+
+<span class="sd">            old (object) :</span>
+<span class="sd">                The old value of the attribute</span>
+
+<span class="sd">            new (object) :</span>
+<span class="sd">                The new value of the attribute</span>
+
+<span class="sd">            serializable_new (object) :</span>
+<span class="sd">                A serialized (JSON) version of the new value. It may be</span>
+<span class="sd">                ``None`` if a hint is supplied.</span>
+
+<span class="sd">            hint (DocumentPatchedEvent, optional) :</span>
+<span class="sd">                When appropriate, a secondary event may be supplied that</span>
+<span class="sd">                modifies the normal update process. For example, in order</span>
+<span class="sd">                to stream or patch data more efficiently than the standard</span>
+<span class="sd">                update mechanism.</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">setter</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hint</span><span class="p">,</span> <span class="p">(</span><span class="n">ColumnsStreamedEvent</span><span class="p">,</span> <span class="n">ColumnsPatchedEvent</span><span class="p">)):</span>
+            <span class="n">setter</span> <span class="o">=</span> <span class="n">hint</span><span class="o">.</span><span class="n">setter</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelChangedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="o">=</span> <span class="n">old</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new</span> <span class="o">=</span> <span class="n">new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">serializable_new</span> <span class="o">=</span> <span class="n">serializable_new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hint</span> <span class="o">=</span> <span class="n">hint</span></div>
+
+<div class="viewcode-block" id="ModelChangedEvent.combine"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ModelChangedEvent.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">ModelChangedEvent</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># If these are not true something weird is going on, maybe updates from</span>
+        <span class="c1"># Python bokeh.client, don&#39;t try to combine</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">setter</span> <span class="o">!=</span> <span class="n">event</span><span class="o">.</span><span class="n">setter</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">!=</span> <span class="n">event</span><span class="o">.</span><span class="n">document</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hint</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hint</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">hint</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">==</span> <span class="n">event</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attr</span> <span class="o">==</span> <span class="n">event</span><span class="o">.</span><span class="n">attr</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">new</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">serializable_new</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">serializable_new</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback_invoker</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">callback_invoker</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="ModelChangedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ModelChangedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._document_model_dhanged`` if it</span>
+<span class="sd">        exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ModelChangedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_document_model_changed&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_document_model_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ModelChangedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ModelChangedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">..model</span> <span class="k">import</span> <span class="n">collect_models</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hint</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serializable_new</span>
+
+        <span class="c1"># the new value is an object that may have</span>
+        <span class="c1"># not-yet-in-the-remote-doc references, and may also</span>
+        <span class="c1"># itself not be in the remote doc yet.  the remote may</span>
+        <span class="c1"># already have some of the references, but</span>
+        <span class="c1"># unfortunately we don&#39;t have an easy way to know</span>
+        <span class="c1"># unless we were to check BEFORE the attr gets changed</span>
+        <span class="c1"># (we need the old _all_models before setting the</span>
+        <span class="c1"># property). So we have to send all the references the</span>
+        <span class="c1"># remote could need, even though it could be inefficient.</span>
+        <span class="c1"># If it turns out we need to fix this we could probably</span>
+        <span class="c1"># do it by adding some complexity.</span>
+        <span class="n">value_refs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">collect_models</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+        <span class="c1"># we know we don&#39;t want a whole new copy of the obj we&#39;re patching</span>
+        <span class="c1"># unless it&#39;s also the new value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">!=</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">value_refs</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="n">references</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value_refs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>  <span class="p">:</span> <span class="s1">&#39;ModelChanged&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;model&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span>
+                 <span class="s1">&#39;attr&#39;</span>  <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">attr</span><span class="p">,</span>
+                 <span class="s1">&#39;new&#39;</span>   <span class="p">:</span> <span class="n">value</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="ColumnDataChangedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnDataChangedEvent">[docs]</a><span class="k">class</span> <span class="nc">ColumnDataChangedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing efficiently replacing *all*</span>
+<span class="sd">    existing data for a :class:`~bokeh.models.sources.ColumnDataSource`</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ColumnDataChangedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnDataChangedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">column_source</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            column_source (ColumnDataSource) :</span>
+
+<span class="sd">            cols (list[str]) :</span>
+<span class="sd">                optional explicit list of column names to update. If None, all</span>
+<span class="sd">                columns will be updated (default: None)</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnDataChangedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span> <span class="o">=</span> <span class="n">column_source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cols</span> <span class="o">=</span> <span class="n">cols</span></div>
+
+<div class="viewcode-block" id="ColumnDataChangedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnDataChangedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._column_data_changed`` if it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnDataChangedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_column_data_changed&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_column_data_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ColumnDataChangedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnDataChangedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;          : &#39;ColumnDataChanged&#39;</span>
+<span class="sd">                &#39;column_source&#39; : &lt;reference to a CDS&gt;</span>
+<span class="sd">                &#39;new&#39;           : &lt;new data to steam to column_source&gt;</span>
+<span class="sd">                &#39;cols&#39;          : &lt;specific columns to update&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">..util.serialization</span> <span class="k">import</span> <span class="n">transform_column_source_data</span>
+
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="n">transform_column_source_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_source</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">buffers</span><span class="o">=</span><span class="n">buffers</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>          <span class="p">:</span> <span class="s1">&#39;ColumnDataChanged&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;column_source&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span>
+                 <span class="s1">&#39;new&#39;</span>           <span class="p">:</span> <span class="n">data_dict</span><span class="p">,</span>
+                 <span class="s1">&#39;cols&#39;</span>          <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="ColumnsStreamedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsStreamedEvent">[docs]</a><span class="k">class</span> <span class="nc">ColumnsStreamedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing efficiently streaming new data</span>
+<span class="sd">    to a :class:`~bokeh.models.sources.ColumnDataSource`</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ColumnsStreamedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsStreamedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">column_source</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">rollover</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            column_source (ColumnDataSource) :</span>
+<span class="sd">                The data source to stream new data to.</span>
+
+<span class="sd">            data (dict or DataFrame) :</span>
+<span class="sd">                New data to stream.</span>
+
+<span class="sd">                If a DataFrame, will be stored as ``{c: df[c] for c in df.columns}``</span>
+
+<span class="sd">            rollover (int) :</span>
+<span class="sd">                A rollover limit. If the data source columns exceed this</span>
+<span class="sd">                limit, earlier values will be discarded to maintain the</span>
+<span class="sd">                column length under the limit.</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnsStreamedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span> <span class="o">=</span> <span class="n">column_source</span>
+
+        <span class="k">if</span> <span class="n">pd</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rollover</span> <span class="o">=</span> <span class="n">rollover</span></div>
+
+<div class="viewcode-block" id="ColumnsStreamedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsStreamedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._columns_streamed`` if it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnsStreamedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_columns_streamed&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_columns_streamed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ColumnsStreamedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsStreamedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;          : &#39;ColumnsStreamed&#39;</span>
+<span class="sd">                &#39;column_source&#39; : &lt;reference to a CDS&gt;</span>
+<span class="sd">                &#39;data&#39;          : &lt;new data to steam to column_source&gt;</span>
+<span class="sd">                &#39;rollover&#39;      : &lt;rollover limit&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>          <span class="p">:</span> <span class="s1">&#39;ColumnsStreamed&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;column_source&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span>
+                 <span class="s1">&#39;data&#39;</span>          <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                 <span class="s1">&#39;rollover&#39;</span>      <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rollover</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="ColumnsPatchedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsPatchedEvent">[docs]</a><span class="k">class</span> <span class="nc">ColumnsPatchedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing efficiently applying data patches</span>
+<span class="sd">    to a :class:`~bokeh.models.sources.ColumnDataSource`</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="ColumnsPatchedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsPatchedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">column_source</span><span class="p">,</span> <span class="n">patches</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            column_source (ColumnDataSource) :</span>
+<span class="sd">                The data source to apply patches to.</span>
+
+<span class="sd">            patches (list) :</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnsPatchedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span> <span class="o">=</span> <span class="n">column_source</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">patches</span> <span class="o">=</span> <span class="n">patches</span></div>
+
+<div class="viewcode-block" id="ColumnsPatchedEvent.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsPatchedEvent.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._columns_patched`` if it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ColumnsPatchedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_columns_patched&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_columns_patched</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ColumnsPatchedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.ColumnsPatchedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;          : &#39;ColumnsPatched&#39;</span>
+<span class="sd">                &#39;column_source&#39; : &lt;reference to a CDS&gt;</span>
+<span class="sd">                &#39;patches&#39;       : &lt;patches to apply to column_source&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>          <span class="p">:</span> <span class="s1">&#39;ColumnsPatched&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;column_source&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_source</span><span class="o">.</span><span class="n">ref</span><span class="p">,</span>
+                 <span class="s1">&#39;patches&#39;</span>       <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">patches</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="TitleChangedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.TitleChangedEvent">[docs]</a><span class="k">class</span> <span class="nc">TitleChangedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing a change to the title of a Bokeh</span>
+<span class="sd">    Document.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="TitleChangedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.TitleChangedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            title (str) :</span>
+<span class="sd">                The new title to set on the Document</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TitleChangedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span></div>
+
+<div class="viewcode-block" id="TitleChangedEvent.combine"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.TitleChangedEvent.combine">[docs]</a>    <span class="k">def</span> <span class="nf">combine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">TitleChangedEvent</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># If these are not true something weird is going on, maybe updates from</span>
+        <span class="c1"># Python bokeh.client, don&#39;t try to combine</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">setter</span> <span class="o">!=</span> <span class="n">event</span><span class="o">.</span><span class="n">setter</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">document</span> <span class="o">!=</span> <span class="n">event</span><span class="o">.</span><span class="n">document</span><span class="p">:</span> <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback_invoker</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">callback_invoker</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="TitleChangedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.TitleChangedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;  : &#39;TitleChanged&#39;</span>
+<span class="sd">                &#39;title&#39; : &lt;new title to set&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>  <span class="p">:</span> <span class="s1">&#39;TitleChanged&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;title&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="RootAddedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootAddedEvent">[docs]</a><span class="k">class</span> <span class="nc">RootAddedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing a change to add a new Model to a</span>
+<span class="sd">    Document&#39;s collection of &quot;root&quot; models.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="RootAddedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootAddedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            model (Model) :</span>
+<span class="sd">                The Bokeh Model to add as a Document root.</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RootAddedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span></div>
+
+<div class="viewcode-block" id="RootAddedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootAddedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;  : &#39;RootAdded&#39;</span>
+<span class="sd">                &#39;title&#39; : &lt;reference to a Model&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">references</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">references</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>  <span class="p">:</span> <span class="s1">&#39;RootAdded&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;model&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">ref</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="RootRemovedEvent"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootRemovedEvent">[docs]</a><span class="k">class</span> <span class="nc">RootRemovedEvent</span><span class="p">(</span><span class="n">DocumentPatchedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing a change to remove an existing Model</span>
+<span class="sd">    from a Document&#39;s collection of &quot;root&quot; models.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="RootRemovedEvent.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootRemovedEvent.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            model (Model) :</span>
+<span class="sd">                The Bokeh Model to remove as a Document root.</span>
+
+<span class="sd">            setter (ClientSession or ServerSession or None, optional) :</span>
+<span class="sd">                This is used to prevent &quot;boomerang&quot; updates to Bokeh apps.</span>
+<span class="sd">                (default: None)</span>
+
+<span class="sd">                See :class:`~bokeh.document.events.DocumentChangedEvent`</span>
+<span class="sd">                for more details.</span>
+
+<span class="sd">            callback_invoker (callable, optional) :</span>
+<span class="sd">                A callable that will invoke any Model callbacks that should</span>
+<span class="sd">                be executed in response to the change that triggered this</span>
+<span class="sd">                event. (default: None)</span>
+
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RootRemovedEvent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">callback_invoker</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span></div>
+
+<div class="viewcode-block" id="RootRemovedEvent.generate"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.RootRemovedEvent.generate">[docs]</a>    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">references</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create a JSON representation of this event suitable for sending</span>
+<span class="sd">        to clients.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            {</span>
+<span class="sd">                &#39;kind&#39;  : &#39;RootRemoved&#39;</span>
+<span class="sd">                &#39;title&#39; : &lt;reference to a Model&gt;</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            references (dict[str, Model]) :</span>
+<span class="sd">                If the event requires references to certain models in order to</span>
+<span class="sd">                function, they may be collected here.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">            buffers (set) :</span>
+<span class="sd">                If the event needs to supply any additional Bokeh protocol</span>
+<span class="sd">                buffers, they may be added to this set.</span>
+
+<span class="sd">                **This is an &quot;out&quot; parameter**. The values it contains will be</span>
+<span class="sd">                modified in-place.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="s1">&#39;kind&#39;</span>  <span class="p">:</span> <span class="s1">&#39;RootRemoved&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;model&#39;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">ref</span> <span class="p">}</span></div></div>
+
+<div class="viewcode-block" id="SessionCallbackAdded"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackAdded">[docs]</a><span class="k">class</span> <span class="nc">SessionCallbackAdded</span><span class="p">(</span><span class="n">DocumentChangedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing a change to add a new callback (e.g.</span>
+<span class="sd">    periodic, timeout, or &quot;next tick&quot;) to a Document.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="SessionCallbackAdded.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackAdded.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            callback (SessionCallback) :</span>
+<span class="sd">                The callback to add</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SessionCallbackAdded</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span></div>
+
+<div class="viewcode-block" id="SessionCallbackAdded.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackAdded.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._session_callback_added`` if</span>
+<span class="sd">        it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SessionCallbackAdded</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_session_callback_added&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_session_callback_added</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="SessionCallbackRemoved"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackRemoved">[docs]</a><span class="k">class</span> <span class="nc">SessionCallbackRemoved</span><span class="p">(</span><span class="n">DocumentChangedEvent</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A concrete event representing a change to remove an existing callback</span>
+<span class="sd">    (e.g. periodic, timeout, or &quot;next tick&quot;) from a Document.</span>
+
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="SessionCallbackRemoved.__init__"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackRemoved.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">document</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            document (Document) :</span>
+<span class="sd">                A Bokeh document that is to be updated.</span>
+
+<span class="sd">            callback (SessionCallback) :</span>
+<span class="sd">                The callback to remove</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SessionCallbackRemoved</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span></div>
+
+<div class="viewcode-block" id="SessionCallbackRemoved.dispatch"><a class="viewcode-back" href="../../../docs/reference/document/events.html#bokeh.document.events.SessionCallbackRemoved.dispatch">[docs]</a>    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">receiver</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Dispatch handling of this event to a receiver.</span>
+
+<span class="sd">        This method will invoke ``receiver._session_callback_removed`` if</span>
+<span class="sd">        it exists.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SessionCallbackRemoved</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="s1">&#39;_session_callback_removed&#39;</span><span class="p">):</span>
+            <span class="n">receiver</span><span class="o">.</span><span class="n">_session_callback_removed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Private API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Code</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../../docs/contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2019, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

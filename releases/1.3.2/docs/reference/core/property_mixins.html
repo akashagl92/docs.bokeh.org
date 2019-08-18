@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.core.property_mixins &mdash; Bokeh 1.3.2 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+    <link rel="stylesheet" href="../../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../../../_static/jquery.js"></script>
+  <script type="text/javascript" src="../../../_static/underscore.js"></script>
+  <script type="text/javascript" src="../../../_static/doctools.js"></script>
+  <script type="text/javascript" src="../../../_static/language_data.js"></script>
+
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="../../../index.html" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="../../../index.html" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.3.2</a></li>
+            
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../search.html">Search</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../core.html">bokeh.core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="enums.html">bokeh.core.enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="has_props.html">bokeh.core.has_props</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json_encoder.html">bokeh.core.json_encoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="properties.html">bokeh.core.properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="property/bases.html">bokeh.core.property.bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="property/descriptor_factory.html">bokeh.core.property.descriptor_factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="property/descriptors.html">bokeh.core.property.descriptors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.core.property_mixins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query.html">bokeh.core.query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">bokeh.core.templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="validation.html">bokeh.core.validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.3.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-1">1.3.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-0">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-core-property-mixins">
+<span id="id1"></span><h1>bokeh.core.property_mixins<a class="headerlink" href="#bokeh-core-property-mixins" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.core.property_mixins"></span><p>Mix-in classes that bulk add groups of properties to Bokeh models.</p>
+<p>Some groups of properties often show up in Bokeh models together. For
+instance, any model that exposes a fill color property for use when
+rendering will almost always want to expose a fill alpha as well. To
+reduce boilerplate code and simplify defining models with these sets
+of properties, use the mix-in classes in this module:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#bokeh.core.property_mixins.FillProps" title="bokeh.core.property_mixins.FillProps"><code class="xref py py-class docutils literal notranslate"><span class="pre">FillProps</span></code></a> — properties for fill color and alpha</p></li>
+<li><p><a class="reference internal" href="#bokeh.core.property_mixins.HatchProps" title="bokeh.core.property_mixins.HatchProps"><code class="xref py py-class docutils literal notranslate"><span class="pre">HatchProps</span></code></a> — properties for hatching pattern, color, alpha, etc.</p></li>
+<li><p><a class="reference internal" href="#bokeh.core.property_mixins.LineProps" title="bokeh.core.property_mixins.LineProps"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineProps</span></code></a> — properties for line color, dashing, width, etc.</p></li>
+<li><p><a class="reference internal" href="#bokeh.core.property_mixins.TextProps" title="bokeh.core.property_mixins.TextProps"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextProps</span></code></a> — properties for text color, font, etc.</p></li>
+</ul>
+<p>To include these properties in a Bokeh model, use the <a class="reference internal" href="properties.html#bokeh.core.properties.Include" title="bokeh.core.properties.Include"><code class="xref py py-class docutils literal notranslate"><span class="pre">Include</span></code></a> property
+as shown here:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SomeGlyph</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This adds all the fill properties <code class="docutils literal notranslate"><span class="pre">fill_color</span></code> and <code class="docutils literal notranslate"><span class="pre">fill_alpha</span></code> to this
+model with one simple statement. Note that the help string contains a
+placeholder format <cite>%s</cite>. When docs for this class are rendered by the
+<a class="reference internal" href="../sphinxext.html#bokeh-sphinxext-bokeh-model"><span class="std std-ref">bokeh_model</span></a> Sphinx extension, the placeholder will
+be replaced with more information specific to each property. The setting
+<code class="docutils literal notranslate"><span class="pre">use_prefix</span></code> means that the names of the properties added to <code class="docutils literal notranslate"><span class="pre">SomeGlyph</span></code>
+are exactly <code class="docutils literal notranslate"><span class="pre">fill_alpha</span></code> and <code class="docutils literal notranslate"><span class="pre">fill_color</span></code>. Some situations require a
+different usage, for more information see the docs for <a class="reference internal" href="properties.html#bokeh.core.properties.Include" title="bokeh.core.properties.Include"><code class="xref py py-class docutils literal notranslate"><span class="pre">Include</span></code></a>.</p>
+<dl class="class">
+<dt id="bokeh.core.property_mixins.FillProps">
+<em class="property">class </em><code class="sig-name descname">FillProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#FillProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.FillProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering fill regions.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Fill</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.FillProps.fill_alpha">
+<code class="sig-name descname">fill_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.FillProps.fill_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>An alpha value to use to fill paths with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.FillProps.fill_color">
+<code class="sig-name descname">fill_color</code><a class="headerlink" href="#bokeh.core.property_mixins.FillProps.fill_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>A color to use to fill paths with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.HatchProps">
+<em class="property">class </em><code class="sig-name descname">HatchProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#HatchProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering fill regions.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Hatch</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.HatchProps.hatch_alpha">
+<code class="sig-name descname">hatch_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps.hatch_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>An alpha value to use to hatching with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.HatchProps.hatch_color">
+<code class="sig-name descname">hatch_color</code><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps.hatch_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>A color to use to hatching with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.HatchProps.hatch_pattern">
+<code class="sig-name descname">hatch_pattern</code><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps.hatch_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <code class="xref py py-class docutils literal notranslate"><span class="pre">HatchPatternSpec</span></code></p>
+<p>Built-in patterns are can either be specified as long names:</p>
+<p>blank, dot, ring, horizontal_line, vertical_line, cross, horizontal_dash, vertical_dash, spiral, right_diagonal_line, left_diagonal_line, diagonal_cross, right_diagonal_dash, left_diagonal_dash, horizontal_wave, vertical_wave, criss_cross</p>
+<p>or as one-letter abbreviations:</p>
+<p>‘ ‘, ‘.’, ‘o’, ‘-‘, ‘|’, ‘+’, ‘”’, ‘:’, ‘&#64;’, ‘/’, ‘', ‘x’, ‘,’, ‘`’, ‘v’, ‘&gt;’, ‘*’</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.HatchProps.hatch_scale">
+<code class="sig-name descname">hatch_scale</code><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps.hatch_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>A rough measure of the ‘size’ of the hatching pattern. Generally speaking, the
+higher the number, the more spread out the pattern will be.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.HatchProps.hatch_weight">
+<code class="sig-name descname">hatch_weight</code><a class="headerlink" href="#bokeh.core.property_mixins.HatchProps.hatch_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>A width value for line-strokes used in hatching.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.LineProps">
+<em class="property">class </em><code class="sig-name descname">LineProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#LineProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.LineProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering path operations.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Line</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.LineProps.line_alpha">
+<code class="sig-name descname">line_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.LineProps.line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>An alpha value to use to stroke paths with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.LineProps.line_color">
+<code class="sig-name descname">line_color</code><a class="headerlink" href="#bokeh.core.property_mixins.LineProps.line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>A color to use to stroke paths with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.LineProps.line_width">
+<code class="sig-name descname">line_width</code><a class="headerlink" href="#bokeh.core.property_mixins.LineProps.line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>Stroke width in units of pixels.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.TextProps">
+<em class="property">class </em><code class="sig-name descname">TextProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#TextProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.TextProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering text.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Text</span></code> class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is currently only support for filling text. An interface
+to stroke the outlines of text has not yet been exposed.</p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.TextProps.text_alpha">
+<code class="sig-name descname">text_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.TextProps.text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.NumberSpec" title="bokeh.core.properties.NumberSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumberSpec</span></code></a></p>
+<p>An alpha value to use to fill text with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.TextProps.text_color">
+<code class="sig-name descname">text_color</code><a class="headerlink" href="#bokeh.core.property_mixins.TextProps.text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.ColorSpec" title="bokeh.core.properties.ColorSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorSpec</span></code></a></p>
+<p>A color to use to fill text with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.ScalarFillProps">
+<em class="property">class </em><code class="sig-name descname">ScalarFillProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#ScalarFillProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.ScalarFillProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering fill regions.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Fill</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarFillProps.fill_alpha">
+<code class="sig-name descname">fill_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarFillProps.fill_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Percent</span></code></a></p>
+<p>An alpha value to use to %s with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarFillProps.fill_color">
+<code class="sig-name descname">fill_color</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarFillProps.fill_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+<p>A color to use to fill paths with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps">
+<em class="property">class </em><code class="sig-name descname">ScalarHatchProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#ScalarHatchProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering fill regions.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Hatch</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps.hatch_alpha">
+<code class="sig-name descname">hatch_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps.hatch_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Percent</span></code></a></p>
+<p>An alpha value to use to hatching with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps.hatch_color">
+<code class="sig-name descname">hatch_color</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps.hatch_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+<p>A color to use to hatching with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps.hatch_pattern">
+<code class="sig-name descname">hatch_pattern</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps.hatch_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a></p>
+<p>Built-in patterns are can either be specified as long names:</p>
+<p>blank, dot, ring, horizontal_line, vertical_line, cross, horizontal_dash, vertical_dash, spiral, right_diagonal_line, left_diagonal_line, diagonal_cross, right_diagonal_dash, left_diagonal_dash, horizontal_wave, vertical_wave, criss_cross</p>
+<p>or as one-letter abbreviations:</p>
+<p>‘ ‘, ‘.’, ‘o’, ‘-‘, ‘|’, ‘+’, ‘”’, ‘:’, ‘&#64;’, ‘/’, ‘', ‘x’, ‘,’, ‘`’, ‘v’, ‘&gt;’, ‘*’</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps.hatch_scale">
+<code class="sig-name descname">hatch_scale</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps.hatch_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Size" title="bokeh.core.properties.Size"><code class="xref py py-class docutils literal notranslate"><span class="pre">Size</span></code></a></p>
+<p>A rough measure of the ‘size’ of the hatching pattern. Generally speaking, the
+higher the number, the more spread out the pattern will be.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarHatchProps.hatch_weight">
+<code class="sig-name descname">hatch_weight</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarHatchProps.hatch_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Size" title="bokeh.core.properties.Size"><code class="xref py py-class docutils literal notranslate"><span class="pre">Size</span></code></a></p>
+<p>A width value for line-strokes used in hatching.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.ScalarLineProps">
+<em class="property">class </em><code class="sig-name descname">ScalarLineProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#ScalarLineProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.ScalarLineProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering path operations.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Line</span></code> class.</p>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarLineProps.line_alpha">
+<code class="sig-name descname">line_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarLineProps.line_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Percent</span></code></a></p>
+<p>An alpha value to use to stroke paths with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarLineProps.line_color">
+<code class="sig-name descname">line_color</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarLineProps.line_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+<p>A color to use to stroke paths with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarLineProps.line_width">
+<code class="sig-name descname">line_width</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarLineProps.line_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>Stroke width in units of pixels.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.core.property_mixins.ScalarTextProps">
+<em class="property">class </em><code class="sig-name descname">ScalarTextProps</code><span class="sig-paren">(</span><em class="sig-param">**properties</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/core/property_mixins.html#ScalarTextProps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.core.property_mixins.ScalarTextProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Properties relevant to rendering text.</p>
+<p>Mirrors the BokehJS <code class="docutils literal notranslate"><span class="pre">properties.Text</span></code> class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is currently only support for filling text. An interface
+to stroke the outlines of text has not yet been exposed.</p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarTextProps.text_alpha">
+<code class="sig-name descname">text_alpha</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarTextProps.text_alpha" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Percent" title="bokeh.core.properties.Percent"><code class="xref py py-class docutils literal notranslate"><span class="pre">Percent</span></code></a></p>
+<p>An alpha value to use to fill text with.</p>
+<p>Acceptable values are floating point numbers between 0 (transparent)
+and 1 (opaque).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.core.property_mixins.ScalarTextProps.text_color">
+<code class="sig-name descname">text_color</code><a class="headerlink" href="#bokeh.core.property_mixins.ScalarTextProps.text_color" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+<p>A color to use to fill text with.</p>
+<p>Acceptable values are:</p>
+<ul class="simple">
+<li><p>any of the 147 named <a class="reference external" href="http://www.w3schools.com/cssref/css_colornames.asp">CSS colors</a>, e.g <code class="docutils literal notranslate"><span class="pre">'green'</span></code>, <code class="docutils literal notranslate"><span class="pre">'indigo'</span></code></p></li>
+<li><p>an RGB(A) hex value, e.g., <code class="docutils literal notranslate"><span class="pre">'#FF0000'</span></code>, <code class="docutils literal notranslate"><span class="pre">'#44444444'</span></code></p></li>
+<li><p>a 3-tuple of integers (r,g,b) between 0 and 255</p></li>
+<li><p>a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../../https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../../https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../../https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2019, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.core.property_mixins &mdash; Bokeh 1.3.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.3.0";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/_modules/bokeh/core/property_mixins.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.3.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.0/">1.3.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.core.property_mixins</h1><div class="highlight"><pre>
+<span></span><span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2012 - 2019, Anaconda, Inc., and Bokeh Contributors.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># The full license is in the file LICENSE.txt, distributed with this software.</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39; Mix-in classes that bulk add groups of properties to Bokeh models.</span>
+
+<span class="sd">Some groups of properties often show up in Bokeh models together. For</span>
+<span class="sd">instance, any model that exposes a fill color property for use when</span>
+<span class="sd">rendering will almost always want to expose a fill alpha as well. To</span>
+<span class="sd">reduce boilerplate code and simplify defining models with these sets</span>
+<span class="sd">of properties, use the mix-in classes in this module:</span>
+
+<span class="sd">* |FillProps| --- properties for fill color and alpha</span>
+
+<span class="sd">* |HatchProps| --- properties for hatching pattern, color, alpha, etc.</span>
+
+<span class="sd">* |LineProps| --- properties for line color, dashing, width, etc.</span>
+
+<span class="sd">* |TextProps| --- properties for text color, font, etc.</span>
+
+<span class="sd">To include these properties in a Bokeh model, use the |Include| property</span>
+<span class="sd">as shown here:</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    class SomeGlyph(Glyph):</span>
+
+<span class="sd">        fill_props = Include(FillProps, use_prefix=False, help=&quot;&quot;&quot;</span>
+<span class="sd">        The %s values for the annular wedges.</span>
+<span class="sd">        &quot;&quot;&quot;)</span>
+
+<span class="sd">This adds all the fill properties ``fill_color`` and ``fill_alpha`` to this</span>
+<span class="sd">model with one simple statement. Note that the help string contains a</span>
+<span class="sd">placeholder format `%s`. When docs for this class are rendered by the</span>
+<span class="sd">:ref:`bokeh.sphinxext.bokeh_model` Sphinx extension, the placeholder will</span>
+<span class="sd">be replaced with more information specific to each property. The setting</span>
+<span class="sd">``use_prefix`` means that the names of the properties added to ``SomeGlyph``</span>
+<span class="sd">are exactly ``fill_alpha`` and ``fill_color``. Some situations require a</span>
+<span class="sd">different usage, for more information see the docs for |Include|.</span>
+
+<span class="sd">.. |Include| replace:: :class:`~bokeh.core.properties.Include`</span>
+
+<span class="sd">.. |FillProps| replace:: :class:`~bokeh.core.property_mixins.FillProps`</span>
+<span class="sd">.. |HatchProps| replace:: :class:`~bokeh.core.property_mixins.HatchProps`</span>
+<span class="sd">.. |LineProps| replace:: :class:`~bokeh.core.property_mixins.LineProps`</span>
+<span class="sd">.. |TextProps| replace:: :class:`~bokeh.core.property_mixins.TextProps`</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Boilerplate</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Imports</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1"># Standard library imports</span>
+
+<span class="c1"># External imports</span>
+
+<span class="c1"># Bokeh imports</span>
+<span class="kn">from</span> <span class="nn">.enums</span> <span class="k">import</span> <span class="n">HatchPattern</span><span class="p">,</span> <span class="n">HatchPatternAbbreviation</span><span class="p">,</span> <span class="n">LineJoin</span><span class="p">,</span> <span class="n">LineCap</span><span class="p">,</span> <span class="n">FontStyle</span><span class="p">,</span> <span class="n">TextAlign</span><span class="p">,</span> <span class="n">TextBaseline</span>
+<span class="kn">from</span> <span class="nn">.has_props</span> <span class="k">import</span> <span class="n">HasProps</span>
+<span class="kn">from</span> <span class="nn">.properties</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">Color</span><span class="p">,</span> <span class="n">ColorSpec</span><span class="p">,</span> <span class="n">DashPattern</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">FontSize</span><span class="p">,</span> <span class="n">FontSizeSpec</span><span class="p">,</span> <span class="n">HatchPatternSpec</span><span class="p">,</span>
+    <span class="n">Include</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">NumberSpec</span><span class="p">,</span> <span class="n">Percent</span><span class="p">,</span> <span class="n">Size</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">value</span>
+<span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Globals and constants</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;FillProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HatchProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LineProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TextProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ScalarFillProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ScalarHatchProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ScalarLineProps&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ScalarTextProps&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Private API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="n">_color_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A color to use to </span><span class="si">%s</span><span class="s2"> with.</span>
+
+<span class="s2">Acceptable values are:</span>
+
+<span class="s2">- any of the 147 named `CSS colors`_, e.g ``&#39;green&#39;``, ``&#39;indigo&#39;``</span>
+<span class="s2">- an RGB(A) hex value, e.g., ``&#39;#FF0000&#39;``, ``&#39;#44444444&#39;``</span>
+<span class="s2">- a 3-tuple of integers (r,g,b) between 0 and 255</span>
+<span class="s2">- a 4-tuple of (r,g,b,a) where r,g,b are integers between 0..255 and a is between 0..1</span>
+
+<span class="s2">.. _CSS colors: http://www.w3schools.com/cssref/css_colornames.asp</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">_alpha_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">An alpha value to use to </span><span class="si">%s</span><span class="s2"> with.</span>
+
+<span class="s2">Acceptable values are floating point numbers between 0 (transparent)</span>
+<span class="s2">and 1 (opaque).</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">_BaseLineProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="n">line_join</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">LineJoin</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;bevel&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How path segments should be joined together.</span>
+
+<span class="s2">    Acceptable values are:</span>
+
+<span class="s2">    - ``&#39;miter&#39;`` |miter_join|</span>
+<span class="s2">    - ``&#39;round&#39;`` |round_join|</span>
+<span class="s2">    - ``&#39;bevel&#39;`` |bevel_join|</span>
+
+<span class="s2">    .. |miter_join| image:: /_images/miter_join.png</span>
+<span class="s2">       :height: 15</span>
+<span class="s2">    .. |round_join| image:: /_images/round_join.png</span>
+<span class="s2">       :height: 15</span>
+<span class="s2">    .. |bevel_join| image:: /_images/bevel_join.png</span>
+<span class="s2">       :height: 15</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_cap</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">LineCap</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How path segments should be terminated.</span>
+
+<span class="s2">    Acceptable values are:</span>
+
+<span class="s2">    - ``&#39;butt&#39;`` |butt_cap|</span>
+<span class="s2">    - ``&#39;round&#39;`` |round_cap|</span>
+<span class="s2">    - ``&#39;square&#39;`` |square_cap|</span>
+
+<span class="s2">    .. |butt_cap| image:: /_images/butt_cap.png</span>
+<span class="s2">       :height: 12</span>
+<span class="s2">    .. |round_cap| image:: /_images/round_cap.png</span>
+<span class="s2">       :height: 12</span>
+<span class="s2">    .. |square_cap| image:: /_images/square_cap.png</span>
+<span class="s2">       :height: 12</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_dash</span> <span class="o">=</span> <span class="n">DashPattern</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    How should the line be dashed.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_dash_offset</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The distance into the ``line_dash`` (in pixels) that the pattern should</span>
+<span class="s2">    start from.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">_BaseTextProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+
+    <span class="n">text_font</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s2">&quot;helvetica&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Name of a font to use for rendering text, e.g., ``&#39;times&#39;``,</span>
+<span class="s2">    ``&#39;helvetica&#39;``.</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text_font_style</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">FontStyle</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A style to use for rendering text.</span>
+
+<span class="s2">    Acceptable values are:</span>
+
+<span class="s2">    - ``&#39;normal&#39;`` normal text</span>
+<span class="s2">    - ``&#39;italic&#39;`` *italic text*</span>
+<span class="s2">    - ``&#39;bold&#39;`` **bold text**</span>
+<span class="s2">    - ``&quot;bold italic&quot;`` ***bold italic text***</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text_align</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">TextAlign</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Horizontal anchor point to use when rendering text.</span>
+
+<span class="s2">    Acceptable values are:</span>
+
+<span class="s2">    - ``&#39;left&#39;``</span>
+<span class="s2">    - ``&#39;right&#39;``</span>
+<span class="s2">    - ``&#39;center&#39;``</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text_baseline</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">TextBaseline</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Vertical anchor point to use when rendering text.</span>
+
+<span class="s2">    Acceptable values are:</span>
+
+<span class="s2">    - ``&#39;top&#39;``</span>
+<span class="s2">    - ``&#39;middle&#39;``</span>
+<span class="s2">    - ``&#39;bottom&#39;``</span>
+<span class="s2">    - ``&#39;alphabetic&#39;``</span>
+<span class="s2">    - ``&#39;hanging&#39;``</span>
+<span class="s2">    - ``&#39;ideographic&#39;``</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text_line_height</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    In multi-line text, how much additional space should be allocated for</span>
+<span class="s2">    each line. The value is provided as a number, but should be treated as</span>
+<span class="s2">    a percentage of font size. The default is 120%. Setting it to 1.0, so</span>
+<span class="s2">    100%, means no additional space will be used.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------------</span>
+<span class="c1"># General API</span>
+<span class="c1">#----------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="FillProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.FillProps">[docs]</a><span class="k">class</span> <span class="nc">FillProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering fill regions.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Fill`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">fill_color</span> <span class="o">=</span> <span class="n">ColorSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;fill paths&quot;</span><span class="p">)</span>
+    <span class="n">fill_alpha</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;fill paths&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ScalarFillProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.ScalarFillProps">[docs]</a><span class="k">class</span> <span class="nc">ScalarFillProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering fill regions.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Fill`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">fill_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span>  <span class="o">%</span> <span class="s2">&quot;fill paths&quot;</span><span class="p">)</span>
+    <span class="n">fill_alpha</span> <span class="o">=</span> <span class="n">Percent</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span><span class="p">)</span></div>
+
+<span class="n">_hatch_scale_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A rough measure of the &#39;size&#39; of the hatching pattern. Generally speaking, the</span>
+<span class="s2">higher the number, the more spread out the pattern will be.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">_hatch_pattern_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Built-in patterns are can either be specified as long names:</span>
+
+<span class="si">%s</span><span class="s2"></span>
+
+<span class="s2">or as one-letter abbreviations:</span>
+
+<span class="si">%s</span><span class="s2"></span>
+<span class="s2">&quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span> <span class="n">join</span><span class="p">(</span><span class="n">HatchPattern</span><span class="p">),</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span> <span class="n">join</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">HatchPatternAbbreviation</span><span class="p">))</span>
+
+<span class="n">_hatch_weight_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A width value for line-strokes used in hatching.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="HatchProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.HatchProps">[docs]</a><span class="k">class</span> <span class="nc">HatchProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering fill regions.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Hatch`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">hatch_color</span> <span class="o">=</span> <span class="n">ColorSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;hatching&quot;</span><span class="p">)</span>
+    <span class="n">hatch_alpha</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;hatching&quot;</span><span class="p">)</span>
+    <span class="n">hatch_scale</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_scale_help</span><span class="p">)</span>
+    <span class="n">hatch_pattern</span> <span class="o">=</span> <span class="n">HatchPatternSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_pattern_help</span><span class="p">)</span>
+    <span class="n">hatch_weight</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_weight_help</span><span class="p">)</span>
+    <span class="n">hatch_extra</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Instance</span><span class="p">(</span><span class="s2">&quot;bokeh.models.textures.Texture&quot;</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="ScalarHatchProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.ScalarHatchProps">[docs]</a><span class="k">class</span> <span class="nc">ScalarHatchProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering fill regions.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Hatch`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">hatch_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;hatching&quot;</span><span class="p">)</span>
+    <span class="n">hatch_alpha</span> <span class="o">=</span> <span class="n">Percent</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;hatching&quot;</span><span class="p">)</span>
+    <span class="n">hatch_scale</span> <span class="o">=</span> <span class="n">Size</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_scale_help</span><span class="p">)</span>
+    <span class="n">hatch_pattern</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_pattern_help</span><span class="p">)</span>  <span class="c1"># String to accommodate user custom values</span>
+    <span class="n">hatch_weight</span> <span class="o">=</span> <span class="n">Size</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_hatch_weight_help</span><span class="p">)</span>
+    <span class="n">hatch_extra</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Instance</span><span class="p">(</span><span class="s2">&quot;bokeh.models.textures.Texture&quot;</span><span class="p">))</span></div>
+
+<span class="n">_line_width_help</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Stroke width in units of pixels.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LineProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.LineProps">[docs]</a><span class="k">class</span> <span class="nc">LineProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering path operations.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Line`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">base_line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">_BaseLineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">line_color</span> <span class="o">=</span> <span class="n">ColorSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;stroke paths&quot;</span><span class="p">)</span>
+    <span class="n">line_width</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_line_width_help</span><span class="p">)</span>
+    <span class="n">line_alpha</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;stroke paths&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ScalarLineProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.ScalarLineProps">[docs]</a><span class="k">class</span> <span class="nc">ScalarLineProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering path operations.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Line`` class.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">base_line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">_BaseLineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">line_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;stroke paths&quot;</span><span class="p">)</span>
+    <span class="n">line_width</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_line_width_help</span><span class="p">)</span>
+    <span class="n">line_alpha</span> <span class="o">=</span> <span class="n">Percent</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;stroke paths&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TextProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.TextProps">[docs]</a><span class="k">class</span> <span class="nc">TextProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering text.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Text`` class.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        There is currently only support for filling text. An interface</span>
+<span class="sd">        to stroke the outlines of text has not yet been exposed.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">base_text_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">_BaseTextProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">text_font_size</span> <span class="o">=</span> <span class="n">FontSizeSpec</span><span class="p">(</span><span class="n">value</span><span class="p">(</span><span class="s2">&quot;12pt&quot;</span><span class="p">))</span>
+
+    <span class="n">text_color</span> <span class="o">=</span> <span class="n">ColorSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;#444444&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;fill text&quot;</span><span class="p">)</span>
+
+    <span class="n">text_alpha</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">accept_datetime</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">accept_timedelta</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;fill text&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ScalarTextProps"><a class="viewcode-back" href="../../../docs/reference/core/property_mixins.html#bokeh.core.property_mixins.ScalarTextProps">[docs]</a><span class="k">class</span> <span class="nc">ScalarTextProps</span><span class="p">(</span><span class="n">HasProps</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Properties relevant to rendering text.</span>
+
+<span class="sd">    Mirrors the BokehJS ``properties.Text`` class.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        There is currently only support for filling text. An interface</span>
+<span class="sd">        to stroke the outlines of text has not yet been exposed.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">base_text_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">_BaseTextProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># XXX not great</span>
+    <span class="n">text_font_size</span> <span class="o">=</span> <span class="n">FontSize</span><span class="p">(</span><span class="s2">&quot;12pt&quot;</span><span class="p">)</span>
+
+    <span class="n">text_color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;#444444&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_color_help</span> <span class="o">%</span> <span class="s2">&quot;fill text&quot;</span><span class="p">)</span>
+
+    <span class="n">text_alpha</span> <span class="o">=</span> <span class="n">Percent</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="n">_alpha_help</span> <span class="o">%</span> <span class="s2">&quot;fill text&quot;</span><span class="p">)</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Dev API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Code</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../../../docs/https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../../docs/contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

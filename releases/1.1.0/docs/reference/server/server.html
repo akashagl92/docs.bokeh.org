@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.server.server &mdash; Bokeh 1.1.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.1.0";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/reference/server/server.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.1.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../server.html">bokeh.server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.server.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connection.html">bokeh.server.connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contexts.html">bokeh.server.contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="protocol_hander.html">bokeh.server.protocol_handler</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.server.server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session.html">bokeh.server.session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tornado.html">bokeh.server.tornado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urls.html">bokeh.server.urls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">bokeh.server.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">bokeh.server.views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-server-server">
+<span id="id1"></span><h1>bokeh.server.server<a class="headerlink" href="#bokeh-server-server" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.server.server"></span><p>Provide basic Bokeh server objects that use a Tornado <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> and
+<code class="docutils literal notranslate"><span class="pre">BokeTornado</span></code> Tornado Application to service Bokeh Server Applications.
+There are two public classes in this module:</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="#bokeh.server.server.BaseServer" title="bokeh.server.server.BaseServer"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseServer</span></code></a></dt>
+<dd>This is a lightweight class to explicitly coordinate the components needed
+to run a Bokeh server (A <a class="reference internal" href="tornado.html#bokeh.server.tornado.BokehTornado" title="bokeh.server.tornado.BokehTornado"><code class="xref py py-class docutils literal notranslate"><span class="pre">BokehTornado</span></code></a>
+instance, and Tornado <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> and a Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code>)</dd>
+<dt><a class="reference internal" href="#bokeh.server.server.Server" title="bokeh.server.server.Server"><code class="xref py py-class docutils literal notranslate"><span class="pre">Server</span></code></a></dt>
+<dd>This higher-level convenience class only needs to be configured with Bokeh
+<a class="reference internal" href="../application/application.html#bokeh.application.application.Application" title="bokeh.application.application.Application"><code class="xref py py-class docutils literal notranslate"><span class="pre">Application</span></code></a> instances, and will
+automatically create and coordinate the lower level Tornado components.</dd>
+</dl>
+<dl class="class">
+<dt id="bokeh.server.server.BaseServer">
+<em class="property">class </em><code class="descname">BaseServer</code><span class="sig-paren">(</span><em>io_loop</em>, <em>tornado_app</em>, <em>http_server</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explicitly coordinate the level Tornado components required to run a
+Bokeh server:</p>
+<ul class="simple">
+<li>A Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> to run the Bokeh server machinery.</li>
+<li>a <code class="docutils literal notranslate"><span class="pre">BokehTornado</span></code> Tornado application that defines the Bokeh server
+machinery.</li>
+<li>a Tornado <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> to direct HTTP requests</li>
+</ul>
+<p>All three of these components must be passed to <code class="docutils literal notranslate"><span class="pre">BaseServer</span></code>, which will
+initialize the <code class="docutils literal notranslate"><span class="pre">BokehTornado</span></code> instance on the <code class="docutils literal notranslate"><span class="pre">io_loop</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">http_server</span></code> must have been previously created and initialized with the
+<code class="docutils literal notranslate"><span class="pre">BokehTornado</span></code> instance.</p>
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>io_loop</em>, <em>tornado_app</em>, <em>http_server</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">BaseServer</span></code> instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>io_loop</strong> (<em>IOLoop</em>) – A Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> to run the Bokeh Tornado application on.</li>
+<li><strong>tornado_app</strong> (<a class="reference internal" href="tornado.html#bokeh.server.tornado.BokehTornado" title="bokeh.server.tornado.BokehTornado"><em>BokehTornado</em></a>) – An instance of the Bokeh Tornado application that generates
+Bokeh Documents and Sessions.</li>
+<li><strong>http_server</strong> (<em>HTTPServer</em>) – A Tornado <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> to service HTTP requests for Bokeh
+applications. Should have already be configured with the
+<code class="docutils literal notranslate"><span class="pre">tornado_app</span></code> when created.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.get_session">
+<code class="descname">get_session</code><span class="sig-paren">(</span><em>app_path</em>, <em>session_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.get_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.get_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an active a session by name application path and session ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The configured application path for the application to return
+a session for.</li>
+<li><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The session ID of the session to retrieve.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">ServerSession</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.get_sessions">
+<code class="descname">get_sessions</code><span class="sig-paren">(</span><em>app_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.get_sessions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.get_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all currently active sessions for applications.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>app_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – The configured application path for the application to return
+sessions for. If None, return active sessions for all
+applications. (default: None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list[ServerSession]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.run_until_shutdown">
+<code class="descname">run_until_shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.run_until_shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.run_until_shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the Bokeh Server until shutdown is requested by the user,
+either via a Keyboard interrupt (Ctrl-C) or SIGTERM.</p>
+<p>Calling this method will start the Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> and block
+all execution in the calling process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.show">
+<code class="descname">show</code><span class="sig-paren">(</span><em>app_path</em>, <em>browser=None</em>, <em>new='tab'</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens an app in a browser window or tab.</p>
+<p>This method is useful for testing or running Bokeh server applications
+on a local machine but should not call when running Bokeh server for
+an actual deployment.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – the app path to open
+The part of the URL after the hostname:port, with leading slash.</li>
+<li><strong>browser</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – browser to show with (default: None)
+For systems that support it, the <strong>browser</strong> argument allows
+specifying which browser to display in, e.g. “safari”, “firefox”,
+“opera”, “windows-default” (see the <code class="docutils literal notranslate"><span class="pre">webbrowser</span></code> module
+documentation in the standard lib for more details).</li>
+<li><strong>new</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – window or tab (default: “tab”)
+If <code class="docutils literal notranslate"><span class="pre">new</span></code> is ‘tab’, then opens a new tab.
+If <code class="docutils literal notranslate"><span class="pre">new</span></code> is ‘window’, then opens a new window.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.start">
+<code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the Bokeh Server and its background tasks on a Tornado
+<code class="docutils literal notranslate"><span class="pre">IOLoop</span></code>.</p>
+<p>This method does <em>not</em> block and does <em>not</em> affect the state of the
+Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code>  You must start and stop the loop yourself, i.e.
+this method is typically useful when you are already explicitly
+managing an <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> yourself.</p>
+<p>To start a Bokeh server and immediately “run forever” in a blocking
+manner, see <a class="reference internal" href="#bokeh.server.server.BaseServer.run_until_shutdown" title="bokeh.server.server.BaseServer.run_until_shutdown"><code class="xref py py-func docutils literal notranslate"><span class="pre">run_until_shutdown()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><em>wait=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the Bokeh Server.</p>
+<p>This stops and removes all Bokeh Server <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> callbacks, as well
+as stops the <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> that this instance was configured with.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>fast</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Whether to wait for orderly cleanup (default: True)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.server.BaseServer.unlisten">
+<code class="descname">unlisten</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#BaseServer.unlisten"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.BaseServer.unlisten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop listening on ports. The server will no longer be usable after
+calling this function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.server.server.BaseServer.io_loop">
+<code class="descname">io_loop</code><a class="headerlink" href="#bokeh.server.server.BaseServer.io_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> that this Bokeh Server is running on.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="bokeh.server.server.Server">
+<em class="property">class </em><code class="descname">Server</code><span class="sig-paren">(</span><em>applications</em>, <em>io_loop=None</em>, <em>http_server_kwargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#Server"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>A high level convenience class to run a Bokeh server.</p>
+<p>This class can automatically coordinate the three the base level
+components required to run a Bokeh server:</p>
+<ul class="simple">
+<li>A Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> to run the Bokeh server machinery.</li>
+<li>a <code class="docutils literal notranslate"><span class="pre">BokehTornado</span></code> Tornado application that defines the Bokeh server
+machinery.</li>
+<li>a Tornado <code class="docutils literal notranslate"><span class="pre">HTTPServer</span></code> to direct HTTP requests</li>
+</ul>
+<p>This high level <code class="docutils literal notranslate"><span class="pre">Server</span></code> class has some limitations. In particular, it is
+not possible to set an explicit <code class="docutils literal notranslate"><span class="pre">io_loop</span></code> and <code class="docutils literal notranslate"><span class="pre">num_procs</span></code> other than 1
+at the same time. To do that, it is necessary to use <code class="docutils literal notranslate"><span class="pre">BaseServer</span></code> and
+coordinate the three components above explicitly.</p>
+<dl class="method">
+<dt id="bokeh.server.server.Server.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>applications</em>, <em>io_loop=None</em>, <em>http_server_kwargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/server.html#Server.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.server.Server.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">Server</span></code> instance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>applications</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><a class="reference internal" href="../application/application.html#bokeh.application.application.Application" title="bokeh.application.application.Application"><em>Application</em></a><em>] or </em><a class="reference internal" href="../application/application.html#bokeh.application.application.Application" title="bokeh.application.application.Application"><em>Application</em></a><em> or </em><em>callable</em>) – <p>A mapping from URL paths to Application instances, or a single
+Application to put at the root URL.</p>
+<p>The Application is a factory for Documents, with a new Document
+initialized for each Session. Each application is identified
+by a path that corresponds to a URL, like “/” or “/myapp”</p>
+<p>If a single Application is provided, it is mapped to the URL
+path “/” automatically.</p>
+<p>As a convenience, a callable may also be provided, in which
+an Application will be created for it using
+<code class="docutils literal notranslate"><span class="pre">FunctionHandler</span></code>.</p>
+</li>
+<li><strong>io_loop</strong> (<em>IOLoop</em><em>, </em><em>optional</em>) – An explicit Tornado <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> to run Bokeh Server code on. If
+None, <code class="docutils literal notranslate"><span class="pre">IOLoop.current()</span></code> will be used (default: None)</li>
+<li><strong>http_server_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>, </em><em>optional</em>) – <p>Extra arguments passed to <code class="docutils literal notranslate"><span class="pre">tornado.httpserver.HTTPServer</span></code>.</p>
+<p>E.g. <code class="docutils literal notranslate"><span class="pre">max_buffer_size</span></code> to specify the maximum upload size.
+More details can be found at:</p>
+<p><a class="reference external" href="http://www.tornadoweb.org/en/stable/httpserver.html#http-server">http://www.tornadoweb.org/en/stable/httpserver.html#http-server</a></p>
+<p>If None, no extra arguments are passed (default: None)</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, the following options may be passed to configure the
+operation of <code class="docutils literal notranslate"><span class="pre">Server</span></code>:</p>
+<p>Keyword Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>address (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>The address the server should listen on for HTTP requests. (default: None)</dd>
+<dt>allow_websocket_origin (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  )) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd><p class="first">A list of hosts that can connect to the websocket.</p>
+<p>This is typically required when embedding a Bokeh server app in an external
+web site using <a class="reference internal" href="../embed.html#bokeh.embed.server_document" title="bokeh.embed.server_document"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_document()</span></code></a> or similar.</p>
+<p class="last">If None, “localhost” is used. (default: None)</p>
+</dd>
+<dt>index (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>A path to a Jinja2 template to use for the index “/” (default: None)</dd>
+<dt>num_procs (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd><p class="first">The number of worker processes to start for the HTTP server. If an explicit
+<code class="docutils literal notranslate"><span class="pre">io_loop</span></code> is also configured, then <code class="docutils literal notranslate"><span class="pre">num_procs=1</span></code> is the only compatible
+value. Use <code class="docutils literal notranslate"><span class="pre">BaseServer</span></code> to coordinate an explicit <code class="docutils literal notranslate"><span class="pre">IOLoop</span></code> with a
+multi-process HTTP server.</p>
+<p>A value of 0 will auto detect number of cores.</p>
+<p class="last">Note that due to limitations inherent in Tornado, Windows does not support
+<code class="docutils literal notranslate"><span class="pre">num_procs</span></code> values greater than one! In this case consider running
+multiple Bokeh server instances behind a load balancer. (default: 1)</p>
+</dd>
+<dt>port (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>The port number the server should listen on for HTTP requests. (default: 5006)</dd>
+<dt>prefix (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>A URL prefix to use for all Bokeh server paths. (default: ‘’)</dd>
+<dt>use_xheaders (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bool</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd>Whether to have the Bokeh server override the remote IP and URI scheme
+and protocol for all requests with <code class="docutils literal notranslate"><span class="pre">X-Real-Ip</span></code>, <code class="docutils literal notranslate"><span class="pre">X-Forwarded-For</span></code>,
+<code class="docutils literal notranslate"><span class="pre">X-Scheme</span></code>, <code class="docutils literal notranslate"><span class="pre">X-Forwarded-Proto</span></code> headers (if they are provided). (default: False)</dd>
+<dt>websocket_max_message_size (<a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> ) <span class="classifier-delimiter">:</span> <span class="classifier"></span></dt>
+<dd><p class="first">Set the Tornado <code class="docutils literal notranslate"><span class="pre">websocket_max_message_size</span></code> value.</p>
+<p class="last">NOTE: This setting has effect ONLY for Tornado&gt;=4.5 (default: 20971520)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Any remaining keyword arguments will be passed as-is to
+<code class="docutils literal notranslate"><span class="pre">BokehTornado</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.server.server.Server.address">
+<code class="descname">address</code><a class="headerlink" href="#bokeh.server.server.Server.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configured address that the server listens on for HTTP
+requests.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.server.server.Server.index">
+<code class="descname">index</code><a class="headerlink" href="#bokeh.server.server.Server.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>A path to a Jinja2 template to use for index at “/”</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.server.server.Server.port">
+<code class="descname">port</code><a class="headerlink" href="#bokeh.server.server.Server.port" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configured port number that the server listens on for HTTP
+requests.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.server.server.Server.prefix">
+<code class="descname">prefix</code><a class="headerlink" href="#bokeh.server.server.Server.prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configured URL prefix to use for all Bokeh server paths.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../team.html">Team</a></li>
+      
+        <li><a href="../../citation.html">Citation</a></li>
+      
+        <li><a href="../../contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

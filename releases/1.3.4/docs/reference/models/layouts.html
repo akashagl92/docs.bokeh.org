@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>bokeh.models.layouts &mdash; Bokeh 1.3.4 documentation</title>
+    <meta name="description" content="Bokeh visualization library, documentation site.">
+    <meta name="author" content="Bokeh contributors">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Source Sans Pro']
+            }
+        });
+    </script>
+
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="../../../_static/css/main.css">
+
+    <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var _BOKEH_CURRENT_VERSION = "1.3.4";
+    </script>
+    <script src="../../../_static/js/main.js"></script>
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+    <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/reference/models/layouts.html" />
+
+</head>
+
+<body class="">
+
+    <header class="navigation">
+        <div class="wrapper">
+            <a href="" class="logo">
+                <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+            </a>
+            <a href="" class="navigation-menu logo-text">Bokeh</a>
+            <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+            <nav>
+                <ul id="js-navigation-menu" class="navigation-menu show">
+                    
+                    <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="second-nav">
+        <nav>
+            <ul class="navigation-menu show">
+                <li class="nav-link more"><a href="../../../index.html">1.3.4</a>
+                    <ul class="submenu">
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.4/">1.3.4</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+                        
+                        <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+                        
+                    </ul>
+                </li> 
+                <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+                 
+                <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+                 
+                <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+                 
+                <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+                 
+                <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+                 
+                <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+                 
+                <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+
+    <!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+    <div class="docs section">
+        <div class="toc">
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">bokeh.models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annotations.html">bokeh.models.annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrow_heads.html">bokeh.models.arrow_heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes.html">bokeh.models.axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.models.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">bokeh.models.expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">bokeh.models.filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatters.html">bokeh.models.formatters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">bokeh.models.glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html">bokeh.models.graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grids.html">bokeh.models.grids</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.models.layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_plots.html">bokeh.models.map_plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mappers.html">bokeh.models.mappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">bokeh.models.markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plots.html">bokeh.models.plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranges.html">bokeh.models.ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderers.html">bokeh.models.renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scales.html">bokeh.models.scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selections.html">bokeh.models.selections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sources.html">bokeh.models.sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textures.html">bokeh.models.textures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickers.html">bokeh.models.tickers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiles.html">bokeh.models.tiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">bokeh.models.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html">bokeh.models.transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.buttons.html">bokeh.models.widgets.buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.groups.html">bokeh.models.widgets.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.icons.html">bokeh.models.widgets.icons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.inputs.html">bokeh.models.widgets.inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.markups.html">bokeh.models.widgets.markups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.panels.html">bokeh.models.widgets.panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.sliders.html">bokeh.models.widgets.sliders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.tables.html">bokeh.models.widgets.tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.widget.html">bokeh.models.widgets.widget</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.3.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-2">1.3.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-1">1.3.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-0">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+        </div>
+        <div class="content">
+            
+  <div class="section" id="bokeh-models-layouts">
+<span id="id1"></span><h1>bokeh.models.layouts<a class="headerlink" href="#bokeh-models-layouts" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.models.layouts"></span><p>Various kinds of layout components.</p>
+<dl class="class">
+<dt id="bokeh.models.layouts.Box">
+<em class="property">class </em><code class="sig-name descname">Box</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#Box"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.Box" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.LayoutDOM</span></code></a></p>
+<p>Abstract base class for Row and Column. Do not use directly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.layouts.Box.children">
+<code class="sig-name descname">children</code><a class="headerlink" href="#bokeh.models.layouts.Box.children" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDOM</span></code></a>  ) )</p>
+<p>The list of children, which can be other components including plots, rows, columns, and widgets.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.Box.spacing">
+<code class="sig-name descname">spacing</code><a class="headerlink" href="#bokeh.models.layouts.Box.spacing" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a></p>
+<p>The gap between children (in pixels).</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12435&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;spacing&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.Column">
+<em class="property">class </em><code class="sig-name descname">Column</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#Column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.Column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.Box" title="bokeh.models.layouts.Box"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.Box</span></code></a></p>
+<p>Lay out child components in a single vertical row.</p>
+<p>Children can be specified as positional arguments, as a single argument
+that is a sequence, or using the <code class="docutils literal notranslate"><span class="pre">children</span></code> keyword argument.</p>
+<dl class="attribute">
+<dt id="bokeh.models.layouts.Column.rows">
+<code class="sig-name descname">rows</code><a class="headerlink" href="#bokeh.models.layouts.Column.rows" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a>  ) ) )</p>
+<p>Describes how the component should maintain its rows’ heights.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12438&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;rows&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;spacing&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.GridBox">
+<em class="property">class </em><code class="sig-name descname">GridBox</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#GridBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.GridBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.LayoutDOM</span></code></a></p>
+<dl class="attribute">
+<dt id="bokeh.models.layouts.GridBox.children">
+<code class="sig-name descname">children</code><a class="headerlink" href="#bokeh.models.layouts.GridBox.children" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDOM</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDOM</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ) ) )</p>
+<p>A list of children with their associated position in the grid (row, column).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.GridBox.cols">
+<code class="sig-name descname">cols</code><a class="headerlink" href="#bokeh.models.layouts.GridBox.cols" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a>  ) ) )</p>
+<p>Describes how the grid should maintain its columns’ widths.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.GridBox.rows">
+<code class="sig-name descname">rows</code><a class="headerlink" href="#bokeh.models.layouts.GridBox.rows" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a>  ) ) )</p>
+<p>Describes how the grid should maintain its rows’ heights.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.GridBox.spacing">
+<code class="sig-name descname">spacing</code><a class="headerlink" href="#bokeh.models.layouts.GridBox.spacing" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ) )</p>
+<p>The gap between children (in pixels).</p>
+<p>Either a number, if spacing is the same for both dimensions, or a pair
+of numbers indicating spacing in the vertical and horizontal dimensions
+respectively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;cols&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12440&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;rows&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;spacing&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.HTMLBox">
+<em class="property">class </em><code class="sig-name descname">HTMLBox</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#HTMLBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.HTMLBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.LayoutDOM</span></code></a></p>
+<p>A component which size is determined by its HTML content.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12445&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.LayoutDOM">
+<em class="property">class </em><code class="sig-name descname">LayoutDOM</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#LayoutDOM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.model.Model</span></code></a></p>
+<p>The base class for layoutable components.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.align">
+<code class="sig-name descname">align</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.align" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Align" title="bokeh.core.enums.Align"><code class="xref py py-class docutils literal notranslate"><span class="pre">Align</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Align" title="bokeh.core.enums.Align"><code class="xref py py-class docutils literal notranslate"><span class="pre">Align</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.Align" title="bokeh.core.enums.Align"><code class="xref py py-class docutils literal notranslate"><span class="pre">Align</span></code></a>  ) ) )</p>
+<p>The alignment point within the parent container.</p>
+<p>This property is useful only if this component is a child element of a layout
+(e.g. a grid). Self alignment can be overridden by the parent container (e.g.
+grid track align).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.aspect_ratio">
+<code class="sig-name descname">aspect_ratio</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.aspect_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a>  )</p>
+<p>Describes the proportional relationship between component’s width and height.</p>
+<p>This works if any of component’s dimensions are flexible in size. If set to
+a number, <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">/</span> <span class="pre">height</span> <span class="pre">=</span> <span class="pre">aspect_ratio</span></code> relationship will be maintained.
+Otherwise, if set to <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, component’s preferred width and height will
+be used to determine the aspect (if not set, no aspect will be preserved).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.background">
+<code class="sig-name descname">background</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.background" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Color" title="bokeh.core.properties.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+<p>Background color of the component.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.css_classes">
+<code class="sig-name descname">css_classes</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.css_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  )</p>
+<p>A list of CSS class names to add to this DOM element. Note: the class names are
+simply added as-is, no other guarantees are provided.</p>
+<p>It is also permissible to assign from tuples, however these are adapted – the
+property will always contain a list.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.disabled">
+<code class="sig-name descname">disabled</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.disabled" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bool</span></code></a></p>
+<p>Whether the widget will be disabled when rendered.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the widget will be greyed-out and not responsive to UI events.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.height">
+<code class="sig-name descname">height</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>The height of the component (in pixels).</p>
+<p>This can be either fixed or preferred height, depending on height sizing policy.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.height_policy">
+<code class="sig-name descname">height_policy</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.height_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal notranslate"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.SizingPolicy" title="bokeh.core.enums.SizingPolicy"><code class="xref py py-class docutils literal notranslate"><span class="pre">SizingPolicy</span></code></a>  ) )</p>
+<p>Describes how the component should maintain its height.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code></dt><dd><p>Use component’s preferred sizing policy.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;fixed&quot;</span></code></dt><dd><p>Use exactly <code class="docutils literal notranslate"><span class="pre">height</span></code> pixels. Component will overflow if it can’t fit in the
+available vertical space.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;fit&quot;</span></code></dt><dd><p>Use component’s preferred height (if set) and allow to fit into the available
+vertical space withing the minimum and maximum height bounds (if set). Component’s
+height neither will be aggressively minimized nor maximized.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;min&quot;</span></code></dt><dd><p>Use as little vertical space as possible, not less than the minimum height (if set).
+The starting point is the preferred height (if set). The height of the component may
+shrink or grow depending on the parent layout, aspect management and other factors.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;max&quot;</span></code></dt><dd><p>Use as much vertical space as possible, not more than the maximum height (if set).
+The starting point is the preferred height (if set). The height of the component may
+shrink or grow depending on the parent layout, aspect management and other factors.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion. Prefer using <code class="docutils literal notranslate"><span class="pre">sizing_mode</span></code> if this level of control isn’t
+strictly necessary.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.margin">
+<code class="sig-name descname">margin</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.margin" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  )</p>
+<p>Allows to create additional space around the component.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.max_height">
+<code class="sig-name descname">max_height</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.max_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>Minimal height of the component (in pixels) if height is adjustable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.max_width">
+<code class="sig-name descname">max_width</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.max_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>Minimal width of the component (in pixels) if width is adjustable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.min_height">
+<code class="sig-name descname">min_height</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.min_height" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>Minimal height of the component (in pixels) if height is adjustable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.min_width">
+<code class="sig-name descname">min_width</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.min_width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>Minimal width of the component (in pixels) if width is adjustable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.sizing_mode">
+<code class="sig-name descname">sizing_mode</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.sizing_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.SizingMode" title="bokeh.core.enums.SizingMode"><code class="xref py py-class docutils literal notranslate"><span class="pre">SizingMode</span></code></a>  )</p>
+<p>How the component should size itself.</p>
+<p>This is a high-level setting for maintaining width and height of the component. To
+gain more fine grained control over sizing, use <code class="docutils literal notranslate"><span class="pre">width_policy</span></code>, <code class="docutils literal notranslate"><span class="pre">height_policy</span></code>
+and <code class="docutils literal notranslate"><span class="pre">aspect_ratio</span></code> instead (those take precedence over <code class="docutils literal notranslate"><span class="pre">sizing_mode</span></code>).</p>
+<p>Possible scenarios:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;fixed&quot;</span></code></dt><dd><p>Component is not responsive. It will retain its original width and height
+regardless of any subsequent browser window resize events.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;stretch_width&quot;</span></code></dt><dd><p>Component will responsively resize to stretch to the available width, without
+maintaining any aspect ratio. The height of the component depends on the type
+of the component and may be fixed or fit to component’s contents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;stretch_height&quot;</span></code></dt><dd><p>Component will responsively resize to stretch to the available height, without
+maintaining any aspect ratio. The width of the component depends on the type
+of the component and may be fixed or fit to component’s contents.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;stretch_both&quot;</span></code></dt><dd><p>Component is completely responsive, independently in width and height, and
+will occupy all the available horizontal and vertical space, even if this
+changes the aspect ratio of the component.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;scale_width&quot;</span></code></dt><dd><p>Component will responsively resize to stretch to the available width, while
+maintaining the original or provided aspect ratio.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;scale_height&quot;</span></code></dt><dd><p>Component will responsively resize to stretch to the available height, while
+maintaining the original or provided aspect ratio.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;scale_both&quot;</span></code></dt><dd><p>Component will responsively resize to both the available width and height, while
+maintaining the original or provided aspect ratio.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.visible">
+<code class="sig-name descname">visible</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.visible" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bool</span></code></a></p>
+<p>Whether the component will be visible and a part of a layout.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.width">
+<code class="sig-name descname">width</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.width" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.NonNegativeInt" title="bokeh.core.properties.NonNegativeInt"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonNegativeInt</span></code></a></p>
+<p>The width of the component (in pixels).</p>
+<p>This can be either fixed or preferred width, depending on width sizing policy.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.layouts.LayoutDOM.width_policy">
+<code class="sig-name descname">width_policy</code><a class="headerlink" href="#bokeh.models.layouts.LayoutDOM.width_policy" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Auto" title="bokeh.core.properties.Auto"><code class="xref py py-class docutils literal notranslate"><span class="pre">Auto</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.SizingPolicy" title="bokeh.core.enums.SizingPolicy"><code class="xref py py-class docutils literal notranslate"><span class="pre">SizingPolicy</span></code></a>  ) )</p>
+<p>Describes how the component should maintain its width.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code></dt><dd><p>Use component’s preferred sizing policy.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;fixed&quot;</span></code></dt><dd><p>Use exactly <code class="docutils literal notranslate"><span class="pre">width</span></code> pixels. Component will overflow if it can’t fit in the
+available horizontal space.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;fit&quot;</span></code></dt><dd><p>Use component’s preferred width (if set) and allow it to fit into the available
+horizontal space within the minimum and maximum width bounds (if set). Component’s
+width neither will be aggressively minimized nor maximized.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;min&quot;</span></code></dt><dd><p>Use as little horizontal space as possible, not less than the minimum width (if set).
+The starting point is the preferred width (if set). The width of the component may
+shrink or grow depending on the parent layout, aspect management and other factors.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;max&quot;</span></code></dt><dd><p>Use as much horizontal space as possible, not more than the maximum width (if set).
+The starting point is the preferred width (if set). The width of the component may
+shrink or grow depending on the parent layout, aspect management and other factors.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion. Prefer using <code class="docutils literal notranslate"><span class="pre">sizing_mode</span></code> if this level of control isn’t
+strictly necessary.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12446&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.Row">
+<em class="property">class </em><code class="sig-name descname">Row</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#Row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.Row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.Box" title="bokeh.models.layouts.Box"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.Box</span></code></a></p>
+<p>Lay out child components in a single horizontal row.</p>
+<p>Children can be specified as positional arguments, as a single argument
+that is a sequence, or using the <code class="docutils literal notranslate"><span class="pre">children</span></code> keyword argument.</p>
+<dl class="attribute">
+<dt id="bokeh.models.layouts.Row.cols">
+<code class="sig-name descname">cols</code><a class="headerlink" href="#bokeh.models.layouts.Row.cols" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Dict" title="bokeh.core.properties.Dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( Enumeration(auto, min, fit, max) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Int" title="bokeh.core.properties.Int"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Struct" title="bokeh.core.properties.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a>  ) ) )</p>
+<p>Describes how the component should maintain its columns’ widths.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an experimental feature and may change in future. Use it at your
+own discretion.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;cols&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12463&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;spacing&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.Spacer">
+<em class="property">class </em><code class="sig-name descname">Spacer</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#Spacer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.Spacer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.LayoutDOM" title="bokeh.models.layouts.LayoutDOM"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.LayoutDOM</span></code></a></p>
+<p>A container for space used to fill an empty spot in a row or column.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12465&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.layouts.WidgetBox">
+<em class="property">class </em><code class="sig-name descname">WidgetBox</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/layouts.html#WidgetBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.layouts.WidgetBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.layouts.Column" title="bokeh.models.layouts.Column"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.layouts.Column</span></code></a></p>
+<p>Create a column of bokeh widgets with predefined styling.</p>
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;align&quot;</span><span class="o">:</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;aspect_ratio&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;background&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;children&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;css_classes&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;disabled&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;height_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12466&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;margin&quot;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;max_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;max_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_height&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;rows&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sizing_mode&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;spacing&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;visible&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;width_policy&quot;</span><span class="o">:</span> <span class="s2">&quot;auto&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div></div>
+
+
+        </div>
+    </div>
+
+    <!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+    <footer class="footer">
+        <div class="footer-links">
+            <ul>
+                <li><span class="footer-title">About Us</span></li>
+                 
+                <li><a href="//bokeh.org/roadmap">Roadmap</a></li>
+                  
+                <li><a href="//bokeh.org/team">Team</a></li>
+                  
+                <li><a href="//bokeh.org/citation">Citation</a></li>
+                  
+                <li><a href="//bokeh.org">Contact</a></li>
+                 
+            </ul>
+            <ul>
+                <li><span class="footer-title">Join Us</span></li>
+                 
+                <li><a href="../../contribute.html">Contribute</a></li>
+                  
+                <li><a href="//discourse.bokeh.org">Discourse</a></li>
+                  
+                <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+                  
+                <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+                 
+            </ul>
+            <ul class="copyright">
+                <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

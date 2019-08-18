@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.server.tornado &mdash; Bokeh 1.3.1 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.3.1";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/reference/server/tornado.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.3.1</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.1/">1.3.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.0/">1.3.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../server.html">bokeh.server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.server.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connection.html">bokeh.server.connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contexts.html">bokeh.server.contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="protocol_hander.html">bokeh.server.protocol_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server.html">bokeh.server.server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="session.html">bokeh.server.session</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.server.tornado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urls.html">bokeh.server.urls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="util.html">bokeh.server.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="views.html">bokeh.server.views</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.3.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-3-0">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-server-tornado">
+<span id="id1"></span><h1>bokeh.server.tornado<a class="headerlink" href="#bokeh-server-tornado" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.server.tornado"></span><p>Provides the Bokeh Server Tornado application.</p>
+<dl class="class">
+<dt id="bokeh.server.tornado.BokehTornado">
+<em class="property">class </em><code class="sig-name descname">BokehTornado</code><span class="sig-paren">(</span><em class="sig-param">applications</em>, <em class="sig-param">prefix=None</em>, <em class="sig-param">extra_websocket_origins=None</em>, <em class="sig-param">extra_patterns=None</em>, <em class="sig-param">secret_key=None</em>, <em class="sig-param">sign_sessions=False</em>, <em class="sig-param">generate_session_ids=True</em>, <em class="sig-param">keep_alive_milliseconds=37000</em>, <em class="sig-param">check_unused_sessions_milliseconds=17000</em>, <em class="sig-param">unused_session_lifetime_milliseconds=15000</em>, <em class="sig-param">stats_log_frequency_milliseconds=15000</em>, <em class="sig-param">mem_log_frequency_milliseconds=0</em>, <em class="sig-param">use_index=True</em>, <em class="sig-param">redirect_root=True</em>, <em class="sig-param">websocket_max_message_size_bytes=20971520</em>, <em class="sig-param">index=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Tornado Application used to implement the Bokeh Server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>applications</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>,</em><a class="reference internal" href="../application/application.html#bokeh.application.application.Application" title="bokeh.application.application.Application"><em>Application</em></a><em>] or </em><a class="reference internal" href="../application/application.html#bokeh.application.application.Application" title="bokeh.application.application.Application"><em>Application</em></a>) – <p>A map from paths to <code class="docutils literal notranslate"><span class="pre">Application</span></code> instances.</p>
+<p>If the value is a single Application, then the following mapping
+is generated:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">applications</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;/&#39;</span> <span class="p">:</span> <span class="n">applications</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>When a connection comes in to a given path, the associate
+Application is used to generate a new document for the session.</p>
+</p></li>
+<li><p><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – A URL prefix to use for all Bokeh server paths. (default: None)</p></li>
+<li><p><strong>extra_websocket_origins</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>]</em><em>, </em><em>optional</em>) – <p>A list of hosts that can connect to the websocket.</p>
+<p>This is typically required when embedding a Bokeh server app in an
+external web site using <a class="reference internal" href="../embed.html#bokeh.embed.server_document" title="bokeh.embed.server_document"><code class="xref py py-func docutils literal notranslate"><span class="pre">server_document()</span></code></a> or
+similar.</p>
+<p>If None, <code class="docutils literal notranslate"><span class="pre">[&quot;localhost&quot;]</span></code> will be assumed (default: None)</p>
+</p></li>
+<li><p><strong>extra_patterns</strong> (<em>seq</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em>]</em><em>, </em><em>optional</em>) – <p>A list of tuples of (str, http or websocket handler)</p>
+<p>Use this argument to add additional endpoints to custom deployments
+of the Bokeh Server.</p>
+<p>If None, then <code class="docutils literal notranslate"><span class="pre">[]</span></code> will be used. (default: None)</p>
+</p></li>
+<li><p><strong>secret_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – <p>A secret key for signing session IDs.</p>
+<p>Defaults to the current value of the environment variable
+<code class="docutils literal notranslate"><span class="pre">BOKEH_SECRET_KEY</span></code></p>
+</p></li>
+<li><p><strong>sign_sessions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>Whether to cryptographically sign session IDs</p>
+<p>Defaults to the current value of the environment variable
+<code class="docutils literal notranslate"><span class="pre">BOKEH_SIGN_SESSIONS</span></code>. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then <code class="docutils literal notranslate"><span class="pre">secret_key</span></code> must
+also be provided (either via environment setting or passed as
+a parameter value)</p>
+</p></li>
+<li><p><strong>generate_session_ids</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to generate a session ID if one is not provided
+(default: True)</p></li>
+<li><p><strong>keep_alive_milliseconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – <p>Number of milliseconds between keep-alive pings (default: 37000)</p>
+<p>Pings normally required to keep the websocket open. Set to 0 to
+disable pings.</p>
+</p></li>
+<li><p><strong>check_unused_sessions_milliseconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of milliseconds between checking for unused sessions
+(default: 17000)</p></li>
+<li><p><strong>unused_session_lifetime_milliseconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of milliseconds for unused session lifetime (default: 15000)</p></li>
+<li><p><strong>stats_log_frequency_milliseconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Number of milliseconds between logging stats (default: 15000)</p></li>
+<li><p><strong>mem_log_frequency_milliseconds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – <p>Number of milliseconds between logging memory information (default: 0)</p>
+<p>Enabling this feature requires the optional dependency <code class="docutils literal notranslate"><span class="pre">psutil</span></code> to be
+installed.</p>
+</p></li>
+<li><p><strong>use_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to generate an index of running apps in the <code class="docutils literal notranslate"><span class="pre">RootHandler</span></code>
+(default: True)</p></li>
+<li><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>optional</em>) – Path to a Jinja2 template to serve as the index for “/” if use_index
+is True. If None, the basic built in app index template is used.
+(default: None)</p></li>
+<li><p><strong>redirect_root</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – <p>When there is only a single running application, whether to
+redirect requests to <code class="docutils literal notranslate"><span class="pre">&quot;/&quot;</span></code> to that application automatically
+(default: True)</p>
+<p>If there are multiple Bokeh applications configured, this option
+has no effect.</p>
+</p></li>
+<li><p><strong>websocket_max_message_size_bytes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – <p>Set the Tornado <code class="docutils literal notranslate"><span class="pre">websocket_max_message_size</span></code> value.
+(default: 20*1024*1024)</p>
+<p>NOTE: This setting has effect ONLY for Tornado&gt;=4.5</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p>Any additional keyword arguments are passed to <code class="docutils literal notranslate"><span class="pre">tornado.web.Application</span></code>.</p>
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.get_session">
+<code class="sig-name descname">get_session</code><span class="sig-paren">(</span><em class="sig-param">app_path</em>, <em class="sig-param">session_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.get_session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.get_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an active a session by name application path and session ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>app_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The configured application path for the application to return
+a session for.</p></li>
+<li><p><strong>session_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The session ID of the session to retrieve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ServerSession</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.get_sessions">
+<code class="sig-name descname">get_sessions</code><span class="sig-paren">(</span><em class="sig-param">app_path</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.get_sessions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.get_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all currently active sessions for an application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The configured application path for the application to return
+sessions for.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list[ServerSession]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">io_loop</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a Bokeh Server Tornado Application on a given Tornado IOLoop.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.resources">
+<code class="sig-name descname">resources</code><span class="sig-paren">(</span><em class="sig-param">absolute_url=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.resources"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide a <a class="reference internal" href="../resources.html#bokeh.resources.Resources" title="bokeh.resources.Resources"><code class="xref py py-class docutils literal notranslate"><span class="pre">Resources</span></code></a> that specifies where
+Bokeh application sessions should load BokehJS resources from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>absolute_url</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – An absolute URL prefix to use for locating resources. If None,
+relative URLs are used (default: None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the Bokeh Server application.</p>
+<p>Starting the Bokeh Server Tornado application will run periodic
+callbacks for stats logging, cleanup, pinging, etc. Additionally, any
+startup hooks defined by the configured Bokeh applications will be run.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.stop">
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><em class="sig-param">wait=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/server/tornado.html#BokehTornado.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop the Bokeh Server application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>wait</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – whether to wait for orderly cleanup (default: True)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.app_paths">
+<em class="property">property </em><code class="sig-name descname">app_paths</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.app_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of all application paths for all Bokeh applications
+configured on this Bokeh server instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.generate_session_ids">
+<em class="property">property </em><code class="sig-name descname">generate_session_ids</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.generate_session_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this Bokeh Server Tornado Application has been configured
+to automatically generate session IDs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.index">
+<em class="property">property </em><code class="sig-name descname">index</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to a Jinja2 template to serve as the index “/”</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.io_loop">
+<em class="property">property </em><code class="sig-name descname">io_loop</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.io_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Tornado IOLoop that this  Bokeh Server Tornado Application
+is running on.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.prefix">
+<em class="property">property </em><code class="sig-name descname">prefix</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A URL prefix for this Bokeh Server Tornado Application to use
+for all paths</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.secret_key">
+<em class="property">property </em><code class="sig-name descname">secret_key</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>A secret key for this Bokeh Server Tornado Application to use when
+signing session IDs, if configured.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.sign_sessions">
+<em class="property">property </em><code class="sig-name descname">sign_sessions</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.sign_sessions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether this Bokeh Server Tornado Application has been configured
+to cryptographically sign session IDs</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, then <code class="docutils literal notranslate"><span class="pre">secret_key</span></code> must also have been configured.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="bokeh.server.tornado.BokehTornado.websocket_origins">
+<em class="property">property </em><code class="sig-name descname">websocket_origins</code><a class="headerlink" href="#bokeh.server.tornado.BokehTornado.websocket_origins" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of websocket origins permitted to connect to this server.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../../https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../../https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../../https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

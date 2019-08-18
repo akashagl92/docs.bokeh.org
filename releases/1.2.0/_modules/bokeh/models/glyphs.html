@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.glyphs &mdash; Bokeh 1.2.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.2.0";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/_modules/bokeh/models/glyphs.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.2.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../../docs/installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../../docs/dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <h1>Source code for bokeh.models.glyphs</h1><div class="highlight"><pre>
+<span></span><span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Copyright (c) 2012 - 2019, Anaconda, Inc., and Bokeh Contributors.</span>
+<span class="c1"># All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># The full license is in the file LICENSE.txt, distributed with this software.</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39; Display a variety of visual shapes whose attributes can be associated</span>
+<span class="sd">with data columns from ``ColumnDataSources``.</span>
+
+<span class="sd">The full list of glyphs built into Bokeh is given below:</span>
+
+<span class="sd">* :class:`~bokeh.models.glyphs.AnnularWedge`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Annulus`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Arc`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Bezier`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Ellipse`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.HArea`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.HBar`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.HexTile`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Image`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.ImageRGBA`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.ImageURL`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Line`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.MultiLine`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.MultiPolygons`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Oval`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Patch`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Patches`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Quad`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Quadratic`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Ray`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Rect`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Segment`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Step`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Text`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.VArea`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.VBar`</span>
+<span class="sd">* :class:`~bokeh.models.glyphs.Wedge`</span>
+
+<span class="sd">All these glyphs share a minimal common interface through their base class</span>
+<span class="sd">``Glyph``:</span>
+
+<span class="sd">.. autoclass:: Glyph</span>
+<span class="sd">    :members:</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Boilerplate</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Imports</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1"># Standard library imports</span>
+
+<span class="c1"># External imports</span>
+
+<span class="c1"># Bokeh imports</span>
+<span class="kn">from</span> <span class="nn">..core.enums</span> <span class="k">import</span> <span class="n">Anchor</span><span class="p">,</span> <span class="n">Direction</span><span class="p">,</span> <span class="n">StepMode</span>
+<span class="kn">from</span> <span class="nn">..core.has_props</span> <span class="k">import</span> <span class="n">abstract</span>
+<span class="kn">from</span> <span class="nn">..core.properties</span> <span class="k">import</span> <span class="p">(</span><span class="n">AngleSpec</span><span class="p">,</span> <span class="n">Bool</span><span class="p">,</span> <span class="n">DistanceSpec</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Float</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span>
+                               <span class="n">Include</span><span class="p">,</span> <span class="n">Instance</span><span class="p">,</span> <span class="n">Int</span><span class="p">,</span> <span class="n">NumberSpec</span><span class="p">,</span> <span class="n">Override</span><span class="p">,</span> <span class="n">StringSpec</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..core.property_mixins</span> <span class="k">import</span> <span class="n">FillProps</span><span class="p">,</span> <span class="n">HatchProps</span><span class="p">,</span> <span class="n">LineProps</span><span class="p">,</span> <span class="n">ScalarFillProps</span><span class="p">,</span> <span class="n">ScalarHatchProps</span><span class="p">,</span> <span class="n">ScalarLineProps</span><span class="p">,</span> <span class="n">TextProps</span>
+<span class="kn">from</span> <span class="nn">..model</span> <span class="k">import</span> <span class="n">Model</span>
+
+<span class="kn">from</span> <span class="nn">.mappers</span> <span class="k">import</span> <span class="n">ColorMapper</span><span class="p">,</span> <span class="n">LinearColorMapper</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Globals and constants</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;AnnularWedge&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Annulus&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Arc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Bezier&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Ellipse&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Glyph&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HArea&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HBar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;HexTile&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Image&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ImageRGBA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ImageURL&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Line&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MultiLine&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MultiPolygons&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Oval&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Patch&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Patches&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Quad&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Quadratic&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Ray&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Rect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Segment&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Step&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VArea&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VBar&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Wedge&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;XYGlyph&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># General API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="Glyph"><a class="viewcode-back" href="../../../docs/reference/models/glyphs.html#bokeh.models.glyphs.Glyph">[docs]</a><span class="nd">@abstract</span>
+<span class="k">class</span> <span class="nc">Glyph</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class for all glyph models.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span></div>
+
+<span class="nd">@abstract</span>
+<span class="k">class</span> <span class="nc">XYGlyph</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Base class of glyphs with `x` and `y` coordinate attributes.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="AnnularWedge"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/annular_wedge.html#bokeh.models.glyphs.AnnularWedge">[docs]</a><span class="k">class</span> <span class="nc">AnnularWedge</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render annular wedges.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/AnnularWedge.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;inner_radius&#39;</span><span class="p">,</span> <span class="s1">&#39;outer_radius&#39;</span><span class="p">,</span> <span class="s1">&#39;start_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;end_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the center of the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the center of the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">inner_radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The inner radii of the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">outer_radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The outer radii of the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">start_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to start the annular wedges, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to end the annular wedges, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">Direction</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">Direction</span><span class="o">.</span><span class="n">anticlock</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Which direction to stroke between the start and end angles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the annular wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Annulus"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/annulus.html#bokeh.models.glyphs.Annulus">[docs]</a><span class="k">class</span> <span class="nc">Annulus</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render annuli.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Annulus.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;inner_radius&#39;</span><span class="p">,</span> <span class="s1">&#39;outer_radius&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the center of the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the center of the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">inner_radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The inner radii of the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">outer_radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The outer radii of the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the annuli.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Arc"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/arc.html#bokeh.models.glyphs.Arc">[docs]</a><span class="k">class</span> <span class="nc">Arc</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render arcs.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Arc.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;radius&#39;</span><span class="p">,</span> <span class="s1">&#39;start_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;end_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the center of the arcs.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the center of the arcs.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Radius of the arc.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">start_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to start the arcs, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to end the arcs, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">Direction</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;anticlock&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Which direction to stroke between the start and end angles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the arcs.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Bezier"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/bezier.html#bokeh.models.glyphs.Bezier">[docs]</a><span class="k">class</span> <span class="nc">Bezier</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render Bezier curves.</span>
+
+<span class="sd">    For more information consult the `Wikipedia article for Bezier curve`_.</span>
+
+<span class="sd">    .. _Wikipedia article for Bezier curve: http://en.wikipedia.org/wiki/Bezier_curve</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Bezier.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="s1">&#39;y0&#39;</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">,</span> <span class="s1">&#39;cx0&#39;</span><span class="p">,</span> <span class="s1">&#39;cy0&#39;</span><span class="p">,</span> <span class="s1">&#39;cx1&#39;</span><span class="p">,</span> <span class="s1">&#39;cy1&#39;</span><span class="p">)</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cx0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of first control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cy0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of first control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cx1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of second control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cy1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of second control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the Bezier curves.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Ellipse"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/ellipse.html#bokeh.models.glyphs.Ellipse">[docs]</a><span class="k">class</span> <span class="nc">Ellipse</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render ellipses.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Ellipse.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the centers of the ellipses.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the centers of the ellipses.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The widths of each ellipse.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The heights of each ellipse.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angle the ellipses are rotated from horizontal. [rad]</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HArea"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/harea.html#bokeh.models.glyphs.HArea">[docs]</a><span class="k">class</span> <span class="nc">HArea</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render a horizontally directed area between two equal length sequences</span>
+<span class="sd">    of x-coordinates with the same y-coordinates.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/HArea.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the points of one side of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the points of the other side of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the points of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarFillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patch.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HBar"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/hbar.html#bokeh.models.glyphs.HBar">[docs]</a><span class="k">class</span> <span class="nc">HBar</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render horizontal bars, given a center coordinate, ``height`` and</span>
+<span class="sd">    (``left``, ``right``) coordinates.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/HBar.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the centers of the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The heights of the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the left edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">right</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the right edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HexTile"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/hex_tile.html#bokeh.models.glyphs.HexTile">[docs]</a><span class="k">class</span> <span class="nc">HexTile</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render horizontal tiles on a regular hexagonal grid.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/HexTile.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">size</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The radius (in data space units) of the hex tiling.</span>
+
+<span class="s2">    The radius is always measured along the cartesian y-axis for &quot;pointy_top&quot;</span>
+<span class="s2">    orientation, and along the cartesian x-axis for &quot;flat_top&quot; orientation. If</span>
+<span class="s2">    the aspect ratio of the underlying cartesian system is not 1-1, then the</span>
+<span class="s2">    tiles may be &quot;squished&quot; in one direction. To ensure that the tiles are</span>
+<span class="s2">    always regular hexagons, consider setting the ``match_aspect`` property of</span>
+<span class="s2">    the plot to True.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">aspect_scale</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The &quot;row&quot; axial coordinates of the tile centers.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The &quot;column&quot; axial coordinates of the tile centers.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A scale factor for individual tiles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">orientation</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s2">&quot;pointytop&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_color</span> <span class="o">=</span> <span class="n">Override</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Image"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/image.html#bokeh.models.glyphs.Image">[docs]</a><span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render images given as scalar data together with a color mapper.</span>
+
+<span class="sd">    In addition to the defined model properties, ``Image`` also can accept</span>
+<span class="sd">    a keyword argument ``palette`` in place of an explicit ``color_mapper``.</span>
+<span class="sd">    The value should be a list of colors, or the name of one of the built-in</span>
+<span class="sd">    palettes in ``bokeh.palettes``. This palette will be used to automatically</span>
+<span class="sd">    construct a ``ColorMapper`` model for the ``color_mapper`` property.</span>
+
+<span class="sd">    If both ``palette`` and ``color_mapper`` are passed, a ``ValueError``</span>
+<span class="sd">    exception will be raised. If neither is passed, then the ``Greys9``</span>
+<span class="sd">    palette will be used as a default.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;palette&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="s1">&#39;color_mapper&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;only one of &#39;palette&#39; and &#39;color_mapper&#39; may be specified&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="s1">&#39;color_mapper&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="c1"># Use a palette (given or default)</span>
+            <span class="n">palette</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;palette&#39;</span><span class="p">,</span> <span class="s1">&#39;Greys9&#39;</span><span class="p">)</span>
+            <span class="n">mapper</span> <span class="o">=</span> <span class="n">LinearColorMapper</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;color_mapper&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapper</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Image</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span> <span class="s1">&#39;dh&#39;</span><span class="p">,</span> <span class="s1">&#39;global_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;dilate&#39;</span><span class="p">)</span>
+
+    <span class="c1"># a hook to specify any additional kwargs handled by an initializer</span>
+    <span class="n">_extra_kws</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;palette&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s1">&#39;str or list[color value]&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;a palette to construct a value for the color mapper property from&#39;</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The arrays of scalar data for the images to be colormapped.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dw</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The widths of the plot regions that the images will occupy.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        This is not the number of pixels that an image is wide.</span>
+<span class="s2">        That number is fixed by the image itself.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dh</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The height of the plot region that the image will occupy.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        This is not the number of pixels that an image is tall.</span>
+<span class="s2">        That number is fixed by the image itself.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">global_alpha</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An overall opacity that each image is rendered with (in addition</span>
+<span class="s2">    to any alpha values applied explicitly in a color mapper).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dilate</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to always round fractional pixel locations in such a way</span>
+<span class="s2">    as to make the images bigger.</span>
+
+<span class="s2">    This setting may be useful if pixel rounding errors are causing</span>
+<span class="s2">    images to have a gap between them, when they should appear flush.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">color_mapper</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">ColorMapper</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    A ``ColorMapper`` to use to map the scalar data from ``image``</span>
+<span class="s2">    into RGBA values for display.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        The color mapping step happens on the client.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: (bev) support anchor property for Image</span>
+    <span class="c1"># ref: https://github.com/bokeh/bokeh/issues/1763</span>
+
+<div class="viewcode-block" id="ImageRGBA"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/image_rgba.html#bokeh.models.glyphs.ImageRGBA">[docs]</a><span class="k">class</span> <span class="nc">ImageRGBA</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render images given as RGBA data.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;dw&#39;</span><span class="p">,</span> <span class="s1">&#39;dh&#39;</span><span class="p">,</span> <span class="s1">&#39;global_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;dilate&#39;</span><span class="p">)</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The arrays of RGBA data for the images.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dw</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The widths of the plot regions that the images will occupy.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        This is not the number of pixels that an image is wide.</span>
+<span class="s2">        That number is fixed by the image itself.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dh</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The height of the plot region that the image will occupy.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        This is not the number of pixels that an image is tall.</span>
+<span class="s2">        That number is fixed by the image itself.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">global_alpha</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An overall opacity that each image is rendered with (in addition</span>
+<span class="s2">    to any inherent alpha values in the image itself).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dilate</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to always round fractional pixel locations in such a way</span>
+<span class="s2">    as to make the images bigger.</span>
+
+<span class="s2">    This setting may be useful if pixel rounding errors are causing</span>
+<span class="s2">    images to have a gap between them, when they should appear flush.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: (bev) support anchor property for ImageRGBA</span>
+    <span class="c1"># ref: https://github.com/bokeh/bokeh/issues/1763</span>
+
+<div class="viewcode-block" id="ImageURL"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/image_url.html#bokeh.models.glyphs.ImageURL">[docs]</a><span class="k">class</span> <span class="nc">ImageURL</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render images loaded from given URLs.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/ImageURL.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">,</span> <span class="s1">&#39;global_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;dilate&#39;</span><span class="p">)</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="n">StringSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The URLs to retrieve images from.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        The actual retrieving and loading of the images happens on</span>
+<span class="s2">        the client.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates to locate the image anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">w</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The width of the plot region that the image will occupy in data space.</span>
+
+<span class="s2">    The default value is ``None``, in which case the image will be displayed</span>
+<span class="s2">    at its actual image size (regardless of the units specified here).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The height of the plot region that the image will occupy in data space.</span>
+
+<span class="s2">    The default value is ``None``, in which case the image will be displayed</span>
+<span class="s2">    at its actual image size (regardless of the units specified here).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to rotate the images, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">global_alpha</span> <span class="o">=</span> <span class="n">Float</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    An overall opacity that each image is rendered with (in addition</span>
+<span class="s2">    to any inherent alpha values in the image itself).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dilate</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to always round fractional pixel locations in such a way</span>
+<span class="s2">    as to make the images bigger.</span>
+
+<span class="s2">    This setting may be useful if pixel rounding errors are causing</span>
+<span class="s2">    images to have a gap between them, when they should appear flush.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">anchor</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">Anchor</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    What position of the image should be anchored at the `x`, `y`</span>
+<span class="s2">    coordinates.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">retry_attempts</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Number of attempts to retry loading the images from the specified URL.</span>
+<span class="s2">    Default is zero.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">retry_timeout</span> <span class="o">=</span> <span class="n">Int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Timeout (in ms) between retry attempts to load the image from the</span>
+<span class="s2">    specified URL. Default is zero ms.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Line"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/line.html#bokeh.models.glyphs.Line">[docs]</a><span class="k">class</span> <span class="nc">Line</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render a single line.</span>
+
+<span class="sd">    The ``Line`` glyph is different from most other glyphs in that the vector</span>
+<span class="sd">    of values only produces one glyph on the Plot.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Line.py&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the points of the line.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the points of the line.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarLineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the line.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MultiLine"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/multi_line.html#bokeh.models.glyphs.MultiLine">[docs]</a><span class="k">class</span> <span class="nc">MultiLine</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render several lines.</span>
+
+<span class="sd">    The data for the ``MultiLine`` glyph is different in that the vector of</span>
+<span class="sd">    values is not a vector of scalars. Rather, it is a &quot;list of lists&quot;.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/MultiLine.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;ys&#39;</span><span class="p">)</span>
+
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for all the lines, given as a &quot;list of lists&quot;.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for all the lines, given as a &quot;list of lists&quot;.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the lines.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MultiPolygons"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/multi_polygons.html#bokeh.models.glyphs.MultiPolygons">[docs]</a><span class="k">class</span> <span class="nc">MultiPolygons</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render several MultiPolygon.</span>
+
+<span class="sd">    Modeled on geoJSON - the data for the ``MultiPolygons`` glyph is</span>
+<span class="sd">    different in that the vector of values is not a vector of scalars.</span>
+<span class="sd">    Rather, it is a &quot;list of lists of lists of lists&quot;.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/MultiPolygons.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;ys&#39;</span><span class="p">)</span>
+
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for all the patches, given as a nested list.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Each item in ``MultiPolygons`` represents one MultiPolygon and each</span>
+<span class="s2">        MultiPolygon is comprised of ``n`` Polygons. Each Polygon is made of</span>
+<span class="s2">        one exterior ring optionally followed by ``m`` interior rings (holes).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for all the patches, given as a &quot;list of lists&quot;.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Each item in ``MultiPolygons`` represents one MultiPolygon and each</span>
+<span class="s2">        MultiPolygon is comprised of ``n`` Polygons. Each Polygon is made of</span>
+<span class="s2">        one exterior ring optionally followed by ``m`` interior rings (holes).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the multipolygons.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the multipolygons.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patches.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Oval"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/oval.html#bokeh.models.glyphs.Oval">[docs]</a><span class="k">class</span> <span class="nc">Oval</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render ovals.</span>
+
+<span class="sd">    This glyph renders ovals using Bezier curves, which are similar,</span>
+<span class="sd">    but not identical to ellipses. In particular, widths equal to heights</span>
+<span class="sd">    will not render circles. Use the ``Ellipse`` glyph for that.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Oval.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the centers of the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the centers of the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The overall widths of each oval.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The overall height of each oval.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angle the ovals are rotated from horizontal. [rad]</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the ovals.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Patch"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/patch.html#bokeh.models.glyphs.Patch">[docs]</a><span class="k">class</span> <span class="nc">Patch</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render a single patch.</span>
+
+<span class="sd">    The ``Patch`` glyph is different from most other glyphs in that the vector</span>
+<span class="sd">    of values only produces one glyph on the Plot.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Patch.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the points of the patch.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        A patch may comprise multiple polygons. In this case the</span>
+<span class="s2">        x-coordinates for each polygon should be separated by NaN</span>
+<span class="s2">        values in the sequence.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the points of the patch.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        A patch may comprise multiple polygons. In this case the</span>
+<span class="s2">        y-coordinates for each polygon should be separated by NaN</span>
+<span class="s2">        values in the sequence.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarLineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patch.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarFillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patch.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarHatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patch.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Patches"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/patches.html#bokeh.models.glyphs.Patches">[docs]</a><span class="k">class</span> <span class="nc">Patches</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render several patches.</span>
+
+<span class="sd">    The data for the ``Patches`` glyph is different in that the vector of</span>
+<span class="sd">    values is not a vector of scalars. Rather, it is a &quot;list of lists&quot;.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Patches.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;ys&#39;</span><span class="p">)</span>
+
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for all the patches, given as a &quot;list of lists&quot;.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Individual patches may comprise multiple polygons. In this case</span>
+<span class="s2">        the x-coordinates for each polygon should be separated by NaN</span>
+<span class="s2">        values in the sublists.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for all the patches, given as a &quot;list of lists&quot;.</span>
+
+<span class="s2">    .. note::</span>
+<span class="s2">        Individual patches may comprise multiple polygons. In this case</span>
+<span class="s2">        the y-coordinates for each polygon should be separated by NaN</span>
+<span class="s2">        values in the sublists.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patches.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patches.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patches.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Quad"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/quad.html#bokeh.models.glyphs.Quad">[docs]</a><span class="k">class</span> <span class="nc">Quad</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render axis-aligned quads.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Quad.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the left edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">right</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the right edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bottom</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the bottom edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">top</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the top edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the quads.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the quads.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Quadratic"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/quadratic.html#bokeh.models.glyphs.Quadratic">[docs]</a><span class="k">class</span> <span class="nc">Quadratic</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render parabolas.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Quadratic.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="s1">&#39;y0&#39;</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">,</span> <span class="s1">&#39;cx&#39;</span><span class="p">,</span> <span class="s1">&#39;cy&#39;</span><span class="p">)</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cx</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">cy</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the control points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the parabolas.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Ray"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/ray.html#bokeh.models.glyphs.Ray">[docs]</a><span class="k">class</span> <span class="nc">Ray</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render rays.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Ray.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates to start the rays.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates to start the rays.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles in radians to extend the rays, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">length</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The length to extend the ray. Note that this ``length`` defaults</span>
+<span class="s2">    to data units (measured in the x-direction).</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the rays.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Rect"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/rect.html#bokeh.models.glyphs.Rect">[docs]</a><span class="k">class</span> <span class="nc">Rect</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render rectangles.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Rect.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">,</span> <span class="s1">&#39;dilate&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the centers of the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the centers of the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The overall widths of the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">height</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The overall heights of the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to rotate the rectangles, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">dilate</span> <span class="o">=</span> <span class="n">Bool</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Whether to always round fractional pixel locations in such a way</span>
+<span class="s2">    as to make the rectangles bigger.</span>
+
+<span class="s2">    This setting may be useful if pixel rounding errors are causing</span>
+<span class="s2">    rectangles to have a gap between them, when they should appear</span>
+<span class="s2">    flush.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the rectangles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Segment"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/segment.html#bokeh.models.glyphs.Segment">[docs]</a><span class="k">class</span> <span class="nc">Segment</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render segments.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Segment.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x0&#39;</span><span class="p">,</span> <span class="s1">&#39;y0&#39;</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">)</span>
+
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the starting points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the ending points.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the segments.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Step"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/step.html#bokeh.models.glyphs.Step">[docs]</a><span class="k">class</span> <span class="nc">Step</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render step lines.</span>
+
+<span class="sd">    Step levels can be draw before, after, or centered on each point, according</span>
+<span class="sd">    to the value of the ``mode`` property.</span>
+
+<span class="sd">    The x-coordinates are assumed to be (and must be) sorted in ascending order</span>
+<span class="sd">    for steps to be properly rendered.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Step.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the steps.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the steps.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the steps.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">mode</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">StepMode</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Where the step &quot;level&quot; should be drawn in relation to the x and y</span>
+<span class="s2">    coordinates. The parameter can assume one of three values:</span>
+
+<span class="s2">    * ``before``: (default) Draw step levels before each x-coordinate (no step before the first point)</span>
+<span class="s2">    * ``after``:  Draw step levels after each x-coordinate (no step after the last point)</span>
+<span class="s2">    * ``center``: Draw step levels centered on each x-coordinate</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Text"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/text.html#bokeh.models.glyphs.Text">[docs]</a><span class="k">class</span> <span class="nc">Text</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render text.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Text.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;angle&#39;</span><span class="p">,</span> <span class="s1">&#39;x_offset&#39;</span><span class="p">,</span> <span class="s1">&#39;y_offset&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates to locate the text anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates to locate the text anchors.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">StringSpec</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The text values to render.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to rotate the text, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">x_offset</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Offset values to apply to the x-coordinates.</span>
+
+<span class="s2">    This is useful, for instance, if it is desired to &quot;float&quot; text a fixed</span>
+<span class="s2">    distance in screen units from a given data position.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y_offset</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Offset values to apply to the y-coordinates.</span>
+
+<span class="s2">    This is useful, for instance, if it is desired to &quot;float&quot; text a fixed</span>
+<span class="s2">    distance in screen units from a given data position.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">text_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">TextProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the text.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VArea"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/varea.html#bokeh.models.glyphs.VArea">[docs]</a><span class="k">class</span> <span class="nc">VArea</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render a vertically directed area between two equal length sequences</span>
+<span class="sd">    of y-coordinates with the same x-coordinates.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/VArea.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">,</span> <span class="s1">&#39;y2&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates for the points of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the points of one side of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates for the points of the other side of the area.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">ScalarFillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the patch.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the horizontal bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VBar"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/vbar.html#bokeh.models.glyphs.VBar">[docs]</a><span class="k">class</span> <span class="nc">VBar</span><span class="p">(</span><span class="n">Glyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render vertical bars, given a center coordinate, width and (top, bottom) coordinates.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/VBar.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the centers of the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The widths of the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">bottom</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the bottom edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">top</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the top edges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">hatch_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">HatchProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the vertical bars.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Wedge"><a class="viewcode-back" href="../../../docs/reference/models/glyphs/wedge.html#bokeh.models.glyphs.Wedge">[docs]</a><span class="k">class</span> <span class="nc">Wedge</span><span class="p">(</span><span class="n">XYGlyph</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Render wedges.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">__example__</span> <span class="o">=</span> <span class="s2">&quot;examples/reference/models/Wedge.py&quot;</span>
+
+    <span class="c1"># a canonical order for positional args that can be used for any</span>
+    <span class="c1"># functions derived from this class</span>
+    <span class="n">_args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;radius&#39;</span><span class="p">,</span> <span class="s1">&#39;start_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;end_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The x-coordinates of the points of the wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">NumberSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The y-coordinates of the points of the wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">radius</span> <span class="o">=</span> <span class="n">DistanceSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Radii of the wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">start_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to start the wedges, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">end_angle</span> <span class="o">=</span> <span class="n">AngleSpec</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The angles to end the wedges, as measured from the horizontal.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">direction</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">Direction</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;anticlock&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Which direction to stroke between the start and end angles.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">line_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">LineProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">fill_props</span> <span class="o">=</span> <span class="n">Include</span><span class="p">(</span><span class="n">FillProps</span><span class="p">,</span> <span class="n">use_prefix</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    The </span><span class="si">%s</span><span class="s2"> values for the wedges.</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Dev API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Private API</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1">#-----------------------------------------------------------------------------</span>
+<span class="c1"># Code</span>
+<span class="c1">#-----------------------------------------------------------------------------</span>
+
+<span class="c1"># XXX: allow `from bokeh.models.glyphs import *`</span>
+<span class="kn">from</span> <span class="nn">.markers</span> <span class="k">import</span> <span class="p">(</span><span class="n">Asterisk</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">CircleCross</span><span class="p">,</span> <span class="n">CircleX</span><span class="p">,</span> <span class="n">Cross</span><span class="p">,</span> <span class="n">Dash</span><span class="p">,</span>
+                      <span class="n">Diamond</span><span class="p">,</span> <span class="n">DiamondCross</span><span class="p">,</span> <span class="n">Hex</span><span class="p">,</span> <span class="n">InvertedTriangle</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span>
+                      <span class="n">Square</span><span class="p">,</span> <span class="n">SquareCross</span><span class="p">,</span> <span class="n">SquareX</span><span class="p">,</span> <span class="n">Triangle</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Fool pyflakes</span>
+<span class="p">(</span><span class="n">Asterisk</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">CircleCross</span><span class="p">,</span> <span class="n">CircleX</span><span class="p">,</span> <span class="n">Cross</span><span class="p">,</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Diamond</span><span class="p">,</span> <span class="n">DiamondCross</span><span class="p">,</span>
+<span class="n">Hex</span><span class="p">,</span> <span class="n">InvertedTriangle</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">Square</span><span class="p">,</span> <span class="n">SquareCross</span><span class="p">,</span> <span class="n">SquareX</span><span class="p">,</span> <span class="n">Triangle</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../../docs/vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../../docs/team.html">Team</a></li>
+      
+        <li><a href="../../../docs/citation.html">Citation</a></li>
+      
+        <li><a href="../../../docs/contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../../docs/contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

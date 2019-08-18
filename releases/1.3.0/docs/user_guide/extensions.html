@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Extending Bokeh &mdash; Bokeh 1.3.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.3.0";
+  </script>
+  <script src="../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/user_guide/extensions.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../index.html">1.3.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.3.0/">1.3.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending Bokeh</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#structure-of-bokeh-models">Structure of Bokeh Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-models">Python Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javascript-models-and-views">JavaScript Models and Views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#putting-it-together">Putting it Together</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-implementation-languages">Specifying Implementation Languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#supplying-external-resources">Supplying External Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-with-bokeh-server">Integration with Bokeh Server</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extensions_gallery/ticking.html">Specialized Axis Ticking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions_gallery/tool.html">A New Custom Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions_gallery/wrapping.html">Wrapping A JavaScript Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions_gallery/latex.html">Creating Latex Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extensions_gallery/widget.html">Adding A Custom Widget</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/model.html">bokeh.model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/models.html">bokeh.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">1.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-2-0">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="extending-bokeh">
+<span id="userguide-extensions"></span><h1>Extending Bokeh<a class="headerlink" href="#extending-bokeh" title="Permalink to this headline">¶</a></h1>
+<p>Bokeh comes with a rich variety of built-in types that can be used to make
+sophisticated interactive visualizations and data applications in the browser.
+However, there are capabilities and features that users may desire, which may
+not make it into the core library, either because they are too specialized, or
+for lack of resources. Fortunately, it is possible to extend Bokeh by creating
+custom user extensions.</p>
+<ul class="simple">
+<li><p>Modify the behavior of existing Bokeh models</p></li>
+<li><p>Add new models to connect third-party JavaScript libraries to Python</p></li>
+<li><p>Create highly specialized models for domain specific use-cases.</p></li>
+</ul>
+<p>Custom extensions can be made and used with standard releases, and do not
+require setting up a development environment or building anything from source.
+They provide the easiest way to get involved in Bokeh development. By lowering
+the bar for extending Bokeh, users are afforded the ability to “try out” new
+features and functionality (which might some day be candidates for adding to
+the core library) without having to wait on the core team.</p>
+<div class="section" id="structure-of-bokeh-models">
+<span id="userguide-extensions-structure"></span><h2>Structure of Bokeh Models<a class="headerlink" href="#structure-of-bokeh-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python-models">
+<span id="userguide-extensions-structure-python"></span><h3>Python Models<a class="headerlink" href="#python-models" title="Permalink to this headline">¶</a></h3>
+<p>For the most part, Python Bokeh models are completely declarative classes.
+Custom extensions are created by making a subclass <a class="reference internal" href="../reference/model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a>
+(or one of its subclasses), and including special class attributes to
+declare the properties that are mirrored on the JavaScript side. All of the
+available property types are documented in the <a class="reference internal" href="../reference/core/properties.html#bokeh-core-properties"><span class="std std-ref">bokeh.core.properties</span></a>
+section of the Reference Guide.</p>
+<p>A small example that creates a Custom readout for a slider is presented
+below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.core.properties</span> <span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">Instance</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HTMLBox</span><span class="p">,</span> <span class="n">Slider</span>
+
+<span class="k">class</span> <span class="nc">Custom</span><span class="p">(</span><span class="n">HTMLBox</span><span class="p">):</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Custom text&quot;</span><span class="p">)</span>
+
+    <span class="n">slider</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Slider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since we would like to create a custom extension that can participate in DOM
+layout, we subclass from <a class="reference internal" href="../reference/models/layouts.html#bokeh.models.layouts.HTMLBox" title="bokeh.models.layouts.HTMLBox"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTMLBox</span></code></a>. We also
+added two properties: a <a class="reference internal" href="../reference/core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> to configure
+a text message for the readout, and an <a class="reference internal" href="../reference/core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a>
+that can hold a <code class="xref py py-class docutils literal notranslate"><span class="pre">Slider</span></code>. The JavaScript
+<code class="docutils literal notranslate"><span class="pre">Slider</span></code> object that corresponds to the Python <code class="docutils literal notranslate"><span class="pre">Slider</span></code> will be made
+available to use.</p>
+</div>
+<div class="section" id="javascript-models-and-views">
+<span id="userguide-extensions-structure-js"></span><h3>JavaScript Models and Views<a class="headerlink" href="#javascript-models-and-views" title="Permalink to this headline">¶</a></h3>
+<p>While the Python side is mostly declarative, without much or any real code, the
+JavaScript side requires code to implement the model. When appropriate, code
+for a corresponding view must also be provided.</p>
+<p>Below is an annotated TypeScript implementation for <code class="docutils literal notranslate"><span class="pre">Custom</span></code> and its
+<code class="docutils literal notranslate"><span class="pre">CustomView</span></code>. For built-in models, this code is included directly in the
+final BokehJS scripts. We will see how to connect this code to custom
+extensions in the next section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>BokehJS was originally written in <a class="reference external" href="http://coffeescript.org">CoffeeScript</a>, but was ported
+to <a class="reference external" href="https://www.typescriptlang.org/">TypeScript</a>. Accordingly, the guidance here is presented in TypeScript.
+However, custom extensions can be written in CoffeeScript or pure JavaScript
+as well.</p>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span><span class="nx">HTMLBox</span><span class="p">,</span> <span class="nx">HTMLBoxView</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;models/layouts/html_box&quot;</span>
+
+<span class="kr">import</span> <span class="p">{</span><span class="nx">div</span><span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;core/dom&quot;</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">p</span> <span class="nx">from</span> <span class="s2">&quot;core/properties&quot;</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">CustomView</span> <span class="kr">extends</span> <span class="nx">HTMLBoxView</span> <span class="p">{</span>
+
+  <span class="nx">connect_signals</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">.</span><span class="nx">connect_signals</span><span class="p">()</span>
+
+    <span class="c1">// Set BokehJS listener so that when the Bokeh slider has a change</span>
+    <span class="c1">// event, we can process the new data.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">slider</span><span class="p">.</span><span class="nx">change</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">invalidate_layout</span><span class="p">()</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// BokehjS Views create &lt;div&gt; elements by default, accessible as</span>
+    <span class="c1">// ``this.el``. Many Bokeh views ignore this default &lt;div&gt;, and instead</span>
+    <span class="c1">// do things like draw to the HTML canvas. In this case though, we change</span>
+    <span class="c1">// the contents of the &lt;div&gt;, based on the current slider value.</span>
+    <span class="kr">super</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">({</span>
+      <span class="nx">style</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">padding</span><span class="o">:</span> <span class="s1">&#39;2px&#39;</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#b88d8e&#39;</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#2a3153&#39;</span><span class="p">,</span>
+      <span class="p">},</span>
+    <span class="p">},</span> <span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">slider</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">Custom</span> <span class="kr">extends</span> <span class="nx">HTMLBox</span> <span class="p">{</span>
+  <span class="nx">slider</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span>: <span class="kt">string</span><span class="p">}</span>
+
+  <span class="c1">// The ``__name__`` class attribute should generally match exactly the name</span>
+  <span class="c1">// of the corresponding Python class. Note that if using TypeScript, this</span>
+  <span class="c1">// will be automatically filled in during compilation, so except in some</span>
+  <span class="c1">// special cases, this shouldn&#39;t be generally included manually, to avoid</span>
+  <span class="c1">// typos, which would prohibit serialization/deserialization of this model.</span>
+  <span class="kr">static</span> <span class="nx">__name__</span> <span class="o">=</span> <span class="s2">&quot;Surface3d&quot;</span>
+
+  <span class="kr">static</span> <span class="nx">initClass</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="c1">// If there is an associated view, this is typically boilerplate.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">default_view</span> <span class="o">=</span> <span class="nx">CustomView</span>
+
+    <span class="c1">// The this.define() block adds corresponding &quot;properties&quot; to the JS model.</span>
+    <span class="c1">// These should normally line up 1-1 with the Python model class. Most property</span>
+    <span class="c1">// types have counterparts, e.g. bokeh.core.properties.String will be</span>
+    <span class="c1">// ``p.String`` in the JS implementation. Any time the JS type system is not</span>
+    <span class="c1">// yet as complete, you can use ``p.Any`` as a &quot;wildcard&quot; property type.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">define</span><span class="o">&lt;</span><span class="nx">Custom</span><span class="p">.</span><span class="nx">Props</span><span class="o">&gt;</span><span class="p">({</span>
+      <span class="nx">text</span><span class="o">:</span>   <span class="p">[</span> <span class="nx">p</span><span class="p">.</span><span class="nb">String</span> <span class="p">],</span>
+      <span class="nx">slider</span><span class="o">:</span> <span class="p">[</span> <span class="nx">p</span><span class="p">.</span><span class="nx">Any</span>    <span class="p">],</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">Custom</span><span class="p">.</span><span class="nx">initClass</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="putting-it-together">
+<span id="userguide-extensions-structure-putting-together"></span><h3>Putting it Together<a class="headerlink" href="#putting-it-together" title="Permalink to this headline">¶</a></h3>
+<p>For built-in Bokeh models, the implementation in BokehJS is automatically
+matched with the corresponding Python model by the build process. In order
+connect JavaScript implementations to Python models, one additional step
+is needed. The Python class should have have a class attribute called
+<code class="docutils literal notranslate"><span class="pre">__implementation__</span></code> whose value is the TypeScript (or JavaScript or
+CoffeeScript) code that the defines the client-side model as well as any
+optional views.</p>
+<p>Assuming the TypeScript code above was saved in a file <code class="docutils literal notranslate"><span class="pre">custom.ts</span></code>,
+then the complete Python class might look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.core.properties</span> <span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">Instance</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">HTMLBox</span><span class="p">,</span> <span class="n">Slider</span>
+
+<span class="k">class</span> <span class="nc">Custom</span><span class="p">(</span><span class="n">HTMLBox</span><span class="p">):</span>
+
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="s2">&quot;custom.ts&quot;</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Custom text&quot;</span><span class="p">)</span>
+
+    <span class="n">slider</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">Slider</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, if this class is defined in a Python module <code class="docutils literal notranslate"><span class="pre">custom.py</span></code> then the custom
+extension can now be used exactly like any built-in Bokeh model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">show</span><span class="p">,</span> <span class="n">output_file</span>
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">Slider</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+<span class="n">custom</span> <span class="o">=</span> <span class="n">Custom</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Special Slider Display&quot;</span><span class="p">,</span> <span class="n">slider</span><span class="o">=</span><span class="n">slider</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">column</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">custom</span><span class="p">)</span>
+
+<span class="n">show</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which results in the output below. The JavaScript code for the implementation
+is automatically included in the rendered document. Scrub the slider to see
+the special header update as the slider moves:</p>
+
+<script src="bokeh-plot-2f1d37dfa18c4b69a6fd6fb0fbe615c5-external-docs-user_guide-extensions.js" id="3aa5153c-4690-4338-8e22-d1a414506fb9"></script></div>
+<div class="section" id="specifying-implementation-languages">
+<span id="userguide-extensions-specifying-implemenation-languages"></span><h3>Specifying Implementation Languages<a class="headerlink" href="#specifying-implementation-languages" title="Permalink to this headline">¶</a></h3>
+<p>If the value of <code class="docutils literal notranslate"><span class="pre">__implementation__</span></code> is a single line that ends in one of
+the know extensions <code class="docutils literal notranslate"><span class="pre">.coffee</span></code>, <code class="docutils literal notranslate"><span class="pre">.js</span></code>, or <code class="docutils literal notranslate"><span class="pre">.ts</span></code> then the it is interpreted
+as a filename. The corresponding file is opened and its contents are compiled
+appropriately according to the file extension.</p>
+<p>Otherwise, if the implementation is inline in the class, the language for the
+source code may be explicitly provided by using the classes <code class="docutils literal notranslate"><span class="pre">CoffeeScript</span></code>,
+<code class="docutils literal notranslate"><span class="pre">JavaScript</span></code>, or <code class="docutils literal notranslate"><span class="pre">TypeScript</span></code>, e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Custom</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="n">JavaScript</span><span class="p">(</span><span class="s2">&quot; &lt;JS code here&gt; &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Otherwise, if a plain string is given, it is assumed to be <code class="docutils literal notranslate"><span class="pre">CoffeeScript</span></code>.</p>
+</div>
+<div class="section" id="supplying-external-resources">
+<span id="userguide-extensions-supplying-external-resources"></span><h3>Supplying External Resources<a class="headerlink" href="#supplying-external-resources" title="Permalink to this headline">¶</a></h3>
+<p>As part of implementing a custom model in Bokeh, there may be the need to
+include third-party Javascript libraries or CSS resources. Bokeh supports
+supplying external resources through the Python class attributes
+<code class="docutils literal notranslate"><span class="pre">__javascript__</span></code> and <code class="docutils literal notranslate"><span class="pre">__css__</span></code> of custom models.</p>
+<p>Including the URL paths to external resources will causes Bokeh to add
+the resources to the html document head, causing the Javascript library to be
+available in the global namespace and the custom CSS styling to be applied.</p>
+<p>One example is including the JS and CSS files for <a class="reference external" href="https://khan.github.io/KaTeX/">KaTeX</a> (a
+Javascript-based typesetting library that supports LaTeX) in order to create
+a <code class="docutils literal notranslate"><span class="pre">LatexLabel</span></code> custom model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LatexLabel</span><span class="p">(</span><span class="n">Label</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A subclass of the Bokeh built-in `Label` that supports rendering</span>
+<span class="sd">    LaTeX using the KaTeX typesetting library.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">__javascript__</span> <span class="o">=</span> <span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js&quot;</span>
+    <span class="n">__css__</span> <span class="o">=</span> <span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css&quot;</span>
+    <span class="n">__implementation__</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    # do something here</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>See the LaTeX example in the extensions gallery below to see the full
+implementation and resulting output.</p>
+</div>
+<div class="section" id="integration-with-bokeh-server">
+<span id="userguide-extensions-structure-server-integration"></span><h3>Integration with Bokeh Server<a class="headerlink" href="#integration-with-bokeh-server" title="Permalink to this headline">¶</a></h3>
+<p>No special work or modification is needed to integrate custom user extensions
+with the Bokeh server. As for standalone documents, the JavaScript
+implementation is automatically included in the rendered application.
+Additionally the standard synchronization of Bokeh model properties that
+happens for all built-in models happens transparently for custom user
+extensions as well.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<span id="userguide-extensions-examples"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Here we present some complete examples to serve as a reference. It is hoped
+that the information in this section is a useful point of departure for anyone
+creating a custom extensions. However, creating extensions is a somewhat
+advanced topic. In many cases, it will be required to study the source code
+of the base classes in <a class="reference external" href="https://github.com/bokeh/bokeh/tree/1.3.0/bokehjs/src/lib/models">bokehjs/src/lib/models</a>.</p>
+<p>For any questions that remain, please contact any of the sources in
+<a class="reference internal" href="info.html#userguide-info"><span class="std std-ref">Learning More</span></a>.Collaborating with the community will help make additions
+and improvements to this section for future users.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extensions_gallery/ticking.html">Specialized Axis Ticking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions_gallery/tool.html">A New Custom Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions_gallery/wrapping.html">Wrapping A JavaScript Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions_gallery/latex.html">Creating Latex Labels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions_gallery/widget.html">Adding A Custom Widget</a></li>
+</ul>
+</div>
+<dl class="simple">
+<dt><a class="reference internal" href="extensions_gallery/ticking.html#userguide-extensions-examples-ticking"><span class="std std-ref">Specialized Axis Ticking</span></a></dt><dd><p>Subclass built-in Bokeh models for axis ticking to customize their
+behaviour.</p>
+</dd>
+<dt><a class="reference internal" href="extensions_gallery/tool.html#userguide-extensions-examples-tool"><span class="std std-ref">A New Custom Tool</span></a></dt><dd><p>Make a completely new tool that can draw on a plot canvas.</p>
+</dd>
+<dt><a class="reference internal" href="extensions_gallery/wrapping.html#userguide-extensions-examples-wrapping"><span class="std std-ref">Wrapping A JavaScript Library</span></a></dt><dd><p>Connect Python to a third-party JavaScript library by wrapping it with
+a Bokeh custom extension.</p>
+</dd>
+<dt><a class="reference internal" href="extensions_gallery/latex.html#userguide-extensions-examples-latex"><span class="std std-ref">Creating Latex Labels</span></a></dt><dd><p>Include a third-party JavaScript library in order to render LaTeX.</p>
+</dd>
+<dt><a class="reference internal" href="extensions_gallery/widget.html#userguide-extensions-examples-widget"><span class="std std-ref">Adding A Custom Widget</span></a></dt><dd><p>Include a third-party JavaScript library in an extension widget.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../https://bokeh.org/roadmap.html">Roadmap</a></li>
+      
+        <li><a href="../https://bokeh.org/team.html">Team</a></li>
+      
+        <li><a href="../https://bokeh.org/citation.html">Citation</a></li>
+      
+        <li><a href="../https://bokeh.org.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="https://discourse.bokeh.org">Discourse</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

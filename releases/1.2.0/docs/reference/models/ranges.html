@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>bokeh.models.ranges &mdash; Bokeh 1.2.0 documentation</title>
+  <meta name="description" content="Bokeh visualization library, documentation site.">
+  <meta name="author" content="Bokeh contributors">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Source Sans Pro']
+      }
+    });
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../../../_static/css/main.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var _BOKEH_CURRENT_VERSION = "1.2.0";
+  </script>
+  <script src="../../../_static/js/main.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="../../../_static/images/favicon.ico">
+
+  <!-- Canonical
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="canonical" href="https://bokeh.pydata.org/en/latest/docs/reference/models/ranges.html" />
+
+</head>
+<body class="">
+
+  <header class="navigation">
+    <div class="wrapper">
+      <a href="" class="logo">
+        <img src="../../../_static/images/logo.png" alt="Bokeh Logo">
+      </a>
+      <a href="" class="navigation-menu logo-text">Bokeh</a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">Menu</a>
+      <nav>
+        <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          <li class="nav-link"><a href="//github.com/bokeh/bokeh">Github</a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="second-nav">
+    <nav>
+      <ul class="navigation-menu show">
+        <li class="nav-link more"><a href="../../../index.html">1.2.0</a>
+            <ul class="submenu">
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.2.0/">1.2.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.1.0/">1.1.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.4/">1.0.4</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.3/">1.0.3</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.2/">1.0.2</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.1/">1.0.1</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/1.0.0/">1.0.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.13.0/">0.13.0</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.16/">0.12.16</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.15/">0.12.15</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.12.14/">0.12.14</a></li>
+              
+              <li class="version-link"><a href="//bokeh.pydata.org/en/0.11.0/">0.11.0</a></li>
+              
+            </ul>
+        </li>
+            
+            <li class="nav-link doc-head"><a href="../../installation.html">Installation</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../user_guide.html">User Guide</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../gallery.html">Gallery</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="https://mybinder.org/v2/gh/bokeh/bokeh-notebooks/master?filepath=tutorial%2F00%20-%20Introduction%20and%20Setup.ipynb">Tutorial</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../reference.html">Reference</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../releases.html">Releases</a></li>
+            
+            
+            <li class="nav-link doc-head"><a href="../../dev_guide.html">Developer Guide</a></li>
+            
+      </ul>
+    </nav>
+  </div>
+
+<!-- MAIN BODY OF DOCS –––––––––––––––––– -->
+  <div class="docs section">
+    <div class="toc">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/concepts.html">Defining Key Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/plotting.html">Plotting with Basic Glyphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/data.html">Providing Data for Plots and Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/layout.html">Laying out Plots and Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/categorical.html">Handling Categorical Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/graph.html">Visualizing Network Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/geo.html">Mapping Geo Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/tools.html">Configuring Plot Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/styling.html">Styling Visual Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/annotations.html">Adding Annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/interaction.html">Adding Interactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/server.html">Running a Bokeh Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/notebook.html">Working in the Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/export.html">Exporting Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/embed.html">Embedding Plots and Apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/cli.html">Using <code class="docutils literal notranslate"><span class="pre">bokeh</span></code> Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/extensions.html">Extending Bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compat.html">Leveraging Other Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/webgl.html">Speeding up with WebGL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/bokehjs.html">Developing with JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/info.html">Learning More</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference.html">Reference Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../0_bokeh.html">bokeh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../application.html">bokeh.application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">bokeh.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">bokeh.colors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command.html">bokeh.command</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">bokeh.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../document.html">bokeh.document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../driving.html">bokeh.driving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../embed.html">bokeh.embed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../events.html">bokeh.events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io.html">bokeh.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../layouts.html">bokeh.layouts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">bokeh.model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../models.html">bokeh.models</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annotations.html">bokeh.models.annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrow_heads.html">bokeh.models.arrow_heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes.html">bokeh.models.axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html">bokeh.models.callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">bokeh.models.expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">bokeh.models.filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="formatters.html">bokeh.models.formatters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glyphs.html">bokeh.models.glyphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphs.html">bokeh.models.graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grids.html">bokeh.models.grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layouts.html">bokeh.models.layouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="map_plots.html">bokeh.models.map_plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mappers.html">bokeh.models.mappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="markers.html">bokeh.models.markers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plots.html">bokeh.models.plots</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bokeh.models.ranges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderers.html">bokeh.models.renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scales.html">bokeh.models.scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selections.html">bokeh.models.selections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sources.html">bokeh.models.sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textures.html">bokeh.models.textures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tickers.html">bokeh.models.tickers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiles.html">bokeh.models.tiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">bokeh.models.tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transforms.html">bokeh.models.transforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.buttons.html">bokeh.models.widgets.buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.groups.html">bokeh.models.widgets.groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.icons.html">bokeh.models.widgets.icons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.inputs.html">bokeh.models.widgets.inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.markups.html">bokeh.models.widgets.markups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.panels.html">bokeh.models.widgets.panels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.sliders.html">bokeh.models.widgets.sliders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.tables.html">bokeh.models.widgets.tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widgets.widget.html">bokeh.models.widgets.widget</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../palettes.html">bokeh.palettes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">bokeh.plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../protocol.html">bokeh.protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">bokeh.resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sampledata.html">bokeh.sampledata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../server.html">bokeh.server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../settings.html">bokeh.settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinxext.html">bokeh.sphinxext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../themes.html">bokeh.themes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tile_providers.html">bokeh.tile_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../transform.html">bokeh.transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util.html">bokeh.util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide.html">Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/setup.html">Getting Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/env_vars.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/models.html">Bokeh Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/server.html">Server Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bindings.html">Language Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/bokehjs.html">BokehJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html">1.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-1-0">1.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-4">1.0.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-3">1.0.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-2">1.0.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-1">1.0.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-1-0-0">1.0.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-13-0">0.13.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-16">0.12.16</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-15">0.12.15</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-14">0.12.14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-13">0.12.13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-11">0.12.11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-10">0.12.10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-9">0.12.9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-7">0.12.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-6">0.12.6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-5">0.12.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-4">0.12.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-3">0.12.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-2">0.12.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-1">0.12.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-12-0">0.12.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-1">0.11.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-11-0">0.11.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-10-0">0.10.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-3">0.9.3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-2">0.9.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-1">0.9.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-9-0">0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-2">0.8.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-1">0.8.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-8-0">0.8.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-1">0.7.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-7-0">0.7.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-1">0.6.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-6-0">0.6.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-2">0.5.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-1">0.5.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-5-0">0.5.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-4">0.4.4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-2">0.4.2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-1">0.4.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-4-0">0.4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-3-0">0.3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-2-0">0.2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases.html#release-0-1-0">0.1.0</a></li>
+</ul>
+
+    </div>
+    <div class="content">
+        
+  <div class="section" id="bokeh-models-ranges">
+<span id="id1"></span><h1>bokeh.models.ranges<a class="headerlink" href="#bokeh-models-ranges" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-bokeh.models.ranges"></span><p>Models for describing different kinds of ranges of values
+in different kinds of spaces (e.g., continuous or categorical)
+and with options for “auto sizing”.</p>
+<dl class="class">
+<dt id="bokeh.models.ranges.DataRange">
+<em class="property">class </em><code class="descname">DataRange</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/ranges.html#DataRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.ranges.DataRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.ranges.Range" title="bokeh.models.ranges.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.ranges.Range</span></code></a></p>
+<p>A base class for all data range types.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange.names">
+<code class="descname">names</code><a class="headerlink" href="#bokeh.models.ranges.DataRange.names" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  )</p>
+<p>A list of names to query for. If set, only renderers that
+have a matching value for their <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute will be used
+for autoranging.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange.renderers">
+<code class="descname">renderers</code><a class="headerlink" href="#bokeh.models.ranges.DataRange.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.List" title="bokeh.core.properties.List"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="renderers.html#bokeh.models.renderers.Renderer" title="bokeh.models.renderers.Renderer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Renderer</span></code></a>  ) )</p>
+<p>An explicit list of renderers to autorange against. If unset,
+defaults to all renderers on a plot.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14086&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.ranges.DataRange1d">
+<em class="property">class </em><code class="descname">DataRange1d</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/ranges.html#DataRange1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.ranges.DataRange1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.ranges.DataRange" title="bokeh.models.ranges.DataRange"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.ranges.DataRange</span></code></a></p>
+<p>An auto-fitting range in a continuous scalar dimension.</p>
+<p>By default the <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> of the range automatically
+assume min and max values of the data for associated renderers.</p>
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.MinMaxBounds" title="bokeh.core.properties.MinMaxBounds"><code class="xref py py-class docutils literal notranslate"><span class="pre">MinMaxBounds</span></code></a></p>
+<p>The bounds that the range is allowed to go to. Typically used to prevent
+the user from panning/zooming/etc away from the data.</p>
+<p>By default, the bounds will be None, allowing your plot to pan/zoom as far
+as you want. If bounds are ‘auto’ they will be computed to be the same as
+the start and end of the <code class="docutils literal notranslate"><span class="pre">DataRange1d</span></code>.</p>
+<p>Bounds are provided as a tuple of <code class="docutils literal notranslate"><span class="pre">(min,</span> <span class="pre">max)</span></code> so regardless of whether
+your range is increasing or decreasing, the first item should be the
+minimum value of the range and the second item should be the maximum.
+Setting <code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">&gt;</span> <span class="pre">max</span></code> will result in a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<p>If you only want to constrain one end of the plot, you can set <code class="docutils literal notranslate"><span class="pre">min</span></code> or
+<code class="docutils literal notranslate"><span class="pre">max</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> e.g. <code class="docutils literal notranslate"><span class="pre">DataRange1d(bounds=(None,</span> <span class="pre">12))</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.default_span">
+<code class="descname">default_span</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.default_span" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>A default width for the interval, in case <code class="docutils literal notranslate"><span class="pre">start</span></code> is equal to <code class="docutils literal notranslate"><span class="pre">end</span></code>
+(if used with a log axis, default_span is in powers of 10).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.end">
+<code class="descname">end</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.end" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>An explicitly supplied range end. If provided, will override
+automatically computed end value.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.flipped">
+<code class="descname">flipped</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.flipped" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Bool" title="bokeh.core.properties.Bool"><code class="xref py py-class docutils literal notranslate"><span class="pre">Bool</span></code></a></p>
+<p>Whether the range should be “flipped” from its normal direction when
+auto-ranging.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.follow">
+<code class="descname">follow</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.follow" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.StartEnd" title="bokeh.core.enums.StartEnd"><code class="xref py py-class docutils literal notranslate"><span class="pre">StartEnd</span></code></a>  )</p>
+<p>Configure the data to follow one or the other data extreme, with a
+maximum range size of <code class="docutils literal notranslate"><span class="pre">follow_interval</span></code>.</p>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code> then the range will adjust so that <code class="docutils literal notranslate"><span class="pre">start</span></code> always
+corresponds to the minimum data value (or maximum, if <code class="docutils literal notranslate"><span class="pre">flipped</span></code> is
+<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code> then the range will adjust so that <code class="docutils literal notranslate"><span class="pre">end</span></code> always
+corresponds to the maximum data value (or minimum, if <code class="docutils literal notranslate"><span class="pre">flipped</span></code> is
+<code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), then auto-ranging does not follow, and
+the range will encompass both the minimum and maximum data values.</p>
+<p><code class="docutils literal notranslate"><span class="pre">follow</span></code> cannot be used with bounds, and if set, bounds will be set to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.follow_interval">
+<code class="descname">follow_interval</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.follow_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">follow</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;start&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;end&quot;</span></code> then the range will
+always be constrained to that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">abs</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">start</span> <span class="o">-</span> <span class="n">r</span><span class="o">.</span><span class="n">end</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">follow_interval</span>
+</pre></div>
+</div>
+<p>is maintained.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.max_interval">
+<code class="descname">max_interval</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.max_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The level that the range is allowed to zoom out, expressed as the
+maximum visible interval. Note that <code class="docutils literal notranslate"><span class="pre">bounds</span></code> can impose an
+implicit constraint on the maximum interval as well.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.min_interval">
+<code class="descname">min_interval</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.min_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The level that the range is allowed to zoom in, expressed as the
+minimum visible interval. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the minimum
+interval is not bound.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.range_padding">
+<code class="descname">range_padding</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.range_padding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>How much padding to add around the computed data bounds.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">range_padding_units</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;percent&quot;</span></code>, the span of the
+range span is expanded to make the range <code class="docutils literal notranslate"><span class="pre">range_padding</span></code> percent larger.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">range_padding_units</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;absolute&quot;</span></code>, the start and end
+of the range span are extended by the amount <code class="docutils literal notranslate"><span class="pre">range_padding</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.range_padding_units">
+<code class="descname">range_padding_units</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.range_padding_units" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.PaddingUnits" title="bokeh.core.enums.PaddingUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">PaddingUnits</span></code></a>  )</p>
+<p>Whether the <code class="docutils literal notranslate"><span class="pre">range_padding</span></code> should be interpreted as a percentage, or
+as an absolute quantity. (default: <code class="docutils literal notranslate"><span class="pre">&quot;percent&quot;</span></code>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.DataRange1d.start">
+<code class="descname">start</code><a class="headerlink" href="#bokeh.models.ranges.DataRange1d.start" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>An explicitly supplied range start. If provided, will override
+automatically computed start value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;default_span&quot;</span><span class="o">:</span> <span class="mf">2.0</span><span class="p">,</span>
+  <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;flipped&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="s2">&quot;follow&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;follow_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14089&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;max_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;names&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;range_padding&quot;</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">,</span>
+  <span class="s2">&quot;range_padding_units&quot;</span><span class="o">:</span> <span class="s2">&quot;percent&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;renderers&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.ranges.FactorRange">
+<em class="property">class </em><code class="descname">FactorRange</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/ranges.html#FactorRange"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.ranges.FactorRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.ranges.Range" title="bokeh.models.ranges.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.ranges.Range</span></code></a></p>
+<p>A Range of values for a categorical dimension.</p>
+<p>In addition to supplying <code class="docutils literal notranslate"><span class="pre">factors</span></code> as a keyword argument to the
+<code class="docutils literal notranslate"><span class="pre">FactorRange</span></code> initializer, you may also instantiate with a sequence of
+positional arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FactorRange</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">)</span> <span class="c1"># equivalent to FactorRange(factors=[&quot;foo&quot;, &quot;bar&quot;])</span>
+</pre></div>
+</div>
+<p>Users will normally supply categorical values directly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>BokehJS will create a mapping from <code class="docutils literal notranslate"><span class="pre">&quot;foo&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;bar&quot;</span></code> to a numerical
+coordinate system called <em>synthetic coordinates</em>. In the simplest cases,
+factors are separated by a distance of 1.0 in synthetic coordinates,
+however the exact mapping from factors to synthetic coordinates is
+affected by he padding properties as well as whether the number of levels
+the factors have.</p>
+<p>Users typically do not need to worry about the details of this mapping,
+however it can be useful to fine tune positions by adding offsets. When
+supplying factors as coordinates or values, it is possible to add an
+offset in the synthetic coordinate space by adding a final number value
+to a factor tuple. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">),</span> <span class="o">...</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will position the first circle at an <code class="docutils literal notranslate"><span class="pre">x</span></code> position that is offset by
+adding 0.3 to the synthetic coordinate for <code class="docutils literal notranslate"><span class="pre">&quot;foo&quot;</span></code>.</p>
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.MinMaxBounds" title="bokeh.core.properties.MinMaxBounds"><code class="xref py py-class docutils literal notranslate"><span class="pre">MinMaxBounds</span></code></a></p>
+<p>The bounds (in synthetic coordinates) that the range is allowed to go to.
+Typically used to prevent the user from panning/zooming/etc away from the
+data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Synthetic coordinates are only computed in the browser, based on the
+factors and various padding properties. Some experimentation may be
+required to arrive at bounds suitable for specific situations.</p>
+</div>
+<p>By default, the bounds will be None, allowing your plot to pan/zoom as far
+as you want. If bounds are ‘auto’ they will be computed to be the same as
+the start and end of the <code class="docutils literal notranslate"><span class="pre">FactorRange</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.end">
+<code class="descname">end</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.end" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The end of the range, in synthetic coordinates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Synthetic coordinates are only computed in the browser, based on the
+factors and various padding properties. The value of <code class="docutils literal notranslate"><span class="pre">end</span></code> will only
+be available in situations where bidirectional communication is
+available (e.g. server, notebook).</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.factor_padding">
+<code class="descname">factor_padding</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.factor_padding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>How much padding to add in between all lowest-level factors. When
+<code class="docutils literal notranslate"><span class="pre">factor_padding</span></code> is non-zero, every factor in every group will have the
+padding value applied.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.factors">
+<code class="descname">factors</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.factors" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal notranslate"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal notranslate"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ) ), <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Seq" title="bokeh.core.properties.Seq"><code class="xref py py-class docutils literal notranslate"><span class="pre">Seq</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Tuple" title="bokeh.core.properties.Tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tuple</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.String" title="bokeh.core.properties.String"><code class="xref py py-class docutils literal notranslate"><span class="pre">String</span></code></a>  ) ) )</p>
+<p>A sequence of factors to define this categorical range.</p>
+<p>Factors may have 1, 2, or 3 levels. For 1-level factors, each factor is
+simply a string. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">,</span> <span class="s2">&quot;marketing&quot;</span><span class="p">,</span> <span class="s2">&quot;engineering&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>defines a range with three simple factors that might represent different
+units of a business.</p>
+<p>For 2- and 3- level factors, each factor is a tuple of strings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;2016&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&#39;], [&quot;</span><span class="mi">2016</span><span class="s2">&quot;, &quot;</span><span class="n">marketing</span><span class="s1">&#39;], [&quot;2016&quot;, &quot;engineering&quot;],</span>
+    <span class="p">[</span><span class="s2">&quot;2017&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&#39;], [&quot;</span><span class="mi">2017</span><span class="s2">&quot;, &quot;</span><span class="n">marketing</span><span class="s1">&#39;], [&quot;2017&quot;, &quot;engineering&quot;],</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>defines a range with six 2-level factors that might represent the three
+business units, grouped by year.</p>
+<p>Note that factors and sub-factors <em>may only be strings</em>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.group_padding">
+<code class="descname">group_padding</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.group_padding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>How much padding to add in between top-level groups of factors. This
+property only applies when the overall range factors have either two or
+three levels. For example, with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="p">[[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;1&#39;], [&quot;</span><span class="n">foo</span><span class="s2">&quot;, &quot;</span><span class="mi">2</span><span class="s1">&#39;], [&quot;bar&quot;, &quot;1&quot;]])</span>
+</pre></div>
+</div>
+<p>The top level groups correspond to <code class="docutils literal notranslate"><span class="pre">&quot;foo&quot;`</span> <span class="pre">and</span> <span class="pre">``&quot;bar&quot;</span></code>, and the
+group padding will be applied between the factors <code class="docutils literal notranslate"><span class="pre">[&quot;foo&quot;,</span> <span class="pre">&quot;2']</span></code> and
+<code class="docutils literal notranslate"><span class="pre">[&quot;bar&quot;,</span> <span class="pre">&quot;1&quot;]</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.max_interval">
+<code class="descname">max_interval</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.max_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The level that the range is allowed to zoom out, expressed as the
+maximum visible interval in synthetic coordinates.. Note that <code class="docutils literal notranslate"><span class="pre">bounds</span></code>
+can impose an implicit constraint on the maximum interval as well.</p>
+<p>The default “width” of a category is 1.0 in synthetic coordinates.
+However, the distance between factors is affected by the various
+padding properties and whether or not factors are grouped.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.min_interval">
+<code class="descname">min_interval</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.min_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The level that the range is allowed to zoom in, expressed as the
+minimum visible interval in synthetic coordinates. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>
+(default), the minimum interval is not bounded.</p>
+<p>The default “width” of a category is 1.0 in synthetic coordinates.
+However, the distance between factors is affected by the various
+padding properties and whether or not factors are grouped.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.range_padding">
+<code class="descname">range_padding</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.range_padding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>How much padding to add around the outside of computed range bounds.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">range_padding_units</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;percent&quot;</span></code>, the span of the
+range span is expanded to make the range <code class="docutils literal notranslate"><span class="pre">range_padding</span></code> percent larger.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">range_padding_units</span></code> is set to <code class="docutils literal notranslate"><span class="pre">&quot;absolute&quot;</span></code>, the start and end
+of the range span are extended by the amount <code class="docutils literal notranslate"><span class="pre">range_padding</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.range_padding_units">
+<code class="descname">range_padding_units</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.range_padding_units" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Enum" title="bokeh.core.properties.Enum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a> ( <a class="reference internal" href="../core/enums.html#bokeh.core.enums.PaddingUnits" title="bokeh.core.enums.PaddingUnits"><code class="xref py py-class docutils literal notranslate"><span class="pre">PaddingUnits</span></code></a>  )</p>
+<p>Whether the <code class="docutils literal notranslate"><span class="pre">range_padding</span></code> should be interpreted as a percentage, or
+as an absolute quantity. (default: <code class="docutils literal notranslate"><span class="pre">&quot;percent&quot;</span></code>)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.start">
+<code class="descname">start</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.start" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>The start of the range, in synthetic coordinates.</p>
+<blockquote>
+<div><p>Synthetic coordinates are only computed in the browser, based on the
+factors and various padding properties. The value of <code class="docutils literal notranslate"><span class="pre">end</span></code> will only
+be available in situations where bidirectional communication is
+available (e.g. server, notebook).</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.FactorRange.subgroup_padding">
+<code class="descname">subgroup_padding</code><a class="headerlink" href="#bokeh.models.ranges.FactorRange.subgroup_padding" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a></p>
+<p>How much padding to add in between mid-level groups of factors. This
+property only applies when the overall factors have three levels. For
+example with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FactorRange</span><span class="p">(</span><span class="n">factors</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">],</span>  <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">],</span>  <span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">]</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>This property dictates how much padding to add between the three factors
+in the <cite>[‘foo’, ‘A’]</cite> group, and between the two factors in the the
+[<cite>bar</cite>]</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;factor_padding&quot;</span><span class="o">:</span> <span class="mf">0.0</span><span class="p">,</span>
+  <span class="s2">&quot;factors&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;group_padding&quot;</span><span class="o">:</span> <span class="mf">1.4</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14101&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;max_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;range_padding&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;range_padding_units&quot;</span><span class="o">:</span> <span class="s2">&quot;percent&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;subgroup_padding&quot;</span><span class="o">:</span> <span class="mf">0.8</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.ranges.Range">
+<em class="property">class </em><code class="descname">Range</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/ranges.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.ranges.Range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../model.html#bokeh.model.Model" title="bokeh.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.model.Model</span></code></a></p>
+<p>A base class for all range types.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an abstract base class used to help organize the hierarchy of Bokeh
+model types. <strong>It is not useful to instantiate on its own.</strong></p>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range.callback">
+<code class="descname">callback</code><a class="headerlink" href="#bokeh.models.ranges.Range.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Instance" title="bokeh.core.properties.Instance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instance</span></code></a> ( <a class="reference internal" href="callbacks.html#bokeh.models.callbacks.Callback" title="bokeh.models.callbacks.Callback"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callback</span></code></a>  )</p>
+<p>A callback to run in the browser whenever the range is updated.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14113&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div><dl class="class">
+<dt id="bokeh.models.ranges.Range1d">
+<em class="property">class </em><code class="descname">Range1d</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/bokeh/models/ranges.html#Range1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#bokeh.models.ranges.Range1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#bokeh.models.ranges.Range" title="bokeh.models.ranges.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">bokeh.models.ranges.Range</span></code></a></p>
+<p>A fixed, closed range [start, end] in a continuous scalar
+dimension.</p>
+<p>In addition to supplying <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code> keyword arguments
+to the <code class="docutils literal notranslate"><span class="pre">Range1d</span></code> initializer, you can also instantiate with
+the convenience syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># equivalent to Range(start=0, end=10)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.bounds">
+<code class="descname">bounds</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.MinMaxBounds" title="bokeh.core.properties.MinMaxBounds"><code class="xref py py-class docutils literal notranslate"><span class="pre">MinMaxBounds</span></code></a></p>
+<p>The bounds that the range is allowed to go to. Typically used to prevent
+the user from panning/zooming/etc away from the data.</p>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code>, the bounds will be computed to the start and end of the Range.</p>
+<p>Bounds are provided as a tuple of <code class="docutils literal notranslate"><span class="pre">(min,</span> <span class="pre">max)</span></code> so regardless of whether your range is
+increasing or decreasing, the first item should be the minimum value of the range and the
+second item should be the maximum. Setting min &gt; max will result in a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
+<p>By default, bounds are <code class="docutils literal notranslate"><span class="pre">None</span></code> and your plot to pan/zoom as far as you want. If you only
+want to constrain one end of the plot, you can set min or max to None.</p>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Range1d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>  <span class="c1"># Auto-bounded to 0 and 1 (Default behavior)</span>
+<span class="n">Range1d</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>  <span class="c1"># Maximum is unbounded, minimum bounded to 0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.end">
+<code class="descname">end</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.end" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The end of the range.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.max_interval">
+<code class="descname">max_interval</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.max_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The level that the range is allowed to zoom out, expressed as the
+maximum visible interval. Can be a <code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">bounds</span></code> can
+impose an implicit constraint on the maximum interval as well.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.min_interval">
+<code class="descname">min_interval</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.min_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The level that the range is allowed to zoom in, expressed as the
+minimum visible interval. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), the minimum
+interval is not bound. Can be a <code class="docutils literal notranslate"><span class="pre">TimeDelta</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.reset_end">
+<code class="descname">reset_end</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.reset_end" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The end of the range to apply when resetting. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code> defaults
+to the <code class="docutils literal notranslate"><span class="pre">end</span></code> value during initialization.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.reset_start">
+<code class="descname">reset_start</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.reset_start" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The start of the range to apply after reset. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code> defaults
+to the <code class="docutils literal notranslate"><span class="pre">start</span></code> value during initialization.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bokeh.models.ranges.Range1d.start">
+<code class="descname">start</code><a class="headerlink" href="#bokeh.models.ranges.Range1d.start" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>property type:</em> <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Either" title="bokeh.core.properties.Either"><code class="xref py py-class docutils literal notranslate"><span class="pre">Either</span></code></a> ( <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Float" title="bokeh.core.properties.Float"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.Datetime" title="bokeh.core.properties.Datetime"><code class="xref py py-class docutils literal notranslate"><span class="pre">Datetime</span></code></a> , <a class="reference internal" href="../core/properties.html#bokeh.core.properties.TimeDelta" title="bokeh.core.properties.TimeDelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeDelta</span></code></a>  )</p>
+<p>The start of the range.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="expander">
+  <a href="javascript:void(0)" class="expander-trigger expander-hidden">JSON Prototype</a>
+  <div class="expander-content"><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;bounds&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;callback&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;14115&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;js_event_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;js_property_callbacks&quot;</span><span class="o">:</span> <span class="p">{},</span>
+  <span class="s2">&quot;max_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;min_interval&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;reset_end&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;reset_start&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">&quot;subscribed_events&quot;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&quot;tags&quot;</span><span class="o">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+  </div>
+</div></div>
+
+
+    </div>
+  </div>
+
+<!-- END MAIN BODY OF DOCS ––––––––––––– -->
+
+<footer class="footer">
+  <div class="footer-links">
+    <ul>
+      <li><span class="footer-title">About Us</span></li>
+      
+        <li><a href="../../vision.html">Vision and Work</a></li>
+      
+        <li><a href="../../team.html">Team</a></li>
+      
+        <li><a href="../../citation.html">Citation</a></li>
+      
+        <li><a href="../../contact.html">Contact</a></li>
+      
+    </ul>
+    <ul>
+      <li><span class="footer-title">Join Us</span></li>
+      
+          
+            <li><a href="../../contribute.html">Contribute</a></li>
+            
+      
+          
+            <li><a href="//groups.google.com/a/anaconda.com/forum/#!forum/bokeh">Mailing list</a></li>
+            
+      
+          
+            <li><a href="//github.com/bokeh/bokeh">Github</a></li>
+            
+      
+          
+            <li><a href="//twitter.com/BokehPlots">Twitter</a></li>
+            
+      
+    </ul>
+    <ul class="copyright">
+      <li>© Copyright 2015-2018, Anaconda and Bokeh Contributors.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-27761864-7', 'pydata.org');
+  ga('user.set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+</script>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

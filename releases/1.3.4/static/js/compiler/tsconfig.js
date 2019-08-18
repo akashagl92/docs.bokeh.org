@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tsconfig = {
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": false,
+        "strictFunctionTypes": false,
+        "strictPropertyInitialization": false,
+        "alwaysStrict": true,
+        "noErrorTruncation": true,
+        "noEmitOnError": false,
+        "allowJs": false,
+        "declaration": true,
+        "sourceMap": false,
+        "importHelpers": false,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "target": "ES5",
+        "lib": ["es2015", "dom"],
+        "baseUrl": ".",
+        "outDir": "./dist",
+    },
+    "include": ["./**/*.ts"],
+};
+exports.default = tsconfig;
